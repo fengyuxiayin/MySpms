@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="40dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="39dp">
+        <TextView
+            android:id="@+id/activity_notice_item_tv_date"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="16sp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_notice_item_tv_fjr"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_notice_item_tv_title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_notice_item_tv_status"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/activity_notice_item_ll_operation"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" >
+            <ImageView
+                android:id="@+id/activity_notice_item_img_read"
+                android:src="@mipmap/read"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/activity_notice_item_img_delete"
+                android:src="@mipmap/delete"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:background="@color/listview_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

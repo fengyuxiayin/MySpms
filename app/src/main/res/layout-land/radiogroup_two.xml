@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_compony_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="企业基本信息"
+            android:textColor="@drawable/textview_compony_selector"
+            android:textSize="16sp" />
+
+
+        <RadioButton
+            android:id="@+id/rb_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_compony_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="企业安全信息"
+            android:textColor="@drawable/textview_compony_selector"
+            android:textSize="16sp" />
+    </RadioGroup>
+</LinearLayout>

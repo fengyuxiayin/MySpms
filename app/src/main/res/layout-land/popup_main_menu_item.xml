@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/popupwindow_item_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="8dp" />
+
+    <TextView
+        android:id="@+id/popupwindow_item_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/popupwindow_item_icon"
+        android:padding="5dp"
+        android:textColor="#84BBAD"
+        android:textSize="20sp" />
+</RelativeLayout>

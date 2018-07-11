@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/activity_area_enterprise_cv"
+        style="@style/CustomCheckBoxTheme"
+        android:background="@color/zxing_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:layout_gravity="center_vertical"
+        android:textSize="14sp"
+        android:gravity="center_vertical" />
+</LinearLayout>

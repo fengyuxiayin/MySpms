@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_avtivity_system_srttings_settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage_bg"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.SystemSettingsActivity">
+    <include android:id="@+id/avtivity_system_srttings_header"
+        layout="@layout/header"
+        />
+    <ImageView
+        android:id="@+id/activity_system_srttings_img_reset_password"
+        android:background="@mipmap/reset_password_bg"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+    <ImageView
+        android:id="@+id/activity_system_srttings_img_clear_cache"
+        android:background="@mipmap/clear_cache_bg"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+    <ImageView
+        android:id="@+id/activity_system_srttings_img_logout"
+        android:background="@mipmap/logout_bg"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+</LinearLayout>

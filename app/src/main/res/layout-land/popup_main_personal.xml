@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:snser="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/homepage_radiogroup_bg_black"
+    android:orientation="vertical">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/popup_main_personal_tv_group_name"
+            android:text=""
+            android:textColor="@color/homepage_text_press"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.example.lzc.myspms.custom.MyGridView
+            android:id="@+id/popup_main_personal_gv_member"
+            android:orientation="horizontal"
+            android:numColumns="4"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+        </com.example.lzc.myspms.custom.MyGridView>
+        <View
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/popup_person_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            />
+        <TextView
+            android:text="管辖社区"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.example.lzc.myspms.custom.MyGridView
+            android:id="@+id/popup_main_personal_gv_community"
+            android:numColumns="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.example.lzc.myspms.custom.MyGridView>
+        <View
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/popup_person_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            />
+        <TextView
+            android:text="所属单位"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/popup_main_personal_tv_position"
+            android:text="夏庄街道安监办"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.example.lzc.myspms.custom.MyListView
+            android:id="@+id/popup_main_personal_lv"
+            android:divider="@null"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.example.lzc.myspms.custom.MyListView>
+    </LinearLayout>
+
+</ScrollView>

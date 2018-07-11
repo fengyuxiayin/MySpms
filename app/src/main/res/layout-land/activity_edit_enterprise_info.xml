@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_edit_enterprise_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EditEnterpriseInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/bg_black"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/activity_edit_enterprise_info_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@mipmap/goback" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/activity_edit_enterprise_info_title"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="20"
+            android:background="@color/bg_black"
+            android:gravity="center"
+            android:text="修改企业信息"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/activity_edit_enterprise_info_videocall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:src="@mipmap/videocall" />
+
+        <Button
+            android:id="@+id/activity_add_enterprise_btn_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/bg_black"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="@color/backgroundWhite" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/activity_edit_enterprise_info_rg"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/activity_edit_enterprise_info_rb_basic_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg_radius"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="企业基本信息"
+            android:textColor="@drawable/textcolor"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/activity_edit_enterprise_info_rb_safe_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg_radius"
+            android:button="@null"
+            android:gravity="center"
+            android:text="企业安检信息"
+            android:textColor="@drawable/textcolor"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/activity_edit_enterprise_info_fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="11">
+
+    </FrameLayout>
+
+</LinearLayout>

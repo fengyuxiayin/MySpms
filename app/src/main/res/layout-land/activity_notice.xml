@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_notice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/homepage_bg"
+    tools:context=".activitys.homepageactivitys.menuactivitys.NoticeActivity">
+    <include
+        android:id="@+id/activity_notice_header"
+        layout="@layout/header"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@mipmap/listview_border"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@color/activity_notice_bg_green"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="日期"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="发件人"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="主题"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="状态"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="操作"
+                android:textSize="18sp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/activity_notice_pulltorefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:scrollbars="none"
+            android:descendantFocusability="blocksDescendants">
+
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </LinearLayout>
+
+</LinearLayout>

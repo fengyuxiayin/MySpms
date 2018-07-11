@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_project_detail_danger"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/homepage_bg"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.checkitemactivitys.ProjectDetailDangerActivity">
+    <include layout="@layout/header"
+    android:id="@+id/activity_project_detail_danger_header"
+    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@mipmap/check_project_all_border"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_project_detail_danger_tv_danger"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/title"
+            android:gravity="center"
+            android:text="重大危险源名称"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6">
+
+                <LinearLayout
+                    android:id="@+id/activity_project_detail_danger_ll_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_project_detail_danger_tv_compony_name"
+                        android:text="企业名称"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_project_detail_danger_tv_type"
+                        android:text="项目分类"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_project_detail_danger_tv_date"
+                        android:text="生产日期"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/activity_project_detail_danger_ll_one"
+                    android:orientation="horizontal">
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_project_detail_danger_tv_danger_name"
+                        android:text="重大危险源名称"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_project_detail_danger_tv_check"
+                        android:text="负责人员"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_project_detail_danger_tv_year"
+                        android:text="使用年限"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/activity_project_detail_danger_btn_commit"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="50dp"
+                android:background="@mipmap/check_project_btn_border"
+                android:text="提交"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <com.example.lzc.myspms.custom.MyGridView
+            android:id="@+id/activity_project_detail_danger_grid"
+            android:numColumns="2"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.example.lzc.myspms.custom.MyGridView>
+    </LinearLayout>
+
+</LinearLayout>

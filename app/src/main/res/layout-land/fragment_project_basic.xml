@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginRight="155dp"
+        android:background="@color/bg_green"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:layout_margin="2dp"
+            android:src="@mipmap/edit" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundWhite" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="基本信息"
+            android:textColor="@color/backgroundWhite"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="156dp"
+        android:layout_marginRight="156dp"
+        android:background="@drawable/shape_searchview_bg_green"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="所属企业" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_below_ssqy"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="项目类型" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_xmlx"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="必填项 点击选取"
+                android:textColorHint="@color/hintRed" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_project_basic_ll_23"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/fragment_project_basic_tv_ejaqys"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="二级安全要素"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_ejaqys"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选取"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/fragment_project_basic_tv_sjaqys"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="三级安全要素"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_sjaqys"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选取"
+                android:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_project_basic_ll_45"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/fragment_project_basic_tv_sjaays"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="四级安全要素"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_sjaays"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选取"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/fragment_project_basic_tv_wjaqys"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="五级安全要素"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_wjaqys"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选取"
+                android:visibility="invisible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="项目名称" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_xmmc"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="必填项"
+                android:textColorHint="@color/hintRed" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="项目编码" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_xmbm"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="必填项"
+                android:textColorHint="@color/hintRed" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="所属部门" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_below_ssbm"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="使用地点" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_sydd"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginRight="155dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/bg_green"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:layout_margin="2dp"
+            android:src="@mipmap/edit" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundWhite" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="设备相关"
+            android:textColor="@color/backgroundWhite"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="156dp"
+        android:layout_marginRight="156dp"
+        android:background="@drawable/shape_searchview_bg_green"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="设备品牌" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_sbpp"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="设备型号" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_sbxh"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="额定电压" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_eddy"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="功率消耗" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_glxh"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="设备净重" />
+
+            <EditText
+                android:id="@+id/fragment_project_basic_et_sbjz"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="选填项" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="生产日期" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_project_basic_et_scrq"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选择"
+                android:textCursorDrawable="@color/zxing_transparent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="启用日期" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_project_basic_et_qyrq"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选择"
+                android:textCursorDrawable="@color/zxing_transparent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="保修日期" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_project_basic_et_bxrq"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选择"
+                android:textCursorDrawable="@color/zxing_transparent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="建档日期" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_project_basic_et_jdrq"
+                style="@style/CustomEdittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="点击选择"
+                android:textCursorDrawable="@color/zxing_transparent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

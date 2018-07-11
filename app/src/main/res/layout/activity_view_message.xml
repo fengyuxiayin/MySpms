@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_view_message"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.ViewMessageActivity">
+    <include layout="@layout/header"
+        android:id="@+id/activity_view_message_header"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp">
+        <TextView
+            android:text="发件人："
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/bg_green"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_view_message_tv_fjr"
+            android:textSize="16sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp">
+        <TextView
+            android:text="时间："
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/bg_green"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_view_message_tv_sj"
+            android:textSize="16sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp">
+        <TextView
+            android:text="收件人："
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/bg_green"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_view_message_tv_sjr"
+            android:textSize="16sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/activity_view_message_lv"
+        android:background="@drawable/shape_searchview_bg_green"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="150dp"
+        android:layout_height="270dp">
+    </ListView>
+    <Button
+        android:id="@+id/activity_view_message_btn_Reply"
+        android:layout_gravity="center"
+        android:background="@drawable/button_login_selector"
+        android:text="回复邮件"
+        android:layout_marginTop="10dp"
+        android:textColor="@drawable/textview_login_selector"
+        android:layout_width="100dp"
+        android:layout_height="40dp" />\
+</LinearLayout>

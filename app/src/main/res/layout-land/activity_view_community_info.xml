@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_view_community_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/homepage_bg"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.communityinfoactivitys.ViewCommunityInfoActivity">
+
+    <include
+        android:id="@+id/avtivity_view_community_info_header"
+        layout="@layout/header" />
+    <RadioGroup
+        android:id="@+id/activity_view_community_info_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/activity_view_community_info_rb_basic_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_recheck_radiogroup_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="社区基本信息"
+            android:textColor="@drawable/selector_recheck_textview"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/activity_view_community_info_rb_staff_info"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_recheck_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="社区人员信息"
+            android:textColor="@drawable/selector_recheck_textview"
+            android:textSize="16sp" />
+        <RadioButton
+            android:id="@+id/activity_view_community_info_rb_check_record"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_recheck_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="安检记录"
+            android:textColor="@drawable/selector_recheck_textview"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+    <FrameLayout
+        android:id="@+id/activity_view_community_info_fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"></FrameLayout>
+</LinearLayout>

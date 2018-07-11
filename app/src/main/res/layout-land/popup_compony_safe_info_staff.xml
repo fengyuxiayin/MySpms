@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundWhite"
+    android:elevation="4dp"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_black"
+        android:paddingBottom="5dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="5dp"
+        android:text="添加/修改人员"
+        android:textColor="@color/backgroundWhite"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="姓名"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/popup_compony_safe_info_staff_et_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/shape_searchview_bg_green"
+            android:hint="必填"
+            android:paddingLeft="5dp"
+            android:textColorHint="@color/hintRed"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="联系方式"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/popup_compony_safe_info_staff_et_phone_number"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/shape_searchview_bg_green"
+            android:hint="必填"
+            android:paddingLeft="5dp"
+            android:textColorHint="@color/hintRed"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/popup_compony_safe_info_staff_btn_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/bg_green"
+            android:gravity="center"
+            android:text="添加"
+            android:textColor="@color/backgroundWhite" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_searchview_bg_green"
+        android:layout_height="20dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="姓名"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/bg_green"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:text="联系电话"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/bg_green"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:text="操作"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/popup_compony_safe_info_staff_plv"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/shape_searchview_bg_green"
+        android:layout_height="280dp"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+        <Button
+            android:id="@+id/popup_compony_safe_info_staff_btn_save"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/bg_green"
+            android:text="保存"
+            android:textColor="@color/backgroundWhite" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/popup_compony_safe_info_staff_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/bg_green"
+            android:text="取消"
+            android:textColor="@color/backgroundWhite" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+    </LinearLayout>
+</LinearLayout>

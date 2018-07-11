@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:descendantFocusability="afterDescendants"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            android:id="@+id/fragment_project_status"
+            android:src="@mipmap/ic_launcher"
+            android:padding="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <View
+            android:layout_width="1dp"
+            android:background="@color/bg_green"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/fragment_project_project_name"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:text="资料名称"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/bg_green"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/fragment_project_edit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/qrcode"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/fragment_project_delete"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/clear_cache"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View
+        android:background="@color/bg_green"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

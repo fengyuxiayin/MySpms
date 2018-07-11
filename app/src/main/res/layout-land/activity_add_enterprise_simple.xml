@@ -1,0 +1,1557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_enterprise_simple"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage_bg"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/activity_add_enterprise_simple_header"
+            layout="@layout/header" />
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:id="@+id/activity_add_enterprise_simple_tv_compony_name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:gravity="center"-->
+        <!--android:text="xxx有限责任公司"-->
+        <!--android:textColor="@color/homepage_text_press"-->
+        <!--android:textSize="20sp" />-->
+        <RadioGroup
+            android:id="@+id/activity_add_enterprise_simple_rg"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/activity_add_enterprise_simple_rb_basicinfo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/selector_recheck_radiogroup_bg"
+                android:text="基本信息"
+                android:checked="true"
+                android:button="@null"
+                android:textColor="@color/homepage_text_press" />
+
+            <RadioButton
+                android:id="@+id/activity_add_enterprise_simple_rb_staffinfo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/selector_recheck_radiogroup_bg"
+                android:text="人员信息"
+                android:button="@null"
+                android:textColor="@color/homepage_text_press" />
+
+            <RadioButton
+                android:id="@+id/activity_add_enterprise_simple_rb_safeinfo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:button="@null"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/selector_recheck_radiogroup_bg"
+                android:text="安全信息"
+                android:textColor="@color/homepage_text_press" />
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/activity_add_enterprise_simple_fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@mipmap/check_project_all_border">
+
+        </FrameLayout>
+        <!--<com.youth.banner.Banner-->
+        <!--android:id="@+id/activity_add_enterprise_simple_banner"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_height="200dp">-->
+
+        <!--</com.youth.banner.Banner>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="18dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:src="@mipmap/edit" />-->
+
+        <!--<View-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/backgroundWhite" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:text="基本信息"-->
+        <!--android:textColor="@color/backgroundWhite"></com.example.lzc.myspms.custom.AutoFitTextView>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="360dp"-->
+        <!--android:layout_marginLeft="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业名称" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qymc"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="必填项"-->
+        <!--android:textColorHint="@color/hintRed" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="工商注册号" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_gszch"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="法定代表人" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_fddbr"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业状态" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qyzt"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="联系电话" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_lxdh"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="所属社区" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_sssq"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:visibility="gone"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="是否重点企业" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_sfzdqy"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业状态" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qyzt"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="经济类型代码" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_jjlxdm"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="行业类别代码" />-->
+
+        <!--<AutoCompleteTextView-->
+        <!--android:id="@+id/activity_add_enterprise_et_hylbdm"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:completionThreshold="1"-->
+        <!--android:dropDownWidth="300dp"-->
+        <!--android:hint="输入关键词搜索"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业行政隶属关系" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qyxzlsgx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业位置" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qywz"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="必填项 点击定位"-->
+        <!--android:textColorHint="@color/hintRed" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="注册地址" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zcdz"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="9"-->
+        <!--android:singleLine="false" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="生产经营地址" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_scjydz"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_weight="9"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="必填项 点击选择"-->
+        <!--android:textColorHint="@color/hintRed" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="经营范围" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_jyfw"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="9"-->
+        <!--android:singleLine="false" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="19dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:src="@mipmap/edit" />-->
+
+        <!--<View-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/backgroundWhite" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:text="负责人及联系方式"-->
+        <!--android:textColor="@color/backgroundWhite" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_marginLeft="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="主要负责人" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zyfzr"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="主要负责人联系方式" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zyfzrlxdh"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="主要负责人邮箱" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zyfzryx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="主要负责人是否学习" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zyfzrsfxx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="网格负责人" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_wgfzr"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="网格负责人移动电话" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_wgfzryddh"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="网格负责人固定电话" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_wgfzrgddh"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="例:053212345678"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="网格负责人邮箱" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_wgfzryx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全管理员" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_aqfzr"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全管理员是否学习" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_aqfzrsfxx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全管理员移动电话" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_aqfzryddh"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全管理员固定电话" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_aqfzrgddh"-->
+        <!--style="@style/CustomEdittext"-->
+
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="例:053212345678"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全管理员邮箱" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_aqfzryx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="7" />-->
+        <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="19dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:src="@mipmap/edit" />-->
+
+        <!--<View-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/backgroundWhite" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:text="人员统计"-->
+        <!--android:textColor="@color/backgroundWhite"></com.example.lzc.myspms.custom.AutoFitTextView>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="120dp"-->
+        <!--android:layout_marginLeft="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="从业人员数量" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_cyrysl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/activity_add_enterprise_img_cyrysl"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@mipmap/add_gray" />-->
+        <!--</LinearLayout>-->
+
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="特种作业人员数量" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_tzzyrysl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/activity_add_enterprise_img_tzzyrysl"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@mipmap/add_gray" />-->
+        <!--</LinearLayout>-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="专职安全生产管理人员数量" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zzaqglrysl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/activity_add_enterprise_img_zzaqglrysl"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@mipmap/add_gray" />-->
+        <!--</LinearLayout>-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="专职应急管理人员数量" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zzyjglrysl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/activity_add_enterprise_img_zzyjglrysl"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@mipmap/add_gray" />-->
+        <!--</LinearLayout>-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="注册安全工程师数量" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zcaqgcssl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/activity_add_enterprise_img_zcaqgcssl"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@mipmap/add_gray" />-->
+        <!--</LinearLayout>-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="住宿人员数量" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_zsrysl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/activity_add_enterprise_img_zsrysl"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="2dp"-->
+        <!--android:src="@mipmap/add_gray" />-->
+        <!--</LinearLayout>-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="18dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:src="@mipmap/edit" />-->
+
+        <!--<View-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/backgroundWhite" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:text="安全生产信息"-->
+        <!--android:textColor="@color/backgroundWhite" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginLeft="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:background="@drawable/shape_searchview_bg_green">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="是否设置安全机构" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_sfszaqjg"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全监管监察机构" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_aqjgjcjg"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="18dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="@color/bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:src="@mipmap/edit" />-->
+
+        <!--<View-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/backgroundWhite" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:text="其他信息"-->
+        <!--android:textColor="@color/backgroundWhite" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="240dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginLeft="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="是否为规模企业" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_sfgmqy"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业规模" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qygm"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="安全监管行业分类" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_jgfl"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="监管级别" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_jgjb"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业风险等级" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qyfxdj"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_weight="3"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="是否使用危险化学品" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_ywwhpsy"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="是否开展标准化创建" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_sfbzh"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="是否开展双重预防机制建设" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_sflgtx"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="投资额" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_tze"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="2"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:id="@+id/activity_add_enterprise_tv_tze"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:text="万元" />-->
+        <!--</LinearLayout>-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="年销售收入" />-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/shape_searchview_bg_green"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_yye"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="2"-->
+        <!--android:background="@color/transparent" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:id="@+id/activity_add_enterprise_tv_yye"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:text="万元" />-->
+        <!--</LinearLayout>-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:text="企业范围" />-->
+
+        <!--<com.example.lzc.myspms.custom.ClearEditText-->
+        <!--android:id="@+id/activity_add_enterprise_et_qyfw"-->
+        <!--style="@style/CustomEdittext"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="9"-->
+        <!--android:hint="点击选择"-->
+        <!--android:textColorHint="@color/hintGray" />-->
+
+
+        <!--<View-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1" />-->
+        <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+        <!--<com.example.lzc.myspms.custom.AutoFitTextView-->
+        <!--android:id="@+id/activity_add_enterprise_simple_tv_upload"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:text="上传企业图片"-->
+        <!--android:textColor="@color/bg_green"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:textSize="14sp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="20dp" />-->
+
+        <!--<com.example.lzc.myspms.custom.MyGridView-->
+        <!--android:id="@+id/activity_add_enterprise_simple_gv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="51dp"-->
+        <!--android:layout_marginRight="51dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:numColumns="4" />-->
+    </LinearLayout>
+</LinearLayout>

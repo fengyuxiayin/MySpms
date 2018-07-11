@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_item_search_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.checkitemactivitys.CheckItemSearchResultActivity">
+    <include android:id="@+id/activity_check_item_search_result_header"
+        layout="@layout/header"/>
+    <include android:id="@+id/activity_check_item_search_result_no_network_connection"
+        android:visibility="gone"
+        layout="@layout/no_network_connection"/>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/activity_check_item_search_result_pulltorefresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:divider="@null"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:scrollbars="none">
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+</LinearLayout>

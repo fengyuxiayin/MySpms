@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_weight="1"
+    android:background="@mipmap/homepage_border_small"
+    >
+    <TextView
+        android:id="@+id/fragment_homepage_tv_title"
+        style="@style/fragment_homepage_text_title_style"
+        android:text="累计检查企业次数" />
+
+    <LinearLayout
+        android:id="@+id/fragment_homepage_ll"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_homepage_tv_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.example.lzc.myspms.custom.GradientTextView
+            android:id="@+id/fragment_homepage_tv_times"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="3000"
+            android:textSize="32sp" />
+        <TextView
+            android:id="@+id/fragment_homepage_tv_times_name"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:text="次"
+            android:gravity="bottom|center_horizontal"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/fragment_homepage_ll"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="在小组中排名  第 "
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <com.example.lzc.myspms.custom.GradientTextView
+            android:id="@+id/fragment_homepage_tv_pos"
+            android:textSize="32sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="7dp"
+            android:gravity="top"
+            android:text="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text=" 名"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <com.example.lzc.myspms.custom.BarChartView
+        android:layout_toRightOf="@id/fragment_homepage_ll"
+        android:layout_below="@id/fragment_homepage_tv_title"
+        android:id="@+id/fragment_homepage_bc"
+        android:layout_marginLeft="10dp"
+        android:layout_width="70dp"
+        android:layout_height="65dp">
+    </com.example.lzc.myspms.custom.BarChartView>
+</RelativeLayout>

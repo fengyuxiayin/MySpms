@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_project_detail_simple"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage_bg"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.checkitemactivitys.ProjectDetailSimpleActivity">
+
+    <include
+        android:id="@+id/activity_project_detail_simple_header"
+        layout="@layout/header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/activity_project_detail_simple_rg"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="300dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/activity_project_detail_simple_rb_qualified"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:gravity="center"
+                android:text="合格"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/activity_project_detail_simple_rb_unqualified"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:gravity="center"
+                android:text="不合格"
+                android:checked="true"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/activity_project_detail_simple_btn_commit"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="150dp"
+            android:background="@mipmap/check_project_btn_border"
+            android:text="提交"
+            android:textColor="@color/homepage_text_press" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="主体责任事项"
+                    android:background="@drawable/title"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/activity_project_detail_simple_lv_ztzrsx"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                </TextView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:text="处罚情形"
+                    android:background="@drawable/title"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/activity_project_detail_simple_lv_cfqx"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                </ListView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="处罚依据"
+                    android:background="@drawable/title"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/activity_project_detail_simple_lv_cfyj"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                </ListView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="180dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="详细描述"
+                    android:background="@drawable/title"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/activity_project_detail_simple_et_xxms"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="left|top"
+                    android:hint="请输入详细描述"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:textColor="@color/homepage_text_press"
+                    android:textColorHint="@color/hintGray"
+                    android:textCursorDrawable="@null" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@mipmap/listview_border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="拍照留证"
+                    android:background="@drawable/title"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <GridView
+                    android:id="@+id/activity_project_detail_simple_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:numColumns="4"></GridView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

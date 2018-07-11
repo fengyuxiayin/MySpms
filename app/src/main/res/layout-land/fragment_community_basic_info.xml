@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_community_basic_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/check_project_all_border"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/activity_community_basic_info_detail_tv_community_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="社区地址:"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/activity_community_basic_info_detail_tv_community_address"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:background="@null"
+                android:textColor="@color/homepage_text_press"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@mipmap/popup_person_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="社区人口:"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/activity_community_basic_info_detail_tv_people"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:background="@null"
+                android:textColor="@color/homepage_text_press"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@mipmap/popup_person_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="社区面积:"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/activity_community_basic_info_detail_tv_acreage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@null"
+                android:paddingLeft="5dp"
+                android:textColor="@color/homepage_text_press"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@mipmap/popup_person_line" />
+        <Button
+            android:id="@+id/activity_community_basic_info_btn_save"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="保存"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@mipmap/check_project_btn_border"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+</LinearLayout>

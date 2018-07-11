@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fragment_new_homepage_tv_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="5dp"
+        android:text="夏庄安监办协查1组"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="18sp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RadioGroup
+            android:id="@+id/fragment_new_homepage_rg"
+            android:layout_width="40dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/fragment_new_homepage_rb_range"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_homepage_radiobutton_bg"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="top|center_horizontal"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:text="负\n责\n范\n围"
+
+                android:textColor="@color/homepage_text_press"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/fragment_new_homepage_rb_achieve"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_homepage_radiobutton_bg"
+                android:button="@null"
+                android:gravity="top|center_horizontal"
+                android:paddingTop="5dp"
+                android:layout_marginTop="10dp"
+                android:text="工\n作\n业\n绩"
+                android:paddingRight="2dp"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/fragment_new_homepage_rb_passrate"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_homepage_radiobutton_bg"
+                android:button="@null"
+                android:gravity="top|center_horizontal"
+                android:paddingTop="5dp"
+                android:layout_marginTop="10dp"
+                android:text="检\n查\n合\n格\n率"
+                android:paddingRight="2dp"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="12sp" />
+        </RadioGroup>
+        <FrameLayout
+            android:id="@+id/fragment_new_homepage_fl"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_gravity="center"
+            android:background="@mipmap/homepage_bg" />
+    </LinearLayout>
+</LinearLayout>

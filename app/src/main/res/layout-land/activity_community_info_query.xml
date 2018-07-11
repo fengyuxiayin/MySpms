@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_community_info_query"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/homepage_bg"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.CommunityInfoQueryActivity">
+
+    <include android:id="@+id/activity_edit_community_info_header"
+        layout="@layout/header" />
+    <LinearLayout
+        android:id="@+id/activity_community_info_query_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/activity_community_info_ll_query"
+            style="@style/CustomLinearlayout"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_community_info_query_et_search"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:textSize="16sp"
+                android:textColor="@color/homepage_text_press"
+                android:textCursorDrawable="@null"
+                android:paddingLeft="10dp"
+                android:background="@mipmap/new_check_edittext_bg"
+                android:hint="请输入社区名称"
+                android:textColorHint="@color/bg_gray"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:layout_marginLeft="10dp"
+                android:id="@+id/activity_community_info_query_btn_search"
+                style="@style/CustomButton"
+                android:layout_height="match_parent"
+                android:text="搜索" />
+        </LinearLayout>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/activity_community_info_query_pulltorefresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="12"
+            android:descendantFocusability="blocksDescendants"
+            android:divider="@color/transparent"
+            android:dividerHeight="10dp"
+            android:scrollbars="none"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </LinearLayout>
+</LinearLayout>

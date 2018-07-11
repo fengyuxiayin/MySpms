@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_weight="10"
+android:layout_width="0dp"
+android:background="@mipmap/edit_unfocus"
+android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@color/homepage_text_normal"
+    android:layout_height="30dp">
+    <TextView
+        android:text="姓名"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:text="联系方式"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/ry_add"
+        android:layout_gravity="center"
+        android:src="@mipmap/add_white"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+</LinearLayout>
+<com.example.lzc.myspms.custom.MyListView
+    android:id="@+id/ry_list"
+    android:background="@null"
+    android:divider="@null"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</com.example.lzc.myspms.custom.MyListView>
+</LinearLayout>

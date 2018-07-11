@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/homepage_bg"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/popup_check_call_tv_frdb"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="@mipmap/check_project_btn_border"
+            android:text="给法人代表打电话"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="18sp"
+             />
+
+        <TextView
+            android:id="@+id/popup_check_call_tv_zyfzr"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="给主要负责人打电话"
+            android:background="@mipmap/check_project_btn_border"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="18sp"
+             />
+
+        <TextView
+            android:id="@+id/popup_check_call_tv_aqfzr"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="@mipmap/check_project_btn_border"
+            android:text="给安全负责人打电话"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="18sp"
+             />
+
+</LinearLayout>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_record_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.checkrecordactivitys.CheckRecordItemActivity">
+
+    <include
+        android:id="@+id/activity_check_record_item_header"
+        layout="@layout/header" />
+
+    <TextView
+        android:id="@+id/activity_check_record_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_check_record_item_header"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:text="企业名称:xxx"
+        android:textColor="@color/bg_green"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_check_record_item_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_check_record_item_name"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:textColor="@color/bg_black"
+        android:textSize="14sp" />
+    <LinearLayout
+        android:layout_below="@id/activity_check_record_item_time"
+        android:id="@+id/activity_check_record_item_ll"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginLeft="180dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:id="@+id/activity_check_record_item_change_time"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="30dp"
+            android:text="整改期限"
+            android:textColor="@color/bg_black"
+            android:textSize="14sp" />
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/activity_check_record_item_et_change_time"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
+            android:layout_weight="4"
+            android:textSize="14sp"
+            android:focusable="false"
+            android:background="@drawable/shape_searchview_bg_green"
+            android:layout_height="match_parent" />
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:id="@+id/activity_check_record_item_btn_commit"
+            android:text="提交整改信息"
+            android:background="@color/bg_green"
+            android:layout_width="0dp"
+            android:textColor="@color/backgroundWhite"
+            android:layout_weight="3"
+            android:layout_height="match_parent" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/activity_check_record_item_btn_print"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/bg_green"
+            android:text="生成文书并打印"
+            android:textColor="@color/backgroundWhite" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/activity_check_record_item_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_check_record_item_ll"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:text="检查记录"
+        android:textColor="@color/bg_black"
+        android:textSize="14sp" />
+    <LinearLayout
+        android:id="@+id/activity_check_record_item_ll_top"
+        android:layout_below="@id/activity_check_record_item_tv"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:background="@color/bg_green"
+        android:layout_height="30dp">
+        <TextView
+            android:text="状态"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="检查名称"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="操作"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/activity_check_record_item_rg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_gradient_black"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/activity_check_record_item_equipment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="设备"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_record_item_scene"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="现场"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_record_item_data"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="资料"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_record_item_fire"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="消防"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_record_item_special_equipment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="特殊设备"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/activity_check_record_item_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_check_record_item_ll_top"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:background="@drawable/shape_searchview_bg_green"
+        android:layout_marginBottom="55dp"></FrameLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/activity_check_record_enterprise_name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="企业名称:xxx"-->
+    <!--android:textColor="@color/my_background_blue"-->
+    <!--android:textSize="20sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/activity_check_record_deadline"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="整改期限:"-->
+    <!--android:background="@drawable/button_compony_normal"-->
+    <!--android:textColor="@color/my_background_blue"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioGroup-->
+    <!--android:id="@+id/activity_check_record_rg"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_record_equipment"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:checked="true"-->
+    <!--android:gravity="center"-->
+    <!--android:text="设备"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_record_scene"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="现场"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_record_data"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="资料"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_record_fire"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="消防"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_record_special_equipment"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="特种设备"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+    <!--</RadioGroup>-->
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="#000" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="2"-->
+    <!--android:gravity="center"-->
+    <!--android:text="状态"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<View-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#000" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/activity_check_record_data_name"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="5"-->
+    <!--android:gravity="center"-->
+    <!--android:text="资料名称"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<View-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#000" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="2"-->
+    <!--android:gravity="center"-->
+    <!--android:text="操作"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
+    <!--</LinearLayout>-->
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="#000" />-->
+
+    <!--<FrameLayout-->
+    <!--android:id="@+id/activity_check_record_fl"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</FrameLayout>-->
+
+</RelativeLayout>

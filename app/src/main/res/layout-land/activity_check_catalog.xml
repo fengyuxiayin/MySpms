@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_catalog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.newcheckactivitys.CheckCatalogActivity">
+
+    <include
+        android:id="@+id/activity_check_catalog_header"
+        layout="@layout/header" />
+
+    <LinearLayout
+        android:id="@+id/activity_check_catalog_ll_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/activity_check_catalog_header"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/activity_check_catalog_name"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_check_catalog_header"
+            android:text="企业名称:xxx"
+            android:textColor="@color/bg_green"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/activity_check_catalog_btn_result"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/bg_green"
+            android:text="查看检查结果"
+            android:textColor="@color/backgroundWhite" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_check_catalog_ll_time"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/activity_check_catalog_ll_name"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/activity_check_catalog_time"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:textColor="@color/bg_black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/activity_check_catalog_btn_add_project"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/bg_green"
+            android:text="添加新项目"
+            android:textColor="@color/backgroundWhite" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/activity_check_catalog_ll"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/activity_check_catalog_ll_time"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/activity_check_catalog_change_time"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="整改期限"
+            android:textColor="@color/bg_black"
+            android:textSize="14sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/activity_check_catalog_et_change_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:background="@drawable/shape_searchview_bg_green"
+            android:focusable="false"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/activity_check_catalog_btn_commit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/bg_green"
+            android:text="提交整改信息"
+            android:textColor="@color/backgroundWhite" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/bg_green"
+            android:text="生成文书并打印"
+            android:textColor="@color/backgroundWhite" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/activity_check_catalog_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_check_catalog_ll"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:text="检查记录"
+        android:textColor="@color/bg_black"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/activity_check_catalog_ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/activity_check_catalog_tv"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/bg_green"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="状态"
+            android:textColor="@color/backgroundWhite" />
+
+        <TextView
+            android:id="@+id/activity_check_catalog_tv_data_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="检查名称"
+            android:textColor="@color/backgroundWhite" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="操作"
+            android:textColor="@color/backgroundWhite" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/activity_check_catalog_rg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_gradient_black"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/activity_check_catalog_equipment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="设备"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_catalog_scene"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="现场"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_catalog_data"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="资料"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_catalog_fire"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="消防"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/activity_check_catalog_special_equipment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg"
+            android:button="@null"
+            android:gravity="center"
+            android:text="特殊设备"
+            android:textColor="@color/backgroundWhite"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/activity_check_catalog_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_check_catalog_ll_top"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"
+        android:background="@drawable/shape_searchview_bg_green"></FrameLayout>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="企业名称："-->
+    <!--android:textColor="@color/my_background_blue"-->
+    <!--android:textSize="16sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/activity_check_catalog_enterprise_name"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="xxx"-->
+    <!--android:textSize="16sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="开始时间："-->
+    <!--android:textColor="@color/my_background_blue"-->
+    <!--android:textSize="16sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/activity_check_catalog_start_time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="xxx"-->
+    <!--android:textSize="16sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_weight="2"-->
+    <!--android:text="检查目录："-->
+    <!--android:textColor="@color/my_background_blue"-->
+    <!--android:textSize="16sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/activity_check_catalog_btn_check_record"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_start_check_selector"-->
+    <!--android:gravity="center"-->
+    <!--android:text="查看检查结果" />-->
+    <!--</LinearLayout>-->
+
+    <!--<RadioGroup-->
+    <!--android:id="@+id/activity_check_catalog_rg"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="35dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_catalog_equipment"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:checked="true"-->
+    <!--android:gravity="center"-->
+    <!--android:text="设备"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_catalog_scene"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="现场"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_catalog_data"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="资料"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_catalog_fire"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="消防"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/activity_check_catalog_special_equipment"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/button_compony_selector"-->
+    <!--android:button="@null"-->
+    <!--android:gravity="center"-->
+    <!--android:text="特种设备"-->
+    <!--android:textColor="@drawable/textview_compony_selector"-->
+    <!--android:textSize="16sp" />-->
+    <!--</RadioGroup>-->
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="#000" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="2"-->
+    <!--android:gravity="center"-->
+    <!--android:text="状态"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<View-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#000" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/activity_check_catalog_data_name"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="5"-->
+    <!--android:gravity="center"-->
+    <!--android:text="资料名称"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<View-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#000" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="2"-->
+    <!--android:gravity="center"-->
+    <!--android:text="操作"-->
+    <!--android:textSize="18sp"-->
+    <!--android:textStyle="bold" />-->
+    <!--</LinearLayout>-->
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="#000" />-->
+
+    <!--<FrameLayout-->
+    <!--android:id="@+id/activity_check_catalog_fl"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="9">-->
+
+    <!--</FrameLayout>-->
+
+</RelativeLayout>

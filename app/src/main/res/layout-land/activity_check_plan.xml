@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_plan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.CheckPlanActivity">
+
+    <include
+        android:id="@+id/activity_check_plan_header"
+        layout="@layout/header" />
+
+    <include
+        android:id="@+id/activity_check_plan_no_network_connection"
+        layout="@layout/no_network_connection"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/activity_check_plan_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            style="@style/CustomLinearlayout"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/activity_check_plan_sv"
+                style="@style/CustomSearchView"
+                app:queryBackground="@color/zxing_transparent"
+                app:queryHint="请输入公司名称"></android.support.v7.widget.SearchView>
+
+            <Button
+                android:id="@+id/activity_check_plan_btn_search"
+                style="@style/CustomButton"
+                android:layout_height="match_parent"
+                android:text="搜索" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="点击并选择开始时间为每个检查项单独设定检查计划，若不设置以企业检查计划为准"
+            android:textColor="@color/bg_green"
+            android:textSize="20sp" />
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/activity_check_plan_pulltorefresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="12"
+            android:descendantFocusability="blocksDescendants"
+            android:divider="@null"
+            android:scrollbars="none"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </LinearLayout>
+
+</LinearLayout>

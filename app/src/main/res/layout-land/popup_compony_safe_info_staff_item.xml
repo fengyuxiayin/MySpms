@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="29dp">
+        <EditText
+            android:id="@+id/popup_compony_safe_info_staff_item_et_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/homepage_text_press"
+            android:background="@null"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:hint="@string/app_name"
+            android:textColorHint="@color/transparent"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/homepage_text_press"
+            android:layout_width="1dp"
+            android:layout_height="30dp"/>
+        <EditText
+            android:id="@+id/popup_compony_safe_info_staff_item_et_number"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:textColor="@color/homepage_text_press"
+            android:background="@null"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:hint="@string/app_name"
+            android:textColorHint="@color/transparent"
+            android:layout_height="match_parent" />
+        <View
+            android:background="@color/homepage_text_press"
+            android:layout_width="1dp"
+            android:layout_height="30dp"/>
+        <ImageView
+            android:id="@+id/popup_compony_safe_info_staff_item_img_operate"
+            android:src="@mipmap/delete"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View
+        android:background="@color/homepage_text_press"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

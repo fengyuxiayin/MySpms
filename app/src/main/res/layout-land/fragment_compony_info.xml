@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="基础信息"
+            android:background="@mipmap/title"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="160dp"
+            android:orientation="horizontal">
+
+            <com.youth.banner.Banner
+                android:id="@+id/fragment_basic_info_simple_banner"
+                android:layout_width="300dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:layout_height="match_parent"
+                android:background="@mipmap/add_enterprise_banner_bg"
+                android:visibility="visible">
+
+            </com.youth.banner.Banner>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="企业名称" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_qymc"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="3" />
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="备注" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_qyjc"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="实际经营地址" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_sjjydz"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="3" />
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="危险等级" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_wxdj"
+                        style="@style/add_enterprise_edittext_style"
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="注册地址" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_zcdz"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="3" />
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="经营状态" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_jyzt"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="2"
+                        android:text="社会信用代码" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/fragment_basic_info_et_shjydm"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="6" />
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="3"
+                        android:text="是否属于规模以上企业" />
+
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/fragment_basic_info_rb_yes"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingLeft="5dp"
+                            android:text="是"
+                            android:button="@drawable/selector_custom_radiobutton"
+                            android:textColor="@color/homepage_text_press" />
+
+                        <RadioButton
+                            android:id="@+id/fragment_basic_info_rb_no"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingLeft="5dp"
+                            android:text="否"
+                            android:checked="true"
+                            android:button="@drawable/selector_custom_radiobutton"
+                            android:textColor="@color/homepage_text_press" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 这里开始下面另一种格式的界面-->
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="行业归属" />
+
+            <AutoCompleteTextView
+                android:id="@+id/fragment_basic_info_et_hygs"
+                style="@style/add_enterprise_edittext_style"
+                android:completionThreshold="1"
+                android:hint="必填项 输入关键词自动匹配"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="年营业额" />
+
+            <LinearLayout
+                android:background="@drawable/selector_edittext_focus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <com.example.lzc.myspms.custom.ClearEditText
+                    android:id="@+id/fragment_basic_info_et_yye"
+                    style="@style/add_enterprise_edittext_style"
+                    android:inputType="number|numberDecimal"
+                    android:background="@null"
+                    android:layout_weight="5" />
+
+                <com.example.lzc.myspms.custom.AutoFitTextView
+                    android:id="@+id/fragment_basic_info_tv_yye"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="万元"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="投资额度" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/selector_edittext_focus"
+                android:orientation="horizontal">
+
+                <com.example.lzc.myspms.custom.ClearEditText
+                    android:id="@+id/fragment_basic_info_et_tze"
+                    style="@style/add_enterprise_edittext_style"
+                    android:background="@null"
+                    android:inputType="number|numberDecimal"
+                    android:layout_weight="5" />
+
+                <com.example.lzc.myspms.custom.AutoFitTextView
+                    android:id="@+id/fragment_basic_info_tv_tze"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="万元"
+                    android:gravity="center"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="企业地理定位" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_basic_info_et_qydw"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="点击自动定位"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="企业范围" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_basic_info_et_qyfw"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="点击定位"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="所属社区" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_basic_info_et_sssq"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="必填项 点击选择"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="1"
+                android:text="经营范围" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:gravity="left|top"
+                android:id="@+id/fragment_basic_info_et_jyfw"
+                style="@style/add_enterprise_edittext_style"
+                android:background="@drawable/selector_edittext_focus"
+                android:layout_weight="11" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/fragment_basic_info_textview_ll"
+            android:layout_gravity="right|bottom"
+            android:layout_width="300dp"
+            android:layout_height="45dp">
+            <Button
+                android:id="@+id/fragment_basic_info_btn_upload"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="上传企业图片"
+                android:layout_weight="1"
+                android:background="@mipmap/check_project_btn_border"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/fragment_basic_info_btn_save"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:text="下一步"
+                android:layout_weight="1"
+                android:background="@mipmap/check_project_btn_border"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

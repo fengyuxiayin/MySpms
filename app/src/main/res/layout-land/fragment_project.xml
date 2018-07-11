@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include android:id="@+id/fragment_project_no_network_connection"
+        android:visibility="gone"
+        layout="@layout/no_network_connection"/>
+    <LinearLayout
+        android:id="@+id/fragment_project_ll"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/fragment_project_pulltorefresh"
+            android:layout_width="match_parent"
+            android:layout_weight="8"
+            android:layout_height="0dp">
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        <TextView
+            android:id="@+id/fragment_project_tv"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/my_background_blue"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+        <Button
+            android:id="@+id/fragment_project_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:background="@drawable/button_start_check_selector"
+            android:text="添加项目"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

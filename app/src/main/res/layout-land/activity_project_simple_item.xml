@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:descendantFocusability="afterDescendants"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/activity_project_simple_status"
+            android:src="@mipmap/ic_launcher"
+            android:padding="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/activity_project_simple_project_name"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:textColor="@color/white"
+            android:text="检查项名称"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/activity_project_simple_type"
+            android:layout_width="0dp"
+            android:textColor="@color/white"
+            android:layout_weight="2"
+            android:text="项目类型"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/activity_project_simple_edit"
+            android:layout_width="0dp"
+            android:padding="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@mipmap/enterprise_info_query_item_img_edit"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View
+        android:background="@color/bg_green"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

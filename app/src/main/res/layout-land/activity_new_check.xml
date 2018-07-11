@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_check"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.NewCheckActivity">
+    <RadioGroup
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+        <RadioButton
+            android:id="@+id/fragment_new_check_rb_no_check"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginRight="10dp"
+            android:checked="true"
+            android:textColor="@drawable/selector_recheck_textview"
+            android:background="@drawable/selector_recheck_radiogroup_bg"
+            android:text="待检查" />
+
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:id="@+id/fragment_new_check_rb_have_check"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@drawable/selector_recheck_textview"
+            android:background="@drawable/selector_recheck_radiogroup_bg"
+            android:text="已检查" />
+    </RadioGroup>
+    <LinearLayout
+        android:id="@+id/activity_new_check_ll"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/activity_new_check_et_compony"
+            android:layout_width="200dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/new_check_edittext_bg"
+            android:paddingLeft="5dp"
+            android:textColor="@color/homepage_text_press"
+            android:textCursorDrawable="@null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="任务名称"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/activity_new_check_et_task"
+            android:layout_width="200dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="5dp"
+            android:background="@mipmap/new_check_edittext_bg"
+            android:paddingLeft="5dp"
+            android:textColor="@color/homepage_text_press"
+            android:textCursorDrawable="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="监管等级"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="500dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/activity_new_check_cb_all"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:paddingLeft="5dp"
+                android:text="全部企业"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/activity_new_check_cb_a"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:paddingLeft="5dp"
+                android:text="A级企业"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/activity_new_check_cb_b"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:paddingLeft="5dp"
+                android:text="B级企业"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/activity_new_check_cb_c"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:paddingLeft="5dp"
+                android:text="C级企业"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/activity_new_check_cb_d"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:paddingLeft="5dp"
+                android:text="D级企业"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/activity_new_check_btn_reset"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"
+            android:background="@mipmap/new_check_btn_bg"
+            android:text="重置"
+            android:textColor="@color/homepage_text_press" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6">
+
+            <Spinner
+                android:id="@+id/activity_new_check_sp_limit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/new_check_pull_bg"
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/activity_new_check_sp_amount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/new_check_pull_bg" />
+
+            <Spinner
+                android:id="@+id/activity_new_check_sp_distance"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/new_check_pull_bg" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/activity_new_check_btn_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@mipmap/new_check_btn_bg"
+            android:text="查询"
+            android:textColor="@color/homepage_text_press" />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@mipmap/listview_border"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@color/activity_notice_bg_green"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="任务期限"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="任务名称"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="企业名称"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="监管等级"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="项目数量"
+                android:textSize="18sp"
+                android:layout_height="match_parent"/>
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="距离"
+                android:textSize="18sp"
+                android:layout_height="match_parent"/>
+            <TextView
+                style="@style/fragment_homepage_text_title_style"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:text="操作"
+                android:textSize="18sp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/activity_new_check_pulltorefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:descendantFocusability="blocksDescendants"
+            android:divider="@null"
+            android:scrollbars="none">
+
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </LinearLayout>
+
+</LinearLayout>

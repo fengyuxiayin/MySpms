@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@mipmap/check_project_all_border"
+    android:layout_margin="5dp"
+    android:layout_height="match_parent">
+ <TextView
+     android:id="@+id/activity_project_detail_danger_item_tv_name"
+     android:textSize="14sp"
+     android:textColor="@color/homepage_text_press"
+     android:gravity="center"
+     android:background="@color/homepage_text_normal"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content" />
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <RadioButton
+            android:id="@+id/activity_project_detail_danger_item_rb_qualified"
+            android:layout_weight="1"
+            android:text="合格"
+            android:button="@drawable/selector_custom_radiobutton"
+            android:layout_width="0dp"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="50dp"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:id="@+id/activity_project_detail_danger_item_rb_unqualified"
+            android:text="不合格"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:button="@drawable/selector_custom_radiobutton"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+    <EditText
+        android:id="@+id/activity_project_detail_danger_item_et_descroption"
+        android:hint="请输入描述"
+        android:textColorHint="@color/bg_gray"
+        android:gravity="left|top"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:textColor="@color/homepage_text_press"
+        android:background="@mipmap/check_project_all_border"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+    <TextView
+        android:text="拍照留证"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.example.lzc.myspms.custom.MyGridView
+        android:id="@+id/activity_project_detail_danger_item_gridview"
+        android:numColumns="4"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+    </com.example.lzc.myspms.custom.MyGridView>
+</LinearLayout>

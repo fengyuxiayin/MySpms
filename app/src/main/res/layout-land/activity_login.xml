@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.LoginActivity">
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="75dp"
+        android:visibility="invisible"
+        android:src="@mipmap/icon" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:layout_marginRight="150dp"
+        android:text="安全生产检查管理系统"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="50dp" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="用户名"
+            android:textColor="@color/homepage_text_press"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/login_et_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:background="@null"
+            android:hint="请输入用户名"
+            android:singleLine="true"
+            android:textColor="@color/homepage_text_press"
+            android:textColorHint="@color/bg_gray"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/bg_gray" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_gravity="right"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="45dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:text="密码  "
+            android:textColor="@color/homepage_text_press"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/login_et_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColor="@color/homepage_text_press"
+            android:textColorHint="@color/bg_gray"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/login_iv_hide_password"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:src="@mipmap/hide_password" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_gravity="right"
+        android:layout_height="1dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/bg_gray" />
+
+    <TextView
+        android:id="@+id/login_tv_reset_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="10dp"
+        android:text="密码重置"
+        android:textColor="@color/bg_black"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/login_btn_login"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@mipmap/check_project_btn_border"
+        android:text="登录"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/login_btn_finger"
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@mipmap/check_project_btn_border"
+        android:text="指纹"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="20sp" />
+</LinearLayout>

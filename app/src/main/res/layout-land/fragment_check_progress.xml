@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="选择任务"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/activity_check_progress_sp_task"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="2"
+                android:background="@mipmap/new_check_pull_bg"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="选择社区"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/activity_check_progress_sp_community"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="2"
+                android:background="@mipmap/new_check_pull_bg" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/activity_check_progress_btn_reset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@mipmap/new_check_btn_bg"
+            android:text="重置"
+            android:textColor="@color/homepage_text_press" />
+        <Button
+            android:id="@+id/activity_check_progress_btn_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@mipmap/new_check_btn_bg"
+            android:text="查询"
+            android:textColor="@color/homepage_text_press" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_all"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="所有企业检查进度"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/fragment_check_progress_img_all"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@mipmap/progressbar_empty" />
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_progress_all"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="A级企业检查进度"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/fragment_check_progress_img_a"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@mipmap/progressbar_empty" />
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_progress_a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="B级企业检查进度"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/fragment_check_progress_img_b"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@mipmap/progressbar_empty" />
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_progress_b"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="C级企业检查进度"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/fragment_check_progress_img_c"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@mipmap/progressbar_empty" />
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_progress_c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="D级企业检查进度"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/fragment_check_progress_img_d"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="5"
+                    android:background="@mipmap/progressbar_empty" />
+
+                <TextView
+                    android:id="@+id/fragment_check_progress_tv_progress_d"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0%"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_all"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_all"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="企业总体合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_a"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_a"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="A级企业合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_b"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_b"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="B级企业合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_c"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_c"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="C级企业合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_d"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_d"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="D级企业合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_items"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_items"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="检查项合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/fragment_check_progress_wv_dangerous"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/fragment_check_progress_gtv_dangerous"
+                            android:layout_centerInParent="true"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="重大危险源合格率"
+                        android:textColor="@color/homepage_text_press"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/listview_border"
+            android:layout_weight="7">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@color/activity_notice_bg_green"
+                android:layout_height="36dp">
+                <TextView
+                    android:text="序号"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/homepage_text_press"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <com.example.lzc.myspms.custom.AutoFitTextView
+                    android:text="不合格数量"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:lines="1"
+                    android:textColor="@color/homepage_text_press"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="企业名称"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/homepage_text_press"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <com.example.lzc.myspms.custom.AutoFitTextView
+                    android:text="监管等级"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/homepage_text_press"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="检查日期"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/homepage_text_press"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                android:id="@+id/activity_check_progress_pulltorefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_marginBottom="2dp"
+                android:divider="@null"
+                android:scrollbars="none">
+
+            </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

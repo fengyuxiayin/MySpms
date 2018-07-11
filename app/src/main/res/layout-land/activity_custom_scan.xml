@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_custom_scan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lzc.myspms.activitys.CustomScanActivity">
+    <LinearLayout
+        android:id="@+id/activity_custom_scan_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_custom_scan_btn_flash"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent"
+            android:background="@color/bg_green"
+            android:text="闪光灯" />
+
+        <Button
+            android:id="@+id/activity_custom_scan_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/backgroundWhite"
+            android:layout_height="match_parent"
+            android:background="@color/bg_green"
+            android:layout_centerHorizontal="true"
+            android:text="取消" />
+    </LinearLayout>
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/dbv_custom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/activity_custom_scan_ll"
+        app:zxing_scanner_layout="@layout/barcode_scanner"
+        app:zxing_framing_rect_height="300dp"
+        app:zxing_framing_rect_width="300dp"
+        app:zxing_preview_scaling_strategy="fitXY"
+        app:zxing_use_texture_view="true"></com.journeyapps.barcodescanner.DecoratedBarcodeView>
+
+
+
+
+</RelativeLayout>

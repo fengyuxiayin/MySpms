@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragment_homepage_tv_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="5dp"
+        android:text="夏庄安监办协查1组"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/homepage_border_small">
+
+                <TextView
+                    android:id="@+id/fragment_homepage_tv_title_fzsqs"
+                    style="@style/fragment_homepage_text_title_style"
+                    android:text="负责社区数" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_homepage_rl_fzsqs"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/fragment_homepage_tv_title_fzsqs"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <com.example.lzc.myspms.custom.WaveView
+                        android:id="@+id/fragment_homepage_wv_fzsqs"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerInParent="true" />
+
+                    <com.example.lzc.myspms.custom.GradientTextView
+                        android:id="@+id/fragment_homepage_tv_fzsqs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="38%"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/fragment_homepage_tv_title_fzsqs"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/fragment_homepage_rl_fzsqs"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_community_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="负责社区数：5"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_community_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="社区总数：10"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/fragment_homepage_tv_community_proportion"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="所占比例：38%"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/fragment_homepage_barchart_ljjcqycs"
+                layout="@layout/fragment_homepage_barchart" />
+
+            <include
+                android:id="@+id/fragment_homepage_barchart_ljjcyhs"
+                layout="@layout/fragment_homepage_barchart" />
+
+            <include
+                android:id="@+id/fragment_homepage_barchart_ljfcqycs"
+                layout="@layout/fragment_homepage_barchart" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/homepage_border_small">
+
+                <TextView
+                    android:id="@+id/fragment_homepage_tv_title_fzqys"
+                    style="@style/fragment_homepage_text_title_style"
+                    android:text="负责企业数" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_homepage_rl_fzqys"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/fragment_homepage_tv_title_fzqys"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <com.example.lzc.myspms.custom.WaveView
+                        android:id="@+id/fragment_homepage_wv_fzqys"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true" />
+
+                    <com.example.lzc.myspms.custom.GradientTextView
+                        android:id="@+id/fragment_homepage_tv_fzqys"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="38%"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/fragment_homepage_tv_title_fzqys"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/fragment_homepage_rl_fzqys"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_compony_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="负责企业数：5"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_compony_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="企业总数：10"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/fragment_homepage_tv_compony_proportion"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="所占比例：38%"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+            <include
+                android:id="@+id/fragment_homepage_barchart_ljjcxmcs"
+                layout="@layout/fragment_homepage_barchart" />
+            <include
+                android:id="@+id/fragment_homepage_barchart_ljjcsc"
+                layout="@layout/fragment_homepage_barchart" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/homepage_border_small">
+                <TextView
+                    android:id="@+id/fragment_homepage_tv_title_zdjgqyljjccs"
+                    style="@style/fragment_homepage_text_title_style"
+                    android:text="重点监管企业累计检查次数" />
+                <LinearLayout
+                    android:layout_below="@id/fragment_homepage_tv_title_zdjgqyljjccs"
+                    android:id="@+id/fragment_homepage_ll_ab"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:text="A级监管企业"
+                        style="@style/fragment_homepage_text_white_normal" />
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_zdjgqyljjccs_a"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_weight="3"
+                        android:text="0"
+                        android:background="@mipmap/fragment_homepage_bg_a"
+                        style="@style/fragment_homepage_text_white_normal" />
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_zdjgqyljjccs_b"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_weight="3"
+                        android:text="0"
+                        android:background="@mipmap/frgment_homepage_bg_b"
+                        style="@style/fragment_homepage_text_white_normal" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:text="B级监管企业"
+                        style="@style/fragment_homepage_text_white_normal" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_below="@id/fragment_homepage_ll_ab"
+                    android:id="@+id/fragment_homepage_ll_cd"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:text="C级监管企业"
+                        style="@style/fragment_homepage_text_white_normal" />
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_zdjgqyljjccs_c"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_weight="3"
+                        android:text="0"
+                        android:background="@mipmap/fragment_homepage_bg_c"
+                        style="@style/fragment_homepage_text_white_normal" />
+                    <TextView
+                        android:id="@+id/fragment_homepage_tv_zdjgqyljjccs_d"
+                        android:layout_width="0dp"
+                        android:layout_height="28dp"
+                        android:layout_weight="3"
+                        android:text="0"
+                        android:background="@mipmap/fragment_homepage_bg_d"
+                        style="@style/fragment_homepage_text_white_normal" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:text="D级监管企业"
+                        style="@style/fragment_homepage_text_white_normal" />
+                </LinearLayout>
+        </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/homepage_border_big">
+                <TextView
+                    android:id="@+id/fragment_homepage_tv_title_compony"
+                    android:text="企业检查合格率变化图"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                    <com.example.lzc.myspms.custom.LineChartView
+                        android:layout_below="@id/fragment_homepage_tv_title_compony"
+                        android:id="@+id/fragment_homepage_lineChart_compony"
+                        android:background="@color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </com.example.lzc.myspms.custom.LineChartView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/homepage_border_big">
+                <TextView
+                    android:id="@+id/fragment_homepage_tv_title_project"
+                    android:text="项目检查合格率变化图"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.example.lzc.myspms.custom.LineChartView
+                    android:layout_below="@id/fragment_homepage_tv_title_project"
+                    android:id="@+id/fragment_homepage_lineChart_project"
+                    android:background="@color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </com.example.lzc.myspms.custom.LineChartView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

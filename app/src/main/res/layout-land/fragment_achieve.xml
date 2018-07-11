@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <include
+            android:id="@+id/fragment_achieve_barchart_ljjcqycs"
+            layout="@layout/fragment_homepage_barchart" />
+
+        <include
+            android:id="@+id/fragment_achieve_barchart_ljjcyhs"
+            layout="@layout/fragment_homepage_barchart" />
+
+        <include
+            android:id="@+id/fragment_achieve_barchart_ljfcqycs"
+            layout="@layout/fragment_homepage_barchart" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="0dp">
+        <include
+            android:id="@+id/fragment_achieve_barchart_ljjcxmcs"
+            layout="@layout/fragment_homepage_barchart" />
+        <include
+            android:id="@+id/fragment_achieve_barchart_ljjcsc"
+            layout="@layout/fragment_homepage_barchart" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/homepage_border_small">
+            <TextView
+                android:id="@+id/fragment_achieve_tv_title_zdjgqyljjccs"
+                style="@style/fragment_homepage_text_title_style"
+                android:text="重点监管企业累计检查次数" />
+            <LinearLayout
+                android:layout_below="@id/fragment_achieve_tv_title_zdjgqyljjccs"
+                android:id="@+id/fragment_achieve_ll_ab"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:text="A级监管企业"
+                    style="@style/fragment_homepage_text_white_normal" />
+                <TextView
+                    android:id="@+id/fragment_achieve_tv_zdjgqyljjccs_a"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="3"
+                    android:text="0"
+                    android:background="@mipmap/fragment_homepage_bg_a"
+                    style="@style/fragment_homepage_text_white_normal" />
+                <TextView
+                    android:id="@+id/fragment_achieve_tv_zdjgqyljjccs_b"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="3"
+                    android:text="0"
+                    android:background="@mipmap/frgment_homepage_bg_b"
+                    style="@style/fragment_homepage_text_white_normal" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:text="B级监管企业"
+                    style="@style/fragment_homepage_text_white_normal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_below="@id/fragment_achieve_ll_ab"
+                android:id="@+id/fragment_achieve_ll_cd"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:text="C级监管企业"
+                    style="@style/fragment_homepage_text_white_normal" />
+                <TextView
+                    android:id="@+id/fragment_achieve_tv_zdjgqyljjccs_c"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="3"
+                    android:text="0"
+                    android:background="@mipmap/fragment_homepage_bg_c"
+                    style="@style/fragment_homepage_text_white_normal" />
+                <TextView
+                    android:id="@+id/fragment_achieve_tv_zdjgqyljjccs_d"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="3"
+                    android:text="0"
+                    android:background="@mipmap/fragment_homepage_bg_d"
+                    style="@style/fragment_homepage_text_white_normal" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:text="D级监管企业"
+                    style="@style/fragment_homepage_text_white_normal" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

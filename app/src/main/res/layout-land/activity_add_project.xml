@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_project"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.AddProjectActivity">
+    <include
+        android:id="@+id/activity_add_project_header"
+        layout="@layout/header" />
+    <RadioGroup
+        android:id="@+id/activity_add_project_rg"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/activity_add_project_rb_basic_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg_radius"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="基本信息"
+            android:textColor="@drawable/textcolor"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/activity_add_project_rb_should_check_point"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_radiogroup_bg_radius"
+            android:button="@null"
+            android:gravity="center"
+            android:text="应检查点"
+            android:textColor="@drawable/textcolor"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/activity_add_project_fl"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"></FrameLayout>
+
+</LinearLayout>

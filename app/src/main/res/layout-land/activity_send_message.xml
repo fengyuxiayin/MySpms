@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_send_message"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/homepage_bg"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.SendMessageActivity">
+    <include layout="@layout/header"
+        android:id="@+id/activity_send_message_header"/>
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+            <AutoCompleteTextView
+                android:id="@+id/activity_send_message_actv_recipient"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="50dp"
+                android:hint="输入关键词搜索收件人"
+                android:textColor="@color/homepage_text_press"
+                android:textColorHint="@color/bg_gray"
+                android:textCursorDrawable="@null"
+                android:completionThreshold="1"
+                android:background="@drawable/selector_edittext_focus"
+                android:padding="5dp"
+                android:layout_height="40dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/homepage_text_press"
+                    android:text="收件人：" />
+
+                <com.example.lzc.myspms.custom.ClearEditText
+                    android:id="@+id/activity_send_message_et_recipient"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:textColor="@color/homepage_text_press"
+                    android:background="@drawable/selector_edittext_focus"
+                    android:paddingLeft="5dp"
+                    android:textCursorDrawable="@color/homepage_text_press" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/homepage_text_press"
+                    android:text="主题：" />
+
+                <EditText
+                    android:id="@+id/activity_send_message_et_title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:textColor="@color/homepage_text_press"
+                    android:background="@drawable/selector_edittext_focus"
+                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:paddingLeft="5dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/activity_send_message_tv_upload"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="点击上传附件"
+                android:textColor="@color/homepage_text_press"
+                android:textSize="14sp" />
+
+            <ListView
+                android:id="@+id/activity_send_message_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"></ListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:text="正文："
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/activity_send_message_et_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:background="@drawable/selector_edittext_focus"
+                    android:gravity="left"
+                    android:hint="请输入正文"
+                    android:textColor="@color/homepage_text_press"
+                    android:textColorHint="@color/bg_gray"
+                    android:padding="5dp"
+                    android:textCursorDrawable="@drawable/cursor_color" />
+            </LinearLayout>
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/activity_send_message_btn_send"
+                android:textColor="@color/homepage_text_press"
+                android:background="@mipmap/check_project_btn_border"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:text="发送"
+                android:layout_width="120dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

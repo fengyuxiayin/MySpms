@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_analysis_community_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage_bg"
+    android:orientation="vertical"
+    tools:context="com.example.lzc.myspms.activitys.AnalysisCommunityDataActivity">
+
+    <TextView
+        android:id="@+id/activity_analysis_community_data_tv_community"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="夏庄街道"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="安全生产检查结果分析"
+        android:textColor="@color/homepage_text_press"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+        <!-- 左面三个-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <!-- 社区此次检查的详细信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/activity_analysis_community_data_title"
+                    android:text="详细信息" />
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textColor="@color/homepage_text_press"
+                        android:text="任务名称:"
+                        android:gravity="center"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_analysis_community_data_tv_task"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textColor="@color/homepage_text_press"
+                        android:text="检查人员:"
+                        android:gravity="center"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_analysis_community_data_tv_check"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textColor="@color/homepage_text_press"
+                        android:text="检查日期:"
+                        android:gravity="center"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_analysis_community_data_tv_date"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textColor="@color/homepage_text_press"
+                        android:text="社区企业总数:"
+                        android:gravity="center"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_analysis_community_data_tv_number"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:textColor="@color/homepage_text_press"
+                        android:text="重点监管企业:"
+                        android:gravity="center"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_analysis_community_data_tv_compony_one"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <View
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        android:id="@+id/activity_analysis_community_data_tv_compony_two"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 企业总体合格率-->
+            <LinearLayout
+                android:id="@+id/activity_analysis_community_ll_qyzthgl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/activity_analysis_community_data_title"
+                    android:text="企业总体合格率" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+                        <com.example.lzc.myspms.custom.WaveView
+                            android:id="@+id/activity_analysis_community_data_tv_wv"
+                            android:layout_centerInParent="true"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp" />
+                        <com.example.lzc.myspms.custom.GradientTextView
+                            android:id="@+id/activity_analysis_community_data_tv_wv_precent"
+                            android:layout_centerInParent="true"
+                            android:text="0%"
+                            android:gravity="center"
+                            android:textSize="22sp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/activity_analysis_community_data_tv_wave_number"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:text="企业总数"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp" />
+                        <TextView
+                            android:id="@+id/activity_analysis_community_data_tv_qualified"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="合格数"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp" />
+                        <TextView
+                            android:id="@+id/activity_analysis_community_data_tv_unqualified"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="不合格数"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp" />
+                        <TextView
+                            android:id="@+id/activity_analysis_community_data_tv_percent"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="合格率"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 雷达图 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@mipmap/listview_border"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/activity_analysis_community_data_title"
+                    android:text="检查类别合格率雷达图" />
+                <com.github.mikephil.charting.charts.RadarChart
+                    android:id="@+id/activity_analysis_community_data_radar"
+                    android:layout_gravity="center"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp">
+
+                </com.github.mikephil.charting.charts.RadarChart>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 右边整体 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/activity_analysis_community_data_rl_right"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+                <!-- 行业不合格占比-->
+                <LinearLayout
+                    android:id="@+id/activity_analysis_community_data_ll_industry"
+                    android:layout_width="260dp"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/listview_border"
+                    android:paddingBottom="13dp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/activity_analysis_community_data_title"
+                        android:text="行业不合格占比" />
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/activity_analysis_community_data_pie"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></com.github.mikephil.charting.charts.PieChart>
+                </LinearLayout>
+                <!--社区平均对比-->
+                <LinearLayout
+                    android:id="@+id/activity_analysis_community_data_ll_community_all"
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/activity_analysis_community_data_ll_industry"
+                    android:background="@mipmap/listview_border"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/activity_analysis_community_data_all_title"
+                        style="@style/activity_analysis_community_data_title"
+                        android:text="社区平均对比" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="20dp">
+                        <ImageView
+                            android:background="@color/homepage_text_purple"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp" />
+                        <com.example.lzc.myspms.custom.AutoFitTextView
+                            android:id="@+id/activity_analysis_community_data_all_title_one"
+                            android:text="所有社区平均"
+                            android:textColor="@color/homepage_text_press"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:background="@color/homepage_text_press"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp" />
+                        <com.example.lzc.myspms.custom.AutoFitTextView
+                            android:id="@+id/activity_analysis_community_data_all_title_two"
+                            android:text="本社区平均"
+                            android:textColor="@color/homepage_text_press"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_all"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_all"
+                                android:text="整体合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_compony"
+                                android:layout_width="80dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_compony"
+                                android:text="重点企业合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--本社区平均对比-->
+                <LinearLayout
+                    android:id="@+id/activity_analysis_community_data_ll_community_this"
+                    android:layout_width="160dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/activity_analysis_community_data_ll_community_all"
+                    android:background="@mipmap/listview_border"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/activity_analysis_community_data_this_title"
+                        style="@style/activity_analysis_community_data_title"
+                        android:text="本社区平均对比" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="20dp">
+                        <ImageView
+                            android:background="@color/homepage_text_purple"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp" />
+                        <com.example.lzc.myspms.custom.AutoFitTextView
+                            android:id="@+id/activity_analysis_community_data_this_title_one"
+                            android:text="所有社区平均"
+                            android:textColor="@color/homepage_text_press"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:background="@color/homepage_text_press"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp" />
+                        <com.example.lzc.myspms.custom.AutoFitTextView
+                            android:id="@+id/activity_analysis_community_data_this_title_two"
+                            android:text="本社区平均"
+                            android:textColor="@color/homepage_text_press"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_this_all"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_this_all"
+                                android:text="整体合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_this_compony"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_this_compony"
+                                android:text="重点企业合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <!--重点监管企业合格率-->
+                <LinearLayout
+                    android:id="@+id/activity_analysis_community_data_ll_enterprise"
+                    android:layout_width="320dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/activity_analysis_community_data_ll_community_this"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/activity_analysis_community_data_ll_industry"
+                    android:background="@mipmap/listview_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/activity_analysis_community_data_enterprise_title"
+                        style="@style/activity_analysis_community_data_title"
+                        android:text="重点监管企业合格率" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="20dp">
+                        <ImageView
+                            android:background="@color/homepage_text_purple"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp" />
+                        <com.example.lzc.myspms.custom.AutoFitTextView
+                            android:id="@+id/activity_analysis_community_data_enterprise_title_one"
+                            android:text="所有社区平均"
+                            android:textColor="@color/homepage_text_press"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:background="@color/homepage_text_press"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp" />
+                        <com.example.lzc.myspms.custom.AutoFitTextView
+                            android:id="@+id/activity_analysis_community_data_enterprise_title_two"
+                            android:text="本社区平均"
+                            android:textColor="@color/homepage_text_press"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_a"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_a"
+                                android:text="A级合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_b"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_b"
+                                android:text="B级合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_c"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_c"
+                                android:text="C级合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent">
+                            <com.example.lzc.myspms.custom.BarChartView
+                                android:id="@+id/activity_analysis_community_data_bar_d"
+                                android:layout_width="60dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_height="80dp" />
+                            <com.example.lzc.myspms.custom.AutoFitTextView
+                                android:layout_below="@id/activity_analysis_community_data_bar_d"
+                                android:text="D级合格率"
+                                android:textColor="@color/white"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+            <!-- 企业检查合格率变化图-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@mipmap/check_project_listview_border">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textColor="@color/homepage_text_press"
+                    android:gravity="center"
+                    android:background="@color/homepage_text_normal"
+                    android:text="企业检查合格率变化图" />
+                <com.example.lzc.myspms.custom.LineChartView
+                    android:id="@+id/activity_analysis_community_data_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

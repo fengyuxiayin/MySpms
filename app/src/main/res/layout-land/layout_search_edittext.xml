@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="left|center"
+            android:background="@drawable/search_edittext_background"
+            android:drawableLeft="@mipmap/search"
+            android:drawablePadding="8dp"
+            android:hint="请输入公司名称"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:paddingLeft="5dp"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center"
+            android:paddingRight="5dp"
+            android:visibility="gone"
+            android:src="@drawable/selector_search" />
+    </FrameLayout>
+</LinearLayout>

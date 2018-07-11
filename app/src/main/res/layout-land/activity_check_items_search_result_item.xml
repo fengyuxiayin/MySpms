@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.example.lzc.myspms.custom.DragView
+        android:id="@+id/activity_check_items_search_result_item_dv"
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_corner"
+        android:elevation="4dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/activity_check_items_search_result_item_btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray"
+                android:text="修改"/>
+            <Button
+                android:id="@+id/activity_check_items_search_result_item_btn_del"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_corner_red"
+                android:text="删除"/>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/shape_corner"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/activity_check_items_search_result_item_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center_vertical"
+                    android:text="@string/app_name"
+                    android:textColor="@color/bg_black"
+                    android:textSize="26sp" />
+
+                <ImageView
+                    android:id="@+id/activity_check_items_search_result_item_iv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/img_ellipsis_padding"
+                    android:src="@mipmap/ellipsis" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/activity_check_items_search_result_item_ll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <LinearLayout
+                    android:id="@+id/activity_check_items_search_result_item_ll_basic_info"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/basic_info"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="14sp"
+                        android:text="基础信息"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:textColor="@color/bg_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/activity_check_items_search_result_item_ll_check_record"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginRight="50dp"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/enterprise_info_query_item_check_record"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/activity_check_items_search_result_item_tv_check_record"
+                        android:textSize="14sp"
+                        android:text="检查记录"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:textColor="@color/bg_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.example.lzc.myspms.custom.DragView>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="38dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:padding="10dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_weight="1"-->
+            <!--android:src="@mipmap/project" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/activity_check_items_search_result_item_tv"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="8"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="@string/app_name"-->
+            <!--android:textColor="@color/my_background_blue"-->
+            <!--android:textSize="16sp" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/activity_check_items_search_result_item_iv"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:padding="10dp"-->
+            <!--android:src="@mipmap/xiala" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/activity_check_items_search_result_item_ll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:visibility="gone"-->
+        <!--&gt;-->
+
+        <!--<Button-->
+            <!--android:id="@+id/activity_check_items_search_result_item_btn_view_project"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:focusable="false"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textColor="@color/backgroundWhite"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_enterprise_info_query"-->
+            <!--android:text="查看项目信息" />-->
+        <!--<Button-->
+            <!--android:id="@+id/activity_check_items_search_result_item_btn_edit_project"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:focusable="false"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textColor="@color/backgroundWhite"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_enterprise_info_query"-->
+            <!--android:text="修改项目信息" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/activity_check_items_search_result_item_ll1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:visibility="gone"-->
+        <!--&gt;-->
+        <!--<Button-->
+            <!--android:id="@+id/activity_check_items_search_result_item_btn_delete_project"-->
+            <!--android:focusable="false"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textColor="@color/backgroundWhite"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_enterprise_info_query"-->
+            <!--android:text="删除项目信息" />-->
+        <!--<Button-->
+            <!--android:id="@+id/activity_check_items_search_result_item_btn_view_record"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:focusable="false"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textColor="@color/backgroundWhite"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/button_enterprise_info_query"-->
+            <!--android:text="查看检查记录" />-->
+    <!--</LinearLayout>-->
+<!--<View-->
+    <!--android:background="@color/my_background_blue"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"/>-->
+
+</LinearLayout>

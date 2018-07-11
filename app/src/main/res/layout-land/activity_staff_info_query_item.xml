@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@mipmap/enterprise_info_query_item_bg"
+        android:layout_height="60dp">
+        <TextView
+            android:id="@+id/activity_staff_info_query_item_tv_name"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:textSize="24sp"
+            android:textColor="@color/homepage_text_press"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="@string/app_name"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/activity_staff_info_query_item_img_detail"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:text="查看详情"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/check_project_btn_border"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+</LinearLayout>

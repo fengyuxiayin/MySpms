@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:snser="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <com.example.lzc.myspms.custom.ImageViewPlus
+            snser:type="circle"
+            snser:borderColor="@color/backgroundWhite"
+            snser:borderWidth="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/fragment_my_icon"
+            android:src="@mipmap/icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:id="@+id/fragment_my_work_group"
+            android:text="xxx工作小组"
+            android:layout_toRightOf="@id/fragment_my_icon"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/fragment_my_icon"
+            android:layout_alignLeft="@id/fragment_my_work_group"
+            android:layout_below="@id/fragment_my_work_group"
+            android:layout_marginTop="20dp"
+            android:text="小组管理"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/fragment_my_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+</LinearLayout>

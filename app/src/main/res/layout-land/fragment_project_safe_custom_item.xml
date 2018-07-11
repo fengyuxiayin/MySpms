@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.lzc.myspms.custom.DragView
+        android:id="@+id/fragment_project_safe_custom_item_dv"
+        android:layout_width="match_parent"
+        android:background="@color/backgroundWhite"
+        android:layout_margin="5dp"
+        android:elevation="4dp"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/fragment_project_safe_custom_item_btn_del"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_light"
+                android:text="删除"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/backgroundWhite"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="检查点名称："
+                    android:textColor="@color/bg_green"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/fragment_project_safe_custom_item_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/shape_searchview_bg_green"
+                    android:paddingLeft="3dp"
+                    android:textCursorDrawable="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入检查点名称"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/fragment_project_safe_custom_item_iv_image"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@mipmap/picture" />
+
+                <ImageView
+                    android:id="@+id/fragment_project_safe_custom_item_iv_add"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:src="@mipmap/add"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.example.lzc.myspms.custom.DragView>
+    <LinearLayout
+        android:id="@+id/fragment_project_safe_custom_item_ll"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fragment_project_safe_custom_item_iv_first"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/fragment_project_safe_custom_item_iv_second"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/fragment_project_safe_custom_item_iv_third"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+</LinearLayout>

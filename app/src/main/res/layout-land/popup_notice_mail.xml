@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="收件人：" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/popup_notice_mail_et_recipient"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:background="@drawable/shape_searchview_bg_green"
+                android:paddingLeft="5dp"
+                android:textCursorDrawable="@color/bg_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="主题：" />
+
+            <EditText
+                android:id="@+id/popup_notice_mail_et_title"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:background="@drawable/shape_searchview_bg_green"
+                android:paddingLeft="5dp"
+                android:textCursorDrawable="@color/bg_green" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/popup_notice_mail_tv_upload"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="点击上传附件"
+            android:textColor="@color/bg_green"
+            android:textSize="14sp" />
+
+        <ListView
+            android:id="@+id/popup_notice_mail_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"></ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingTop="5dp"
+                android:text="正文："
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/popup_notice_mail_et_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:background="@drawable/shape_searchview_bg_green"
+                android:gravity="left"
+                android:hint="请输入正文"
+                android:padding="5dp"
+                android:textCursorDrawable="@drawable/cursor_color" />
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/popup_notice_mail_btn_send"
+            android:textColor="@drawable/textview_login_selector"
+            android:background="@drawable/button_login_selector"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:text="发送"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+</ScrollView>
