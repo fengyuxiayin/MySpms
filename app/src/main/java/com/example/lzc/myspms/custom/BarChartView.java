@@ -154,7 +154,7 @@ public class BarChartView extends View {
             //计算出高度
             barHeight = cellHeigh * mList.get(i).num;
 
-            barHeight = barHeight / totalTime * currentTime;
+//            barHeight = barHeight / totalTime * currentTime;
 
             //设置颜色
             colorBarPaint.setColor(mList.get(i).color);

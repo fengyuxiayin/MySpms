@@ -71,6 +71,7 @@
         android:layout_toRightOf="@id/fragment_homepage_ll"
         android:layout_below="@id/fragment_homepage_tv_title"
         android:id="@+id/fragment_homepage_bc"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_width="100dp"
         android:layout_height="80dp">

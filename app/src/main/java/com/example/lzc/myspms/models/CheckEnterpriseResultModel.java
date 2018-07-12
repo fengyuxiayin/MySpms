@@ -76,7 +76,8 @@ public class CheckEnterpriseResultModel implements Serializable {
             private int jcdwId;
             private int jcdwlx;
             private long jzsj;
-            private long kssj;
+            private long jckssj;
+            private long jcjssj;
             private double passPercent;
 
             public int getJcdwId() {
@@ -103,12 +104,20 @@ public class CheckEnterpriseResultModel implements Serializable {
                 this.jzsj = jzsj;
             }
 
-            public long getKssj() {
-                return kssj;
+            public long getJckssj() {
+                return jckssj;
             }
 
-            public void setKssj(long kssj) {
-                this.kssj = kssj;
+            public void setJckssj(long jckssj) {
+                this.jckssj = jckssj;
+            }
+
+            public long getJcjssj() {
+                return jcjssj;
+            }
+
+            public void setJcjssj(long jcjssj) {
+                this.jcjssj = jcjssj;
             }
 
             public double getPassPercent() {

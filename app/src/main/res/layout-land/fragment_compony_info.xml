@@ -139,7 +139,51 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="2"
+                        android:text="企业规模" />
 
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/fragment_basic_info_rb_yes"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingLeft="5dp"
+                            android:textSize="12sp"
+                            android:text="规模以上"
+                            android:button="@drawable/selector_custom_radiobutton"
+                            android:textColor="@color/homepage_text_press" />
+
+                        <RadioButton
+                            android:id="@+id/fragment_basic_info_rb_no"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingLeft="5dp"
+                            android:text="规模以下"
+                            android:textSize="12sp"
+                            android:checked="true"
+                            android:button="@drawable/selector_custom_radiobutton"
+                            android:textColor="@color/homepage_text_press" />
+                        <RadioButton
+                            android:id="@+id/fragment_basic_info_rb_small"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingLeft="5dp"
+                            android:text="微型企业"
+                            android:checked="true"
+                            android:textSize="12sp"
+                            android:button="@drawable/selector_custom_radiobutton"
+                            android:textColor="@color/homepage_text_press" />
+                    </RadioGroup>
                     <com.example.lzc.myspms.custom.AutoFitTextView
                         style="@style/add_enterprise_textview_style"
                         android:layout_weight="2"
@@ -150,40 +194,7 @@
                         style="@style/add_enterprise_edittext_style"
                         android:hint="必填项"
                         android:textColorHint="@color/hint_yellow"
-                        android:layout_weight="6" />
-
-                    <com.example.lzc.myspms.custom.AutoFitTextView
-                        style="@style/add_enterprise_textview_style"
-                        android:layout_weight="3"
-                        android:text="是否属于规模以上企业" />
-
-                    <RadioGroup
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/fragment_basic_info_rb_yes"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:paddingLeft="5dp"
-                            android:text="是"
-                            android:button="@drawable/selector_custom_radiobutton"
-                            android:textColor="@color/homepage_text_press" />
-
-                        <RadioButton
-                            android:id="@+id/fragment_basic_info_rb_no"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:paddingLeft="5dp"
-                            android:text="否"
-                            android:checked="true"
-                            android:button="@drawable/selector_custom_radiobutton"
-                            android:textColor="@color/homepage_text_press" />
-                    </RadioGroup>
+                        android:layout_weight="4" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

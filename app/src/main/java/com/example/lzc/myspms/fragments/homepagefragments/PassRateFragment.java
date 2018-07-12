@@ -107,11 +107,14 @@ public class PassRateFragment extends BaseFragment {
                         if (checkEnterpriseResultModel.isData()) {
                             CheckEnterpriseResultModel.CheckEnterpriseResultMsgModel checkEnterpriseResultMsgModel = gson.fromJson(checkEnterpriseResultModel.getMsg(), CheckEnterpriseResultModel.CheckEnterpriseResultMsgModel.class);
                             List<CheckEnterpriseResultModel.CheckEnterpriseResultMsgModel.ListBean> list = checkEnterpriseResultMsgModel.getList();
+                            xValueCompony.clear();
+                            yValueCompony.clear();
+                            valueCompony.clear();
                             if (list != null) {
                                 for (int i = 0; i < list.size(); i++) {
-                                    xValueCompony.add(DateUtil.long2Date(list.get(i).getKssj()));
+                                    xValueCompony.add(DateUtil.long2Date(list.get(i).getJckssj()));
                                     Log.e(TAG, "onResponse:valueCompony "+list.get(i).getPassPercent() );
-                                    valueCompony.put(DateUtil.long2Date(list.get(i).getKssj()), list.get(i).getPassPercent());
+                                    valueCompony.put(DateUtil.long2Date(list.get(i).getJckssj() ), list.get(i).getPassPercent());
                                 }
                                 for (int i = 0; i < 6; i++) {
                                     yValueCompony.add(i * 20);
@@ -140,11 +143,14 @@ public class PassRateFragment extends BaseFragment {
                         if (checkProjectResultModel.isData()) {
                             CheckProjectResultModel.CheckProjectResultMsgModel checkProjectResultMsgModel = gson.fromJson(checkProjectResultModel.getMsg(), CheckProjectResultModel.CheckProjectResultMsgModel.class);
                             List<CheckProjectResultModel.CheckProjectResultMsgModel.ListBean> list = checkProjectResultMsgModel.getList();
+                            xValueProject.clear();
+                            yValueProject.clear();
+                            valueProject.clear();
                             if (list != null) {
                                 for (int i = 0; i < list.size(); i++) {
-                                    xValueProject.add(DateUtil.long2Date(list.get(i).getKssj()));
+                                    xValueProject.add(DateUtil.long2Date(list.get(i).getJckssj()));
                                     Log.e(TAG, "onResponse: valueProject"+ list.get(i).getPassPercent());
-                                    valueProject.put(DateUtil.long2Date(list.get(i).getKssj()), list.get(i).getPassPercent());
+                                    valueProject.put(DateUtil.long2Date(list.get(i).getJckssj()), list.get(i).getPassPercent());
 
                                 }
                                 for (int i = 0; i < 6; i++) {

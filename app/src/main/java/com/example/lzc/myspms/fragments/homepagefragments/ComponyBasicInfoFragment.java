@@ -129,6 +129,8 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
     private List<EnumModel> dataUnitType = new ArrayList<>();
     //经营状态数据
     private List<EnumModel> dataStatus = new ArrayList<>();
+    //企业规模数据
+    private List<EnumModel> dataEnterpriseType = new ArrayList<>();
     private String qyId;
     //which 判断是添加 修改 还是查看企业
     private String which;
@@ -142,6 +144,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
     private Fragment mShowFragment = this;
     private List<String> industryList = new ArrayList<>();
     private List<String> strings;
+    private RadioButton rbSmall;
 
 
     @Nullable
@@ -188,6 +191,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
         tvTze = (TextView) view.findViewById(R.id.fragment_basic_info_tv_tze);
         rbYes = (RadioButton) view.findViewById(R.id.fragment_basic_info_rb_yes);
         rbNo = (RadioButton) view.findViewById(R.id.fragment_basic_info_rb_no);
+        rbSmall = (RadioButton) view.findViewById(R.id.fragment_basic_info_rb_small);
         etQydw = (EditText) view.findViewById(R.id.fragment_basic_info_et_qydw);
         etQyfw = (EditText) view.findViewById(R.id.fragment_basic_info_et_qyfw);
         etSssq = (EditText) view.findViewById(R.id.fragment_basic_info_et_sssq);
@@ -268,13 +272,15 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             etZcdz.setEnabled(false);
             etJyzt.setEnabled(false);
             etShjydm.setEnabled(false);
-            rbYes.setEnabled(false);
-            rbNo.setEnabled(false);
+            rbYes.setClickable(false);
+            rbNo.setClickable(false);
+            rbSmall.setClickable(false);
             etHygs.setEnabled(false);
             etYye.setEnabled(false);
             etTze.setEnabled(false);
             etQydw.setEnabled(false);
-            etQyfw.setEnabled(false);
+            etQyfw.setClickable(false);
+            etQyfw.setFocusable(false);
             etSssq.setEnabled(false);
             etJyfw.setEnabled(false);
             btnSave.setEnabled(false);
@@ -585,6 +591,8 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
         initEnumData("/enum/getEnums", "ENTERPRISE_RISK_TYPE", dataEnterpriseRisk);
         //投资额单位
         initEnumData("/enum/getEnums", "CURRENCY_UNIT_TYPE", dataUnitType);
+        //企业规模
+        initEnumData("/enum/getEnums", "ENTERPRISE_SCALL_STATE", dataEnterpriseType);
     }
 
     @Override
@@ -717,9 +725,11 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             }
         }
         if (rbYes.isChecked()) {
-            componyInfo.setGmqk(1);
-        }else{
             componyInfo.setGmqk(2);
+        }else if(rbNo.isChecked()){
+            componyInfo.setGmqk(3);
+        }else{
+            componyInfo.setGmqk(1);
         }
         if (getEdittextContent(etYye).length()>0) {
             if (ValidateUtil.isAllNumber(getEditTextContent(etYye))) {
@@ -1229,11 +1239,14 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             }
         }
         etShjydm.setText(componyInfo.getZch());
-        if (componyInfo.getGmqk() == 1) {//1 是 2 否
+        if (componyInfo.getGmqk() == 2) {//2规模以上 3 规模以下 1微型企业
             rbYes.setChecked(true);
-        } else {
+        } else if(componyInfo.getGmqk() == 3){
             rbNo.setChecked(true);
+        }else if(componyInfo.getGmqk() == 1){
+            rbSmall.setChecked(true);
         }
+
         for (int i = 0; i < dataIndustryCateary.size(); i++) {
             if (dataIndustryCateary.get(i).getKey().equals(componyInfo.getHylbdm() + "")) {
                 etHygs.setText(dataIndustryCateary.get(i).getValue() + "");

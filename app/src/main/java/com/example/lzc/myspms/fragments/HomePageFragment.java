@@ -311,8 +311,8 @@ public class HomePageFragment extends BaseFragment implements RadioGroup.OnCheck
                             List<CheckEnterpriseResultModel.CheckEnterpriseResultMsgModel.ListBean> list = checkEnterpriseResultMsgModel.getList();
                             if (list!=null) {
                                 for (int i = 0; i < list.size(); i++) {
-                                    xValueCompony.add(DateUtil.long2Date(list.get(i).getKssj()));
-                                    valueCompony.put(DateUtil.long2Date(list.get(i).getKssj()), list.get(i).getPassPercent());//60--100
+                                    xValueCompony.add(DateUtil.long2Date(list.get(i).getJckssj()));
+                                    valueCompony.put(DateUtil.long2Date(list.get(i).getJckssj()), list.get(i).getPassPercent());//60--100
                                 }
                                 for (int i = 0; i < 5; i++) {
                                     yValueCompony.add(i * 20);
@@ -342,8 +342,8 @@ public class HomePageFragment extends BaseFragment implements RadioGroup.OnCheck
                             List<CheckProjectResultModel.CheckProjectResultMsgModel.ListBean> list = checkProjectResultMsgModel.getList();
                             if (list!=null) {
                                 for (int i = 0; i < list.size(); i++) {
-                                    xValueProject.add(DateUtil.long2Date(list.get(i).getKssj()));
-                                    valueProject.put(DateUtil.long2Date(list.get(i).getKssj()),list.get(i).getPassPercent());
+                                    xValueProject.add(DateUtil.long2Date(list.get(i).getJckssj()));
+                                    valueProject.put(DateUtil.long2Date(list.get(i).getJckssj()),list.get(i).getPassPercent());
                                 }
                                 for (int i =0 ; i < 5; i++) {
                                     yValueProject.add(i * 20);

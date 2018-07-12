@@ -73,26 +73,26 @@ public class CheckProjectResultModel implements Serializable {
              * totalCount : 44
              */
 
-            private long jzsj;
-            private long kssj;
+            private long jcjzsj;
+            private long jckssj;
             private int passCount;
             private double passPercent;
             private int totalCount;
 
-            public long getJzsj() {
-                return jzsj;
+            public long getJcjzsj() {
+                return jcjzsj;
             }
 
-            public void setJzsj(long jzsj) {
-                this.jzsj = jzsj;
+            public void setJcjzsj(long jcjzsj) {
+                this.jcjzsj = jcjzsj;
             }
 
-            public long getKssj() {
-                return kssj;
+            public long getJckssj() {
+                return jckssj;
             }
 
-            public void setKssj(long kssj) {
-                this.kssj = kssj;
+            public void setJckssj(long jckssj) {
+                this.jckssj = jckssj;
             }
 
             public int getPassCount() {
