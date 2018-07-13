@@ -635,7 +635,6 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("aqjgszqk", componyInfo.getAqjgszqk() + "")
                 .addParams("aqjgjcjg", componyInfo.getAqjgjcjg() == null ? "" : componyInfo.getAqjgjcjg() + "")
                 .addParams("gmqk", componyInfo.getGmqk() + "")
-                .addParams("qygm", componyInfo.getQygm() + "")
                 .addParams("jgfl", componyInfo.getJgfl() + "")
                 .addParams("jgfljb", componyInfo.getJgfljb() + "")
                 .addParams("bzhfj", componyInfo.getBzhfj() + "")
