@@ -5,6 +5,7 @@ android:layout_height="match_parent">
 <com.example.lzc.myspms.custom.ClearEditText
     android:id="@+id/listview_upload_item_et"
     android:focusable="false"
+    android:textColor="@color/homepage_text_press"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 </LinearLayout>

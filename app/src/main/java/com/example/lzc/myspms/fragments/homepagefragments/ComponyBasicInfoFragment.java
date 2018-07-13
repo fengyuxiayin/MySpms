@@ -145,6 +145,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
     private List<String> industryList = new ArrayList<>();
     private List<String> strings;
     private RadioButton rbSmall;
+    private List<String> stringsCopy =  new ArrayList<>();
 
 
     @Nullable
@@ -232,19 +233,18 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
                         if (which.equals("view")) {
                             imgDelete.setVisibility(View.GONE);
                         }else{
-                            Log.e(TAG, "onSuccess: "+gson.toJson(strings) );
                             imgDelete.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    strings.remove(position);
+                                    stringsCopy.remove(position);
                                     banner.stopAutoPlay();
-                                    banner.setImages(strings);
+                                    banner.setImages(stringsCopy);
                                     banner.setImageLoader(new PicassoImageLoder());
                                     banner.start();
                                     String jctp = "";
-                                    for (int i = 0; i < strings.size(); i++) {
-                                        jctp += strings.get(i).replace(Constant.UPLOAD_IMG_IP,"");
-                                        if (strings.size()>1) {
+                                    for (int i = 0; i < stringsCopy.size(); i++) {
+                                        jctp += stringsCopy.get(i).replace(Constant.UPLOAD_IMG_IP,"");
+                                        if (stringsCopy.size()>1) {
                                             jctp+=",";
                                         }
                                     }
@@ -311,6 +311,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
  *@date 2018/7/2 16:03
 */
     private void sendComponyInfoToServer() {
+        Log.e(TAG, "sendComponyInfoToServer: "+gson.toJson(componyInfo) );
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/save")
                 .addParams("id", qyId.length() == 0 ? "" : qyId)
@@ -337,6 +338,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
                 .addParams("aqfzrdzyx", componyInfo.getAqfzrdzyx() == null ? "" : componyInfo.getAqfzrdzyx() + "")
                 .addParams("isaqfzrxx", componyInfo.getIsaqfzrxx() + "")
                 .addParams("cyrysl", componyInfo.getCyrysl() + "")
+                .addParams("dzyx",componyInfo.getDzyx()==null?"":componyInfo.getDzyx())
                 .addParams("tzzyrysl", componyInfo.getTzzyrysl() + "")
                 .addParams("zzaqscglrys", componyInfo.getZzaqscglrys() + "")
                 .addParams("zzyjglrys", componyInfo.getZzyjglrys() + "")
@@ -350,7 +352,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
                 .addParams("zzaqscryJson", componyInfo.getZzaqscryJson() == null ? "" : componyInfo.getZzaqscryJson() + "")
                 .addParams("zzyjglryJson", componyInfo.getZzyjglryJson() == null ? "" : componyInfo.getZzyjglryJson() + "")
                 .addParams("zcaqgcsJson", componyInfo.getZcaqgcsJson() == null ? "" : componyInfo.getZcaqgcsJson() + "")
-                .addParams("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
+//                .addParams("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
                 .addParams("ssJson", componyInfo.getSsJson() == null ? "" : componyInfo.getSsJson() + "")
                 .addParams("aqjgszqk", componyInfo.getAqjgszqk() + "")
                 .addParams("aqjgjcjg", componyInfo.getAqjgjcjg() == null ? "" : componyInfo.getAqjgjcjg() + "")
@@ -1313,7 +1315,8 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             list.add("");
             jctp = "";
         }
-        strings = list.subList(0, list.size() - 1);//好像是为了去掉最后的“”
+        strings = list.subList(0, list.size() - 1);//是为了去掉最后的“”
+        stringsCopy.addAll(strings);
         banner.setImages(strings);
         banner.setImageLoader(new PicassoImageLoder());
         //banner设置方法全部调用完毕时最后调用

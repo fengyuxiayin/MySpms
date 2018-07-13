@@ -30,7 +30,7 @@ public class ValidateUtil {
     public static boolean isValidEmail(String mail) {
 //        Pattern pattern = Pattern.compile("^[A-Za-z0-9][\\w\\._]*[a-zA-Z0-9]+@[A-Za-z0-9-_]+\\.([A-Za-z]{2,4})");
 //        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$");
-        Pattern pattern = Pattern.compile("^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}([\\.][a-z]{2})?$/i");
+        Pattern pattern = Pattern.compile("[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?");
         Matcher mc = pattern.matcher(mail);
         return mc.matches();
     }
@@ -110,7 +110,8 @@ public class ValidateUtil {
      * @return
      */
     public static boolean isMobile(String str) {
-        String regex = "(\\(\\d{3,4}\\)|\\d{3,4}|\\s)?\\d{7,8}";
+//        String regex = "(\\(\\d{3,4}\\)|\\d{3,4}|\\s)?\\d{7,8}";
+        String regex = "(\\d{4}-\\d{7,8})";
 //        String regex = "(\\(\\d{3,4}\\)|\\d{3,4}-|\\s)?\\d{7}";
 
         return match(regex, str);

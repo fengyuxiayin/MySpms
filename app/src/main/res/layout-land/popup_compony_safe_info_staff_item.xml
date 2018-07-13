@@ -14,7 +14,7 @@
             android:textSize="14sp"
             android:textColor="@color/homepage_text_press"
             android:background="@null"
-            android:textCursorDrawable="@drawable/cursor_color"
+            android:textCursorDrawable="@null"
             android:hint="@string/app_name"
             android:textColorHint="@color/transparent"
             android:layout_height="match_parent" />
@@ -31,7 +31,7 @@
             android:inputType="number"
             android:textColor="@color/homepage_text_press"
             android:background="@null"
-            android:textCursorDrawable="@drawable/cursor_color"
+            android:textCursorDrawable="@null"
             android:hint="@string/app_name"
             android:textColorHint="@color/transparent"
             android:layout_height="match_parent" />

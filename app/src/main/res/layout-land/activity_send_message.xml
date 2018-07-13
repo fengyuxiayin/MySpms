@@ -75,14 +75,14 @@
                     android:textColor="@color/homepage_text_press"
                     android:text="主题：" />
 
-                <EditText
+                <com.example.lzc.myspms.custom.ClearEditText
                     android:id="@+id/activity_send_message_et_title"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
                     android:textColor="@color/homepage_text_press"
                     android:background="@drawable/selector_edittext_focus"
-                    android:textCursorDrawable="@drawable/cursor_color"
+                    android:textCursorDrawable="@null"
                     android:paddingLeft="5dp" />
             </LinearLayout>
 
@@ -118,7 +118,7 @@
                     android:textColor="@color/homepage_text_press"
                     android:textSize="14sp" />
 
-                <EditText
+                <com.example.lzc.myspms.custom.ClearEditText
                     android:id="@+id/activity_send_message_et_content"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -129,7 +129,7 @@
                     android:textColor="@color/homepage_text_press"
                     android:textColorHint="@color/bg_gray"
                     android:padding="5dp"
-                    android:textCursorDrawable="@drawable/cursor_color" />
+                    android:textCursorDrawable="@null" />
             </LinearLayout>
             <Button
                 android:layout_marginTop="10dp"

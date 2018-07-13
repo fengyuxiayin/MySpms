@@ -48,6 +48,10 @@ public class ViewMessageActivity extends AppCompatActivity implements View.OnCli
     private ImageView imgAdd;
     private ImageView imgCall;
     private ImageView imgMessage;
+    private TextView tvBt;
+    private TextView tvZt;
+    private String bt;
+    private String zt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,23 +62,37 @@ public class ViewMessageActivity extends AppCompatActivity implements View.OnCli
         time = getIntent().getStringExtra("time");
         parentId = getIntent().getStringExtra("parentId");
         fj = getIntent().getStringExtra("fj");
+        bt = getIntent().getStringExtra("bt");
+        zt = getIntent().getStringExtra("zw");
         Log.e(TAG, "onCreate: " + "fj " + fj);
+
+        //去掉最外面的大括号
+        if (fj.length()>1) {
+            String substring = fj.substring(1, fj.length() - 1);
+            if (substring.length()>0) {
+                Log.e(TAG, "onCreate: "+substring );
+                if (substring.contains(",")) {
+                    Log.e(TAG, "onCreate: contains" );
+                    String[] split = substring.split(",");
+                    for (int i = 0; i < split.length; i++) {
+                        split[i] = split[i].substring(1,split[i].length()-1);//去掉双引号
+                    }
+                    strings = Arrays.asList(split);
+                }else{
+                    Log.e(TAG, "onCreate: nocontains" );
+                    strings = new ArrayList<>();
+                    strings.add(substring.substring(1,substring.length()-1));
+                }
+
+            }else{
+//            Toast.makeText(this, "附件为空", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "onCreate: 附件为空" );
+                listView.setVisibility(View.GONE);
+            }
+        }
         initView();
         initData();
         initListener();
-        //去掉最外面的大括号
-        String substring = fj.substring(1, fj.length() - 1);
-        if (substring.length()>0) {
-            String[] split = substring.split(",");
-            for (int i = 0; i < split.length; i++) {
-                split[i] = split[i].substring(1,split[i].length()-1);
-            }
-            strings = Arrays.asList(split);
-        }else{
-//            Toast.makeText(this, "附件为空", Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "onCreate: 附件为空" );
-            listView.setVisibility(View.GONE);
-        }
     }
 
     private void initListener() {
@@ -90,19 +108,21 @@ public class ViewMessageActivity extends AppCompatActivity implements View.OnCli
 
     private void initData() {
         tvTitle.setText("邮件详细信息");
-        imgVideoCall.setVisibility(View.INVISIBLE);
         tvFjr.setText(fjr);
         tvSjr.setText(sjr);
         tvSj.setText(time);
+        tvBt.setText(bt);
+        tvZt.setText(zt);
         List<String> list = new ArrayList<>();
         //取出文件名称
         if (strings!=null) {
             for (int i = 0; i < strings.size(); i++) {
-                String substring = strings.get(i).substring(strings.get(i).lastIndexOf("/") + 1, strings.get(i).length());
+                String substring = strings.get(i);
                 list.add(substring);
             }
         }
-        listView.setAdapter(new ArrayAdapter<>(ViewMessageActivity.this, android.R.layout.simple_list_item_1, list));
+        Log.e(TAG, "initData: "+strings.size() );
+        listView.setAdapter(new ArrayAdapter<>(ViewMessageActivity.this, R.layout.popup_person_grid_text_only, list));
     }
 
     private void initView() {
@@ -116,6 +136,8 @@ public class ViewMessageActivity extends AppCompatActivity implements View.OnCli
         tvFjr = (TextView) findViewById(R.id.activity_view_message_tv_fjr);
         tvSj = (TextView) findViewById(R.id.activity_view_message_tv_sj);
         tvSjr = (TextView) findViewById(R.id.activity_view_message_tv_sjr);
+        tvBt = (TextView) findViewById(R.id.activity_view_message_tv_bt);
+        tvZt = (TextView) findViewById(R.id.activity_view_message_tv_zt);
         listView = (ListView) findViewById(R.id.activity_view_message_lv);
         btnSend = (Button) findViewById(R.id.activity_view_message_btn_Reply);
     }

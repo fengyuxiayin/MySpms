@@ -120,7 +120,7 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
     private void getMessageFromServer() {
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/sysMessage/find")
-                .addParams("sjrId", Constant.ENTERPRISE_ID)
+                .addParams("sjrId", Constant.ACCOUNT_ID)
                 .addParams("sjrlx", Constant.ACCOUNT_TYPE)
                 .addParams("pn", page + "")
                 .addParams("size", "10")
@@ -322,6 +322,8 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("time",DateUtil.long2Date(item.getCreateTime()));
                 intent.putExtra("parentId",item.getId()+"");
                 intent.putExtra("fj",item.getFj());
+                intent.putExtra("bt",item.getXxbt());
+                intent.putExtra("zw",item.getXxnr());
                 startActivity(intent);
             }else{
                 Toast.makeText(this, "正在获取账号信息", Toast.LENGTH_SHORT).show();

@@ -102,7 +102,7 @@
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"
                 android:layout_weight="2"
-                android:text="主要负责人学习情况" />
+                android:text="主要负责人是否学习" />
 
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_basic_info_et_zyfzrxxqk"
@@ -142,7 +142,6 @@
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_basic_info_et_zyfzrgddh"
                 style="@style/add_enterprise_edittext_style"
-                android:inputType="number"
                 android:layout_weight="4" />
 
             <android.support.v4.widget.Space
@@ -172,7 +171,7 @@
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"
                 android:layout_weight="2"
-                android:text="安全负责人学习情况" />
+                android:text="安全负责人是否学习" />
 
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_basic_info_et_anfzrxxqk"

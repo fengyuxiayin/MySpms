@@ -154,7 +154,7 @@
                 android:layout_weight="1" />
         </LinearLayout>
         <LinearLayout
-            android:visibility="invisible"
+            android:visibility="gone"
             android:id="@+id/fragment_safe_info_ll_lgtxsj"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"

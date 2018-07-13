@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.example.lzc.myspms.models.EnumModel;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.SetMenuClick;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -89,6 +91,7 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
     private ImageView imgAdd;
     private ImageView imgCall;
     private ImageView imgMessage;
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -388,6 +391,7 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/find")
                 .addParams("size", "10")
+                .addParams("pn",page+"")
                 .addParams("sqId",sqId)
                 .addParams("tzeStart", tzeStart)
                 .addParams("tzeEnd", tzeEnd)

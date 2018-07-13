@@ -206,7 +206,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 break;
             }
         }
-        Log.e(TAG, "setData: "+componyInfo.getIsqyzc() );
+        Log.e(TAG, "setData: " + componyInfo.getIsqyzc());
         etQyzc.setText(componyInfo.getIsqyzc() == 1 ? "是" : "否");
         etSflgtx.setText(componyInfo.getIslgtx() == 1 ? "是" : "否");
         if (componyInfo.getIslgtx() == 1) {
@@ -278,7 +278,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                             JSONObject o = (JSONObject) jsonArray.get(i);
                             //监管等级 标准化等级 企业风险分级 企业规模
                             String value = "";
-                            value = o.optString("value")+o.optString("memo");
+                            value = o.optString("value") + o.optString("memo");
                             String key = o.optString("key");
                             data.add(new EnumModel(key, value));
                         }
@@ -388,11 +388,11 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 @Override
                 public void afterTextChanged(Editable s) {
                     if ("是".equals(s.toString())) {
-                        llLgtxsj.setVisibility(View.VISIBLE);
+//                        llLgtxsj.setVisibility(View.VISIBLE);
                         tvLgtxsj.setVisibility(View.VISIBLE);
                         etLgtxcjsj.setVisibility(View.VISIBLE);
-                    }else{
-                        llLgtxsj.setVisibility(View.INVISIBLE);
+                    } else {
+//                        llLgtxsj.setVisibility(View.INVISIBLE);
                         tvLgtxsj.setVisibility(View.INVISIBLE);
                         etLgtxcjsj.setVisibility(View.INVISIBLE);
                     }
@@ -415,7 +415,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                         llBzhsj.setVisibility(View.VISIBLE);
                         tvBzhdj.setVisibility(View.VISIBLE);
                         etBzhdj.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         llBzhsj.setVisibility(View.INVISIBLE);
                         tvBzhdj.setVisibility(View.INVISIBLE);
                         etBzhdj.setVisibility(View.INVISIBLE);
@@ -437,7 +437,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 public void afterTextChanged(Editable s) {
                     if ("是".equals(s.toString())) {
                         llWhp.setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         llWhp.setVisibility(View.INVISIBLE);
                     }
                 }
@@ -491,11 +491,11 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                     break;
                 case R.id.whp_add:
                     whpList.add(new WhpJsonModel());
-                    if (safeInfoWhpAdapter!=null) {
+                    if (safeInfoWhpAdapter != null) {
                         listView.setAdapter(safeInfoWhpAdapter);
                         safeInfoWhpAdapter.notifyDataSetChanged();
-                    }else{
-                        safeInfoWhpAdapter = new SafeInfoWhpAdapter(whpList,getContext(),dataMeasureUnitType);
+                    } else {
+                        safeInfoWhpAdapter = new SafeInfoWhpAdapter(whpList, getContext(), dataMeasureUnitType);
                         listView.setAdapter(safeInfoWhpAdapter);
                     }
                     break;
@@ -511,25 +511,25 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
     }
 
     private void isDataQualified() {
-        if (getEdittextContent(etAqjgjcjg).length()<1) {
+        if (getEdittextContent(etAqjgjcjg).length() < 1) {
             Toast.makeText(getContext(), "安全监管监察机构为必填项", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (getEdittextContent(etQyfxfj).length()<1) {
+        if (getEdittextContent(etQyfxfj).length() < 1) {
             Toast.makeText(getContext(), "企业风险分级为必填项", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (getEdittextContent(etQyzc).length()<1) {
+        if (getEdittextContent(etQyzc).length() < 1) {
             Toast.makeText(getContext(), "企业自查为必填项", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (getEdittextContent(etJgjb).length()<1) {
+        if (getEdittextContent(etJgjb).length() < 1) {
             Toast.makeText(getContext(), "监管级别为必填项", Toast.LENGTH_SHORT).show();
             return;
         }
         if (getEdittextContent(etSfszaqjg).equals("是")) {
             componyInfo.setAqjgszqk(1);
-        }else{
+        } else {
             componyInfo.setAqjgszqk(2);
         }
         componyInfo.setAqjgjcjg(getEdittextContent(etAqjgjcjg));
@@ -553,14 +553,14 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         }
         if (getEdittextContent(etQyzc).equals("是")) {
             componyInfo.setIsqyzc(1);
-        }else{
+        } else {
             componyInfo.setIsqyzc(2);
         }
         if (getEdittextContent(etSflgtx).equals("是")) {
             componyInfo.setIslgtx(1);
             componyInfo.setLgtxcjsj(getEdittextContent(etLgtxcjsj));
             componyInfo.setLgtxfssj(getEdittextContent(etLgtxfssj));
-        }else{
+        } else {
             componyInfo.setIslgtx(2);
             componyInfo.setLgtxcjsj("");
             componyInfo.setLgtxfssj("");
@@ -575,7 +575,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                     break;
                 }
             }
-        }else{
+        } else {
             componyInfo.setIsbzh(2);
             componyInfo.setBzhfj(0);
             componyInfo.setBzhcjsj("");
@@ -584,11 +584,11 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         if (getEdittextContent(etSfwhp).equals("是")) {
             componyInfo.setIswhp(1);
             componyInfo.setWhpJson(gson.toJson(whpList));
-        }else{
+        } else {
             componyInfo.setIswhp(2);
             componyInfo.setWhpJson("");
         }
-        Log.e(TAG, "isDataQualified: "+gson.toJson(componyInfo) );
+        Log.e(TAG, "isDataQualified: " + gson.toJson(componyInfo));
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/save")
                 .addParams("id", qyId.length() == 0 ? "" : qyId)
@@ -607,7 +607,9 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("jyfw", componyInfo.getJyfw() == null ? "" : componyInfo.getJyfw() + "")
                 .addParams("zyfzr", componyInfo.getZyfzr() == null ? "" : componyInfo.getZyfzr() + "")
                 .addParams("zyfzryddhhm", componyInfo.getZyfzryddhhm() == null ? "" : componyInfo.getZyfzryddhhm() + "")
+                .addParams("zyfzrgddhhm", componyInfo.getZyfzrgddhhm() == null ? "" : componyInfo.getZyfzrgddhhm() + "")
                 .addParams("zyfzrdzyx", componyInfo.getZyfzrdzyx() == null ? "" : componyInfo.getZyfzrdzyx() + "")
+                .addParams("dzyx", componyInfo.getDzyx() == null ? "" : componyInfo.getDzyx())
                 .addParams("iszyfzrxx", componyInfo.getIszyfzrxx() + "")
                 .addParams("aqfzr", componyInfo.getAqfzr() == null ? "" : componyInfo.getAqfzr() + "")
                 .addParams("aqfzryddhhm", componyInfo.getAqfzryddhhm() == null ? "" : componyInfo.getAqfzryddhhm() + "")
@@ -620,15 +622,15 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("zzyjglrys", componyInfo.getZzyjglrys() + "")
                 .addParams("zcaqgcsrys", componyInfo.getZcaqgcsrys() + "")
                 .addParams("zsrysl", componyInfo.getZsrysl() + "")
-                .addParams("qyjc",componyInfo.getQyjc()+"")
-                .addParams("isbzh",componyInfo.getIsbzh()+"")
-                .addParams("isqyzc",componyInfo.getIsqyzc()+"")
+                .addParams("qyjc", componyInfo.getQyjc() + "")
+                .addParams("isbzh", componyInfo.getIsbzh() + "")
+                .addParams("isqyzc", componyInfo.getIsqyzc() + "")
                 .addParams("cyryJson", componyInfo.getCyryJson() == null ? "" : componyInfo.getCyryJson() + "")
                 .addParams("tzzyryJson", componyInfo.getTzzyryJson() == null ? "" : componyInfo.getTzzyryJson() + "")
                 .addParams("zzaqscryJson", componyInfo.getZzaqscryJson() == null ? "" : componyInfo.getZzaqscryJson() + "")
                 .addParams("zzyjglryJson", componyInfo.getZzyjglryJson() == null ? "" : componyInfo.getZzyjglryJson() + "")
                 .addParams("zcaqgcsJson", componyInfo.getZcaqgcsJson() == null ? "" : componyInfo.getZcaqgcsJson() + "")
-                .addParams("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
+//                .addParams("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
                 .addParams("ssJson", componyInfo.getSsJson() == null ? "" : componyInfo.getSsJson() + "")
                 .addParams("aqjgszqk", componyInfo.getAqjgszqk() + "")
                 .addParams("aqjgjcjg", componyInfo.getAqjgjcjg() == null ? "" : componyInfo.getAqjgjcjg() + "")
@@ -652,8 +654,8 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("yyedw", componyInfo.getYyedw() == null ? "" : componyInfo.getYyedw() + "")
                 .addParams("qyfwzb", componyInfo.getQyfwzb() == null ? "" : componyInfo.getQyfwzb() + "")
                 .addParams("qytp", componyInfo.getQytp() == null ? "" : componyInfo.getQytp() + "")
-                .addParams("fddh",componyInfo.getFddh()==null?"":componyInfo.getFddh()+"")
-                .addParams("fdxm",componyInfo.getFdxm()==null?"":componyInfo.getFdxm()+"")
+                .addParams("fddh", componyInfo.getFddh() == null ? "" : componyInfo.getFddh() + "")
+                .addParams("fdxm", componyInfo.getFdxm() == null ? "" : componyInfo.getFdxm() + "")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -670,9 +672,11 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                     }
                 });
     }
-public String getEdittextContent(EditText editText){
-    return editText.getText().toString().trim();
-}
+
+    public String getEdittextContent(EditText editText) {
+        return editText.getText().toString().trim();
+    }
+
     private void switchPages(String tag, Class<? extends Fragment> cls) {
         /**
          * 将当前显示的碎片进行隐藏，之后将要显示的页面显示出来
@@ -709,6 +713,7 @@ public String getEdittextContent(EditText editText){
         }
         transaction.commit();
     }
+
     /**
      * @param edittext 需要设置显示内容的Edittext
      * @desc 显示日历，并将选择的时间变为指定格式显示在Edittext上

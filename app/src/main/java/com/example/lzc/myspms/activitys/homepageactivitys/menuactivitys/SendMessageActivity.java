@@ -138,7 +138,7 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
                                 List<String> list = new ArrayList<>();
                                 for (int i = 0; i < accountList.size(); i++) {
                                     if (!StringUtils.isEmpty(accountList.get(i).getSsmc())) {
-                                        list.add(accountList.get(i).getSsmc());
+                                        list.add(accountList.get(i).getSsmc()+"("+accountList.get(i).getLoginName()+")");
                                     }
                                 }
                                 Log.e(TAG, "onResponse: "+accountList.size()+" " +list.size());
@@ -437,7 +437,7 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
                     List<JszModel> jszModelList = new ArrayList<>();
                     for (int i = 0; i < accountList.size(); i++) {
                         for (int j = 0; j < strings.size(); j++) {
-                            if (strings.get(j).equals(accountList.get(i).getSsmc())) {
+                            if (strings.get(j).equals(accountList.get(i).getSsmc()+"("+accountList.get(i).getLoginName()+")")) {
                                 jszModelList.add(new JszModel( accountList.get(i).getLoginType(),accountList.get(i).getId()));
                             }
                         }
@@ -457,10 +457,10 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
                 .addParams("xxbt", etTitle.getText().toString().trim())
                 .addParams("xxnr", etContent.getText().toString().trim())
                 .addParams("jszList", jszModelList.size() > 0 ? gson.toJson(jszModelList) : "")
-                .addParams("fj", fjJson)
-//                .addParams("fj", "1111")
+                .addParams("fj", fjJson.length()==2?"":fjJson)
                 .addParams("xxlx", isSend ? "1" : "2")
-                .addParams("parentId", isSend ? "0" : "0")
+                .addParams("xxzl","2")
+                .addParams("parentId", isSend ? "0" : jszModelList.get(0).getSjrId()+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -474,6 +474,8 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
                         LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
                         if (infoModel.isData()) {
                             Toast.makeText(SendMessageActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(SendMessageActivity.this, "发送失败", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

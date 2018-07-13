@@ -115,6 +115,8 @@ public class NoticeAdapter extends BaseAdapter implements View.OnClickListener {
                                         intent.putExtra("time", DateUtil.long2Date(data.get(pos).getCreateTime()));
                                         intent.putExtra("parentId", data.get(pos).getId() + "");
                                         intent.putExtra("fj", data.get(pos).getFj());
+                                        intent.putExtra("bt",data.get(pos).getXxbt()+"");
+                                        intent.putExtra("zw",data.get(pos).getXxnr()+"");
                                         context.startActivity(intent);
                                     }else{
                                         Toast.makeText(context, infoModel.getMsg(), Toast.LENGTH_SHORT).show();

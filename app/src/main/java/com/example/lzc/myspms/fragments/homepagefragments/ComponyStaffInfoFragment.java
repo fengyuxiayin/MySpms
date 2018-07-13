@@ -551,7 +551,12 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                 return;
             }
         }
-        componyInfo.setDzyx(getEdittextContent(etDzyx));
+        if (ValidateUtil.isValidEmail(getEdittextContent(etDzyx))) {
+            componyInfo.setDzyx(getEdittextContent(etDzyx));
+        }else{
+            Toast.makeText(getContext(), "请填写正确的邮箱地址", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //主要负责人
         if (getEdittextContent(etZyfzr).length()<1) {
             Toast.makeText(getContext(), "主要负责人为必填项", Toast.LENGTH_SHORT).show();
@@ -572,7 +577,7 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                 }
             }
             if (getEdittextContent(etZyfzrgddh).length()>0) {
-                if (ValidateUtil.isTelephone(getEdittextContent(etZyfzrgddh))) {
+                if (ValidateUtil.isMobile(getEdittextContent(etZyfzrgddh))) {
                     componyInfo.setZyfzrgddhhm(getEdittextContent(etZyfzrgddh));
                 }else{
                     Toast.makeText(getContext(), "请填写主要负责人正确的固定电话", Toast.LENGTH_SHORT).show();
@@ -602,7 +607,7 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                 }
             }
             if (getEdittextContent(etAqfzrgddh).length()>0) {
-                if (ValidateUtil.isTelephone(getEdittextContent(etAqfzrgddh))) {
+                if (ValidateUtil.isMobile(getEdittextContent(etAqfzrgddh))) {
                     componyInfo.setAqfzrgddhhm(getEdittextContent(etAqfzrgddh));
                 }else{
                     Toast.makeText(getContext(), "请填写安全负责人正确的固定电话", Toast.LENGTH_SHORT).show();
