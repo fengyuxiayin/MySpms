@@ -287,7 +287,7 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
                             Log.e(TAG, "onResponse: "+dataEconomic.size() );
                             areaEnterpriswAdapter = new AreaEnterpriswAdapter(dataEconomic,getApplicationContext(),EnterpriseQueryActivity.this);
                             gridView.setAdapter(areaEnterpriswAdapter);
-                            setListViewHeightBasedOnChildren(gridView);
+//                            setListViewHeightBasedOnChildren(gridView);
                         }else{
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
@@ -326,7 +326,7 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
         int totalHeight = 0;
         areaEnterpriswAdapter = (AreaEnterpriswAdapter) listView.getAdapter();
         int itemHeight = 0;
-        for (int i = 0; i < areaEnterpriswAdapter.getCount()/3+3; i++) {
+        for (int i = 0; i < areaEnterpriswAdapter.getCount()/2; i++) {
             View listItem = areaEnterpriswAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
 //            itemHeight = listItem.getMeasuredHeight();
