@@ -610,7 +610,7 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
             Matrix matrix = new Matrix();
             matrix.postScale(scaleWidth, scaleHeight);
             // TODO: 2018/7/11 bitmap的 getwidth = 0 为什么？
-            if (bitmap.getWidth()!=0&&bitmap.getHeight()!=0) {
+            if (bitmap.getWidth()>0&&bitmap.getHeight()>0) {
                 mBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
                 mBitmap = cropBitmap(mBitmap, (int) (width * (progress / 100.0)), height);
                 imageView.setImageBitmap(mBitmap);
@@ -626,7 +626,7 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
             // 取得想要缩放的matrix参数.
             Matrix matrix = new Matrix();
             matrix.postScale(scaleWidth, scaleHeight);
-            if (bitmap.getWidth()!=0&&bitmap.getHeight()!=0) {
+            if (bitmap.getWidth()>0&&bitmap.getHeight()>0) {
                 mBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
                 mBitmap = cropBitmap(mBitmap, (int) width, height);
                 imageView.setImageBitmap(mBitmap);

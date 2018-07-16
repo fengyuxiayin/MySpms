@@ -79,13 +79,22 @@ public class CheckProgressAdapter extends BaseAdapter implements View.OnClickLis
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.e(TAG, "getView: ");
-        View view = inflater.inflate(R.layout.fragment_check_progress_item, parent, false);
-        tvType = (TextView) view.findViewById(R.id.fragment_check_progress_item_tv_type);
-        tvUnqualifiedNumber = (TextView) view.findViewById(R.id.fragment_check_progress_item_tv_unqualified_number);
-        tvCompony = (TextView) view.findViewById(R.id.fragment_check_progress_item_tv_compony);
-        tvSupervision = (TextView) view.findViewById(R.id.fragment_check_progress_item_tv_supervision);
-        tvDate = (TextView) view.findViewById(R.id.fragment_check_progress_item_tv_date);
-        tvType.setText((position+1)+"");
+        ViewHolder holder = null;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView= inflater.inflate(R.layout.fragment_check_progress_item, parent, false);
+            holder.tvType = (TextView) convertView.findViewById(R.id.fragment_check_progress_item_tv_type);
+            holder.tvUnqualifiedNumber = (TextView) convertView.findViewById(R.id.fragment_check_progress_item_tv_unqualified_number);
+            holder.tvCompony = (TextView) convertView.findViewById(R.id.fragment_check_progress_item_tv_compony);
+            holder.tvSupervision = (TextView) convertView.findViewById(R.id.fragment_check_progress_item_tv_supervision);
+            holder.tvDate = (TextView) convertView.findViewById(R.id.fragment_check_progress_item_tv_date);
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+
+        }
+
+        holder.tvType.setText((position+1)+"");
 //        if (data.get(position).getJcjg()==0) {
 //            tvStatus.setText("不合格");
 //        }else if(data.get(position).getJcjg()==0){
@@ -94,24 +103,32 @@ public class CheckProgressAdapter extends BaseAdapter implements View.OnClickLis
 //            tvStatus.setText("未检查");
 //        }
         // TODO: 2018/6/21 不合格数量
-        tvUnqualifiedNumber.setText(data.get(position).getUnPassCount()+"");
+        holder.tvUnqualifiedNumber.setText(data.get(position).getUnPassCount()+"");
         String qyJson = data.get(position).getQyJson();
         QyJsonModel qyJsonModel = gson.fromJson(qyJson, QyJsonModel.class);
-        tvCompony.setText(qyJsonModel.getQymc());
-        tvSupervision.setText(data.get(position).getJgfj());
+        holder.tvCompony.setText(qyJsonModel.getQymc());
+        holder.tvSupervision.setText(data.get(position).getJgfj());
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if (data.get(position).getJzsj() > 0) {
             format = simpleDateFormat.format(new Date(data.get(position).getJzsj()));
         }
-        tvDate.setText(format);
+        holder.tvDate.setText(format);
 //        tvStatus
-        return view;
+        return convertView;
     }
 
     @Override
     public void onClick(View v) {
 //        if (v != null) {
         final int position = (int) v.getTag();
+
+    }
+    public static class ViewHolder{
+        private TextView tvType;
+        private TextView tvUnqualifiedNumber;
+        private TextView tvCompony;
+        private TextView tvSupervision;
+        private TextView tvDate;
 
     }
 }

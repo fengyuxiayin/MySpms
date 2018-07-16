@@ -38,6 +38,7 @@ public class ProjectSimpleAdapter extends BaseAdapter {
     private String jcjg;
     private String jcxmlx;
     private String qymc;
+    private ViewHolder holder;
 
     public ProjectSimpleAdapter(List<CheckProjectFindModel.CheckProjectFindMsgModel.ListBean> data, Context context, String jcId, String jcjg, String jcxmlx, String qymc) {
         if (data==null) {
@@ -71,37 +72,50 @@ public class ProjectSimpleAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        convertView = inflater.inflate(R.layout.activity_project_simple_item, parent, false);
-        TextView tvProjectName = (TextView) convertView.findViewById(R.id.activity_project_simple_project_name);
-        ImageView ivProjectStatus = (ImageView) convertView.findViewById(R.id.activity_project_simple_status);
-        ImageView ivProjectEdit = (ImageView) convertView.findViewById(R.id.activity_project_simple_edit);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.activity_project_simple_item, parent, false);
+
+            holder = new ViewHolder();
+            holder.tvProjectName = (TextView) convertView.findViewById(R.id.activity_project_simple_project_name);
+            holder.ivProjectStatus = (ImageView) convertView.findViewById(R.id.activity_project_simple_status);
+            holder.ivProjectEdit = (ImageView) convertView.findViewById(R.id.activity_project_simple_edit);
+            convertView.setTag(holder);
+        
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        
         if (jcxmlx.equals("1")) {
-            tvProjectName.setText(data.get(position).getStandardDescription());
+            holder.tvProjectName.setText(data.get(position).getStandardDescription());
         }else{
-            tvProjectName.setText(data.get(position).getWxymc());
+            holder.tvProjectName.setText(data.get(position).getWxymc());
         }
         //根据检查结果设置状态图片 2 未检查 0 检查不合格 1检查合格
         Log.e(TAG, "getView: "+data.get(position).getJcjg() );
         if (data.get(position).getJcjg() == 2 ) {
-            ivProjectStatus.setImageResource(R.mipmap.uncheck);
+            holder.ivProjectStatus.setImageResource(R.mipmap.uncheck);
+            holder.ivProjectEdit.setImageResource(R.mipmap.enterprise_info_query_item_img_edit);
+
         } else if (data.get(position).getJcjg() == 0) {
-            ivProjectStatus.setImageResource(R.mipmap.check_unqualified);
+            holder.ivProjectStatus.setImageResource(R.mipmap.check_unqualified);
+            holder.ivProjectEdit.setImageResource(R.mipmap.new_check_img_view);
         } else {
-            ivProjectStatus.setImageResource(R.mipmap.check_qualified);
+            holder.ivProjectStatus.setImageResource(R.mipmap.check_qualified);
+            holder.ivProjectEdit.setImageResource(R.mipmap.new_check_img_view);
         }
         if (this.jcjg!=null) {
             if (this.jcjg.equals("1")) {
-                ivProjectEdit.setImageResource(R.mipmap.new_check_img_view);
+                holder.ivProjectEdit.setImageResource(R.mipmap.new_check_img_view);
             }
         }
         // TODO: 2018/6/18 项目类别还没写
-        ivProjectEdit.setOnClickListener(new View.OnClickListener() {
+        holder.ivProjectEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("jcId",jcId);
                 intent.putExtra("id",data.get(position).getId()+"");
-                if (ProjectSimpleAdapter.this.jcjg.equals("1")) {
+                if (data.get(position).getJcjg() != 2) {//只要项目不是未检查就只能看不能修改
                     intent.putExtra("isView","isView");
                 }else{
                     intent.putExtra("isView","isNotView");
@@ -119,4 +133,11 @@ public class ProjectSimpleAdapter extends BaseAdapter {
         });
         return convertView;
     }
+    private static class ViewHolder {
+        public TextView tvProjectName;
+        public ImageView ivProjectStatus;
+        public ImageView ivProjectEdit;
+        
+    }
+
 }

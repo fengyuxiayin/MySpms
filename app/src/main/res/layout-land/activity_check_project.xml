@@ -187,7 +187,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:background="@drawable/selector_recheck_radiogroup_bg"
-                android:text="重大隐患源"
+                android:text="重点关注项"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:layout_width="0dp"

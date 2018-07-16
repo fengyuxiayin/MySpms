@@ -131,6 +131,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
     //初查传kssj 复查传jzsj
     private String jcsj;
     private String rwzt;
+    private boolean checkQualified;
 
 
     @Override
@@ -425,7 +426,27 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                 }
                                 listView.onRefreshComplete();
                             }
-
+                            //判断企业是否检查完毕 是的话直接隐藏点整改时间 将预览文书文字改为检查完成 将打印文书按钮隐藏
+                            if (projectAdapter!=null) {
+                                checkQualified = false;
+                                if (list!=null) {
+                                    for (int i = 0; i < list.size(); i++) {
+                                        if (list.get(i).getJcjg()!=1) {
+                                            checkQualified = false;
+                                            break;
+                                        }else{
+                                            checkQualified = true;
+                                        }
+                                    }
+                                    Log.e(TAG, "onResume: checkQualified"+ checkQualified);
+                                    if (checkQualified) {
+                                        tvChangeTime.setVisibility(View.GONE);
+                                        etChangeTime.setVisibility(View.GONE);
+                                        btnPrint.setVisibility(View.INVISIBLE);
+                                        btnReview.setVisibility(View.INVISIBLE);
+                                    }
+                                }
+                            }
                         } else {
                             Toast.makeText(CheckProjectActivity.this, checkProjectFindModel.getMsg(), Toast.LENGTH_SHORT).show();
                         }
@@ -470,6 +491,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                     setDate(etChangeTime);
                     break;
                 case R.id.activity_check_project_btn_review:
+                    if (checkQualified) {//全部检查都为合格的情况
+                        generateAndUpload();
+                        return;
+                    }
                     isReview = true;
                     //先设置整改 文书才能生成
                     //根据初查还是复查，初查的未检查和检查中调用setrecheck 其他直接预览文书

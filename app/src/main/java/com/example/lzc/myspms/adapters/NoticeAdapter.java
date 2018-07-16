@@ -152,6 +152,7 @@ public class NoticeAdapter extends BaseAdapter implements View.OnClickListener {
                                             LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
                                             Toast.makeText(context, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
                                             data.remove(pos);
+                                            notifyDataSetChanged();
                                         }
                                     });
                                 }

@@ -43,7 +43,7 @@ public class ViewMessageActivity extends AppCompatActivity implements View.OnCli
     private TextView tvFjr;
     private TextView tvSj;
     private TextView tvSjr;
-    private List<String> strings;
+    private List<String> strings = new ArrayList<>();
     private ImageView imgNotice;
     private ImageView imgAdd;
     private ImageView imgCall;
