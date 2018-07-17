@@ -551,11 +551,13 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                 return;
             }
         }
-        if (ValidateUtil.isValidEmail(getEdittextContent(etDzyx))) {
-            componyInfo.setDzyx(getEdittextContent(etDzyx));
-        }else{
-            Toast.makeText(getContext(), "请填写正确的邮箱地址", Toast.LENGTH_SHORT).show();
-            return;
+        if (getEdittextContent(etDzyx).length()>0) {
+            if (ValidateUtil.isValidEmail(getEdittextContent(etDzyx))) {
+                componyInfo.setDzyx(getEdittextContent(etDzyx));
+            }else{
+                Toast.makeText(getContext(), "请填写正确的邮箱地址", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
         //主要负责人
         if (getEdittextContent(etZyfzr).length()<1) {

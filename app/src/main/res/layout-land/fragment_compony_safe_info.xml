@@ -70,10 +70,23 @@
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"
                 android:layout_weight="2"
+                android:visibility="gone"
                 android:text="企业风险分级" />
 
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_safe_info_et_qyfxfj"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="必填项"
+                android:visibility="gone"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="4" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="企业自查" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_safe_info_et_qyzc"
                 style="@style/add_enterprise_edittext_style"
                 android:hint="必填项"
                 android:textColorHint="@color/hint_yellow"
@@ -93,7 +106,7 @@
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"
                 android:layout_weight="2"
-                android:text="监管级别" />
+                android:text="重点等级" />
 
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_safe_info_et_jgjb"
@@ -102,22 +115,12 @@
                 android:textColorHint="@color/hint_yellow"
                 android:layout_weight="4" />
 
-            <com.example.lzc.myspms.custom.AutoFitTextView
-                style="@style/add_enterprise_textview_style"
-                android:layout_weight="2"
-                android:text="企业自查" />
 
-            <com.example.lzc.myspms.custom.ClearEditText
-                android:id="@+id/fragment_safe_info_et_qyzc"
-                style="@style/add_enterprise_edittext_style"
-                android:hint="必填项"
-                android:textColorHint="@color/hint_yellow"
-                android:layout_weight="4" />
 
             <android.support.v4.widget.Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="7" />
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="10dp"

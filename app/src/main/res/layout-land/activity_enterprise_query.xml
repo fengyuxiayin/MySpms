@@ -89,7 +89,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="行业归属" />
+                    android:text="国民经济分类" />
 
                 <EditText
                     android:id="@+id/activity_enterprise_query_et_industry"
@@ -101,7 +101,7 @@
                     android:gravity="center_vertical"
                     android:padding="3dp"
                     android:textColor="@color/white"
-                    android:hint="点击选择行业类别"
+                    android:hint="点击选择国民经济分类"
                     android:textColorHint="@color/bg_gray"
                     android:textCursorDrawable="@drawable/cursor_color"
                     android:textSize="16sp" />

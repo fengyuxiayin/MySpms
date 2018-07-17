@@ -48,7 +48,6 @@
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_basic_info_et_lxdh"
                 style="@style/add_enterprise_edittext_style"
-                android:inputType="number"
                 android:hint="必填项"
                 android:textColorHint="@color/hint_yellow"
                 android:layout_weight="4" />
@@ -142,6 +141,8 @@
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_basic_info_et_zyfzrgddh"
                 style="@style/add_enterprise_edittext_style"
+                android:hint="固话格式 0532-12345678"
+                android:textColorHint="@color/hintGray"
                 android:layout_weight="4" />
 
             <android.support.v4.widget.Space
@@ -211,6 +212,8 @@
             <com.example.lzc.myspms.custom.ClearEditText
                 android:id="@+id/fragment_basic_info_et_aqfzrgddh"
                 style="@style/add_enterprise_edittext_style"
+                android:hint="固话格式 0532-12345678"
+                android:textColorHint="@color/hintGray"
                 android:layout_weight="4" />
 
             <android.support.v4.widget.Space

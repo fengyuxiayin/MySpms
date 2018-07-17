@@ -150,8 +150,8 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         commonList.add(new EnumModel("1", "是"));
         commonList.add(new EnumModel("2", "否"));
         initEnumData("/enum/getEnums", "REGULATORY_TYPE", dataRegulatory);
-        //监管级别
-        initEnumData("/enum/getEnums", "REGULATORY_LEVEL", dataRegulatoryLevel);
+        //重点等级 我仅仅是把key换了 dataRegulatoryLevel的名字没有换
+        initEnumData("/enum/getEnums", "KEY_ENTERPRISES_LEVEL", dataRegulatoryLevel);
         //标准化等级
         initEnumData("/enum/getEnums", "STANDARDIZATION_LEVEL", dataStandradLevel);
         //企业风险等级
@@ -189,19 +189,19 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         etSfszaqjg.setText(componyInfo.getAqjgszqk() == 1 ? "是" : "否");
         etAqjgjcjg.setText(componyInfo.getAqjgjcjg());
         for (int i = 0; i < dataRegulatory.size(); i++) {
-            if (componyInfo.getJgfl().equals(dataRegulatory.get(i).getKey())) {
+            if (dataRegulatory.get(i).getKey().equals(componyInfo.getJgfl()+"")) {
                 etJgfl.setText(dataRegulatory.get(i).getValue());
                 break;
             }
         }
         for (int i = 0; i < dataEnterpriseRisk.size(); i++) {
-            if ((componyInfo.getQyfxfj() + "").equals(dataEnterpriseRisk.get(i).getKey())) {
+            if ((dataEnterpriseRisk.get(i).getKey()).equals(componyInfo.getQyfxfj() + "")) {
                 etQyfxfj.setText(dataEnterpriseRisk.get(i).getValue());
                 break;
             }
         }
         for (int i = 0; i < dataRegulatoryLevel.size(); i++) {
-            if ((componyInfo.getJgfljb() + "").equals(dataRegulatoryLevel.get(i).getKey())) {
+            if ((dataRegulatoryLevel.get(i).getKey()).equals(componyInfo.getSfzd() + "")) {
                 etJgjb.setText(dataRegulatoryLevel.get(i).getValue());
                 break;
             }
@@ -515,10 +515,10 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             Toast.makeText(getContext(), "安全监管监察机构为必填项", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (getEdittextContent(etQyfxfj).length() < 1) {
-            Toast.makeText(getContext(), "企业风险分级为必填项", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (getEdittextContent(etQyfxfj).length() < 1) {
+//            Toast.makeText(getContext(), "企业风险分级为必填项", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         if (getEdittextContent(etQyzc).length() < 1) {
             Toast.makeText(getContext(), "企业自查为必填项", Toast.LENGTH_SHORT).show();
             return;
@@ -547,7 +547,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         }
         for (int i = 0; i < dataRegulatoryLevel.size(); i++) {
             if (dataRegulatoryLevel.get(i).getValue().equals(getEdittextContent(etJgjb))) {
-                componyInfo.setJgfljb(Integer.parseInt(dataRegulatoryLevel.get(i).getKey()));
+                componyInfo.setSfzd(dataRegulatoryLevel.get(i).getKey());
                 break;
             }
         }
@@ -655,6 +655,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("qytp", componyInfo.getQytp() == null ? "" : componyInfo.getQytp() + "")
                 .addParams("fddh", componyInfo.getFddh() == null ? "" : componyInfo.getFddh() + "")
                 .addParams("fdxm", componyInfo.getFdxm() == null ? "" : componyInfo.getFdxm() + "")
+                .addParams("sfzd",componyInfo.getSfzd()==null?"":componyInfo.getSfzd()+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -766,7 +767,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                         componyInfo.setIsqyzc(Integer.parseInt(commonList.get(which).getKey()));
                         break;
                     case "监管级别":
-                        componyInfo.setJgfljb(Integer.parseInt(dataRegulatoryLevel.get(which).getKey()));
+                        componyInfo.setSfzd(dataRegulatoryLevel.get(which).getKey());
                         break;
                     case "是否两个体系":
                         componyInfo.setIslgtx(Integer.parseInt(commonList.get(which).getKey()));

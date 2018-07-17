@@ -377,6 +377,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
                 .addParams("qytp", componyInfo.getQytp() == null ? "" : componyInfo.getQytp() + "")
                 .addParams("fddh",componyInfo.getFddh()==null?"":componyInfo.getFddh()+"")
                 .addParams("fdxm",componyInfo.getFdxm()==null?"":componyInfo.getFdxm()+"")
+                .addParams("sfzd",componyInfo.getSfzd()==null?"":componyInfo.getSfzd()+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -826,7 +827,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             componyInfo.setQyjc(getEdittextContent(etComponySimpleName));
         }
         if (getEdittextContent(etHygs).length() < 1) {
-            Toast.makeText(getContext(), "行业归属为必填项", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "国民经济类型为必填项", Toast.LENGTH_SHORT).show();
             return;
         } else {
             for (int i = 0; i < dataIndustryCateary.size(); i++) {
