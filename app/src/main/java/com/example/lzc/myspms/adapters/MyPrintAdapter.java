@@ -18,11 +18,16 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintDocumentInfo;
 import android.print.pdf.PrintedPdfDocument;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.lzc.myspms.activitys.queryactivitys.checkitemactivitys.CheckProjectActivity;
 import com.example.lzc.myspms.models.CheckMessageModel;
 import com.example.lzc.myspms.models.Constant;
+import com.example.lzc.myspms.models.QyJsonModel;
+import com.example.lzc.myspms.utils.DateUtil;
+import com.example.lzc.myspms.utils.ValidateUtil;
+import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
@@ -53,22 +58,12 @@ public class MyPrintAdapter extends PrintDocumentAdapter {
     private String qymc;
     private String zgqx;
     private int problemCount;
+
     private CheckMessageModel.CheckMessageMsgModel checkMessageMsgModel ;
 
     public MyPrintAdapter(Context context,String pdfPath) {
         this.context = context;
         this.pdfPath = pdfPath;
-    }
-
-    public MyPrintAdapter(Context context, String pdfPath, String fddbr, String lxdh, String jckssj,String zgqx,String qymc,int problemCount) {
-        this.context = context;
-        this.pdfPath = pdfPath;
-        this.fddbr = fddbr;
-        this.lxdh = lxdh;
-        this.jckssj = jckssj;
-        this.qymc = qymc;
-        this.zgqx = zgqx;
-        this.problemCount = problemCount;
     }
 
     public MyPrintAdapter(Context context, String pdfPath, CheckMessageModel.CheckMessageMsgModel checkMessageMsgModel) {
@@ -221,15 +216,26 @@ public class MyPrintAdapter extends PrintDocumentAdapter {
 
     @Override
     public void onFinish() {
-        if (checkMessageMsgModel.getEnterprise()!=null) {
-            if (checkMessageMsgModel.getEnterprise().getFddbr()!=null) {
-                sendSMS(checkMessageMsgModel.getEnterprise().getFddbr()+"，你名下/负责的企业\""+checkMessageMsgModel.getEnterprise().getQymc()+"\"在"+checkMessageMsgModel.getCheckInfo().getJckssj()+"的安全生产检查中，有"+checkMessageMsgModel.getProblemCount()+"项违法违规行为，责令你公司于"+checkMessageMsgModel.getCheckInfo().getZgqx()+"日前整改完毕。逾期不整改的，将根据《中华人民共和国安全生产法》等法律法规的有关规定依法进行处理。由此造成事故的，依法追究有关人员责任。检查结果详情请登录夏庄安全生产大数据平台企业端或纸质检查文书查看。",lxdh);
+        Gson gson = new Gson();
+        if (checkMessageMsgModel!=null) {
+            if (checkMessageMsgModel.getCheckInfo()!=null) {
+                String qyJson = checkMessageMsgModel.getCheckInfo().getQyJson();
+                QyJsonModel qyJsonModel = gson.fromJson(qyJson, QyJsonModel.class);
+                if (qyJsonModel.getFddbr()!=null) {
+                    this.lxdh = qyJsonModel.getLxdh();
+                    if (ValidateUtil.isPhone(lxdh)) {
+                        sendSMS(qyJsonModel.getFddbr()+"，你名下/负责的企业\""+qyJsonModel.getQymc()+"\"在"+ DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getJckssj())+"的安全生产检查中，有"+checkMessageMsgModel.getProblemCount()+"项违法违规行为，责令你公司于"+DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getZgqx())+"日前整改完毕。逾期不整改的，将根据《中华人民共和国安全生产法》等法律法规的有关规定依法进行处理。由此造成事故的，依法追究有关人员责任。检查结果详情请登录夏庄安全生产大数据平台企业端或纸质检查文书查看。",lxdh);
+                    }else{
+                        Toast.makeText(context, "请检查企业法人联系方式是否为合法手机号", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(context, "该企业没有录入法人数据，无法发送短信", Toast.LENGTH_SHORT).show();
+                }
             }else{
-                Toast.makeText(context, "该企业没有录入法人数据，无法发送短信", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "检查信息为空，无法发送短信", Toast.LENGTH_SHORT).show();
             }
-        }else{
-            Toast.makeText(context, "该企业没有录入法人数据，无法发送短信", Toast.LENGTH_SHORT).show();
         }
+
 
         super.onFinish();
 

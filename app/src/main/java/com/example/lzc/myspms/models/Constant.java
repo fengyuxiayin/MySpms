@@ -15,8 +15,8 @@ public class Constant {
     //获取GPS权限标志位
     public static final int GPS_REQUEST_CODE = 4;
     //高经理地址
-//    public static final String SERVER_URL = "http://192.168.3.92:8080";
-//    public static final String SERVER_URL = "http://192.168.43.236:8080";
+//    public static final String SERVER_URL = "http://192.168.3.106:8080";
+//    public static final String SERVER_URL = "http://172.20.10.10:8080";
     //风选地址
 //    public static final String SERVER_URL = "http://192.168.3.66:8080";
     //许哥地址
@@ -28,8 +28,8 @@ public class Constant {
     //伟良地址
 //    public static final String SERVER_URL = "http://192.168.3.17:8080";
 //    public static final String SERVER_URL = "https://120.25.251.167:1443";
-//    public static final String SERVER_URL = "http://120.25.251.167:68";
-    public static final String SERVER_URL = "http://27.223.106.182:68";
+    public static final String SERVER_URL = "http://192.144.175.37:68";
+//    public static final String SERVER_URL = "http://27.223.106.182:68";
 //    public static final String SERVER_URL = "https://120.25.251.167:3306";
     //FENGXUAN服务器地址
 //    public static final String FENGXUAN_URL = "http://192.168.3.4:8080";
@@ -64,12 +64,16 @@ public class Constant {
     //获取相册的RequestCode
     public static final int REQUEST_ALBUM_OK = 1;
     //上传地址的前缀
-    public static String UPLOAD_IMG_IP = "http://27.223.106.182:9093/hfs";
-//    public static String UPLOAD_IMG_IP = "http://120.25.251.167:8088/hfs";
+//    public static String UPLOAD_IMG_IP = "http://27.223.106.182:8081/hfs";
+    public static String UPLOAD_IMG_IP = "http://192.144.175.37:8088/hfs";
     //网易云对方的账户id
-    public static String RECEIVE_ID = "heihei22";
+    public static String RECEIVE_ID = "111111";
     //第一层gridview的position
     public static  int GRID_POS_ONE = 0;
     //第二层gridview的position
     public static  int GRID_POS_TWO = 0;
+    //网易云的昵称和账号
+    public static String WANGYIYUN_DISPLAYNAME = "";
+    public static String WANGYIYUN_ACCOUNT = "";
+    public static String WANGYIYUN_SHOWNAME = "";
 }

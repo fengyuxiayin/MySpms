@@ -201,7 +201,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                              JSONArray jsonArray = new JSONArray(standardJsonModel.getPubish());
                                              for (int i = 0; i < jsonArray.length(); i++) {
                                                  JSONObject jsonObject = jsonArray.optJSONObject(i);
-                                                 Log.e(TAG, "initData: " + jsonObject.toString());
+                                                 Log.e(TAG, "initData: " + jsonObject.optString("cfqx"));
                                                  pubishList.add(jsonObject.optString("cfqx"));
                                              }
                                          } catch (JSONException e) {
@@ -212,6 +212,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                              JSONArray jsonArray = new JSONArray(standardJsonModel.getRefrenceBasis());
                                              for (int i = 0; i < jsonArray.length(); i++) {
                                                  JSONObject jsonObject = jsonArray.optJSONObject(i);
+                                                 Log.e(TAG, "onResponse: "+ jsonObject.optString("cktj"));
                                                  refrenceBasisList.add(jsonObject.optString("cktj"));
                                              }
                                          } catch (JSONException e) {
@@ -507,28 +508,37 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                             }
                         }
                     }
-                    OkHttpUtils.post()
-                            .url(Constant.SERVER_URL + "/checkProject/check")
-                            .addParams("id",id)
-                            .addParams("jcId", jcId)
-                            .addParams("jclx", "1")//1 通项 2 危险源
-                            .addParams("jctp", jctp)
-                            .addParams("bhgyy", etDescription.getText().toString().trim())
-                            .addParams("jcjg", jcjg)//0 不合格 1 合格
-                            .build()
-                            .execute(new StringCallback() {
-                                @Override
-                                public void onError(Request request, Exception e) {
-                                    NetUtil.errorTip(ProjectDetailSimpleActivity.this, e.getMessage());
-                                }
+                    if (etDescription.getText().toString().trim().length()<1) {
+                        Toast.makeText(this, "详细描述未填写，不能提交", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else{
+                        OkHttpUtils.post()
+                                .url(Constant.SERVER_URL + "/checkProject/check")
+                                .addParams("id",id)
+                                .addParams("jcId", jcId)
+                                .addParams("jclx", "1")//1 通项 2 危险源
+                                .addParams("jctp", jctp)
+                                .addParams("bhgyy", etDescription.getText().toString().trim())
+                                .addParams("jcjg", jcjg)//0 不合格 1 合格
+                                .build()
+                                .execute(new StringCallback() {
+                                    @Override
+                                    public void onError(Request request, Exception e) {
+                                        NetUtil.errorTip(ProjectDetailSimpleActivity.this, e.getMessage());
+                                    }
 
-                                @Override
-                                public void onResponse(String response) {
-                                    Log.e(TAG, "onResponse: "+response );
-                                    LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
-                                    Toast.makeText(ProjectDetailSimpleActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.e(TAG, "onResponse: "+response );
+                                        LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                                        if (infoModel.isData()) {
+                                            finish();
+                                        }
+                                        Toast.makeText(ProjectDetailSimpleActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+
                     break;
             }
         }

@@ -38,6 +38,8 @@ import com.example.lzc.myspms.utils.FastClickUtil;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.PermissionUtil;
 import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;
@@ -48,10 +50,29 @@ import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
+
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+import javax.security.auth.login.LoginException;
 
 public class
 LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -82,6 +103,7 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private int nativeVversionCode;
     private String target;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +114,8 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
         setData();
         initListener();
     }
+
+
 
     private void initListener() {
         btnLogin.setOnClickListener(this);
@@ -416,6 +440,52 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
         });
         if (FastClickUtil.isFastClick()) {
             Log.e(TAG, "verifyPassword: " );
+//            OkGo.<String>post(Constant.SERVER_URL+"/mobile/login/doLogin")
+////                    .upJson("{\"loginName\":\"18562825065\",\"loginPwd\":\"825065\"}")
+//                    .params("loginName",userName)
+//                    .params("loginPwd",passWord)
+//                    .execute(new com.lzy.okgo.callback.StringCallback() {
+//                        @Override
+//                        public void onSuccess(Response<String> response) {
+//                            final Gson gson = new Gson();
+//                            loginInfoModel = gson.fromJson(response.body(), LoginInfoModel.class);
+//                            Log.e(TAG, "onSuccess: "+gson.toJson(loginInfoModel) );
+//                            boolean data = loginInfoModel.isData();
+//                            if (data) {
+//                                loginInfoMsgModel = gson.fromJson(loginInfoModel.getMsg(), LoginInfoMsgModel.class);
+//                                Log.e(TAG, "onSuccess: "+gson.toJson(loginInfoMsgModel) );
+//                                final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+////                            intent.putExtra("Msg", loginInfoMsgModel);
+//                                intent.putExtra("loginId",loginInfoMsgModel.getAccount().getId()+"");
+//                                intent.putExtra("loginType",loginInfoMsgModel.getAccount().getLoginType()+"");
+//                                intent.putExtra("ssId",loginInfoMsgModel.getAccount().getSsId()+"");
+//                                //获取企业id和账号id
+//                                Constant.ENTERPRISE_ID = String.valueOf(loginInfoMsgModel.getAccount().getSsId()+"");
+//                                Constant.ACCOUNT_ID = String.valueOf(loginInfoMsgModel.getAccount().getId());
+//                                Constant.ACCOUNT_TYPE = String.valueOf(loginInfoMsgModel.getAccount().getLoginType());
+//                                Constant.USER_NAME = loginInfoMsgModel.getUserName();
+//                                Log.e(TAG, "onResponse: "+Constant.USER_NAME+"   "+loginInfoMsgModel.getUserName() );
+//                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+//                                SharedPreferences.Editor edit = sp.edit();
+//                                edit.putString("LoginName", userName);
+//                                edit.putString("LoginPwd",passWord);
+//                                edit.commit();
+//                                startActivity(intent);
+//                                LoginActivity.this.finish();
+//                            } else {
+//                                if ("密码错误".equals(loginInfoModel.getMsg())) {
+//                                    Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        }
+//                        @Override
+//                        public void onError(Response<String> response) {
+//                            super.onError(response);
+//                            Log.e(TAG, "onError: "+response.getException() );
+//                        }
+//                    });
             OkHttpUtils.post()
                     .url(Constant.SERVER_URL + "/mobile/login/doLogin")
                     .addParams("loginName", userName)

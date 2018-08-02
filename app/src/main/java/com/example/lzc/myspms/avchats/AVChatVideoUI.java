@@ -360,7 +360,7 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
     }
 
     public void doOutgoingCall(final String account) {
-        Log.e(TAG, "doOutgoingCall: " );
+        Log.e(TAG, "doOutgoingCall: ");
         this.account = account;
 
         findSurfaceView();
@@ -386,11 +386,11 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
                     showNoneCameraPermissionView(true);
                     return;
                 }
-                Log.e(TAG, "onSuccess: "+avChatData.getAccount() );
+
                 initLargeSurfaceView(AVChatKit.getAccount());
-                // TODO: 2018/5/18  
                 canSwitchCamera = true;
             }
+
 
             @Override
             public void onFailed(int code, String errorMsg) {
@@ -411,6 +411,7 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
         setBottomRoot(true);
         setFaceUnityRoot(true);
         showNoneCameraPermissionView(false);
+
     }
 
     // 小图像surface view 初始化
@@ -447,10 +448,10 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
         // 设置画布，加入到自己的布局中，用于呈现视频图像
         // account 要显示视频的用户帐号
         largeAccount = account;
-        Log.e(TAG, "initLargeSurfaceView: "+AVChatKit.getAccount()+"   "+account );
         if (AVChatKit.getAccount().equals(account)) {
             AVChatManager.getInstance().setupLocalVideoRender(largeRender, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         } else {
+            Log.e(TAG, "initLargeSurfaceView: " + AVChatKit.getAccount() + "   " + account);
             AVChatManager.getInstance().setupRemoteVideoRender(account, largeRender, false, AVChatVideoScalingType.SCALE_ASPECT_BALANCED);
         }
         addIntoLargeSizePreviewLayout(largeRender);
@@ -460,7 +461,7 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
         if (surfaceView.getParent() != null) {
             ((ViewGroup) surfaceView.getParent()).removeView(surfaceView);
         }
-        Log.e(TAG, "addIntoLargeSizePreviewLayout: " );
+        Log.e(TAG, "addIntoLargeSizePreviewLayout: ");
         largeSizePreviewLayout.addView(surfaceView);
         surfaceView.setZOrderMediaOverlay(false);
         largeSizePreviewCoverLayout.setVisibility(View.GONE);
@@ -515,7 +516,9 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
         showRecordView(avChatController.isRecording(), isRecordWarning);
     }
 
-    /********************** 界面显示 **********************************/
+    /**********************
+     * 界面显示
+     **********************************/
 
     // 显示个人信息
     private void showProfile() {
@@ -632,12 +635,15 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
         } else if (i == R.id.receive) {
             doReceiveCall();
         } else if (i == R.id.avchat_video_logout) {
+            Log.e(TAG, "onClick: avchat_video_logout" );
             doHangUp();
         } else if (i == R.id.avchat_video_mute) {
+            Log.e(TAG, "onClick: avchat_video_mute" );
             avChatController.toggleMute();
         } else if (i == R.id.avchat_switch_camera) {
             avChatController.switchCamera();
         } else if (i == R.id.avchat_close_camera) {
+            Log.e(TAG, "onClick: avchat_close_camera" );
             closeCamera();
         } else if (i == R.id.avchat_video_record) {
             doToggleRecord();
@@ -657,7 +663,7 @@ public class AVChatVideoUI implements View.OnClickListener, ToggleListener {
         closeSession();
     }
 
-    private void doReceiveCall() {
+    private void  doReceiveCall() {
         showNotify(R.string.avchat_connecting);
         shouldEnableToggle = true;
 

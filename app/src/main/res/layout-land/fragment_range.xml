@@ -159,6 +159,7 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginLeft="15dp"

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_release"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage_bg"
+    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.ReleaseActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@mipmap/check_project_all_border"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/fragment_homepage_text_title_style"
+            android:layout_gravity="center_horizontal"
+            android:background="@mipmap/title"
+            android:text="发布每日任务" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="300dp"
+                android:background="@mipmap/check_project_all_border"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent">
+                <TextView
+                    style="@style/fragment_homepage_text_title_style"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@mipmap/title"
+                    android:text="发布新任务" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="30dp"
+                    >
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="任务名称" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/activity_release_et_rwmc"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项"
+                        android:textColorHint="@color/hint_yellow"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="30dp"
+                    >
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="计划完成时间" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/activity_release_et_date"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="必填项 点击选择"
+                        android:textColorHint="@color/hint_yellow"
+                        android:focusable="false"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="30dp"
+                    >
+
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/add_enterprise_textview_style"
+                        android:layout_weight="1"
+                        android:text="添加企业" />
+
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/activity_release_et_enterprise"
+                        style="@style/add_enterprise_edittext_style"
+                        android:hint="输入企业关键字搜索"
+                        android:textColorHint="@color/hintGray"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/activity_release_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:layout_marginLeft="10dp">
+
+                </ListView>
+
+                <Button
+                    android:id="@+id/activity_release_btn_commit"
+                    android:layout_width="100dp"
+                    android:text="发布"
+                    android:textColor="@color/homepage_text_press"
+                    android:background="@mipmap/check_project_btn_border"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_height="0dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="@mipmap/check_project_all_border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    style="@style/fragment_homepage_text_title_style"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@mipmap/title"
+                    android:text="已发布任务列表" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/activity_notice_bg_green"
+                    android:layout_height="35dp">
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/fragment_homepage_text_title_style"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:text="任务名称"
+                        android:textSize="15sp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/fragment_homepage_text_title_style"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:text="计划完成时间"
+                        android:textSize="15sp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/fragment_homepage_text_title_style"
+                        android:layout_weight="3"
+                        android:layout_width="0dp"
+                        android:text="检查对象"
+                        android:textSize="15sp"
+                        android:layout_height="match_parent" />
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/fragment_homepage_text_title_style"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:text="检查主体"
+                        android:textSize="15sp"
+                        android:layout_height="match_parent"/>
+                    <com.example.lzc.myspms.custom.AutoFitTextView
+                        style="@style/fragment_homepage_text_title_style"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:text="任务进度"
+                        android:textSize="15sp"
+                        android:layout_height="match_parent"/>
+                    <!--<TextView-->
+                        <!--style="@style/fragment_homepage_text_title_style"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:text="操作"-->
+                        <!--android:textSize="15sp"-->
+                        <!--android:layout_height="match_parent"/>-->
+                </LinearLayout>
+                <com.handmark.pulltorefresh.library.PullToRefreshListView
+                    android:id="@+id/activity_release_lv_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                </com.handmark.pulltorefresh.library.PullToRefreshListView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

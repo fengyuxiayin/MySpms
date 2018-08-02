@@ -127,6 +127,9 @@ public class MyAdapter<T> extends BaseAdapter implements Filterable
             //把搜索结果赋值给mObject这样每次输入字符串的时候就不必
             //从所有的字符串中查找，从而提高了效率
             mObject = (List<T>)results.values;
+            for (int i = 0; i < mObject.size(); i++) {
+                Log.e("MyAdapter", "publishResults: "+mObject.get(i).toString() );
+            }
             if(results.count > 0)
             {
                 notifyDataSetChanged();

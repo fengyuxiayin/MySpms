@@ -50,6 +50,14 @@ import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.ValidateUtil;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.adapter.Call;
+import com.lzy.okgo.callback.AbsCallback;
+import com.lzy.okgo.callback.Callback;
+import com.lzy.okgo.convert.StringConvert;
+import com.lzy.okgo.model.Progress;
+import com.lzy.okgo.model.Response;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -61,7 +69,9 @@ import org.json.JSONObject;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.R.id.list;
 
@@ -108,12 +118,18 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
     private List<EnumModel> dataStandradLevel = new ArrayList<>();
     //监管分类数据
     private List<EnumModel> dataRegulatory = new ArrayList<>();
+    //二级分类数据
+    private List<EnumModel> dataSecondClassFication = new ArrayList<>();
+    //行业主管部门数据
+    private List<EnumModel> dataHyzgbm = new ArrayList<>();
     private ArrayList<WhpJsonModel> whpList = new ArrayList<>();
     private LinearLayout linearLayout;
     private Button btnUp;
     private Button btnSave;
     private Gson gson = new Gson();
     private SafeInfoWhpAdapter safeInfoWhpAdapter;
+    private EditText etEjfl;
+    private EditText ethyzgbm;
 
 
     @Nullable
@@ -158,6 +174,37 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         initEnumData("/enum/getEnums", "ENTERPRISE_RISK_TYPE", dataEnterpriseRisk);
         //危化品单位
         initEnumData("/enum/getEnums", "MEASUREMENT_UNIT", dataMeasureUnitType);
+        //二级分类
+        initEnumData("/enum/getEnums", "CHILD_INDUSTRY_CATEGORY_TYPE", dataSecondClassFication);
+        //行业主管部门信息
+        OkHttpUtils.get()
+                .url(Constant.SERVER_URL+"/baseDepartment/findAll")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e(TAG, "onError: /baseDepartment/findAll"+e.getMessage() );
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: /baseDepartment/findAll"+response );
+                        LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                        try {
+                            JSONArray jsonArray = new JSONArray(infoModel.getMsg());
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                //解析json数据 这里用不了gson 因为gson要求object开头
+                                JSONObject o = (JSONObject) jsonArray.get(i);
+                                String value = "";
+                                value = o.optString("departName");
+                                String key = o.optString("id");
+                                dataHyzgbm.add(new EnumModel(key, value));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
         //危化品信息
         if (which.equals("edit")) {
             new Handler().postDelayed(new Runnable() {
@@ -189,7 +236,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         etSfszaqjg.setText(componyInfo.getAqjgszqk() == 1 ? "是" : "否");
         etAqjgjcjg.setText(componyInfo.getAqjgjcjg());
         for (int i = 0; i < dataRegulatory.size(); i++) {
-            if (dataRegulatory.get(i).getKey().equals(componyInfo.getJgfl()+"")) {
+            if (dataRegulatory.get(i).getKey().equals(componyInfo.getJgfl() + "")) {
                 etJgfl.setText(dataRegulatory.get(i).getValue());
                 break;
             }
@@ -203,6 +250,18 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         for (int i = 0; i < dataRegulatoryLevel.size(); i++) {
             if ((dataRegulatoryLevel.get(i).getKey()).equals(componyInfo.getSfzd() + "")) {
                 etJgjb.setText(dataRegulatoryLevel.get(i).getValue());
+                break;
+            }
+        }
+        for (int i = 0; i < dataSecondClassFication.size(); i++) {
+            if ((dataSecondClassFication.get(i).getKey()).equals(componyInfo.getQyejfl() + "")) {
+                etEjfl.setText(dataSecondClassFication.get(i).getValue());
+                break;
+            }
+        }
+        for (int i = 0; i < dataHyzgbm.size(); i++) {
+            if ((dataHyzgbm.get(i).getKey()).equals(componyInfo.getHyzgbm() + "")) {
+                ethyzgbm.setText(dataHyzgbm.get(i).getValue());
                 break;
             }
         }
@@ -255,7 +314,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + url)
                 .addParams("code", params)
-                .build().execute(new StringCallback() {
+                .build().execute(new com.zhy.http.okhttp.callback.StringCallback() {
             @Override
             public void onError(Request request, Exception e) {
                 NetUtil.errorTip(getContext(), e.getMessage());
@@ -302,6 +361,8 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         etQyfxfj = (EditText) view.findViewById(R.id.fragment_safe_info_et_qyfxfj);
         etJgjb = (EditText) view.findViewById(R.id.fragment_safe_info_et_jgjb);
         etQyzc = (EditText) view.findViewById(R.id.fragment_safe_info_et_qyzc);
+        etEjfl = (EditText) view.findViewById(R.id.fragment_safe_info_et_ejfl);
+        ethyzgbm = (EditText) view.findViewById(R.id.fragment_safe_info_et_hyzgbm);
         etSflgtx = (EditText) view.findViewById(R.id.fragment_safe_info_et_sflgtx);
         etLgtxcjsj = (EditText) view.findViewById(R.id.fragment_safe_info_et_lgtxcjsj);
         etLgtxfssj = (EditText) view.findViewById(R.id.fragment_safe_info_et_lgtxfssj);
@@ -331,6 +392,8 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             etJgfl.setEnabled(false);
             etQyfxfj.setEnabled(false);
             etJgjb.setEnabled(false);
+            etEjfl.setEnabled(false);
+            ethyzgbm.setEnabled(false);
             etQyzc.setEnabled(false);
             etSflgtx.setEnabled(false);
             etLgtxcjsj.setEnabled(false);
@@ -346,6 +409,8 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             etSfszaqjg.setFocusable(false);
             etJgfl.setFocusable(false);
             etQyfxfj.setFocusable(false);
+            etEjfl.setFocusable(false);
+            ethyzgbm.setFocusable(false);
             etJgjb.setFocusable(false);
             etQyzc.setFocusable(false);
             etSflgtx.setFocusable(false);
@@ -361,6 +426,8 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             etJgfl.setOnClickListener(this);
             etQyfxfj.setOnClickListener(this);
             etJgjb.setOnClickListener(this);
+            etEjfl.setOnClickListener(this);
+            ethyzgbm.setOnClickListener(this);
             etQyzc.setOnClickListener(this);
             etSflgtx.setOnClickListener(this);
             etLgtxcjsj.setOnClickListener(this);
@@ -468,6 +535,12 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 case R.id.fragment_safe_info_et_sflgtx:
                     showChooseDialog(commonList, etSflgtx, "是否两个体系");
                     break;
+                case R.id.fragment_safe_info_et_ejfl:
+                    showChooseDialog(dataSecondClassFication, etEjfl, "二级分类");
+                    break;
+                case R.id.fragment_safe_info_et_hyzgbm:
+                    showChooseDialog(dataHyzgbm, ethyzgbm, "行业主管部门");
+                    break;
                 case R.id.fragment_safe_info_et_sfbzh:
                     showChooseDialog(commonList, etSfbzh, "是否标准化");
                     break;
@@ -539,6 +612,18 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 break;
             }
         }
+        for (int i = 0; i < dataSecondClassFication.size(); i++) {
+            if (getEdittextContent(etEjfl).equals(dataSecondClassFication.get(i).getValue())) {
+                componyInfo.setQyejfl(dataSecondClassFication.get(i).getKey());
+                break;
+            }
+        }
+        for (int i = 0; i < dataHyzgbm.size(); i++) {
+            if (getEdittextContent(ethyzgbm).equals(dataHyzgbm.get(i).getValue())) {
+                componyInfo.setHyzgbm(Long.parseLong(dataHyzgbm.get(i).getKey()));
+                break;
+            }
+        }
         for (int i = 0; i < dataEnterpriseRisk.size(); i++) {
             if (dataEnterpriseRisk.get(i).getValue().equals(getEdittextContent(etQyfxfj))) {
                 componyInfo.setJgfl(dataEnterpriseRisk.get(i).getKey());
@@ -589,42 +674,141 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             componyInfo.setWhpJson("");
         }
         Log.e(TAG, "isDataQualified: " + gson.toJson(componyInfo));
+//        String s = gson.toJson(componyInfo);
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("id", qyId.length() == 0 ? "" : qyId);
+//        map.put("qymc", componyInfo.getQymc() == null ? "" : componyInfo.getQymc());
+//        map.put("zch", componyInfo.getZch() + "" == null ? "" : componyInfo.getZch() + "");
+//        map.put("fddbr", componyInfo.getFddbr() == null ? "" : componyInfo.getFddbr() + "");
+//        map.put("zcdz", componyInfo.getZcdz() == null ? "" : componyInfo.getZcdz() + "");
+//        map.put("lxdh", componyInfo.getLxdh() == null ? "" : componyInfo.getLxdh() + "");
+//        map.put("sqId", componyInfo.getSqId() + "" == null ? "" : componyInfo.getSqId() + "");
+//        map.put("qyzt", componyInfo.getQyzt() + "" == null ? "" : componyInfo.getQyzt() + "");
+//        map.put("jjlxdm", componyInfo.getJjlxdm() + "" == null ? "" : componyInfo.getJjlxdm() + "");
+//        map.put("hylbdm", componyInfo.getHylbdm() == null ? "" : componyInfo.getHylbdm() + "");
+//        map.put("qylsgx", componyInfo.getQylsgx() + "" == null ? "" : componyInfo.getQylsgx() + "");
+//        map.put("qywzjd", componyInfo.getQywzjd() + "" == null ? "" : componyInfo.getQywzjd() + "");
+//        map.put("qywzwd", componyInfo.getQywzwd() + "" == null ? "" : componyInfo.getQywzwd() + "");
+//        map.put("jyfw", componyInfo.getJyfw() == null ? "" : componyInfo.getJyfw() + "");
+//        map.put("zyfzr", componyInfo.getZyfzr() == null ? "" : componyInfo.getZyfzr() + "");
+//        map.put("zyfzryddhhm", componyInfo.getZyfzryddhhm() == null ? "" : componyInfo.getZyfzryddhhm() + "");
+//        map.put("zyfzrgddhhm", componyInfo.getZyfzrgddhhm() == null ? "" : componyInfo.getZyfzrgddhhm() + "");
+//        map.put("zyfzrdzyx", componyInfo.getZyfzrdzyx() == null ? "" : componyInfo.getZyfzrdzyx() + "");
+//        map.put("dzyx", componyInfo.getDzyx() == null ? "" : componyInfo.getDzyx());
+//               map.put("iszyfzrxx", componyInfo.getIszyfzrxx() + ""==null?"":componyInfo.getIszyfzrxx() + "");
+//               map.put("aqfzr", componyInfo.getAqfzr() == null ? "" : componyInfo.getAqfzr() + "");
+//               map.put("aqfzryddhhm", componyInfo.getAqfzryddhhm() == null ? "" : componyInfo.getAqfzryddhhm() + "");
+//               map.put("aqfzrgddhhm", componyInfo.getAqfzrgddhhm() == null ? "" : componyInfo.getAqfzrgddhhm() + "");
+//               map.put("aqfzrdzyx", componyInfo.getAqfzrdzyx() == null ? "" : componyInfo.getAqfzrdzyx() + "");
+//               map.put("isaqfzrxx", componyInfo.getIsaqfzrxx() + ""==null?"":componyInfo.getIsaqfzrxx() + "");
+//               map.put("cyrysl", componyInfo.getCyrysl() + ""==null?"":componyInfo.getCyrysl() + "");
+//               map.put("tzzyrysl", componyInfo.getTzzyrysl() + ""==null?"":componyInfo.getTzzyrysl() + "");
+//               map.put("zzaqscglrys", componyInfo.getZzaqscglrys() + ""==null?"":componyInfo.getZzaqscglrys() + "");
+//               map.put("zzyjglrys", componyInfo.getZzyjglrys() + ""==null?"":componyInfo.getZzyjglrys() + "");
+//               map.put("zcaqgcsrys", componyInfo.getZcaqgcsrys() + ""==null?"":componyInfo.getZcaqgcsrys() + "");
+//               map.put("zsrysl", componyInfo.getZsrysl() + ""==null?"": componyInfo.getZsrysl() + "");
+//               map.put("qyjc", componyInfo.getQyjc() + ""==null?"":componyInfo.getQyjc() + "");
+//               map.put("isbzh", componyInfo.getIsbzh() + ""==null?"":componyInfo.getIsbzh() + "");
+//               map.put("isqyzc", componyInfo.getIsqyzc() + ""==null?"":componyInfo.getIsqyzc() + "");
+//               map.put("cyryJson", componyInfo.getCyryJson() == null ? "" : componyInfo.getCyryJson() + "");
+//               map.put("tzzyryJson", componyInfo.getTzzyryJson() == null ? "" : componyInfo.getTzzyryJson() + "");
+//               map.put("zzaqscryJson", componyInfo.getZzaqscryJson() == null ? "" : componyInfo.getZzaqscryJson() + "");
+//               map.put("zzyjglryJson", componyInfo.getZzyjglryJson() == null ? "" : componyInfo.getZzyjglryJson() + "");
+//               map.put("zcaqgcsJson", componyInfo.getZcaqgcsJson() == null ? "" : componyInfo.getZcaqgcsJson() + "");
+////               map.put("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
+//               map.put("ssJson", componyInfo.getSsJson() == null ? "" : componyInfo.getSsJson() + "");
+//               map.put("aqjgszqk", componyInfo.getAqjgszqk() + ""==null?"":componyInfo.getAqjgszqk() + "");
+//               map.put("aqjgjcjg", componyInfo.getAqjgjcjg() == null ? "" : componyInfo.getAqjgjcjg() + "");
+//               map.put("gmqk", componyInfo.getGmqk() + ""==null?"":componyInfo.getGmqk() + "");
+//               map.put("jgfl", componyInfo.getJgfl() + "" == null?"" :componyInfo.getJgfl() + "");
+//               map.put("jgfljb", componyInfo.getJgfljb() + ""==null?"":componyInfo.getJgfljb() + "");
+//               map.put("bzhfj", componyInfo.getBzhfj() + ""==null?"": componyInfo.getBzhfj() + "");
+//               map.put("bzhcjsj", componyInfo.getBzhcjsj() + ""==null?"":componyInfo.getBzhcjsj() + "");
+//               map.put("bzhfssj", componyInfo.getBzhfssj() + ""==null?"":componyInfo.getBzhfssj() + "");
+//               map.put("qyfxfj", componyInfo.getQyfxfj() + ""==null?"":componyInfo.getQyfxfj() + "");
+//               map.put("scjydz", componyInfo.getScjydz() == null ? "" : componyInfo.getScjydz() + "");
+//               map.put("iswhp", componyInfo.getIswhp() + ""==null?"":componyInfo.getIswhp() + "");
+//               map.put("islgtx", componyInfo.getIslgtx() + ""==null?"":componyInfo.getIslgtx() + "");
+//               map.put("lgtxcjsj", componyInfo.getLgtxcjsj() == null ? "" : componyInfo.getLgtxcjsj() + "");
+//               map.put("lgtxfssj", componyInfo.getLgtxfssj() == null ? "" : componyInfo.getLgtxfssj() + "");
+//               map.put("whpJson", componyInfo.getWhpJson() == null ? "" : componyInfo.getWhpJson() + "");
+//               map.put("tze", componyInfo.getTze() + ""==null?"":componyInfo.getTze() + "");
+//               map.put("tzedw", componyInfo.getTzedw() == null ? "" : componyInfo.getTzedw() + "");
+//               map.put("yye", componyInfo.getYye() + ""==null?"":componyInfo.getYye() + "");
+//               map.put("yyedw", componyInfo.getYyedw() == null ? "" : componyInfo.getYyedw() + "");
+//               map.put("qyfwzb", componyInfo.getQyfwzb() == null ? "" : componyInfo.getQyfwzb() + "");
+//               map.put("qytp", componyInfo.getQytp() == null ? "" : componyInfo.getQytp() + "");
+//               map.put("fddh", componyInfo.getFddh() == null ? "" : componyInfo.getFddh() + "");
+//               map.put("fdxm", componyInfo.getFdxm() == null ? "" : componyInfo.getFdxm() + "");
+//               map.put("sfzd",componyInfo.getSfzd()==null?"":componyInfo.getSfzd()+"");
+//        JSONObject js = new JSONObject(map);
+//        OkGo.<String>post(Constant.SERVER_URL + "/baseEnterprise/save")
+//                .upJson(js)
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onSuccess(Response<String> response) {
+//                        Log.e(TAG, "onSuccess: " + response);
+//                    }
+//
+//                    @Override
+//                    public void onError(Response<String> response) {
+//                        super.onError(response);
+//                        Log.e(TAG, "onError: " + response.getException());
+//                    }
+//                });
+//        OkHttpUtils.postString()
+//                .url(Constant.SERVER_URL + "/baseEnterprise/save")
+//                .mediaType(MediaType.parse("application/json; charset=utf-8"))
+//                .content("\""+gson.toJson(componyInfo)+"\"")
+//                .build()
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onError(Request request, Exception e) {
+//                        Log.e(TAG, "onError: "+e.getMessage()+e.getCause() );
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Log.e(TAG, "onResponse: "+response );
+//                    }
+//                });
+
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/save")
                 .addParams("id", qyId.length() == 0 ? "" : qyId)
-                .addParams("qymc", componyInfo.getQymc())
-                .addParams("zch", componyInfo.getZch() + "")
+                .addParams("qymc", componyInfo.getQymc()==null?"":componyInfo.getQymc())
+                .addParams("zch", componyInfo.getZch() ==null?"":componyInfo.getZch() + "")
                 .addParams("fddbr", componyInfo.getFddbr() == null ? "" : componyInfo.getFddbr() + "")
                 .addParams("zcdz", componyInfo.getZcdz() == null ? "" : componyInfo.getZcdz() + "")
                 .addParams("lxdh", componyInfo.getLxdh() == null ? "" : componyInfo.getLxdh() + "")
-                .addParams("sqId", componyInfo.getSqId() + "")
-                .addParams("qyzt", componyInfo.getQyzt() + "")
-                .addParams("jjlxdm", componyInfo.getJjlxdm() + "")
+                .addParams("sqId", (componyInfo.getSqId() +"").equals("null")?"":componyInfo.getSqId() + "")
+                .addParams("qyzt", (componyInfo.getQyzt() +"").equals("null")?"":componyInfo.getQyzt() + "")
+                .addParams("jjlxdm", (componyInfo.getJjlxdm() +"").equals("null")? "":componyInfo.getJjlxdm() + "")
                 .addParams("hylbdm", componyInfo.getHylbdm() == null ? "" : componyInfo.getHylbdm() + "")
-                .addParams("qylsgx", componyInfo.getQylsgx() + "")
-                .addParams("qywzjd", componyInfo.getQywzjd() + "")
-                .addParams("qywzwd", componyInfo.getQywzwd() + "")
+                .addParams("qylsgx", (componyInfo.getQylsgx() +"").equals("null")?"":componyInfo.getQylsgx() + "")
+                .addParams("qywzjd", (componyInfo.getQywzjd() +"").equals("null")?"":componyInfo.getQywzjd() + "")
+                .addParams("qywzwd", (componyInfo.getQywzwd() +"").equals("null")?"":componyInfo.getQywzwd() + "")
                 .addParams("jyfw", componyInfo.getJyfw() == null ? "" : componyInfo.getJyfw() + "")
                 .addParams("zyfzr", componyInfo.getZyfzr() == null ? "" : componyInfo.getZyfzr() + "")
                 .addParams("zyfzryddhhm", componyInfo.getZyfzryddhhm() == null ? "" : componyInfo.getZyfzryddhhm() + "")
                 .addParams("zyfzrgddhhm", componyInfo.getZyfzrgddhhm() == null ? "" : componyInfo.getZyfzrgddhhm() + "")
                 .addParams("zyfzrdzyx", componyInfo.getZyfzrdzyx() == null ? "" : componyInfo.getZyfzrdzyx() + "")
                 .addParams("dzyx", componyInfo.getDzyx() == null ? "" : componyInfo.getDzyx())
-                .addParams("iszyfzrxx", componyInfo.getIszyfzrxx() + "")
+                .addParams("iszyfzrxx", (componyInfo.getIszyfzrxx() +"").equals("null")?"":componyInfo.getIszyfzrxx() + "")
                 .addParams("aqfzr", componyInfo.getAqfzr() == null ? "" : componyInfo.getAqfzr() + "")
                 .addParams("aqfzryddhhm", componyInfo.getAqfzryddhhm() == null ? "" : componyInfo.getAqfzryddhhm() + "")
                 .addParams("aqfzrgddhhm", componyInfo.getAqfzrgddhhm() == null ? "" : componyInfo.getAqfzrgddhhm() + "")
                 .addParams("aqfzrdzyx", componyInfo.getAqfzrdzyx() == null ? "" : componyInfo.getAqfzrdzyx() + "")
-                .addParams("isaqfzrxx", componyInfo.getIsaqfzrxx() + "")
-                .addParams("cyrysl", componyInfo.getCyrysl() + "")
-                .addParams("tzzyrysl", componyInfo.getTzzyrysl() + "")
-                .addParams("zzaqscglrys", componyInfo.getZzaqscglrys() + "")
-                .addParams("zzyjglrys", componyInfo.getZzyjglrys() + "")
-                .addParams("zcaqgcsrys", componyInfo.getZcaqgcsrys() + "")
-                .addParams("zsrysl", componyInfo.getZsrysl() + "")
-                .addParams("qyjc", componyInfo.getQyjc() + "")
-                .addParams("isbzh", componyInfo.getIsbzh() + "")
-                .addParams("isqyzc", componyInfo.getIsqyzc() + "")
+                .addParams("isaqfzrxx", (componyInfo.getIsaqfzrxx() +"").equals("null")?"":componyInfo.getIsaqfzrxx() + "")
+                .addParams("cyrysl", (componyInfo.getCyrysl() +"").equals("null")?"":componyInfo.getCyrysl() + "")
+                .addParams("tzzyrysl", (componyInfo.getTzzyrysl() +"").equals("null")?"":componyInfo.getTzzyrysl() + "")
+                .addParams("zzaqscglrys", (componyInfo.getZzaqscglrys() +"").equals("null")?"":componyInfo.getZzaqscglrys() + "")
+                .addParams("zzyjglrys", (componyInfo.getZzyjglrys() +"").equals("null")?"":componyInfo.getZzyjglrys() + "")
+                .addParams("zcaqgcsrys", (componyInfo.getZcaqgcsrys() +"").equals("null")?"":componyInfo.getZcaqgcsrys() + "")
+                .addParams("zsrysl", (componyInfo.getZsrysl() +"").equals("null")?"": componyInfo.getZsrysl() + "")
+                .addParams("qyjc", (componyInfo.getQyjc() +"").equals("null")?"":componyInfo.getQyjc() + "")
+                .addParams("isbzh", (componyInfo.getIsbzh() +"").equals("null")?"":componyInfo.getIsbzh() + "")
+                .addParams("isqyzc", (componyInfo.getIsqyzc() +"").equals("null")?"":componyInfo.getIsqyzc() + "")
                 .addParams("cyryJson", componyInfo.getCyryJson() == null ? "" : componyInfo.getCyryJson() + "")
                 .addParams("tzzyryJson", componyInfo.getTzzyryJson() == null ? "" : componyInfo.getTzzyryJson() + "")
                 .addParams("zzaqscryJson", componyInfo.getZzaqscryJson() == null ? "" : componyInfo.getZzaqscryJson() + "")
@@ -632,30 +816,32 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("zcaqgcsJson", componyInfo.getZcaqgcsJson() == null ? "" : componyInfo.getZcaqgcsJson() + "")
 //                .addParams("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
                 .addParams("ssJson", componyInfo.getSsJson() == null ? "" : componyInfo.getSsJson() + "")
-                .addParams("aqjgszqk", componyInfo.getAqjgszqk() + "")
+                .addParams("aqjgszqk", (componyInfo.getAqjgszqk() +"").equals("null")?"":componyInfo.getAqjgszqk() + "")
                 .addParams("aqjgjcjg", componyInfo.getAqjgjcjg() == null ? "" : componyInfo.getAqjgjcjg() + "")
-                .addParams("gmqk", componyInfo.getGmqk() + "")
-                .addParams("jgfl", componyInfo.getJgfl() + "")
-                .addParams("jgfljb", componyInfo.getJgfljb() + "")
-                .addParams("bzhfj", componyInfo.getBzhfj() + "")
-                .addParams("bzhcjsj", componyInfo.getBzhcjsj() + "")
-                .addParams("bzhfssj", componyInfo.getBzhfssj() + "")
-                .addParams("qyfxfj", componyInfo.getQyfxfj() + "")
+                .addParams("gmqk", (componyInfo.getGmqk() +"").equals("null")?"":componyInfo.getGmqk() + "")
+                .addParams("jgfl", componyInfo.getJgfl()  == null?"" :componyInfo.getJgfl() + "")
+                .addParams("jgfljb", (componyInfo.getJgfljb() +"").equals("null")?"":componyInfo.getJgfljb() + "")
+                .addParams("bzhfj",( componyInfo.getBzhfj() +"").equals("null")?"": componyInfo.getBzhfj() + "")
+                .addParams("bzhcjsj", (componyInfo.getBzhcjsj() +"").equals("null")?"":componyInfo.getBzhcjsj() + "")
+                .addParams("bzhfssj", (componyInfo.getBzhfssj() +"").equals("null")?"":componyInfo.getBzhfssj() + "")
+                .addParams("qyfxfj", (componyInfo.getQyfxfj() +"").equals("null")?"":componyInfo.getQyfxfj() + "")
                 .addParams("scjydz", componyInfo.getScjydz() == null ? "" : componyInfo.getScjydz() + "")
-                .addParams("iswhp", componyInfo.getIswhp() + "")
-                .addParams("islgtx", componyInfo.getIslgtx() + "")
+                .addParams("iswhp", (componyInfo.getIswhp() +"").equals("null")?"":componyInfo.getIswhp() + "")
+                .addParams("islgtx",( componyInfo.getIslgtx() +"").equals("null")?"":componyInfo.getIslgtx() + "")
                 .addParams("lgtxcjsj", componyInfo.getLgtxcjsj() == null ? "" : componyInfo.getLgtxcjsj() + "")
                 .addParams("lgtxfssj", componyInfo.getLgtxfssj() == null ? "" : componyInfo.getLgtxfssj() + "")
                 .addParams("whpJson", componyInfo.getWhpJson() == null ? "" : componyInfo.getWhpJson() + "")
-                .addParams("tze", componyInfo.getTze() + "")
+                .addParams("tze", (componyInfo.getTze() +"").equals("null")?"":componyInfo.getTze() + "")
                 .addParams("tzedw", componyInfo.getTzedw() == null ? "" : componyInfo.getTzedw() + "")
-                .addParams("yye", componyInfo.getYye() + "")
+                .addParams("yye", (componyInfo.getYye() +"").equals("null")?"":componyInfo.getYye() + "")
                 .addParams("yyedw", componyInfo.getYyedw() == null ? "" : componyInfo.getYyedw() + "")
                 .addParams("qyfwzb", componyInfo.getQyfwzb() == null ? "" : componyInfo.getQyfwzb() + "")
                 .addParams("qytp", componyInfo.getQytp() == null ? "" : componyInfo.getQytp() + "")
                 .addParams("fddh", componyInfo.getFddh() == null ? "" : componyInfo.getFddh() + "")
                 .addParams("fdxm", componyInfo.getFdxm() == null ? "" : componyInfo.getFdxm() + "")
                 .addParams("sfzd",componyInfo.getSfzd()==null?"":componyInfo.getSfzd()+"")
+                .addParams("qyejfl",componyInfo.getQyejfl()==null?"":componyInfo.getQyejfl()+"")
+                .addParams("hyzgbm",(componyInfo.getHyzgbm()+"").equals("null")?"":componyInfo.getHyzgbm()+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -781,6 +967,12 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                     case "标准化等级":
                         componyInfo.setBzhfj(Integer.parseInt(dataStandradLevel.get(which).getKey()));
                         break;
+                    case "二级分类":
+                        componyInfo.setQyejfl(dataSecondClassFication.get(which).getKey());
+                        break;
+                    case "行业主管部门":
+                        componyInfo.setQyejfl(dataHyzgbm.get(which).getKey());
+                        break;
                 }
                 dialog.dismiss();//随便点击一个item消失对话框，不用点击确认取消
             }
@@ -801,3 +993,4 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         return array;
     }
 }
+

@@ -127,6 +127,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
         } else {
             getAreaQueryData();
         }
+//        getQueryData();
     }
 
     private void initListener() {
@@ -144,7 +145,11 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
                     }, 500);
                 } else {
                     page++;
-                    getQueryData();
+                    if (isCheckFragment) {
+                        getQueryData();
+                    } else {
+                        getAreaQueryData();
+                    }
                 }
             }
         });
@@ -172,12 +177,13 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
      */
     private void getAreaQueryData() {
         gson = new Gson();
-        llSearch.setVisibility(View.GONE);
+//        llSearch.setVisibility(View.GONE);
         Log.e(TAG, "getAreaQueryData: listToJson" + listToJson);
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/find")
                 .addParams("pn", page + "")
                 .addParams("size", "10")
+                .addParams("qymc", etSearch.getText().toString().trim())
                 .addParams("sqId", sqId)
                 .addParams("tzeStart", tzeStart)
                 .addParams("tzeEnd", tzeEnd)
@@ -289,6 +295,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
                     } else {
                         getAreaQueryData();
                     }
+//                    getQueryData();
                     break;
             }
             SetMenuClick setMenuClick = new SetMenuClick(v.getId(), EnterpriseInfoQueryActivity.this,EnterpriseInfoQueryActivity.this);

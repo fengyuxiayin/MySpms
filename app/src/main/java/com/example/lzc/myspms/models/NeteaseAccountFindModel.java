@@ -12,7 +12,7 @@ public class NeteaseAccountFindModel implements Serializable {
     /**
      * code : 1
      * data : true
-     * msg : {"list":[{"accid":"123123","accountId":67,"createBy":1,"createTime":1526287158000,"gender":0,"id":2,"inUse":1,"isBlock":0,"name":"哈哈","status":1,"token":"6bbde2f10fbb7fc013da1d507051fb6f"},{"accid":"heihei22","accountId":1,"createBy":1,"createTime":1525919282000,"gender":0,"id":1,"inUse":1,"isBlock":0,"modifyBy":1,"modifyTime":1526437979000,"name":"","status":1,"token":"d18d65688c6d7afd9653de390feaaf5f"}],"pn":1,"size":10,"total":2}
+     * msg : {"list":[{"accid":"sdasdasd","accountId":117,"createBy":1,"createTime":1529226704000,"gender":0,"id":3,"inUse":1,"isBlock":0,"name":"sdsdasda","showName":"东北片组","status":1,"token":"0c79c11c830cafd8784833af4ecc2ba3"},{"accid":"111111","accountId":1,"createBy":1,"createTime":1529224923000,"gender":0,"id":2,"inUse":1,"isBlock":0,"modifyBy":1,"modifyTime":1532081593000,"name":"sdasd","showName":"超级管理员","status":1,"token":"122d5bc1eecf9ea3b6f4e0df8b185ed4"},{"accid":"121212","accountId":110,"createBy":1,"createTime":1526539381000,"gender":0,"id":1,"inUse":1,"isBlock":0,"modifyBy":1,"modifyTime":1532081587000,"name":"hello","showName":"东北片组","status":1,"token":"2e032e7f27def2a06fa2d6acea26c8c3"}],"pn":1,"size":1000,"total":3}
      * url :
      */
 
@@ -55,10 +55,10 @@ public class NeteaseAccountFindModel implements Serializable {
     public class NeteaseAccountFindMsgModel implements Serializable{
 
         /**
-         * list : [{"accid":"123123","accountId":67,"createBy":1,"createTime":1526287158000,"gender":0,"id":2,"inUse":1,"isBlock":0,"name":"哈哈","status":1,"token":"6bbde2f10fbb7fc013da1d507051fb6f"},{"accid":"heihei22","accountId":1,"createBy":1,"createTime":1525919282000,"gender":0,"id":1,"inUse":1,"isBlock":0,"modifyBy":1,"modifyTime":1526437979000,"name":"","status":1,"token":"d18d65688c6d7afd9653de390feaaf5f"}]
+         * list : [{"accid":"sdasdasd","accountId":117,"createBy":1,"createTime":1529226704000,"gender":0,"id":3,"inUse":1,"isBlock":0,"name":"sdsdasda","showName":"东北片组","status":1,"token":"0c79c11c830cafd8784833af4ecc2ba3"},{"accid":"111111","accountId":1,"createBy":1,"createTime":1529224923000,"gender":0,"id":2,"inUse":1,"isBlock":0,"modifyBy":1,"modifyTime":1532081593000,"name":"sdasd","showName":"超级管理员","status":1,"token":"122d5bc1eecf9ea3b6f4e0df8b185ed4"},{"accid":"121212","accountId":110,"createBy":1,"createTime":1526539381000,"gender":0,"id":1,"inUse":1,"isBlock":0,"modifyBy":1,"modifyTime":1532081587000,"name":"hello","showName":"东北片组","status":1,"token":"2e032e7f27def2a06fa2d6acea26c8c3"}]
          * pn : 1
-         * size : 10
-         * total : 2
+         * size : 1000
+         * total : 3
          */
 
         private int pn;
@@ -100,19 +100,20 @@ public class NeteaseAccountFindModel implements Serializable {
 
         public class ListBean implements Serializable{
             /**
-             * accid : 123123
-             * accountId : 67
+             * accid : sdasdasd
+             * accountId : 117
              * createBy : 1
-             * createTime : 1526287158000
+             * createTime : 1529226704000
              * gender : 0
-             * id : 2
+             * id : 3
              * inUse : 1
              * isBlock : 0
-             * name : 哈哈
+             * name : sdsdasda
+             * showName : 东北片组
              * status : 1
-             * token : 6bbde2f10fbb7fc013da1d507051fb6f
+             * token : 0c79c11c830cafd8784833af4ecc2ba3
              * modifyBy : 1
-             * modifyTime : 1526437979000
+             * modifyTime : 1532081593000
              */
 
             private String accid;
@@ -124,6 +125,7 @@ public class NeteaseAccountFindModel implements Serializable {
             private int inUse;
             private int isBlock;
             private String name;
+            private String showName;
             private int status;
             private String token;
             private int modifyBy;
@@ -199,6 +201,14 @@ public class NeteaseAccountFindModel implements Serializable {
 
             public void setName(String name) {
                 this.name = name;
+            }
+
+            public String getShowName() {
+                return showName;
+            }
+
+            public void setShowName(String showName) {
+                this.showName = showName;
             }
 
             public int getStatus() {

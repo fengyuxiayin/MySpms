@@ -2,6 +2,8 @@ package com.example.lzc.myspms.avchats;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
@@ -98,7 +100,7 @@ public class AVChatController {
         AVChatNotifyOption notifyOption = new AVChatNotifyOption();
         notifyOption.extendMessage = "extra_data";
         // 默认forceKeepCalling为true，开发者如果不需要离线持续呼叫功能可以将forceKeepCalling设为false
-        // notifyOption.forceKeepCalling = false;
+         notifyOption.forceKeepCalling = false;
 
         AVChatManager.getInstance().enableRtc();
 
@@ -130,10 +132,24 @@ public class AVChatController {
                 if (code == ResponseCode.RES_FORBIDDEN) {
                     Toast.makeText(context, R.string.avchat_no_permission, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, R.string.avchat_call_failed, Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onFailed: "+code );
+                    if (code==11001) {
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context, "对方不在线", Toast.LENGTH_SHORT).show();
+                                closeRtc(avChatType == AVChatType.VIDEO ? CallStateEnum.VIDEO : CallStateEnum.AUDIO);
+                                callback.onFailed(11001, "");
+                            }
+                        }, 1500);
+                    }else{
+                        Toast.makeText(context, R.string.avchat_call_failed, Toast.LENGTH_SHORT).show();
+                        closeRtc(avChatType == AVChatType.VIDEO ? CallStateEnum.VIDEO : CallStateEnum.AUDIO);
+                        callback.onFailed(code, "");
+                    }
                 }
-                closeRtc(avChatType == AVChatType.VIDEO ? CallStateEnum.VIDEO : CallStateEnum.AUDIO);
-                callback.onFailed(code, "");
+
             }
 
             @Override
@@ -347,6 +363,7 @@ public class AVChatController {
                             selectDialog.dismiss();
                         }
                     });
+
             selectDialog.show();
         }
     }
@@ -402,6 +419,7 @@ public class AVChatController {
         AVChatManager.getInstance().disableRtc();
         destroyRTC = true;
         showQuitToast(exitCode);
+        AVChatProfile.getInstance().setAVChatting(false);
         ((Activity) context).finish();
     }
 

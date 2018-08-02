@@ -143,19 +143,20 @@ public class AVChatKit {
         AVChatActivity.outgoingCall(context, account, displayName, callType, source);
     }
 
-//    /**
-//     * 发起群组音视频通话呼叫
-//     * @param context   上下文
-//     * @param receivedCall  是否是接收到的来电
-//     * @param teamId    team id
-//     * @param roomId    音视频通话room id
-//     * @param accounts  音视频通话账号集合
-//     * @param teamName  群组名称
-//     */
-//    public static void outgoingTeamCall(Context context, boolean receivedCall, String teamId, String roomId, ArrayList<String> accounts, String teamName) {
-//        TeamAVChatActivity.startActivity(context, receivedCall, teamId, roomId, accounts, teamName);
-//
-//    }
+
+    /**
+     * 发起群组音视频通话呼叫
+     * @param context   上下文
+     * @param receivedCall  是否是接收到的来电
+     * @param teamId    team id
+     * @param roomId    音视频通话room id
+     * @param accounts  音视频通话账号集合
+     * @param teamName  群组名称
+     */
+    public static void outgoingTeamCall(Context context, boolean receivedCall, String teamId, String roomId, ArrayList<String> accounts, String teamName) {
+        TeamAVChatActivity.startActivity(context, receivedCall, teamId, roomId, accounts, teamName);
+
+    }
 
     /**
      * 打开网络通话设置界面
@@ -178,16 +179,19 @@ public class AVChatKit {
         public void onEvent(final AVChatData data) {
             String extra = data.getExtra();
             Log.e("Extra", "Extra Message->" + extra);
+            AVChatProfile.getInstance().setAVChatting(false);
             if (PhoneCallStateObserver.getInstance().getPhoneCallState() != PhoneCallStateObserver.PhoneCallStateEnum.IDLE
                     || AVChatProfile.getInstance().isAVChatting()
                     || AVChatManager.getInstance().getCurrentChatId() != 0) {
                 LogUtil.i(TAG, "reject incoming call data =" + data.toString() + " as local phone is not idle");
                 AVChatManager.getInstance().sendControlCommand(data.getChatId(), AVChatControlCommand.BUSY, null);
+                Log.e(TAG, "onEvent:2222 "+AVChatProfile.getInstance().isAVChatting()+"   "+(PhoneCallStateObserver.getInstance().getPhoneCallState() != PhoneCallStateObserver.PhoneCallStateEnum.IDLE));
                 return;
             }
             // 有网络来电打开AVChatActivity
+            Log.e(TAG, "onEvent: " );
             AVChatProfile.getInstance().setAVChatting(true);
-            AVChatProfile.getInstance().launchActivity(data, userInfoProvider.getUserDisplayName(data.getAccount()), AVChatActivity.FROM_BROADCASTRECEIVER);
+            AVChatProfile.getInstance().launchActivity(data, "", AVChatActivity.FROM_BROADCASTRECEIVER);
         }
     };
 

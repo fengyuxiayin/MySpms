@@ -626,7 +626,7 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
             // 取得想要缩放的matrix参数.
             Matrix matrix = new Matrix();
             matrix.postScale(scaleWidth, scaleHeight);
-            if (bitmap.getWidth()>0&&bitmap.getHeight()>0) {
+            if (bitmap.getWidth()>0&&bitmap.getHeight()>0&&width>0&&height>0) {
                 mBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
                 mBitmap = cropBitmap(mBitmap, (int) width, height);
                 imageView.setImageBitmap(mBitmap);

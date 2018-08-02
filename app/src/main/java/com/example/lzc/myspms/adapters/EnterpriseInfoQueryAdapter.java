@@ -44,16 +44,11 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
     private final String TAG = this.getClass().getSimpleName();
     private List<EnterpriseInfoQueryModel.ListSet.ListBean> data;
     private LayoutInflater inflater;
-    private LinearLayout llBasicInfo;
-    private LinearLayout llCheckRecord;
     private Context context;
     private Intent intent = new Intent();
     private Gson gson = new Gson();
     private EnterpriseInfoQueryActivity activity;
-    private LinearLayout llGps;
-    private TextView tvComponyName;
-    private ImageView imgEdit;
-    private ImageView imgDelete;
+
 
 
     public EnterpriseInfoQueryAdapter(List<EnterpriseInfoQueryModel.ListSet.ListBean> data, Context context, EnterpriseInfoQueryActivity activity) {
@@ -84,29 +79,43 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
     }
 
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
+    public View getView(int position,  View convertView, ViewGroup parent) {
         Log.e(TAG, "getView: ");
-        View view = inflater.inflate(R.layout.activity_enterprise_info_query_item, parent, false);
-        tvComponyName = (TextView) view.findViewById(R.id.activity_enterprise_info_query_item_tv_compony);
-        tvComponyName.setText(data.get(position).getQymc());
-        imgEdit = (ImageView) view.findViewById(R.id.activity_enterprise_info_query_item_img_edit);
-        imgEdit.setTag(position);
-        imgEdit.setOnClickListener(this);
-        imgDelete = (ImageView) view.findViewById(R.id.activity_enterprise_info_query_item_img_delete);
-        imgDelete.setTag(position);
-        imgDelete.setOnClickListener(this);
-        llBasicInfo = (LinearLayout) view.findViewById(R.id.activity_enterprise_info_query_item_ll_basic_info);
-        llBasicInfo.setTag(position);
-        llBasicInfo.setOnClickListener(this);
-        llCheckRecord = (LinearLayout) view.findViewById(R.id.activity_enterprise_info_query_item_ll_check_record);
-        llCheckRecord.setTag(position);
-        llCheckRecord.setOnClickListener(this);
-        llGps = (LinearLayout) view.findViewById(R.id.activity_enterprise_info_query_item_ll_gps);
-        llGps.setTag(position);
-        llGps.setOnClickListener(this);
-        return view;
+        ViewHolder holder = null;
+        if (holder==null) {
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.activity_enterprise_info_query_item, parent, false);
+            holder.tvComponyName = (TextView) convertView.findViewById(R.id.activity_enterprise_info_query_item_tv_compony);
+            holder.imgEdit = (ImageView) convertView.findViewById(R.id.activity_enterprise_info_query_item_img_edit);
+            holder.imgDelete = (ImageView) convertView.findViewById(R.id.activity_enterprise_info_query_item_img_delete);
+            holder.llBasicInfo = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_basic_info);
+            holder.llCheckRecord = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_check_record);
+            holder.llGps = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_gps);
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.tvComponyName.setText(data.get(position).getQymc());
+        holder.imgEdit.setTag(position);
+        holder.imgEdit.setOnClickListener(this);
+        holder.imgDelete.setTag(position);
+        holder.imgDelete.setOnClickListener(this);
+        holder.llBasicInfo.setTag(position);
+        holder.llBasicInfo.setOnClickListener(this);
+        holder.llCheckRecord.setTag(position);
+        holder.llCheckRecord.setOnClickListener(this);
+        holder.llGps.setTag(position);
+        holder.llGps.setOnClickListener(this);
+        return convertView;
     }
-
+    public class ViewHolder{
+        TextView tvComponyName;
+        ImageView imgEdit;
+        ImageView imgDelete;
+        LinearLayout llBasicInfo;
+        LinearLayout llCheckRecord;
+        LinearLayout llGps;
+    }
     @Override
     public void onClick(View v) {
         final Integer pos = (Integer) v.getTag();

@@ -341,6 +341,7 @@ public class AVChatActivity extends UI implements AVChatVideoUI.TouchZoneCallbac
             LogUtil.d(TAG, "onUserJoin -> " + account);
             Log.e(TAG, "onUserJoined: " );
             if (state == AVChatType.VIDEO.getValue()) {
+                Log.e(TAG, "onUserJoined: "+account );
                 avChatVideoUI.initLargeSurfaceView(account);
             }
         }

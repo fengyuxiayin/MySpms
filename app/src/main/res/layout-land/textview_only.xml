@@ -3,6 +3,7 @@
     android:background="@mipmap/new_check_pull_bg"
     android:textColor="@color/white"
     android:textSize="16sp"
+    android:gravity="center_vertical"
     android:paddingLeft="5dp"
     android:layout_height="match_parent">
 

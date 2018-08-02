@@ -178,6 +178,7 @@ public class NewCheckInfoAdapter extends BaseAdapter implements View.OnClickList
                                         intent.putExtra("qyJson", data.get(position).getQyJson());
                                         intent.putExtra("rwId", data.get(position).getRwId() + "");
                                         intent.putExtra("jcsj", DateUtil.long2Date(data.get(position).getKssj()));
+                                        intent.putExtra("zgqx",data.get(position).getZgqx()+"");
                                         intent.setClass(activity, CheckProjectActivity.class);
                                         activity.startActivity(intent);
 //                                Toast.makeText(activity, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
@@ -195,6 +196,7 @@ public class NewCheckInfoAdapter extends BaseAdapter implements View.OnClickList
                     intent.putExtra("qyJson", data.get(position).getQyJson());
                     intent.putExtra("rwId", data.get(position).getRwId() + "");
                     intent.putExtra("jcsj", DateUtil.long2Date(data.get(position).getKssj()));
+                    intent.putExtra("zgqx",data.get(position).getZgqx()+"");
                     intent.setClass(activity, CheckProjectActivity.class);
                     activity.startActivity(intent);
                 }

@@ -132,6 +132,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
     private String jcsj;
     private String rwzt;
     private boolean checkQualified;
+    private String zgqx;
 
 
     @Override
@@ -145,7 +146,8 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         qyJson = getIntent().getStringExtra("qyJson");
         rwId = getIntent().getStringExtra("rwId");
         jcsj = getIntent().getStringExtra("jcsj");
-        Log.e(TAG, "onCreate: rwzt" + rwzt+"jcjg"+jcjg);
+        zgqx = getIntent().getStringExtra("zgqx");
+        Log.e(TAG, "onCreate: rwzt" + rwzt+"jcjg"+jcjg+"zgqx"+zgqx);
         initView();
         initData();
         initListener();
@@ -199,15 +201,22 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
             etChangeTime.setVisibility(View.VISIBLE);
             tvChangeTime.setVisibility(View.VISIBLE);
         }else{
-            if (jcjg.equals("1")) {
+            if (("1").equals(jcjg)) {
                 tvChangeTime.setText("当前企业检查已合格");
                 btnReview.setVisibility(View.GONE);
                 btnPrint.setVisibility(View.GONE);
                 tvChangeTime.setVisibility(View.VISIBLE);
                 etChangeTime.setVisibility(View.GONE);
             }else{
-                etChangeTime.setVisibility(View.GONE);
-                tvChangeTime.setVisibility(View.GONE);
+                Log.e(TAG, "initData: "+ zgqx.equals("null"));
+                if (zgqx.length()>9) {
+                    etChangeTime.setVisibility(View.GONE);
+                    tvChangeTime.setVisibility(View.GONE);
+                }else{
+                    etChangeTime.setVisibility(View.VISIBLE);
+                    tvChangeTime.setVisibility(View.VISIBLE);
+                }
+
             }
 
         }
@@ -245,6 +254,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void getCheckInfo() {
+        Log.e(TAG, "getCheckInfo: "+jcId );
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL+"/checkReport/checkMessage")
                 .addParams("id",jcId)
@@ -374,7 +384,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                 .addParams("jcId", jcId + "")
                 .addParams("jclx", jcxmlx)//1 通项 2 危险源
                 .addParams("pn", page + "")
-                .addParams("size", "10")
+                .addParams("size", "1000")
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -432,14 +442,17 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                 if (list!=null) {
                                     for (int i = 0; i < list.size(); i++) {
                                         if (list.get(i).getJcjg()!=1) {
+                                            Log.e(TAG, "onResponse: 不合格"+list.get(i).getJcjg() );
                                             checkQualified = false;
                                             break;
                                         }else{
+                                            Log.e(TAG, "onResponse: 合格"+list.get(i).getJcjg() );
                                             checkQualified = true;
                                         }
                                     }
                                     Log.e(TAG, "onResume: checkQualified"+ checkQualified);
                                     if (checkQualified) {
+                                        Log.e(TAG, "onResume: checkQualified 全部企业都合格"+ checkQualified);
                                         tvChangeTime.setVisibility(View.GONE);
                                         etChangeTime.setVisibility(View.GONE);
                                         btnPrint.setVisibility(View.INVISIBLE);
@@ -834,57 +847,64 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
      */
     private void downloadAndPrint(final InstrumentModel.InstrumentMsgModel instrumentMsgModel) {
         final String scnr = instrumentMsgModel.getList().get(0).getScnr();
-        Log.e(TAG, "downloadAndPrint: " + (Constant.UPLOAD_IMG_IP + scnr));
-        OkHttpUtils.get()
-                .url(Constant.UPLOAD_IMG_IP + scnr)
-                .build()
-                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length())) {
-                    @Override
-                    public void inProgress(float progress) {
-                        Log.e(TAG, "inProgress: progress" + progress);
-                    }
-
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        NetUtil.errorTip(CheckProjectActivity.this, e.getMessage());
-                    }
-
-                    @Override
-                    public void onResponse(File response) {
-                        Log.e(TAG, "onResponse: 文书下载完成" + response.getAbsolutePath());
-                        //保存下载记录
-                        if (scnr != null) {
-                            String wsmc = scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length());
-                            OkHttpUtils.post()
-                                    .url(Constant.SERVER_URL + "/checkDocDownload/save")
-                                    .addParams("wsmc", wsmc)
-                                    .addParams("wsbdlj", scnr)
-                                    .build()
-                                    .execute(new StringCallback() {
-                                        @Override
-                                        public void onError(Request request, Exception e) {
-                                            NetUtil.errorTip(CheckProjectActivity.this, e.getMessage() + "/checkDocDownload/save");
-                                        }
-
-                                        @Override
-                                        public void onResponse(String response) {
-                                            Log.e(TAG, "onResponse: 保存下载记录成功" + response);
-                                        }
-                                    });
-                            if (isReview) {
-                                Intent intent = new Intent();
-                                intent.setClass(CheckProjectActivity.this, PreviewActivity.class);
-                                Log.e(TAG, "onResponse: " + Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
-                                intent.putExtra("url", Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
-                                startActivity(intent);
-                            } else {
-                                onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
-                            }
-                        } else {
-                            Log.e(TAG, "onResponse: 文书地址为空");
+        Log.e(TAG, "downloadAndPrint: " + Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
+//        if (file.exists()) {
+//
+//        }else{
+            OkHttpUtils.get()
+                    .url(Constant.UPLOAD_IMG_IP + scnr)
+                    .build()
+                    .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length())) {
+                        @Override
+                        public void inProgress(float progress) {
+                            Log.e(TAG, "inProgress: progress" + progress);
                         }
-                    }
-                });
+
+                        @Override
+                        public void onError(Request request, Exception e) {
+                            NetUtil.errorTip(CheckProjectActivity.this, e.getMessage());
+                        }
+
+                        @Override
+                        public void onResponse(File response) {
+                            Log.e(TAG, "onResponse: 文书下载完成" + response.getAbsolutePath());
+                            //保存下载记录
+                            if (scnr != null) {
+                                String wsmc = scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length());
+                                OkHttpUtils.post()
+                                        .url(Constant.SERVER_URL + "/checkDocDownload/save")
+                                        .addParams("wsmc", wsmc)
+                                        .addParams("wsbdlj", scnr)
+                                        .build()
+                                        .execute(new StringCallback() {
+                                            @Override
+                                            public void onError(Request request, Exception e) {
+                                                NetUtil.errorTip(CheckProjectActivity.this, e.getMessage() + "/checkDocDownload/save");
+                                            }
+
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Log.e(TAG, "onResponse: 保存下载记录成功" + response);
+                                            }
+                                        });
+                                if (isReview) {
+                                    Intent intent = new Intent();
+                                    intent.setClass(CheckProjectActivity.this, PreviewActivity.class);
+                                    Log.e(TAG, "onResponse: " + Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
+                                    intent.putExtra("url", Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
+                                    startActivity(intent);
+                                } else {
+//                                    onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr(),null);
+                                    onPrintPdf(Constant.UPLOAD_IMG_IP + scnr,null);
+                                }
+                            } else {
+                                Log.e(TAG, "onResponse: 文书地址为空");
+                            }
+                        }
+                    });
+//        }
+
     }
 
     /**
@@ -892,12 +912,14 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
      * @desc 打印pdf
      * @date 2018/5/22 17:38
      */
-    private void onPrintPdf(String url) {
+    private void onPrintPdf(String url,File file) {
         PrintManager printManager = (PrintManager) CheckProjectActivity.this.getSystemService(Context.PRINT_SERVICE);
         PrintAttributes.Builder builder = new PrintAttributes.Builder();
         builder.setColorMode(PrintAttributes.COLOR_MODE_COLOR);
         if (checkMessageMsgModel!=null) {
             printManager.print("test pdf print", new MyPrintAdapter(this,url,checkMessageMsgModel), builder.build());
+        }else{
+            Toast.makeText(this, "获取检查信息为空，请联系开发者", Toast.LENGTH_SHORT).show();
         }
 //        printManager.print("test pdf print", new MyPrintAdapter(this, url, "ddd", "13455209261", "2018-06-12", "2018-06-12", "hahah", 5), builder.build());
     }

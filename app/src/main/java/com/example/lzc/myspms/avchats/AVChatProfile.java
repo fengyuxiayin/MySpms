@@ -1,5 +1,6 @@
 package com.example.lzc.myspms.avchats;
 
+import com.example.lzc.myspms.activitys.VideoCallActivity;
 import com.netease.nimlib.sdk.avchat.model.AVChatData;
 
 /**
@@ -32,12 +33,22 @@ public class AVChatProfile {
             @Override
             public void run() {
                 // 启动，如果 task正在启动，则稍等一下
-                if (!AVChatKit.isMainTaskLaunching()) {
+                if (displayName==null) {
+                    if (!AVChatKit.isMainTaskLaunching()) {
 
-                    AVChatActivity.incomingCall(AVChatKit.getContext(), data, displayName, source);
-                } else {
-                    launchActivity(data, displayName, source);
+                        VideoCallActivity.incomingCall(AVChatKit.getContext(), data, "", source);
+                    } else {
+                        launchActivity(data, "", source);
+                    }
+                }else{
+                    if (!AVChatKit.isMainTaskLaunching()) {
+
+                        VideoCallActivity.incomingCall(AVChatKit.getContext(), data, displayName, source);
+                    } else {
+                        launchActivity(data, displayName, source);
+                    }
                 }
+
             }
         };
         Handlers.sharedHandler(AVChatKit.getContext()).postDelayed(runnable, 200);

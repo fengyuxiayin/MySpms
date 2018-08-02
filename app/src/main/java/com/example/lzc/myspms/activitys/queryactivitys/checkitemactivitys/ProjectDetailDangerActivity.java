@@ -420,6 +420,9 @@ public class ProjectDetailDangerActivity extends AppCompatActivity implements Vi
                                 public void onResponse(String response) {
                                     Log.e(TAG, "onResponse: "+response );
                                     LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                                    if (infoModel.isData()) {
+                                        finish();
+                                    }
                                     Toast.makeText(ProjectDetailDangerActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
                                 }
                             });

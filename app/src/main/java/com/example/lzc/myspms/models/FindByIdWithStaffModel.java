@@ -262,6 +262,24 @@ public class FindByIdWithStaffModel implements Serializable {
         private String fdxm;
         private String fddh;
         private int isqyzc;
+        private String qyejfl;
+        private long hyzgbm;
+
+        public long getHyzgbm() {
+            return hyzgbm;
+        }
+
+        public void setHyzgbm(long hyzgbm) {
+            this.hyzgbm = hyzgbm;
+        }
+
+        public String getQyejfl() {
+            return qyejfl;
+        }
+
+        public void setQyejfl(String qyejfl) {
+            this.qyejfl = qyejfl;
+        }
 
         public int getIsqyzc() {
             return isqyzc;

@@ -115,7 +115,38 @@
                 android:textColorHint="@color/hint_yellow"
                 android:layout_weight="4" />
 
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="二级分类" />
 
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_safe_info_et_ejfl"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="4" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="行业主管部门" />
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_safe_info_et_hyzgbm"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="4" />
 
             <android.support.v4.widget.Space
                 android:layout_width="0dp"

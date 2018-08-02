@@ -15,6 +15,12 @@ import com.example.lzc.myspms.avchats.AVChatKit;
 import com.example.lzc.myspms.avchats.AVChatOptions;
 import com.example.lzc.myspms.avchats.IUserInfoProvider;
 import com.example.lzc.myspms.bean.NoticeInfo;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cookie.CookieJarImpl;
+import com.lzy.okgo.cookie.store.MemoryCookieStore;
+import com.lzy.okgo.https.HttpsUtils;
+import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.HttpParams;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallback;
@@ -26,9 +32,7 @@ import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.auth.constant.LoginSyncStatus;
 import com.netease.nimlib.sdk.uinfo.model.UserInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
-import com.squareup.okhttp.OkHttpClient;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.https.HttpsUtils;
 
 import java.io.IOException;
 
@@ -36,6 +40,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import cn.jpush.android.api.JPushInterface;
+import okhttp3.OkHttpClient;
 import okio.Buffer;
 
 /**
@@ -128,6 +133,16 @@ public class MyApp extends Application {
 //                .setCertificates(new Buffer()
 //                        .writeUtf8(CER_SPMS)
 //                        .inputStream());
+        //OkGo初始化
+        OkHttpClient.Builder okgoBulider = new OkHttpClient.Builder();
+        //方法一：信任所有证书,不安全有风险
+//        HttpsUtils.SSLParams sslParams1 = HttpsUtils.getSslSocketFactory();
+//        okgoBulider.sslSocketFactory(sslParams1.sSLSocketFactory, sslParams1.trustManager);
+        okgoBulider.cookieJar(new CookieJarImpl(new MemoryCookieStore()));
+//        HttpHeaders headers = new HttpHeaders();
+//        HttpParams params = new HttpParams();
+//        OkGo.getInstance().init(this).setOkHttpClient(okgoBulider.build()).addCommonHeaders(headers).addCommonParams(params).setRetryCount(3);
+        OkGo.getInstance().init(this);
         //极光推送的初始化
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);

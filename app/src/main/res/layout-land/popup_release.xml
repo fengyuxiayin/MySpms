@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/popup_videocall_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fragment_range_tv_title_fzsqs"
+        style="@style/fragment_homepage_text_title_style"
+        android:layout_gravity="center_horizontal"
+        android:background="@mipmap/title"
+        android:layout_marginTop="2dp"
+        android:text="分配任务详情" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/activity_notice_bg_green"
+        android:layout_height="35dp">
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            style="@style/fragment_homepage_text_title_style"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="企业名称"
+            android:textSize="15sp"
+            android:layout_height="match_parent" />
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            style="@style/fragment_homepage_text_title_style"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="计划完成时间"
+            android:textSize="15sp"
+            android:layout_height="match_parent" />
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            style="@style/fragment_homepage_text_title_style"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="重点企业等级"
+            android:textSize="15sp"
+            android:layout_height="match_parent" />
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            style="@style/fragment_homepage_text_title_style"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="检查单位"
+            android:textSize="15sp"
+
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/popup_release_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        >
+    </ListView>
+
+</LinearLayout>

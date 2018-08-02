@@ -173,6 +173,7 @@ public class ShowPersonPopup {
         popupWindow.setContentView(contentView);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
         popupWindow.showAsDropDown(view, 0, 0, Gravity.LEFT);
     }
 /**

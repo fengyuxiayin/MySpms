@@ -1,6 +1,7 @@
 package com.example.lzc.myspms.activitys;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.net.Uri;
@@ -21,10 +23,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,6 +40,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,15 +53,27 @@ import com.example.lzc.myspms.R;
 
 import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.NoticeActivity;
+import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.ReleaseActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.SendMessageActivity;
 import com.example.lzc.myspms.adapters.ListAdapter;
+import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
+import com.example.lzc.myspms.adapters.TeamAvChatAdapter;
+import com.example.lzc.myspms.avchats.AVChatActivity;
 import com.example.lzc.myspms.avchats.AVChatKit;
+import com.example.lzc.myspms.avchats.AVChatProfile;
+import com.example.lzc.myspms.avchats.AVChatTimeoutObserver;
+import com.example.lzc.myspms.avchats.LogUtil;
+import com.example.lzc.myspms.avchats.TeamAVChatActivity;
+import com.example.lzc.myspms.avchats.TeamAVChatAdapter;
+import com.example.lzc.myspms.avchats.TeamAVChatProfile;
+import com.example.lzc.myspms.custom.MyGridView;
 import com.example.lzc.myspms.fragments.CheckFragment;
 import com.example.lzc.myspms.fragments.CheckProgressFragment;
 import com.example.lzc.myspms.fragments.HomePageNewFragment;
 import com.example.lzc.myspms.fragments.NewCheckFragment;
 import com.example.lzc.myspms.fragments.ReCheckFragment;
 import com.example.lzc.myspms.models.Constant;
+import com.example.lzc.myspms.models.EnumModel;
 import com.example.lzc.myspms.models.GroupModel;
 import com.example.lzc.myspms.models.MyInfoModel;
 import com.example.lzc.myspms.models.NeteaseAccountFindModel;
@@ -67,6 +88,7 @@ import com.example.lzc.myspms.utils.ShowMenuPopup;
 import com.example.lzc.myspms.utils.ShowPersonPopup;
 import com.example.lzc.myspms.utils.TimeUtil;
 import com.google.gson.Gson;
+import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallback;
@@ -74,23 +96,37 @@ import com.netease.nimlib.sdk.StatusCode;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.AuthServiceObserver;
 import com.netease.nimlib.sdk.auth.LoginInfo;
-import com.squareup.okhttp.Request;
+
+import com.netease.nimlib.sdk.avchat.AVChatCallback;
+import com.netease.nimlib.sdk.avchat.AVChatManager;
+import com.netease.nimlib.sdk.avchat.constant.AVChatType;
+import com.netease.nimlib.sdk.avchat.model.AVChatChannelInfo;
+import com.netease.nimlib.sdk.msg.MsgService;
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
+import com.netease.nimlib.sdk.msg.model.CustomNotification;
+import com.netease.nimlib.sdk.msg.model.CustomNotificationConfig;
 import com.squareup.okhttp.Response;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.drafts.Draft_6455;
+import org.java_websocket.handshake.ServerHandshake;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -98,9 +134,26 @@ import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import de.tavendo.autobahn.WebSocketConnection;
+import de.tavendo.autobahn.WebSocketException;
+import de.tavendo.autobahn.WebSocketHandler;
+import de.tavendo.autobahn.WebSocketOptions;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketListener;
+import okio.ByteString;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, View.OnTouchListener {
@@ -137,91 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //上传服务器的位置信息
     private String locationInfo;
     //声明AMapLocationClient类对象
-    public AMapLocationClient mLocationClient = null;
-    //声明定位回调监听器
-    public AMapLocationListener mLocationListener = new AMapLocationListener() {
-        @Override
-        public void onLocationChanged(AMapLocation aMapLocation) {
-            if (aMapLocation != null) {
-                if (aMapLocation.getErrorCode() == 0) {
-                    longitude = String.valueOf(aMapLocation.getLongitude());
-                    latitude = String.valueOf(aMapLocation.getLatitude());
-                    if (longitude.length() > 10) {
-                        longitude = longitude.substring(0, 9);
-                    }
-                    if (latitude.length() > 10) {
-                        latitude = latitude.substring(0, 9);
-                    }
-                    Constant.LOCATION_INFO = longitude + "," + latitude;
-                    //定位成功回调信息，设置相关消息
-                    aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                    aMapLocation.getLatitude();//获取纬度
-                    aMapLocation.getLongitude();//获取经度
-                    aMapLocation.getAccuracy();//获取精度信息
-                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    Date date = new Date(aMapLocation.getTime());
-                    df.format(date);//定位时间
-                } else {
-                    //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                    Log.e("AmapError", "location Error, ErrCode:"
-                            + aMapLocation.getErrorCode() + ", errInfo:"
-                            + aMapLocation.getErrorInfo());
-                }
-            }
-        }
-    };
     StringBuilder stringBuilder = new StringBuilder();
-    private Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    //获取位置信息
-                    getLocation();
-                    locationInfo = "{\"jd\":" + longitude + ",\"wd\":" + latitude + "}";
-                    //通过https验证 允许自签名证书
-                    OkHttpUtils.getInstance().getOkHttpClient().setHostnameVerifier(new HostnameVerifier() {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session) {
-                            return true;
-                        }
-                    });
-                    //上传数据到服务器
-                    if (longitude == null) {
-                        Toast.makeText(MainActivity.this, "正在获取位置信息，请稍候", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Constant.LOCATION_INFO = longitude + "," + latitude;
-                        Log.e(TAG, "handler: " + Constant.LOCATION_INFO);
-                        OkHttpUtils.post().url(Constant.SERVER_URL + "/baseStaffPolyline/save")
-                                .addParams("zhId", Constant.ACCOUNT_ID)
-                                .addParams("zhlx", loginType)
-                                .addParams("jd", longitude)
-                                .addParams("wd", latitude)
-                                .build()
-                                .execute(new com.zhy.http.okhttp.callback.Callback() {
-                                    @Override
-                                    public Object parseNetworkResponse(Response response) throws IOException {
-                                        return null;
-                                    }
-
-                                    @Override
-                                    public void onError(Request request, Exception e) {
-                                        Log.e(TAG, "onError: " + e.getMessage());
-                                        NetUtil.errorTip(MainActivity.this, e.getMessage());
-                                    }
-
-                                    @Override
-                                    public void onResponse(Object response) {
-//                                        stringBuilder.append(locationInfo);
-//                                        Toast.makeText(MainActivity.this, "上传位置信息成功" + stringBuilder, Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
     private RelativeLayout relativeLayout;
     private View contentView;
     private PopupWindow popupWindow;
@@ -259,6 +228,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView mImgCall;
     private ImageView mImgAdd;
     private Intent intentService;
+    private String address = "wss://120.25.251.167:6445/WebSocket/globalWebSocket/";
+    private URI uri;
+    private WebSocketClient mWebSocketClient;
+    private String uuId;
+    Intent intent = new Intent();
+    private LaunchTransaction transaction;
+    private ImageView mImgRelease;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -272,8 +249,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ssId = getIntent().getStringExtra("ssId");
         Log.e(TAG, "onCreate: " + "loginId " + loginId + " loginType " + loginType + " ssId " + ssId);
         gson = new Gson();
+        uuId = java.util.UUID.randomUUID().toString();
+        String replace = uuId.replace("-", "");
+        address = address + replace + "/" + loginId + "/2";
+        Log.e(TAG, "onCreate: address" + address);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                initWebSocket();
+            }
+        }).start();
+//        initWebSocket();
         //网易云信监听用户在线状态
-//        doLogin();
+        doLogin();
 //        authServiceObserver();
         initView();
         initData();
@@ -285,6 +273,237 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         //判断应用是否需要更新
 //        judgeApkNeedUpdate();
+    }
+
+    private void initWebSocket() {
+
+        try {
+            uri = new URI(address);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            Log.e(TAG, "initWebSocket: " + e.getMessage());
+        }
+//        if (null == mWebSocketClient) {
+//            mWebSocketClient = new WebSocketClient(uri,new Draft_6455()) {
+//                @Override
+//                public void onOpen(ServerHandshake serverHandshake) {
+//                    Log.e(TAG, "onOpen: ");
+//                }
+//                @Override
+//                public void onMessage(String s) {
+//                    Log.e(TAG, "onMessage: " + s);
+//                }
+//                @Override
+//                public void onClose(int i, String s, boolean b) {
+//                    Log.e(TAG, "onClose: "+s+i+b);
+//                }
+//                @Override
+//                public void onError(Exception e) {
+//                    Log.e(TAG, "onError: "+e.getMessage()+e.getCause());
+//                }
+//            };
+//            mWebSocketClient.connect();
+//
+////                SSLContext sc = null;
+////                try {
+////                    sc = SSLContext.getInstance("SSL");
+////                } catch (NoSuchAlgorithmException e) {
+////                    e.printStackTrace();
+////                }
+////                try {
+////                    sc.init(null, new TrustManager[]{new X509TrustManager() {
+////
+////                        @Override
+////                        public X509Certificate[] getAcceptedIssuers() {
+////                            // TODO Auto-generated method stub
+////                            return null;
+////                        }
+////
+////                        @Override
+////                        public void checkServerTrusted(X509Certificate[] chain, String authType)
+////                                throws CertificateException {
+////                            // TODO Auto-generated method stub
+////                        }
+////
+////                        @Override
+////                        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+////                            // TODO Auto-generated method stub
+////                        }
+////                    }}, new SecureRandom());
+////                } catch (KeyManagementException e) {
+////                    e.printStackTrace();
+////                }
+////
+////                SSLSocketFactory factory = sc.getSocketFactory();
+////                // Otherwise the line below is all that is needed.
+////                // sc.init(null, null, null);
+////                try {
+////                    mWebSocketClient.setSocket(factory.createSocket(uri.getHost(),uri.getPort()));
+////                } catch (IOException e) {
+////                    e.printStackTrace();
+////                }
+////                TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+////                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+////                        return new java.security.cert.X509Certificate[] {};
+////                    }
+////
+////                    public void checkClientTrusted(X509Certificate[] chain,
+////                                                   String authType) throws CertificateException {
+////                    }
+////
+////                    public void checkServerTrusted(X509Certificate[] chain,
+////                                                   String authType) throws CertificateException {
+////                    }
+////                } };
+////                SSLContext sc = null;
+////                try {
+////                    sc = SSLContext.getInstance("SSL");
+////                } catch (NoSuchAlgorithmException e) {
+////                    Log.e(TAG, "initWebSocket: "+e.getMessage() );
+////                    e.printStackTrace();
+////                }
+////                try {
+////                    sc.init(null, trustAllCerts, new SecureRandom());
+////                } catch (KeyManagementException e) {
+////                    Log.e(TAG, "initWebSocket: "+e.getMessage() );
+////                    e.printStackTrace();
+////                }
+////                // Otherwise the line below is all that is needed.
+////                // sc.init(null, null, null);
+////                SSLSocketFactory socketFactory = sc.getSocketFactory();
+////                try {
+////                    mWebSocketClient.setSocket(socketFactory.createSocket(uri.getHost(),uri.getPort()));
+////                } catch (IOException e) {
+////                    Log.e(TAG, "initWebSocket: "+e.getMessage() );
+////                    e.printStackTrace();
+////                }
+//        }
+//        WebSocketOptions webSocketOptions = new WebSocketOptions();
+//        webSocketOptions.setSocketConnectTimeout(1000000000);
+//        webSocketOptions.setSocketReceiveTimeout(1000000000);
+//        webSocketOptions.setTcpNoDelay(true);
+//        final WebSocketConnection mConnect = new WebSocketConnection();
+//
+//            try {
+//                mConnect.connect(address, new WebSocketHandler() {
+//                    @Override
+//                    public void onOpen() {
+//                        Log.e(TAG, "onOpen: ");
+//
+//                    }
+//                    @Override
+//                    public void onTextMessage(String payload) {
+//                        Log.e(TAG, "onTextMessage: "+payload);
+//
+//                    }
+//                    @Override
+//                    public void onClose(int code, String reason) {
+//                        Log.e(TAG, "onClose: " + code + "|" + reason);
+//                    }
+//                },webSocketOptions);
+//            } catch (WebSocketException e) {
+//                e.printStackTrace();
+//            }
+
+
+        Log.e(TAG, "initWebSocket: " + address);
+
+        Request request = null;
+//        HttpUrl httpUrl = HttpUrl.Builder.;
+        request = new Request.Builder()
+                .url(address)
+//                    .url("ws://120.25.251.167:68/")
+//                    .url(new URL("http://120.25.251.167:68/WebSocket/globalWebSocket/"+uuId+"/"+loginId+"/2"))
+                .build();
+        ;
+
+        OkHttpClient client = new OkHttpClient().newBuilder().retryOnConnectionFailure(true)
+                .sslSocketFactory(createSSLSocketFactory())
+                .hostnameVerifier(new TrustAllHostnameVerifier())
+//                .addInterceptor(new Interceptor() {
+//                    @Override
+//                    public okhttp3.Response intercept(Chain chain) throws IOException {
+//                        return null;
+//                    }
+//                })
+                .build();
+        WebSocket webSocket = client.newWebSocket(request, new WebSocketListener() {
+            @Override
+            public void onOpen(WebSocket webSocket, okhttp3.Response response) {
+                Log.e(TAG, "onOpen: ");
+                super.onOpen(webSocket, response);
+            }
+
+            @Override
+            public void onMessage(WebSocket webSocket, ByteString bytes) {
+                Log.e(TAG, "onMessage: ");
+                super.onMessage(webSocket, bytes);
+            }
+
+            @Override
+            public void onClosing(WebSocket webSocket, int code, String reason) {
+                Log.e(TAG, "onClosing: " + code + reason);
+                super.onClosing(webSocket, code, reason);
+            }
+
+            @Override
+            public void onClosed(WebSocket webSocket, int code, String reason) {
+                Log.e(TAG, "onClosed: " + code + reason);
+                super.onClosed(webSocket, code, reason);
+            }
+
+            @Override
+            public void onFailure(WebSocket webSocket, Throwable t, okhttp3.Response response) {
+                Log.e(TAG, "onFailure: " + t.getCause() + t.getCause() + response + webSocket.toString() + webSocket.request().url());
+                super.onFailure(webSocket, t, response);
+            }
+        });
+//        client.dispatcher().executorService().shutdown();
+
+
+    }
+
+
+    //设置okhttp信任所有证书
+    @SuppressLint("TrulyRandom")
+    private static SSLSocketFactory createSSLSocketFactory() {
+
+        SSLSocketFactory sSLSocketFactory = null;
+
+        try {
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, new TrustManager[]{new TrustAllManager()},
+                    new SecureRandom());
+            sSLSocketFactory = sc.getSocketFactory();
+        } catch (Exception e) {
+            Log.e("TrulyRandom", "createSSLSocketFactory: " + e.getMessage());
+        }
+
+        return sSLSocketFactory;
+    }
+
+    private static class TrustAllManager implements X509TrustManager {
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType)
+                throws CertificateException {
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType)
+                throws CertificateException {
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+    }
+
+    private static class TrustAllHostnameVerifier implements HostnameVerifier {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            return true;
+        }
     }
 
     /**
@@ -323,8 +542,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .execute(new StringCallback() {
 
                     @Override
-                    public void onError(Request request, Exception e) {
-                        NetUtil.errorTip(MainActivity.this, e.getMessage() + "/appVersion/findLatest");
+                    public void onError(com.squareup.okhttp.Request request, Exception e) {
+
                     }
 
                     @Override
@@ -387,8 +606,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                     @Override
-                    public void onError(Request request, Exception e) {
-                        Log.e(TAG, "onError: sdasdsad" + e.getMessage() + e.getCause());
+                    public void onError(com.squareup.okhttp.Request request, Exception e) {
+
                     }
 
                     @Override
@@ -469,7 +688,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     private LoginInfo info;
 
                     @Override
-                    public void onError(Request request, Exception e) {
+                    public void onError(com.squareup.okhttp.Request request, Exception e) {
                         NetUtil.errorTip(MainActivity.this, e.getMessage() + "/neteaseAccount/findByAccount");
                     }
 
@@ -477,6 +696,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onResponse(String response) {
                         Log.e(TAG, "onResponse: /neteaseAccount/findByAccount" + response);
                         NeteaseAccountModel neteaseAccountModel = gson.fromJson(response, NeteaseAccountModel.class);
+                        Log.e(TAG, "onResponse: " + response);
                         if (neteaseAccountModel.isData()) {
                             final NeteaseAccountModel.NeteaseAccountMsgModel neteaseAccountMsgModel = gson.fromJson(neteaseAccountModel.getMsg(), NeteaseAccountModel.NeteaseAccountMsgModel.class);
                             info = new LoginInfo(neteaseAccountMsgModel.getAccid(), neteaseAccountMsgModel.getToken());
@@ -490,13 +710,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             edit.putString("account", neteaseAccountMsgModel.getAccid());
                                             edit.putString("token", neteaseAccountMsgModel.getToken());
                                             edit.commit();
-                                            Log.e(TAG, "onSuccess: " + neteaseAccountMsgModel.getAccid());
+                                            Constant.WANGYIYUN_SHOWNAME = neteaseAccountMsgModel.getAccid();
+                                            Log.e(TAG, "onSuccess: " + neteaseAccountMsgModel.getAccid() + "token" + neteaseAccountMsgModel.getToken());
                                             AVChatKit.setAccount(neteaseAccountMsgModel.getAccid());
+                                            //设置对群组通话的监听
+                                            TeamAVChatProfile.sharedInstance().registerObserver(true);
+
                                         }
 
                                         @Override
                                         public void onFailed(int code) {
-
+                                            Log.e(TAG, "onFailed: " + code);
                                         }
 
                                         @Override
@@ -529,6 +753,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgNotice.setOnTouchListener(this);
         mImgAdd.setOnTouchListener(this);
         mImgCall.setOnTouchListener(this);
+        mImgRelease.setOnTouchListener(this);
+//        mImgRelease.setOnClickListener(this);
+//        mImgBack.setOnClickListener(this);
+//        mImgVideoCall.setOnClickListener(this);
+//        mImgNotice.setOnClickListener(this);
+//        mImgAdd.setOnClickListener(this);
+//        mImgCall.setOnClickListener(this);
         mImgSendMessage.setOnTouchListener(this);
         mRadioGroup.setOnCheckedChangeListener(this);
 
@@ -573,6 +804,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgNotice = (ImageView) findViewById(R.id.main_iv_message);
         mImgCall = (ImageView) findViewById(R.id.main_img_call);
         mImgAdd = (ImageView) findViewById(R.id.main_img_add);
+        mImgRelease = (ImageView) findViewById(R.id.main_img_release);
         mRadioGroup = (RadioGroup) findViewById(R.id.rg_main);
         radioButtonHomepage = (RadioButton) findViewById(R.id.rb_main_homepage);
         radioButtonCheck = (RadioButton) findViewById(R.id.rb_main_check);
@@ -609,6 +841,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mTvTitle.setText("复查流程");
                 switchPages(ReCheckFragment.TAG, ReCheckFragment.class);
                 break;
+
 
         }
     }
@@ -693,35 +926,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        stopService(intentService);
     }
 
-    /**
-     * @param
-     * @desc 获取location 并在特定条件下更新location
-     * @date 2017/11/28 10:12
-     */
-    private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "没有获取位置权限", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mlocationClient = new AMapLocationClient(this);
-//初始化定位参数
-        mLocationOption = new AMapLocationClientOption();
-//设置定位监听
-        mlocationClient.setLocationListener(mLocationListener);
-//设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-//设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(1000);
-//设置定位参数
-        mlocationClient.setLocationOption(mLocationOption);
-// 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-// 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-// 在定位结束后，在合适的生命周期调用onDestroy()方法
-// 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-//启动定位
-        mlocationClient.startLocation();
-    }
-
     @Override
     /**
      * 双击返回键退出
@@ -747,7 +951,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.main_img_personal:
                 Log.e(TAG, "onTouch: " + popupPersonShow);
@@ -758,10 +961,94 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 popupPersonShow = !popupPersonShow;
                 break;
             case R.id.main_img_videocall:
-//                intent = new Intent();
+                intent = new Intent();
 //                intent.setClass(MainActivity.this, VideoCallActivity.class);
 //                startActivity(intent);
-                Toast.makeText(this, "功能正在开发...", Toast.LENGTH_SHORT).show();
+                OkHttpUtils.post()
+                        .url(Constant.SERVER_URL + "/neteaseAccount/find")
+                        .addParams("inUse", "1")
+                        .addParams("pn", "1")
+                        .addParams("size", "1000")
+                        .build()
+                        .execute(new StringCallback() {
+                            private GridView gridView;
+                            private ArrayAdapter<String> adapterLimit;
+                            private Button btn;
+                            private Spinner spinner;
+
+                            @Override
+                            public void onError(com.squareup.okhttp.Request request, Exception e) {
+                                Log.e(TAG, "onError: " + e.getMessage());
+                            }
+
+                            @Override
+                            public void onResponse(String response) {
+                                Log.e(TAG, "onResponse: " + response);
+                                Gson gson = new Gson();
+                                NeteaseAccountFindModel neteaseAccountFindModel = gson.fromJson(response, NeteaseAccountFindModel.class);
+                                if (neteaseAccountFindModel.isData()) {
+                                    NeteaseAccountFindModel.NeteaseAccountFindMsgModel neteaseAccountFindMsgModel = gson.fromJson(neteaseAccountFindModel.getMsg(), NeteaseAccountFindModel.NeteaseAccountFindMsgModel.class);
+                                    final List<NeteaseAccountFindModel.NeteaseAccountFindMsgModel.ListBean> list = neteaseAccountFindMsgModel.getList();
+                                    PopupWindow popupWindow = new PopupWindow();
+                                    View contentView = View.inflate(MainActivity.this, R.layout.popup_videocall, null);
+                                    gridView = (GridView) contentView.findViewById(R.id.popup_videocall_gv);
+                                    btn = (Button) contentView.findViewById(R.id.popup_videocall_btn);
+                                    List<EnumModel> limitList = new ArrayList<>();
+                                    if (list != null) {
+                                        for (int i = 0; i < list.size(); i++) {
+                                            limitList.add(new EnumModel(list.get(i).getAccid() + "", list.get(i).getShowName()));
+                                        }
+                                    }
+                                    final TeamAvChatAdapter teamAvChatAdapter = new TeamAvChatAdapter(limitList, MainActivity.this);
+                                    gridView.setAdapter(teamAvChatAdapter);
+
+//                                    spinner = (Spinner) contentView.findViewById(R.id.popup_videocall_sp);
+//                                    adapterLimit = new ArrayAdapter<>(MainActivity.this, R.layout.textview_only, limitList);
+//                                    adapterLimit.setDropDownViewResource(R.layout.spinner_item_textview);
+//                                    spinner.setAdapter(adapterLimit);
+//                                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                                        @Override
+//                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                                            Constant.WANGYIYUN_ACCOUNT = list.get(position).getAccid();
+//                                            Constant.WANGYIYUN_DISPLAYNAME = list.get(position).getName();
+//                                        }
+//
+//                                        @Override
+//                                        public void onNothingSelected(AdapterView<?> parent) {
+//
+//                                        }
+//                                    });
+                                    btn.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+//                                            intent.setClass(MainActivity.this, VideoCallActivity.class);
+//                                            MainActivity.this.startActivity(intent);
+                                            //创建房间
+                                            if (NetUtil.isNetworkAvalible(MainActivity.this)) {
+                                                ArrayList<String> accounts = new ArrayList<String>();
+                                                accounts.add(AVChatKit.getAccount());
+                                                List<String> strings = teamAvChatAdapter.returnCheckAccounts();
+                                                accounts.addAll(strings);
+                                                Log.e(TAG, "onResponse: " + accounts.size());
+                                                startAudioVideoCall(AVChatType.VIDEO, accounts);
+                                            } else {
+                                                Toast.makeText(MainActivity.this, R.string.network_is_not_available, Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                    });
+                                    popupWindow = new PopupWindow();
+                                    popupWindow.setWidth((int) (MainActivity.this.getWindowManager().getDefaultDisplay().getWidth() * (0.5)));
+                                    popupWindow.setHeight((int) (MainActivity.this.getWindowManager().getDefaultDisplay().getHeight() * 0.6));
+                                    popupWindow.setContentView(contentView);
+                                    popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                                    popupWindow.setOutsideTouchable(true);
+                                    popupWindow.setFocusable(true);
+                                    popupWindow.showAtLocation(mImgVideoCall, Gravity.CENTER, 0, 0);
+                                }
+                            }
+                        });
+//                Toast.makeText(this, "功能正在开发...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_iv_send_message:
                 intent = new Intent();
@@ -783,6 +1070,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent();
                 intent.setClass(MainActivity.this, AddEnterpriseSimpleActivity.class);
                 intent.putExtra("which", "add");
+                startActivity(intent);
+                break;
+            case R.id.main_img_release:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, ReleaseActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -808,5 +1100,97 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void startAudioVideoCall(AVChatType avChatType, final ArrayList<String> accounts) {
 
+        if (AVChatProfile.getInstance().isAVChatting()) {
+            Toast.makeText(MainActivity.this, "正在进行P2P视频通话，请先退出", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (accounts.size() < 2) {
+            Toast.makeText(this, "人数少于两人，无法进行语音通话", Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        if (TeamAVChatProfile.sharedInstance().isTeamAVChatting()) {
+//            // 视频通话界面正在运行，singleTop所以直接调起来
+//            Log.e(TAG, "startAudioVideoCall: 直接吊起来" );
+//            Intent localIntent = new Intent();
+//            localIntent.setClass(MainActivity.this, TeamAVChatActivity.class);
+//            localIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            MainActivity.this.startActivity(localIntent);
+//            return;
+//        }
+
+        if (transaction != null) {
+            return;
+        }
+        transaction = new LaunchTransaction();
+        final String roomName = UUID.randomUUID().toString().replaceAll("-", "");
+        AVChatManager.getInstance().createRoom(roomName, null, new AVChatCallback<AVChatChannelInfo>() {
+            @Override
+            public void onSuccess(AVChatChannelInfo avChatChannelInfo) {
+                LogUtil.ui("create room " + roomName + " success !");
+//                向各个成员发送通知 不发通知收不到
+                onCreateRoomSuccess(roomName, accounts);
+                transaction.setRoomName(roomName);
+
+                TeamAVChatProfile.sharedInstance().setTeamAVChatting(true);
+                AVChatKit.outgoingTeamCall(MainActivity.this, false, transaction.getTeamID(), roomName, accounts, Constant.WANGYIYUN_SHOWNAME);
+                transaction = null;
+            }
+
+            @Override
+            public void onFailed(int code) {
+                Toast.makeText(MainActivity.this, "创建房间失败,错误码：" + code, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onException(Throwable exception) {
+                Toast.makeText(MainActivity.this, "创建房间失败" + exception.getMessage() + exception.getCause(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void onCreateRoomSuccess(String roomName, ArrayList<String> accounts) {
+        // 对各个成员发送点对点自定义通知
+        String teamName = Constant.WANGYIYUN_SHOWNAME;
+        accounts.remove(0);
+        String content = TeamAVChatProfile.sharedInstance().buildContent(roomName, "", accounts, teamName);
+        CustomNotificationConfig config = new CustomNotificationConfig();
+        config.enablePush = true;
+        config.enablePushNick = false;
+        config.enableUnreadCount = true;
+        for (String account : accounts) {
+            CustomNotification command = new CustomNotification();
+            command.setSessionId(account);
+            command.setSessionType(SessionTypeEnum.P2P);
+            command.setConfig(config);
+            command.setContent(content);
+//            command.setApnsText(teamNick + getActivity().getString(R.string.t_avchat_push_content));
+
+            command.setSendToOnlineUserOnly(false);
+            NIMClient.getService(MsgService.class).sendCustomNotification(command);
+        }
+    }
+
+    private class LaunchTransaction implements Serializable {
+        private String teamID;
+        private String roomName;
+
+        public String getRoomName() {
+            return roomName;
+        }
+
+        public String getTeamID() {
+            return teamID;
+        }
+
+        public void setRoomName(String roomName) {
+            this.roomName = roomName;
+        }
+
+        public void setTeamID(String teamID) {
+            this.teamID = teamID;
+        }
+    }
 }

@@ -29,7 +29,6 @@ public static final String TAG = PreviewActivity.class.getSimpleName();
         setContentView(R.layout.activity_preview);
         url = getIntent().getStringExtra("url");
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdf);
-
         setDownloadListener();
     }
     /*设置监听*/

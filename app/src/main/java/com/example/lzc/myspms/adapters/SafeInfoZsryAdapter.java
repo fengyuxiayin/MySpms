@@ -84,7 +84,12 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
         ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_zsry_item_img_operate);
         etName.setText(data.get(position).getGlry()+"");
         etNumber.setText(data.get(position).getGlrylxdh()+"");
-        etJzjg.setText(data.get(position).getJzjg()+"");
+        for (int i = 0; i < dataStructure.size(); i++) {
+            if (dataStructure.get(i).getKey().equals(data.get(position).getJzjg())) {
+                etJzjg.setText(dataStructure.get(i).getValue());
+                break;
+            }
+        }
         etJzmj.setText(data.get(position).getJzmj()+"");
         etJzsj.setText(data.get(position).getJzsj()+"");
         etZsrs.setText(data.get(position).getZsrs()+"");

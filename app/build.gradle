@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.example.lzc.myspms"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 24
-        versionCode 6
-        versionName "1.0.5"
+        versionCode 9
+        versionName "1.0.8"
         multiDexEnabled true
         ndk {
             //选择要添加的对应cpu类型的.so库。
@@ -75,7 +75,8 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.0.0'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.zhy:okhttputils:2.0.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'com.squareup.okhttp3:mockwebserver:3.8.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 //    testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.1'
     compile project(':pulToRefresh_Library')
@@ -103,4 +104,13 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     //pdf预览
     compile 'es.voghdev.pdfviewpager:library:1.0.4'
+    //okgo
+    compile 'com.lzy.net:okgo:3.0.4'
+    compile 'junit:junit:4.12'
+    //autobahn
+    compile files('libs/autobahn-0.5.0.jar')
+    //glide
+    compile 'com.github.bumptech.glide:glide:4.2.0'
+    //fastjson
+    compile 'com.alibaba:fastjson:1.2.47'
 }
