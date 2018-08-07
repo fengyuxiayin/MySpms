@@ -129,12 +129,14 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         >
         <activity
             android:name=".BaseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="landscape" />
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activitys.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -384,7 +386,9 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activitys.homepageactivitys.menuactivitys.ReleaseActivity"
+
+        <activity
+            android:name=".activitys.homepageactivitys.newcheckactivitys.PreviewSdActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"

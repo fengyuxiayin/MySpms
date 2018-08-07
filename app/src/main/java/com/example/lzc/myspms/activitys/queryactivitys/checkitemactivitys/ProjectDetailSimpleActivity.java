@@ -43,6 +43,7 @@ import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.NoticeAc
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.AddProjectActivity;
 import com.example.lzc.myspms.adapters.ImageGridAdapter;
 import com.example.lzc.myspms.fragments.queryfragments.enterpriseinfofragments.ProjectSafeFragment;
+import com.example.lzc.myspms.models.CheckProjectFindModel;
 import com.example.lzc.myspms.models.Constant;
 import com.example.lzc.myspms.models.LoginInfoModel;
 import com.example.lzc.myspms.models.ProjectInfoModel;
@@ -114,6 +115,8 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
     private String jctp = "";
     private String jcjg = "0";
     private String id;
+    private List<CheckProjectFindModel.CheckProjectFindMsgModel.ListBean> ids;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,8 +124,10 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
         setContentView(R.layout.activity_project_detail_simple);
         jcId = getIntent().getStringExtra("jcId");
         id = getIntent().getStringExtra("id");
+        position = getIntent().getIntExtra("position",0);
+        ids = (List<CheckProjectFindModel.CheckProjectFindMsgModel.ListBean>) getIntent().getSerializableExtra("ids");
         isView = getIntent().getStringExtra("isView");
-        Log.e(TAG, "onCreate: "+isView );
+        Log.e(TAG, "onCreate: "+isView+"  "+ids.size() );
         initView();
         initData();
         initListener();
@@ -136,7 +141,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
         imgCall.setOnClickListener(this);
         imgMessage.setOnClickListener(this);
         if (isView.equals("isView")) {
-            //判断是只能看还是能修改
+            //判断是只能看
             Log.e(TAG, "initListener: view");
             rbQualified.setClickable(false);
             rbUnqualified.setClickable(false);
@@ -168,6 +173,16 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
 //                    etDescription.setText(etDescription.getText().toString().trim()+"\n"+refrenceBasisList.get(position));
 //                }
 //            });
+            rbQualified.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        etDescription.setText("");
+                    }else{
+                        etDescription.setText(etDescription.getText().toString() + tvZtzrsx.getText().toString() + "\n");
+                    }
+                }
+            });
         }
     }
 
@@ -177,9 +192,15 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
     }
 
     private void initDataFromServer() {
+        jctp = "";
+        jcjg = "0";
+        jctpList = new ArrayList<>();
+        jctpNewList = new ArrayList<>();
+        pubishList = new ArrayList<>();
+        refrenceBasisList = new ArrayList<>();
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/checkProject/findById")
-                .addParams("id", id)
+                .addParams("id", ids.get(position).getId()+"")
                 .build()
                 .execute(new StringCallback() {
                              @Override
@@ -228,7 +249,16 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                          rbUnqualified.setChecked(true);
                                      }
                                      String bhgyy = projectPublicInfoModel.getBhgyy();
-                                     etDescription.setText(bhgyy);
+                                     if (bhgyy!=null) {
+                                         if (bhgyy.length()<1) {
+                                             etDescription.setText(projectPublicInfoModel.getStandardDescription() + "\n");
+                                         }else{
+                                             etDescription.setText(bhgyy);
+                                         }
+                                     }else{
+                                         etDescription.setText(projectPublicInfoModel.getStandardDescription() + "\n");
+                                     }
+
                                      judgeJctpIsEmpty();
                                      lvCfqx.setAdapter(new ArrayAdapter<>(ProjectDetailSimpleActivity.this, R.layout.popup_person_grid_text_only, pubishList.toArray()));
                                      lvCfyj.setAdapter(new ArrayAdapter<>(ProjectDetailSimpleActivity.this, R.layout.popup_person_grid_text_only, refrenceBasisList.toArray()));
@@ -498,6 +528,10 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                         jcjg = "1";
                     } else {
                         jcjg = "0";
+                        if (etDescription.getText().toString().trim().length()<1) {
+                            Toast.makeText(this, "详细描述未填写，不能提交", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
                     String jctp = "";
                     for (int i = 0; i < jctpNewList.size(); i++) {
@@ -508,13 +542,10 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                             }
                         }
                     }
-                    if (etDescription.getText().toString().trim().length()<1) {
-                        Toast.makeText(this, "详细描述未填写，不能提交", Toast.LENGTH_SHORT).show();
-                        return;
-                    }else{
+
                         OkHttpUtils.post()
                                 .url(Constant.SERVER_URL + "/checkProject/check")
-                                .addParams("id",id)
+                                .addParams("id",ids.get(position).getId()+"")
                                 .addParams("jcId", jcId)
                                 .addParams("jclx", "1")//1 通项 2 危险源
                                 .addParams("jctp", jctp)
@@ -532,12 +563,21 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                         Log.e(TAG, "onResponse: "+response );
                                         LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
                                         if (infoModel.isData()) {
-                                            finish();
+                                            if (ids.size()>1) {
+                                                ids.remove(0);
+                                                if (ids.size() == 1) {
+                                                    btnCommit.setText("完成");
+                                                }
+                                                initDataFromServer();
+                                            }else {
+                                                finish();
+                                            }
+
                                         }
                                         Toast.makeText(ProjectDetailSimpleActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                    }
+
 
                     break;
             }

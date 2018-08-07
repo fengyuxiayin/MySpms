@@ -1,48 +1,58 @@
-package com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys;
+package com.example.lzc.myspms.fragments;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.MotionEvent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lzc.myspms.R;
-import com.example.lzc.myspms.activitys.queryactivitys.EnterpriseInfoQueryActivity;
-import com.example.lzc.myspms.activitys.queryactivitys.EnterpriseQueryActivity;
 import com.example.lzc.myspms.adapters.CheckTaskAdapter;
 import com.example.lzc.myspms.adapters.EnterpriseInfoQueryAdapter;
 import com.example.lzc.myspms.adapters.MyFilterAdapter;
+import com.example.lzc.myspms.adapters.ReCheckInfoAdapter;
+import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
 import com.example.lzc.myspms.custom.ClearEditText;
-import com.example.lzc.myspms.custom.MyListView;
 import com.example.lzc.myspms.models.CheckTaskModel;
 import com.example.lzc.myspms.models.Constant;
 import com.example.lzc.myspms.models.EnterpriseInfoQueryModel;
 import com.example.lzc.myspms.models.LoginInfoModel;
+import com.example.lzc.myspms.models.NewCheckInfoModel;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ReleaseActivity extends AppCompatActivity {
-    public static final String TAG = ReleaseActivity.class.getSimpleName();
+/**
+ * Created by LZC on 2017/10/27.
+ */
+public class PublishTaskFragment extends BaseFragment {
+    public static final String TAG = PublishTaskFragment.class.getSimpleName();
+    private View view;
     private MyFilterAdapter<String> filterAdapter;
     private ListView listView;
     private Gson gson = new Gson();
@@ -54,17 +64,22 @@ public class ReleaseActivity extends AppCompatActivity {
     private List<String> dataList;
     private PullToRefreshListView listViewShow;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_release);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_publish_task, container, false);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         initView();
         initData();
         initListener();
     }
 
     private void initListener() {
-
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,15 +103,15 @@ public class ReleaseActivity extends AppCompatActivity {
                 }
                 Log.e(TAG, "onClick: " + gson.toJson(qyItems));
                 if (etRwmc.getText().length() < 1) {
-                    Toast.makeText(ReleaseActivity.this, "请填写任务名称后再提交", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请填写任务名称后再提交", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (etDate.getText().toString().trim().length() < 1) {
-                    Toast.makeText(ReleaseActivity.this, "请选择计划完成时间后再提交", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请选择计划完成时间后再提交", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (qyItems.size() < 1) {
-                    Toast.makeText(ReleaseActivity.this, "请选择企业后再提交", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请选择企业后再提交", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 OkHttpUtils.post()
@@ -107,6 +122,7 @@ public class ReleaseActivity extends AppCompatActivity {
                         .addParams("startDate", etDate.getText().toString().trim())
                         .addParams("endDate", etDate.getText().toString().trim())
                         .addParams("qyItem", gson.toJson(qyItems))
+                        .addParams("jcbzId","2")
                         .build()
                         .execute(new StringCallback() {
                             @Override
@@ -118,7 +134,10 @@ public class ReleaseActivity extends AppCompatActivity {
                             public void onResponse(String response) {
                                 Log.e(TAG, "onResponse: " + response);
                                 LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
-                                Toast.makeText(ReleaseActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                if (infoModel.isData()) {
+                                    getTaskFromServer();
+                                }
+                                Toast.makeText(getActivity(), infoModel.getMsg(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
@@ -150,7 +169,7 @@ public class ReleaseActivity extends AppCompatActivity {
      */
     private void setDate(final EditText edittext) {
         final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
@@ -175,7 +194,7 @@ public class ReleaseActivity extends AppCompatActivity {
                     @Override
                     public void onError(Request request, Exception e) {
                         Log.e(TAG, "onError: " + e.getMessage());
-                        NetUtil.errorTip(ReleaseActivity.this, e.getMessage());
+                        NetUtil.errorTip(getActivity(), e.getMessage());
                     }
 
                     @Override
@@ -190,17 +209,21 @@ public class ReleaseActivity extends AppCompatActivity {
                                 for (int i = 0; i < list.size(); i++) {
                                     dataList.add(list.get(i).getQymc());
                                 }
-                                filterAdapter = new MyFilterAdapter<>(ReleaseActivity.this, R.layout.activity_area_enterprise_item, dataList);
+                                filterAdapter = new MyFilterAdapter<>(getActivity(), R.layout.activity_area_enterprise_item, dataList);
                                 listView.setAdapter(filterAdapter);
                             } else {
-                                Toast.makeText(ReleaseActivity.this, "没有查到符合条件企业", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "没有查到符合条件企业", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(ReleaseActivity.this, enterpriseInfoQueryModel.getMsg(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), enterpriseInfoQueryModel.getMsg(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
         //获取小组发布的任务
+        getTaskFromServer();
+    }
+
+    private void getTaskFromServer() {
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/checkTaskSettings/findByTags")
                 .addParams("jcdwlx", Constant.ACCOUNT_TYPE)
@@ -224,25 +247,35 @@ public class ReleaseActivity extends AppCompatActivity {
                         if (checkTaskModel.isData()) {
                             checkTaskMsgModel = gson.fromJson(checkTaskModel.getMsg(), CheckTaskModel.CheckTaskMsgModel.class);
                             List<CheckTaskModel.CheckTaskMsgModel.ListBean> list = checkTaskMsgModel.getList();
-                            if (list!=null) {
-                                checkTaskAdapter = new CheckTaskAdapter(list,ReleaseActivity.this);
+                            if (list != null) {
+                                checkTaskAdapter = new CheckTaskAdapter(list, getActivity());
                                 listViewShow.setAdapter(checkTaskAdapter);
                             }
-                        }else{
-                            Toast.makeText(ReleaseActivity.this, checkTaskModel.getMsg(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), checkTaskModel.getMsg(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+    }
+
     private void initView() {
-        listView = (ListView) findViewById(R.id.activity_release_lv);
-        etEnterprise = (ClearEditText) findViewById(R.id.activity_release_et_enterprise);
-        etRwmc = (ClearEditText) findViewById(R.id.activity_release_et_rwmc);
-        etDate = (ClearEditText) findViewById(R.id.activity_release_et_date);
-        btnCommit = (Button) findViewById(R.id.activity_release_btn_commit);
-        listViewShow = (PullToRefreshListView) findViewById(R.id.activity_release_lv_show);
-        listView.setNestedScrollingEnabled(false);
-        listViewShow.setNestedScrollingEnabled(false);
+        listView = (ListView) view.findViewById(R.id.activity_release_lv);
+        etEnterprise = (ClearEditText) view.findViewById(R.id.activity_release_et_enterprise);
+        etRwmc = (ClearEditText) view.findViewById(R.id.activity_release_et_rwmc);
+        etDate = (ClearEditText) view.findViewById(R.id.activity_release_et_date);
+        btnCommit = (Button) view.findViewById(R.id.activity_release_btn_commit);
+        listViewShow = (PullToRefreshListView) view.findViewById(R.id.activity_release_lv_show);
     }
 }

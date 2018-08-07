@@ -15,7 +15,7 @@ public class Constant {
     //获取GPS权限标志位
     public static final int GPS_REQUEST_CODE = 4;
     //高经理地址
-//    public static final String SERVER_URL = "http://192.168.3.106:8080";
+//    public static final String SERVER_URL = "http://192.168.3.105:8080";
 //    public static final String SERVER_URL = "http://172.20.10.10:8080";
     //风选地址
 //    public static final String SERVER_URL = "http://192.168.3.66:8080";

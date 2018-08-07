@@ -68,13 +68,7 @@
             android:layout_margin="10dp"
             android:layout_toLeftOf="@id/main_img_call"
             android:src="@mipmap/add_enterprise" />
-        <ImageView
-            android:id="@+id/main_img_release"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
-            android:layout_toLeftOf="@id/main_img_add"
-            android:src="@mipmap/add_enterprise" />
+
     </RelativeLayout>
 
     <FrameLayout
@@ -117,7 +111,17 @@
             android:text="查询"
             android:textColor="@drawable/selector_homepage_text_color"
             android:textSize="12sp" />
-
+        <RadioButton
+            android:id="@+id/rb_main_publish_task"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/homepage_radiogroup_bg_black"
+            android:button="@null"
+            android:gravity="center"
+            android:text="发布任务"
+            android:textColor="@drawable/selector_homepage_text_color"
+            android:textSize="12sp" />
         <RadioButton
             android:id="@+id/rb_main_new_check"
             android:layout_width="0dp"

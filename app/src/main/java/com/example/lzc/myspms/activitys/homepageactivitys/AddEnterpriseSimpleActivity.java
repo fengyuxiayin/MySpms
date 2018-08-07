@@ -47,69 +47,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lzc.myspms.R;
-import com.example.lzc.myspms.activitys.MainActivity;
-import com.example.lzc.myspms.activitys.VideoCallActivity;
-import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.NoticeActivity;
-import com.example.lzc.myspms.activitys.queryactivitys.checkitemactivitys.ProjectDetailSimpleActivity;
-import com.example.lzc.myspms.adapters.ImageGridAdapter;
-import com.example.lzc.myspms.adapters.ProjectSafeAdapter;
-import com.example.lzc.myspms.adapters.SafeInfoStaffAdapter;
-import com.example.lzc.myspms.adapters.SafeInfoTzzyAdapter;
-import com.example.lzc.myspms.adapters.SafeInfoWhpAdapter;
-import com.example.lzc.myspms.adapters.SafeInfoZsryAdapter;
-import com.example.lzc.myspms.adapters.SimpleTreeAdapter;
-import com.example.lzc.myspms.bean.FileBean;
-import com.example.lzc.myspms.bean.Node;
-import com.example.lzc.myspms.bean.TreeListViewAdapter;
-import com.example.lzc.myspms.custom.ClearEditText;
-import com.example.lzc.myspms.custom.MyGridView;
-import com.example.lzc.myspms.custom.PicassoImageLoder;
-import com.example.lzc.myspms.fragments.NewCheckFragment;
+
 import com.example.lzc.myspms.fragments.homepagefragments.ComponyBasicInfoFragment;
 import com.example.lzc.myspms.fragments.homepagefragments.ComponySafeInfoFragment;
 import com.example.lzc.myspms.fragments.homepagefragments.ComponyStaffInfoFragment;
-import com.example.lzc.myspms.fragments.homepagefragments.menufragments.AlreadyDownloadFragment;
-import com.example.lzc.myspms.fragments.homepagefragments.menufragments.CanDownloadFragment;
-import com.example.lzc.myspms.fragments.homepagefragments.menufragments.UploadFragment;
+
 import com.example.lzc.myspms.models.Constant;
-import com.example.lzc.myspms.models.EnumCommunityModel;
-import com.example.lzc.myspms.models.EnumModel;
 import com.example.lzc.myspms.models.FindByIdWithStaffModel;
-import com.example.lzc.myspms.models.JsonModel;
-import com.example.lzc.myspms.models.Location;
-import com.example.lzc.myspms.models.LoginInfoModel;
-import com.example.lzc.myspms.models.TzzyryModel;
-import com.example.lzc.myspms.models.WhpJsonModel;
-import com.example.lzc.myspms.models.ZsryJsonModel;
-import com.example.lzc.myspms.utils.BitmapUtils;
-import com.example.lzc.myspms.utils.GpsUtil;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.SetMenuClick;
-import com.example.lzc.myspms.utils.ShowMenuPopup;
-import com.example.lzc.myspms.utils.TakePhotoUtils;
-import com.example.lzc.myspms.utils.ValidateUtil;
 import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.Request;
-import com.youth.banner.Banner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
+
 
 public class AddEnterpriseSimpleActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     public static final String TAG = AddEnterpriseSimpleActivity.class.getSimpleName();

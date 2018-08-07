@@ -21,6 +21,7 @@ import com.example.lzc.myspms.models.CheckProjectFindModel;
 import com.example.lzc.myspms.models.MyInfoModel;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,11 +116,21 @@ public class ProjectSimpleAdapter extends BaseAdapter {
                 Intent intent = new Intent();
                 intent.putExtra("jcId",jcId);
                 intent.putExtra("id",data.get(position).getId()+"");
+                List<CheckProjectFindModel.CheckProjectFindMsgModel.ListBean> ids = new ArrayList<CheckProjectFindModel.CheckProjectFindMsgModel.ListBean>();
                 if (data.get(position).getJcjg() != 2) {//只要项目不是未检查就只能看不能修改
                     intent.putExtra("isView","isView");
+                    intent.putExtra("position",position);
+                    ids.addAll(data);//查看时直接将所有项目放入ids
                 }else{
                     intent.putExtra("isView","isNotView");
+                    intent.putExtra("position",0);
+                    for (int i = 0; i < data.size(); i++) {//项目未检查 把未检查的项目添加到ids中
+                        if (data.get(i).getJcjg() == 2){
+                            ids.add(data.get(i));
+                        }
+                    }
                 }
+                intent.putExtra("ids", (Serializable) ids);
                 intent.putExtra("qymc",qymc);
                 if (jcxmlx.equals("1")) {
                     intent.setClass(context, ProjectDetailSimpleActivity.class);

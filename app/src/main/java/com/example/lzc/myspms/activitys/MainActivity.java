@@ -53,7 +53,6 @@ import com.example.lzc.myspms.R;
 
 import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.NoticeActivity;
-import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.ReleaseActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.SendMessageActivity;
 import com.example.lzc.myspms.adapters.ListAdapter;
 import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
@@ -71,6 +70,7 @@ import com.example.lzc.myspms.fragments.CheckFragment;
 import com.example.lzc.myspms.fragments.CheckProgressFragment;
 import com.example.lzc.myspms.fragments.HomePageNewFragment;
 import com.example.lzc.myspms.fragments.NewCheckFragment;
+import com.example.lzc.myspms.fragments.PublishTaskFragment;
 import com.example.lzc.myspms.fragments.ReCheckFragment;
 import com.example.lzc.myspms.models.Constant;
 import com.example.lzc.myspms.models.EnumModel;
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String uuId;
     Intent intent = new Intent();
     private LaunchTransaction transaction;
-    private ImageView mImgRelease;
+    private RadioButton radioButtonPublishTask;
 
 
     @Override
@@ -242,9 +242,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //如果gps已经是打开状态，那么直接就上传数据
         loginId = getIntent().getStringExtra("loginId");
         loginType = getIntent().getStringExtra("loginType");
+        //如果gps已经是打开状态，那么直接就上传数据
         gpsIsOpenUploadDate();
         ssId = getIntent().getStringExtra("ssId");
         Log.e(TAG, "onCreate: " + "loginId " + loginId + " loginType " + loginType + " ssId " + ssId);
@@ -283,127 +283,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
             Log.e(TAG, "initWebSocket: " + e.getMessage());
         }
-//        if (null == mWebSocketClient) {
-//            mWebSocketClient = new WebSocketClient(uri,new Draft_6455()) {
-//                @Override
-//                public void onOpen(ServerHandshake serverHandshake) {
-//                    Log.e(TAG, "onOpen: ");
-//                }
-//                @Override
-//                public void onMessage(String s) {
-//                    Log.e(TAG, "onMessage: " + s);
-//                }
-//                @Override
-//                public void onClose(int i, String s, boolean b) {
-//                    Log.e(TAG, "onClose: "+s+i+b);
-//                }
-//                @Override
-//                public void onError(Exception e) {
-//                    Log.e(TAG, "onError: "+e.getMessage()+e.getCause());
-//                }
-//            };
-//            mWebSocketClient.connect();
-//
-////                SSLContext sc = null;
-////                try {
-////                    sc = SSLContext.getInstance("SSL");
-////                } catch (NoSuchAlgorithmException e) {
-////                    e.printStackTrace();
-////                }
-////                try {
-////                    sc.init(null, new TrustManager[]{new X509TrustManager() {
-////
-////                        @Override
-////                        public X509Certificate[] getAcceptedIssuers() {
-////                            // TODO Auto-generated method stub
-////                            return null;
-////                        }
-////
-////                        @Override
-////                        public void checkServerTrusted(X509Certificate[] chain, String authType)
-////                                throws CertificateException {
-////                            // TODO Auto-generated method stub
-////                        }
-////
-////                        @Override
-////                        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-////                            // TODO Auto-generated method stub
-////                        }
-////                    }}, new SecureRandom());
-////                } catch (KeyManagementException e) {
-////                    e.printStackTrace();
-////                }
-////
-////                SSLSocketFactory factory = sc.getSocketFactory();
-////                // Otherwise the line below is all that is needed.
-////                // sc.init(null, null, null);
-////                try {
-////                    mWebSocketClient.setSocket(factory.createSocket(uri.getHost(),uri.getPort()));
-////                } catch (IOException e) {
-////                    e.printStackTrace();
-////                }
-////                TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-////                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-////                        return new java.security.cert.X509Certificate[] {};
-////                    }
-////
-////                    public void checkClientTrusted(X509Certificate[] chain,
-////                                                   String authType) throws CertificateException {
-////                    }
-////
-////                    public void checkServerTrusted(X509Certificate[] chain,
-////                                                   String authType) throws CertificateException {
-////                    }
-////                } };
-////                SSLContext sc = null;
-////                try {
-////                    sc = SSLContext.getInstance("SSL");
-////                } catch (NoSuchAlgorithmException e) {
-////                    Log.e(TAG, "initWebSocket: "+e.getMessage() );
-////                    e.printStackTrace();
-////                }
-////                try {
-////                    sc.init(null, trustAllCerts, new SecureRandom());
-////                } catch (KeyManagementException e) {
-////                    Log.e(TAG, "initWebSocket: "+e.getMessage() );
-////                    e.printStackTrace();
-////                }
-////                // Otherwise the line below is all that is needed.
-////                // sc.init(null, null, null);
-////                SSLSocketFactory socketFactory = sc.getSocketFactory();
-////                try {
-////                    mWebSocketClient.setSocket(socketFactory.createSocket(uri.getHost(),uri.getPort()));
-////                } catch (IOException e) {
-////                    Log.e(TAG, "initWebSocket: "+e.getMessage() );
-////                    e.printStackTrace();
-////                }
-//        }
-//        WebSocketOptions webSocketOptions = new WebSocketOptions();
-//        webSocketOptions.setSocketConnectTimeout(1000000000);
-//        webSocketOptions.setSocketReceiveTimeout(1000000000);
-//        webSocketOptions.setTcpNoDelay(true);
-//        final WebSocketConnection mConnect = new WebSocketConnection();
-//
-//            try {
-//                mConnect.connect(address, new WebSocketHandler() {
-//                    @Override
-//                    public void onOpen() {
-//                        Log.e(TAG, "onOpen: ");
-//
-//                    }
-//                    @Override
-//                    public void onTextMessage(String payload) {
-//                        Log.e(TAG, "onTextMessage: "+payload);
-//
-//                    }
-//                    @Override
-//                    public void onClose(int code, String reason) {
-//                        Log.e(TAG, "onClose: " + code + "|" + reason);
-//                    }
-//                },webSocketOptions);
-//            } catch (WebSocketException e) {
-//                e.printStackTrace();
-//            }
 
 
         Log.e(TAG, "initWebSocket: " + address);
@@ -753,7 +632,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgNotice.setOnTouchListener(this);
         mImgAdd.setOnTouchListener(this);
         mImgCall.setOnTouchListener(this);
-        mImgRelease.setOnTouchListener(this);
 //        mImgRelease.setOnClickListener(this);
 //        mImgBack.setOnClickListener(this);
 //        mImgVideoCall.setOnClickListener(this);
@@ -787,6 +665,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Drawable drawableReCheck = getResources().getDrawable(R.drawable.recheck_selecter);
         drawableReCheck.setBounds(0, 15, 50, 65);//第一0是距左右边距离，第二0是距上下边距离，第三长度,第四宽度
         radioButtonRecheck.setCompoundDrawables(null, drawableReCheck, null, null);
+
+        Drawable drawablePublishTask = getResources().getDrawable(R.drawable.publish_task_selecter);
+        drawablePublishTask.setBounds(0, 15, 50, 65);//第一0是距左右边距离，第二0是距上下边距离，第三长度,第四宽度
+        radioButtonPublishTask.setCompoundDrawables(null, drawablePublishTask, null, null);
         //显示第一个fragment
         mShowFragment = new HomePageNewFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -804,13 +686,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgNotice = (ImageView) findViewById(R.id.main_iv_message);
         mImgCall = (ImageView) findViewById(R.id.main_img_call);
         mImgAdd = (ImageView) findViewById(R.id.main_img_add);
-        mImgRelease = (ImageView) findViewById(R.id.main_img_release);
         mRadioGroup = (RadioGroup) findViewById(R.id.rg_main);
         radioButtonHomepage = (RadioButton) findViewById(R.id.rb_main_homepage);
         radioButtonCheck = (RadioButton) findViewById(R.id.rb_main_check);
         radioButtonNewCheck = (RadioButton) findViewById(R.id.rb_main_new_check);
         radioButtonCheckProgress = (RadioButton) findViewById(R.id.rb_main_check_progress);
         radioButtonRecheck = (RadioButton) findViewById(R.id.rb_main_recheck);
+        radioButtonPublishTask = (RadioButton) findViewById(R.id.rb_main_publish_task);
     }
 
     @Override
@@ -841,7 +723,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mTvTitle.setText("复查流程");
                 switchPages(ReCheckFragment.TAG, ReCheckFragment.class);
                 break;
-
+            case R.id.rb_main_publish_task:
+                mTvTitle.setText("发布任务");
+                switchPages(PublishTaskFragment.TAG, PublishTaskFragment.class);
+                break;
 
         }
     }
@@ -884,8 +769,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @date 2017/11/28 9:48
      */
     private void registerGpsListener() {
-        //是否在时间段内
-        isTimeToOpenGps = TimeUtil.isTimeToOpenGps(getApplicationContext());
+
         initGPS(true);
 //        }
     }
@@ -1072,11 +956,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("which", "add");
                 startActivity(intent);
                 break;
-            case R.id.main_img_release:
-                intent = new Intent();
-                intent.setClass(MainActivity.this, ReleaseActivity.class);
-                startActivity(intent);
-                break;
+
         }
         //设置menu的点击事件
 //        private ImageView imgNotice;

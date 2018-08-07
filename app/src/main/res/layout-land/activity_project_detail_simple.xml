@@ -54,7 +54,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="150dp"
             android:background="@mipmap/check_project_btn_border"
-            android:text="提交"
+            android:text="下一项"
             android:textColor="@color/homepage_text_press" />
     </LinearLayout>
 

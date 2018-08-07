@@ -6,11 +6,14 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.ContentObserver;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -102,42 +105,47 @@ public class GpsService extends Service {
                         }
                     });
                     //上传数据到服务器
-                    if (longitude == null) {
-                        Toast.makeText(getApplicationContext(), "正在获取位置信息，请稍候", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Constant.LOCATION_INFO = longitude + "," + latitude;
-                        Log.e(TAG, "handler: " + Constant.LOCATION_INFO.length());
-                        Log.e(TAG, "handleMessage: " + loginType + " " + longitude + " " + latitude);
-                        if (Constant.LOCATION_INFO.length() > 2) {
-                            OkHttpUtils.post().url(Constant.SERVER_URL + "/baseStaffPolyline/save")
-                                    .addParams("zhId", Constant.ACCOUNT_ID)
-                                    .addParams("zhlx", loginType)
-                                    .addParams("jd", longitude)
-                                    .addParams("wd", latitude)
-                                    .build()
-                                    .execute(new StringCallback() {
-                                        @Override
-                                        public void onError(Request request, Exception e) {
-                                            Log.e(TAG, "onError: " + e.getMessage() + "存坐标");
-                                        }
+                    if (gpsIsOpen) {//如果gps打开就上传位置到服务器
+                        if (longitude == null) {
+                            Toast.makeText(getApplicationContext(), "正在获取位置信息，请稍候", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Constant.LOCATION_INFO = longitude + "," + latitude;
+                            Log.e(TAG, "handler: " + Constant.LOCATION_INFO.length());
+                            Log.e(TAG, "handleMessage: " + loginType + " " + longitude + " " + latitude);
+                            if (Constant.LOCATION_INFO.length() > 2) {
+                                OkHttpUtils.post().url(Constant.SERVER_URL + "/baseStaffPolyline/save")
+                                        .addParams("zhId", Constant.ACCOUNT_ID)
+                                        .addParams("zhlx", loginType)
+                                        .addParams("jd", longitude)
+                                        .addParams("wd", latitude)
+                                        .build()
+                                        .execute(new StringCallback() {
+                                            @Override
+                                            public void onError(Request request, Exception e) {
+                                                Log.e(TAG, "onError: " + e.getMessage() + "存坐标");
+                                            }
 
-                                        @Override
-                                        public void onResponse(String response) {
-                                            LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
-                                            if (!infoModel.isData()) {
-                                                if (infoModel.getMsg().equals("登录失效")) {
-                                                    boolean serviceRunning = ServiceUtils.isServiceRunning(getApplicationContext(), "com.example.lzc.myspms.GpsService");
-                                                    if (serviceRunning) {
-                                                        ServiceUtils.stopMyService(getApplicationContext(), "com.example.lzc.myspms.GpsService");
+                                            @Override
+                                            public void onResponse(String response) {
+                                                LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                                                if (!infoModel.isData()) {
+                                                    if (infoModel.getMsg().equals("登录失效")) {
+                                                        boolean serviceRunning = ServiceUtils.isServiceRunning(getApplicationContext(), "com.example.lzc.myspms.GpsService");
+                                                        if (serviceRunning) {
+                                                            ServiceUtils.stopMyService(getApplicationContext(), "com.example.lzc.myspms.GpsService");
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-                                    });
-                        } else {
-                            Log.e(TAG, "handleMessage: 还没有获取到正确的坐标点");
+                                        });
+                            } else {
+                                Log.e(TAG, "handleMessage: 还没有获取到正确的坐标点");
+                            }
                         }
+                    }else{
+                        Log.e(TAG, "handleMessage: gps被手动关闭了" );
                     }
+
 //                    Log.e(TAG, "handleMessage: 测试死机" );
                     break;
                 default:
@@ -153,6 +161,22 @@ public class GpsService extends Service {
     private Notification notification;
     private PowerManager pm;
     private PowerManager.WakeLock wakeLock;
+    private LocationManager locationManager;
+    private boolean gpsIsOpen = true;
+    private final ContentObserver mGpsMonitor = new ContentObserver(null) {
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+
+            boolean enabled = locationManager
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
+            if (enabled) {
+                gpsIsOpen = true;
+            }else{
+                gpsIsOpen = false;
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -163,6 +187,11 @@ public class GpsService extends Service {
     @Override
     public void onCreate() {
         timer = new Timer();
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        getContentResolver()
+                .registerContentObserver(
+                        Settings.Secure
+                                .getUriFor(Settings.System.LOCATION_PROVIDERS_ALLOWED), false, mGpsMonitor);
         super.onCreate();
     }
 
@@ -174,6 +203,8 @@ public class GpsService extends Service {
         //保持cpu一直运行，不管屏幕是否黑屏
         wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "CPUKeepRunning");
         wakeLock.acquire();
+
+
     }
 
     @Override
@@ -192,6 +223,7 @@ public class GpsService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        getContentResolver().unregisterContentObserver(mGpsMonitor);
         Log.e(TAG, "onDestroy: ");
         if (wakeLock != null) {
             wakeLock.release();

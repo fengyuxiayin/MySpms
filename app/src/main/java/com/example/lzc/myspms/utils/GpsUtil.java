@@ -56,6 +56,7 @@ public class GpsUtil {
         isOpen = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         return isOpen;
     }
+
     /**
      *
      *@desc

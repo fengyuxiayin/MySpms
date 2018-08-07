@@ -36,6 +36,7 @@ import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.activitys.VideoCallActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.newcheckactivitys.PreviewActivity;
+import com.example.lzc.myspms.activitys.homepageactivitys.newcheckactivitys.PreviewSdActivity;
 import com.example.lzc.myspms.adapters.ImageGridAdapter;
 import com.example.lzc.myspms.adapters.MyPrintAdapter;
 import com.example.lzc.myspms.adapters.ProjectRecheckSimpleAdapter;
@@ -147,7 +148,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         rwId = getIntent().getStringExtra("rwId");
         jcsj = getIntent().getStringExtra("jcsj");
         zgqx = getIntent().getStringExtra("zgqx");
-        Log.e(TAG, "onCreate: rwzt" + rwzt+"jcjg"+jcjg+"zgqx"+zgqx);
+        Log.e(TAG, "onCreate: rwzt" + rwzt+"jcjg"+jcjg+"zgqx"+zgqx+"jcId"+jcId);
         initView();
         initData();
         initListener();
@@ -849,9 +850,17 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         final String scnr = instrumentMsgModel.getList().get(0).getScnr();
         Log.e(TAG, "downloadAndPrint: " + Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
-//        if (file.exists()) {
-//
-//        }else{
+        if (file.exists()) {
+            if (isReview) {
+                Intent intent = new Intent();
+                intent.putExtra("scnr",scnr);
+                intent.setClass(CheckProjectActivity.this, PreviewSdActivity.class);
+                startActivity(intent);
+            } else {
+//                                    onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr(),null);
+                onPrintPdf(Constant.UPLOAD_IMG_IP + scnr,null);
+            }
+        }else{
             OkHttpUtils.get()
                     .url(Constant.UPLOAD_IMG_IP + scnr)
                     .build()
@@ -894,6 +903,8 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                     Log.e(TAG, "onResponse: " + Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
                                     intent.putExtra("url", Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
                                     startActivity(intent);
+                                    intent.setClass(CheckProjectActivity.this, PreviewSdActivity.class);
+                                    startActivity(intent);
                                 } else {
 //                                    onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr(),null);
                                     onPrintPdf(Constant.UPLOAD_IMG_IP + scnr,null);
@@ -903,7 +914,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                             }
                         }
                     });
-//        }
+        }
 
     }
 
