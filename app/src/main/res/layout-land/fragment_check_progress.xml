@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:background="@mipmap/homepage_bg"
     android:orientation="vertical">
 
@@ -573,6 +574,7 @@
                 android:descendantFocusability="blocksDescendants"
                 android:layout_marginBottom="2dp"
                 android:divider="@null"
+                ptr:ptrDrawable="@drawable/edit_delete_icon"
                 android:scrollbars="none">
 
             </com.handmark.pulltorefresh.library.PullToRefreshListView>

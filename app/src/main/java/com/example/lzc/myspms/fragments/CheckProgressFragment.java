@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +37,7 @@ import com.example.lzc.myspms.utils.DateUtil;
 import com.example.lzc.myspms.utils.GpsUtil;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.squareup.okhttp.Request;
@@ -207,6 +209,7 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
+            page = 1;
             getData();
         }
     }
@@ -217,7 +220,7 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/checkInfo/find")
                 .addParams("pn", page + "")
-                .addParams("size", "10")
+                .addParams("size", "20")
                 .addParams("jcdwlx", Constant.ACCOUNT_TYPE)
                 .addParams("jcdwId", Constant.ENTERPRISE_ID)
                 .addParams("rwmc", rwmc)
@@ -262,13 +265,32 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
                                 listView.onRefreshComplete();
                             } else {
                                 checkProgressAdapter = new CheckProgressAdapter(list, getContext(), getActivity(), "2");
-                                listView.getRefreshableView().smoothScrollToPosition((page - 1) * 10);
+                                ListView refreshableView = listView.getRefreshableView();
+                                refreshableView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                                    @Override
+                                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                                        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                                            Log.e(TAG, "onScrollStateChanged: 精致不动" );
+                                            checkProgressAdapter.setScrollTdle(true);
+                                            checkProgressAdapter.notifyDataSetChanged();
+                                        } else {
+                                            Log.e(TAG, "onScrollStateChanged: 还在滑动" );
+                                            checkProgressAdapter.setScrollTdle(false);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                                    }
+                                });
+                                listView.getRefreshableView().smoothScrollToPosition((page - 1) * 20+1);
                                 if (page > 1) {
-                                    checkProgressAdapter.notifyDataSetChanged();
                                 } else {
                                     listView.setAdapter(checkProgressAdapter);
                                 }
                                 listView.onRefreshComplete();
+
                             }
                         } else {
                             Toast.makeText(getContext(), newCheckInfoModel.getMsg(), Toast.LENGTH_SHORT).show();

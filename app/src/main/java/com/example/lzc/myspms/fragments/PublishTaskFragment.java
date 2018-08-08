@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -69,6 +70,7 @@ public class PublishTaskFragment extends BaseFragment {
     private int page = 1;
     private ClearEditText etChangePage;
     private Button btnTurn;
+    private CheckTaskAdapter checkTaskAdapter;
 
     @Nullable
     @Override
@@ -92,6 +94,7 @@ public class PublishTaskFragment extends BaseFragment {
                 setDate(etDate);
             }
         });
+
         btnTurn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,10 +257,9 @@ public class PublishTaskFragment extends BaseFragment {
                 .addParams("jcdwId", Constant.ENTERPRISE_ID)
                 .addParams("rwlx", "1")
                 .addParams("pn", page + "")
-                .addParams("size", "10")
+                .addParams("size", "20")
                 .build()
                 .execute(new StringCallback() {
-                    private CheckTaskAdapter checkTaskAdapter;
                     private CheckTaskModel.CheckTaskMsgModel checkTaskMsgModel;
                     private CheckTaskModel checkTaskModel;
 
@@ -274,9 +276,26 @@ public class PublishTaskFragment extends BaseFragment {
                             checkTaskMsgModel = gson.fromJson(checkTaskModel.getMsg(), CheckTaskModel.CheckTaskMsgModel.class);
                             List<CheckTaskModel.CheckTaskMsgModel.ListBean> list = checkTaskMsgModel.getList();
                             if (list != null) {
-                                etChangePage.setHint("输入页码（范围1-"+(checkTaskMsgModel.getTotal()+10)/10+")");
+                                etChangePage.setHint("输入页码（范围1-"+(checkTaskMsgModel.getTotal()+20)/20+")");
                                 checkTaskAdapter = new CheckTaskAdapter(list, getActivity());
                                 listViewShow.setAdapter(checkTaskAdapter);
+                                //下面代码是优化listview滑动卡顿问题的
+                                listViewShow.setOnScrollListener(new AbsListView.OnScrollListener() {
+                                    @Override
+                                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                                        if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                                            checkTaskAdapter.setScrollTdle(true);
+                                            checkTaskAdapter.notifyDataSetChanged();
+                                        } else {
+                                            checkTaskAdapter.setScrollTdle(false);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                                    }
+                                });
 //                                CommonAdapter<CheckTaskModel.CheckTaskMsgModel.ListBean> commonAdapter = new CommonAdapter<CheckTaskModel.CheckTaskMsgModel.ListBean>(getContext(), list, R.layout.activity_release_item) {
 //
 //                                    @Override

@@ -49,6 +49,8 @@ public class CheckProgressAdapter extends BaseAdapter implements View.OnClickLis
     private TextView tvCompony;
     private TextView tvSupervision;
     private TextView tvDate;
+    private boolean isIdle = true;
+
 
     public CheckProgressAdapter(List<NewCheckInfoModel.NewCheckMsgInfoModel.ListBean> data, Context context, Activity activity, String rwzt) {
         if (data == null) {
@@ -91,28 +93,21 @@ public class CheckProgressAdapter extends BaseAdapter implements View.OnClickLis
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
-
         }
-
-        holder.tvType.setText((position+1)+"");
-//        if (data.get(position).getJcjg()==0) {
-//            tvStatus.setText("不合格");
-//        }else if(data.get(position).getJcjg()==0){
-//            tvStatus.setText("合格");
-//        }else{
-//            tvStatus.setText("未检查");
-//        }
-        // TODO: 2018/6/21 不合格数量
-        holder.tvUnqualifiedNumber.setText(data.get(position).getUnPassCount()+"");
-        String qyJson = data.get(position).getQyJson();
-        QyJsonModel qyJsonModel = gson.fromJson(qyJson, QyJsonModel.class);
-        holder.tvCompony.setText(qyJsonModel.getQymc());
-        holder.tvSupervision.setText(data.get(position).getJgfj());
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        if (data.get(position).getJzsj() > 0) {
-            format = simpleDateFormat.format(new Date(data.get(position).getJzsj()));
+        if (this.isIdle) {
+            Log.e(TAG, "getView: "+isIdle );
+            holder.tvType.setText((position+1)+"");
+            holder.tvUnqualifiedNumber.setText(data.get(position).getUnPassCount()+"");
+            String qyJson = data.get(position).getQyJson();
+            QyJsonModel qyJsonModel = gson.fromJson(qyJson, QyJsonModel.class);
+            holder.tvCompony.setText(qyJsonModel.getQymc());
+            holder.tvSupervision.setText(data.get(position).getJgfj());
+            simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            if (data.get(position).getJzsj() > 0) {
+                format = simpleDateFormat.format(new Date(data.get(position).getJzsj()));
+            }
+            holder.tvDate.setText(format);
         }
-        holder.tvDate.setText(format);
 //        tvStatus
         return convertView;
     }
@@ -122,6 +117,9 @@ public class CheckProgressAdapter extends BaseAdapter implements View.OnClickLis
 //        if (v != null) {
         final int position = (int) v.getTag();
 
+    }
+    public void setScrollTdle(boolean isIdle){
+        this.isIdle = isIdle;
     }
     public static class ViewHolder{
         private TextView tvType;

@@ -38,6 +38,7 @@ public class CheckTaskAdapter extends BaseAdapter {
     private Gson gson = new Gson();
     private Context context;
     private Activity activity;
+    private boolean isIdle = true;
 
     public CheckTaskAdapter(List<CheckTaskModel.CheckTaskMsgModel.ListBean> data, Context context) {
         if (data==null) {
@@ -81,15 +82,17 @@ public class CheckTaskAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
-        if (position==0) {
-            holder.line.setVisibility(View.GONE);
+        Log.e(TAG, "getView: "+position );
+//        if (position==0) {
+//            holder.line.setVisibility(View.GONE);
+//        }
+        if (isIdle) {
+            holder.tvRwmc.setText(data.get(position).getRwmc());
+            holder.tvDate.setText(DateUtil.long2Date(data.get(position).getJzsj()));
+            holder.tvjcdx.setText(data.get(position).getJcdx());
+            holder.tvjczt.setText(data.get(position).getJczt());
+            holder.tvProgress.setText(data.get(position).getRwjd()+"%");
         }
-        holder.tvRwmc.setText(data.get(position).getRwmc());
-        holder.tvDate.setText(DateUtil.long2Date(data.get(position).getJzsj()));
-        holder.tvjcdx.setText(data.get(position).getJcdx());
-        holder.tvjczt.setText(data.get(position).getJczt());
-        holder.tvProgress.setText(data.get(position).getRwjd()+"%");
-
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -135,6 +138,9 @@ public class CheckTaskAdapter extends BaseAdapter {
             }
         });
         return convertView;
+    }
+    public void setScrollTdle(boolean isIdle){
+        this.isIdle = isIdle;
     }
     public class ViewHolder{
         TextView tvRwmc;
