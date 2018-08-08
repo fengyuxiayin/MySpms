@@ -30,6 +30,8 @@ import com.example.lzc.myspms.adapters.MyFilterAdapter;
 import com.example.lzc.myspms.adapters.ReCheckInfoAdapter;
 import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
 import com.example.lzc.myspms.custom.ClearEditText;
+import com.example.lzc.myspms.custom.CommonAdapter;
+import com.example.lzc.myspms.custom.ViewHolder;
 import com.example.lzc.myspms.models.CheckTaskModel;
 import com.example.lzc.myspms.models.Constant;
 import com.example.lzc.myspms.models.EnterpriseInfoQueryModel;
@@ -122,7 +124,7 @@ public class PublishTaskFragment extends BaseFragment {
                         .addParams("startDate", etDate.getText().toString().trim())
                         .addParams("endDate", etDate.getText().toString().trim())
                         .addParams("qyItem", gson.toJson(qyItems))
-                        .addParams("jcbzId","2")
+                        .addParams("jcbzId", "2")
                         .build()
                         .execute(new StringCallback() {
                             @Override
@@ -250,6 +252,17 @@ public class PublishTaskFragment extends BaseFragment {
                             if (list != null) {
                                 checkTaskAdapter = new CheckTaskAdapter(list, getActivity());
                                 listViewShow.setAdapter(checkTaskAdapter);
+//                                CommonAdapter<CheckTaskModel.CheckTaskMsgModel.ListBean> commonAdapter = new CommonAdapter<CheckTaskModel.CheckTaskMsgModel.ListBean>(getContext(), list, R.layout.activity_release_item) {
+//
+//                                    @Override
+//                                    public void convert(ViewHolder helper, CheckTaskModel.CheckTaskMsgModel.ListBean item, int position) {
+//                                        View line = helper.getView(R.id.activity_release_item_line);
+//                                        TextView tvRwmc = helper.getView(R.id.activity_release_item_rwmc);
+//                                        tvRwmc.setText(item.getRwmc());
+//                                    }
+//                                };
+//                                listViewShow.setAdapter(commonAdapter);
+
                             }
                         } else {
                             Toast.makeText(getActivity(), checkTaskModel.getMsg(), Toast.LENGTH_SHORT).show();

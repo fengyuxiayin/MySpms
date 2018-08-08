@@ -161,10 +161,10 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             componyInfo = (FindByIdWithStaffModel.FindByIdWithStaffMsgModel) getArguments().getSerializable("componyInfo");
         }
     }
-
     private void initData() {
         commonList.add(new EnumModel("1", "是"));
         commonList.add(new EnumModel("2", "否"));
+        //监管分类
         initEnumData("/enum/getEnums", "REGULATORY_TYPE", dataRegulatory);
         //重点等级 我仅仅是把key换了 dataRegulatoryLevel的名字没有换
         initEnumData("/enum/getEnums", "KEY_ENTERPRISES_LEVEL", dataRegulatoryLevel);
