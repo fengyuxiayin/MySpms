@@ -38,6 +38,7 @@ import com.example.lzc.myspms.models.EnterpriseInfoQueryModel;
 import com.example.lzc.myspms.models.LoginInfoModel;
 import com.example.lzc.myspms.models.NewCheckInfoModel;
 import com.example.lzc.myspms.utils.NetUtil;
+import com.example.lzc.myspms.utils.ValidateUtil;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -65,6 +66,9 @@ public class PublishTaskFragment extends BaseFragment {
     private Button btnCommit;
     private List<String> dataList;
     private PullToRefreshListView listViewShow;
+    private int page = 1;
+    private ClearEditText etChangePage;
+    private Button btnTurn;
 
     @Nullable
     @Override
@@ -86,6 +90,22 @@ public class PublishTaskFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 setDate(etDate);
+            }
+        });
+        btnTurn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = etChangePage.getText().toString();
+                if (content.length() <1) {
+                    Toast.makeText(getContext(), "请先输入要前往的页码", Toast.LENGTH_SHORT).show();
+                }else{
+                    if (ValidateUtil.isNumeric(content)) {
+                        page = Integer.parseInt(content);
+                        getTaskFromServer();
+                    }else{
+                        Toast.makeText(getContext(), "请输入数字（大于0）", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         btnCommit.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +144,7 @@ public class PublishTaskFragment extends BaseFragment {
                         .addParams("startDate", etDate.getText().toString().trim())
                         .addParams("endDate", etDate.getText().toString().trim())
                         .addParams("qyItem", gson.toJson(qyItems))
-                        .addParams("jcbzId", "2")
+                        .addParams("jcbzId", "2")//不知道有没有必要传
                         .build()
                         .execute(new StringCallback() {
                             @Override
@@ -137,7 +157,9 @@ public class PublishTaskFragment extends BaseFragment {
                                 Log.e(TAG, "onResponse: " + response);
                                 LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
                                 if (infoModel.isData()) {
+                                    page = 1;
                                     getTaskFromServer();
+                                    filterAdapter.clearData();
                                 }
                                 Toast.makeText(getActivity(), infoModel.getMsg(), Toast.LENGTH_SHORT).show();
                             }
@@ -231,6 +253,8 @@ public class PublishTaskFragment extends BaseFragment {
                 .addParams("jcdwlx", Constant.ACCOUNT_TYPE)
                 .addParams("jcdwId", Constant.ENTERPRISE_ID)
                 .addParams("rwlx", "1")
+                .addParams("pn", page + "")
+                .addParams("size", "10")
                 .build()
                 .execute(new StringCallback() {
                     private CheckTaskAdapter checkTaskAdapter;
@@ -250,6 +274,7 @@ public class PublishTaskFragment extends BaseFragment {
                             checkTaskMsgModel = gson.fromJson(checkTaskModel.getMsg(), CheckTaskModel.CheckTaskMsgModel.class);
                             List<CheckTaskModel.CheckTaskMsgModel.ListBean> list = checkTaskMsgModel.getList();
                             if (list != null) {
+                                etChangePage.setHint("输入页码（范围1-"+(checkTaskMsgModel.getTotal()+10)/10+")");
                                 checkTaskAdapter = new CheckTaskAdapter(list, getActivity());
                                 listViewShow.setAdapter(checkTaskAdapter);
 //                                CommonAdapter<CheckTaskModel.CheckTaskMsgModel.ListBean> commonAdapter = new CommonAdapter<CheckTaskModel.CheckTaskMsgModel.ListBean>(getContext(), list, R.layout.activity_release_item) {
@@ -290,7 +315,9 @@ public class PublishTaskFragment extends BaseFragment {
         etEnterprise = (ClearEditText) view.findViewById(R.id.activity_release_et_enterprise);
         etRwmc = (ClearEditText) view.findViewById(R.id.activity_release_et_rwmc);
         etDate = (ClearEditText) view.findViewById(R.id.activity_release_et_date);
+        etChangePage = (ClearEditText) view.findViewById(R.id.activity_release_et_pagechange);
         btnCommit = (Button) view.findViewById(R.id.activity_release_btn_commit);
         listViewShow = (PullToRefreshListView) view.findViewById(R.id.activity_release_lv_show);
+        btnTurn = (Button) view.findViewById(R.id.activity_release_btn_turn);
     }
 }

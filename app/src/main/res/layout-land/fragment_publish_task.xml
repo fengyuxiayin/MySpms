@@ -4,8 +4,7 @@
     android:id="@+id/activity_release"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/homepage_bg"
-    tools:context="com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.ReleaseActivity">
+    android:background="@mipmap/homepage_bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,11 +13,11 @@
         android:background="@mipmap/check_project_all_border"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/fragment_homepage_text_title_style"
-            android:layout_gravity="center_horizontal"
-            android:background="@mipmap/title"
-            android:text="发布每日任务" />
+        <!--<TextView-->
+            <!--style="@style/fragment_homepage_text_title_style"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:background="@mipmap/title"-->
+            <!--android:text="发布每日任务" />-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -98,7 +97,7 @@
                     android:id="@+id/activity_release_lv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="6"
+                    android:layout_weight="5"
                     android:layout_marginLeft="10dp">
 
                 </ListView>
@@ -180,9 +179,35 @@
                 <com.handmark.pulltorefresh.library.PullToRefreshListView
                     android:id="@+id/activity_release_lv_show"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
                     >
                 </com.handmark.pulltorefresh.library.PullToRefreshListView>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <com.example.lzc.myspms.custom.ClearEditText
+                        android:id="@+id/activity_release_et_pagechange"
+                        style="@style/add_enterprise_edittext_style"
+                        android:layout_width="200dp"
+                        android:layout_margin="8dp"
+                        android:textColorHint="@color/hintGray"
+                        android:layout_height="match_parent" />
+                    <Button
+                        android:id="@+id/activity_release_btn_turn"
+                        android:layout_width="100dp"
+                        android:text="前往"
+                        android:textColor="@color/homepage_text_press"
+                        android:background="@mipmap/check_project_btn_border"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
         </LinearLayout>
 

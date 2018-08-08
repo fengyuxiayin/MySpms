@@ -848,12 +848,12 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
      */
     private void downloadAndPrint(final InstrumentModel.InstrumentMsgModel instrumentMsgModel) {
         final String scnr = instrumentMsgModel.getList().get(0).getScnr();
-        Log.e(TAG, "downloadAndPrint: " + Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
         if (file.exists()) {
             if (isReview) {
                 Intent intent = new Intent();
-                intent.putExtra("scnr",scnr);
+                Log.e(TAG, "downloadAndPrint: "+scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()) );
+                intent.putExtra("scnr",scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
                 intent.setClass(CheckProjectActivity.this, PreviewSdActivity.class);
                 startActivity(intent);
             } else {
@@ -903,8 +903,8 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                     Log.e(TAG, "onResponse: " + Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
                                     intent.putExtra("url", Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr());
                                     startActivity(intent);
-                                    intent.setClass(CheckProjectActivity.this, PreviewSdActivity.class);
-                                    startActivity(intent);
+//                                    intent.setClass(CheckProjectActivity.this, PreviewSdActivity.class);
+//                                    startActivity(intent);
                                 } else {
 //                                    onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr(),null);
                                     onPrintPdf(Constant.UPLOAD_IMG_IP + scnr,null);
