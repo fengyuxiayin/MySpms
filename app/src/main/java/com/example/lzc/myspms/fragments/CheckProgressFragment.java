@@ -777,6 +777,8 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
                                     intent.putExtra("qyJson", list.get(pos).getQyJson());
                                     intent.putExtra("rwId", list.get(pos).getRwId() + "");
                                     intent.putExtra("jcsj", DateUtil.long2Date(list.get(pos).getKssj()));
+                                    intent.putExtra("zgqx",list.get(pos).getZgqx()+"");
+                                    Log.e(TAG, "onItemClick: "+list.get(pos).getZgqx()+"" );
                                     intent.setClass(getContext(), CheckProjectActivity.class);
                                     getActivity().startActivity(intent);
 //                                Toast.makeText(activity, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
@@ -794,6 +796,8 @@ public class CheckProgressFragment extends BaseFragment implements AdapterView.O
                 intent.putExtra("qyJson", list.get(pos).getQyJson());
                 intent.putExtra("rwId", list.get(pos).getRwId() + "");
                 intent.putExtra("jcsj", DateUtil.long2Date(list.get(pos).getKssj()));
+                intent.putExtra("zgqx",list.get(pos).getZgqx()+"");
+                Log.e(TAG, "onItemClick: "+list.get(pos).getZgqx()+"" );
                 intent.setClass(getContext(), CheckProjectActivity.class);
                 getActivity().startActivity(intent);
             }

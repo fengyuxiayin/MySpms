@@ -22,7 +22,7 @@
         android:layout_height="35dp">
         <com.example.lzc.myspms.custom.AutoFitTextView
             style="@style/fragment_homepage_text_title_style"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:text="企业名称"
             android:textSize="15sp"
@@ -46,6 +46,14 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:text="检查单位"
+            android:textSize="15sp"
+
+            android:layout_height="match_parent"/>
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            style="@style/fragment_homepage_text_title_style"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="操作"
             android:textSize="15sp"
 
             android:layout_height="match_parent"/>

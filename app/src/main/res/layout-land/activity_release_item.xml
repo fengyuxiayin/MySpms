@@ -18,8 +18,9 @@
             android:layout_width="0dp"
             android:textColor="@color/white"
             android:text="任务名称"
+            android:layout_gravity="center"
             android:textSize="15sp"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/activity_release_item_date"
             style="@style/fragment_homepage_text_title_style"
@@ -27,8 +28,9 @@
             android:layout_width="0dp"
             android:text="计划完成时间"
             android:textColor="@color/white"
+            android:layout_gravity="center"
             android:textSize="15sp"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/activity_release_item_jcdx"
             style="@style/fragment_homepage_text_title_style"
@@ -36,8 +38,9 @@
             android:layout_width="0dp"
             android:text="检查对象"
             android:textColor="@color/white"
+            android:layout_gravity="center"
             android:textSize="15sp"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/activity_release_item_jczt"
             style="@style/fragment_homepage_text_title_style"
@@ -45,17 +48,26 @@
             android:layout_width="0dp"
             android:text="检查主体"
             android:textColor="@color/white"
+            android:layout_gravity="center"
             android:textSize="15sp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/activity_release_item_progress"
             style="@style/fragment_homepage_text_title_style"
             android:layout_weight="2"
             android:layout_width="0dp"
             android:text="任务进度"
+            android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/activity_release_item_operation"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@mipmap/delete"
+            android:layout_gravity="center"
+            android:layout_height="30dp"/>
     </LinearLayout>
 
 

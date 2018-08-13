@@ -571,7 +571,6 @@
                 android:id="@+id/activity_check_progress_pulltorefresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:descendantFocusability="blocksDescendants"
                 android:layout_marginBottom="2dp"
                 android:divider="@null"
                 ptr:ptrDrawable="@drawable/edit_delete_icon"

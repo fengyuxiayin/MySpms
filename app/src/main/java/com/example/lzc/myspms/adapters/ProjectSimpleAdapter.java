@@ -106,7 +106,11 @@ public class ProjectSimpleAdapter extends BaseAdapter {
         }
         if (this.jcjg!=null) {
             if (this.jcjg.equals("1")) {
+                Log.e(TAG, "getView: 1111"+jcjg );
                 holder.ivProjectEdit.setImageResource(R.mipmap.new_check_img_view);
+            }else{
+                Log.e(TAG, "getView: 2222"+jcjg );
+
             }
         }
         // TODO: 2018/6/18 项目类别还没写

@@ -209,6 +209,12 @@ public class PublishTaskFragment extends BaseFragment {
 
     private void initData() {
         //获取小组管辖的企业
+        getCommunityEnterprise();
+        //获取小组发布的任务
+        getTaskFromServer();
+    }
+
+    private void getCommunityEnterprise() {
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/find")
                 .addParams("size", "10000")
@@ -246,8 +252,6 @@ public class PublishTaskFragment extends BaseFragment {
                         }
                     }
                 });
-        //获取小组发布的任务
-        getTaskFromServer();
     }
 
     private void getTaskFromServer() {
@@ -326,6 +330,7 @@ public class PublishTaskFragment extends BaseFragment {
         super.onHiddenChanged(hidden);
         if (!hidden) {
             getTaskFromServer();
+            getCommunityEnterprise();
         }
     }
 

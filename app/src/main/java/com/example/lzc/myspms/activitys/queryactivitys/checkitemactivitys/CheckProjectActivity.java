@@ -196,8 +196,6 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
 
     //
     private void initData() {
-        //获取检查信息
-        getCheckInfo();
         if (jclx.equals("1")&&!rwzt.equals("1")) {
             etChangeTime.setVisibility(View.VISIBLE);
             tvChangeTime.setVisibility(View.VISIBLE);
@@ -209,14 +207,21 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                 tvChangeTime.setVisibility(View.VISIBLE);
                 etChangeTime.setVisibility(View.GONE);
             }else{
-                Log.e(TAG, "initData: "+ zgqx.equals("null"));
-                if (zgqx.length()>9) {
-                    etChangeTime.setVisibility(View.GONE);
-                    tvChangeTime.setVisibility(View.GONE);
-                }else{
-                    etChangeTime.setVisibility(View.VISIBLE);
-                    tvChangeTime.setVisibility(View.VISIBLE);
-                }
+
+                    if (zgqx!=null) {
+                        Log.e(TAG, "initData: zgqx"+zgqx );
+                        if (zgqx.length()>9) {
+                            etChangeTime.setVisibility(View.GONE);
+                            tvChangeTime.setVisibility(View.GONE);
+                        }else{
+                            etChangeTime.setVisibility(View.VISIBLE);
+                            tvChangeTime.setVisibility(View.VISIBLE);
+                        }
+                    }else{
+                        etChangeTime.setVisibility(View.GONE);
+                        tvChangeTime.setVisibility(View.GONE);
+                    }
+
 
             }
 
@@ -254,31 +259,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         listView.getLoadingLayoutProxy(false, true).setReleaseLabel("放开以加载");
     }
 
-    private void getCheckInfo() {
-        Log.e(TAG, "getCheckInfo: "+jcId );
-        OkHttpUtils.post()
-                .url(Constant.SERVER_URL+"/checkReport/checkMessage")
-                .addParams("id",jcId)
-                .build()
-                .execute(new StringCallback() {
 
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        Log.e(TAG, "onError: /checkReport/checkMessage"+e.getMessage() );
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e(TAG, "onResponse: /checkReport/checkMessage"+response );
-                        CheckMessageModel checkMessageModel = gson.fromJson(response, CheckMessageModel.class);
-                        if (checkMessageModel.isData()) {
-                            checkMessageMsgModel = gson.fromJson(checkMessageModel.getMsg(), CheckMessageModel.CheckMessageMsgModel.class);
-                        }else{
-                            Toast.makeText(CheckProjectActivity.this, checkMessageModel.getMsg(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
 
     private void initCommunityData() {
         OkHttpUtils.get()
@@ -424,11 +405,12 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                             }
                             if (list.size() == 0) {
                                 //显示项目信息
-                                projectAdapter = new ProjectSimpleAdapter(list, CheckProjectActivity.this, jcId, rwzt, jcxmlx, qyJsonModel.getQymc());
+                                projectAdapter = new ProjectSimpleAdapter(list, CheckProjectActivity.this, jcId, jcjg, jcxmlx, qyJsonModel.getQymc());
                                 listView.setAdapter(projectAdapter);
                                 listView.onRefreshComplete();
                             } else {
-                                projectAdapter = new ProjectSimpleAdapter(list, CheckProjectActivity.this, jcId, rwzt, jcxmlx, qyJsonModel.getQymc());
+                                Log.e(TAG, "onResponse: jcjg1111"+jcjg );
+                                projectAdapter = new ProjectSimpleAdapter(list, CheckProjectActivity.this, jcId, jcjg, jcxmlx, qyJsonModel.getQymc());
                                 listView.getRefreshableView().smoothScrollToPosition((page - 1) * 10);
                                 if (page > 1) {
                                     projectAdapter.notifyDataSetChanged();
@@ -927,11 +909,8 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         PrintManager printManager = (PrintManager) CheckProjectActivity.this.getSystemService(Context.PRINT_SERVICE);
         PrintAttributes.Builder builder = new PrintAttributes.Builder();
         builder.setColorMode(PrintAttributes.COLOR_MODE_COLOR);
-        if (checkMessageMsgModel!=null) {
-            printManager.print("test pdf print", new MyPrintAdapter(this,url,checkMessageMsgModel), builder.build());
-        }else{
-            Toast.makeText(this, "获取检查信息为空，请联系开发者", Toast.LENGTH_SHORT).show();
-        }
+            printManager.print("test pdf print", new MyPrintAdapter(this,url,jcId), builder.build());
+
 //        printManager.print("test pdf print", new MyPrintAdapter(this, url, "ddd", "13455209261", "2018-06-12", "2018-06-12", "hahah", 5), builder.build());
     }
 

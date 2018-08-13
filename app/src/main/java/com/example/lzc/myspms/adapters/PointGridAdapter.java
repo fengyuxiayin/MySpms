@@ -107,6 +107,11 @@ public class PointGridAdapter extends BaseAdapter implements CompoundButton.OnCh
                 data.set(position,listBean);
             }
         });
+        if (isView.equals("isView")) {
+            holder.etDescription.setFocusable(false);
+            holder.rbQualified.setClickable(false);
+            holder.rbUnQualified.setClickable(false);
+        }
         return convertView;
     }
 

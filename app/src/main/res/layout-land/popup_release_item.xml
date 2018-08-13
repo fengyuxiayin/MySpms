@@ -1,52 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <View
         android:id="@+id/popup_release_item_line"
-        android:background="@color/hintGray"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="1dp"
+        android:background="@color/hintGray" />
+
     <LinearLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
         <TextView
             android:id="@+id/popup_release_item_qymc"
             style="@style/fragment_homepage_text_title_style"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:text="企业名称"
-            android:textSize="15sp"
-            android:layout_height="match_parent" />
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/popup_release_item_date"
             style="@style/fragment_homepage_text_title_style"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:text="计划完成时间"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_height="match_parent" />
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/popup_release_item_zdqydj"
             style="@style/fragment_homepage_text_title_style"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:text="重点企业等级"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_height="match_parent" />
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/popup_release_item_jcdw"
             style="@style/fragment_homepage_text_title_style"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:text="检查单位"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_height="match_parent"/>
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/popup_release_item_opreation"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/delete"
+            android:text="删除" />
     </LinearLayout>
 
 </LinearLayout>

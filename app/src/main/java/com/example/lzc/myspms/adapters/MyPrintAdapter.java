@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,6 +45,7 @@ import java.util.List;
  */
 
 public class MyPrintAdapter extends PrintDocumentAdapter {
+public static final String TAG = MyPrintAdapter.class.getSimpleName();
     private Context context;
     private int pageHeight;
     private int pageWidth;
@@ -58,6 +60,8 @@ public class MyPrintAdapter extends PrintDocumentAdapter {
     private String qymc;
     private String zgqx;
     private int problemCount;
+    private String jcId;
+    private Gson gson = new Gson();
 
     private CheckMessageModel.CheckMessageMsgModel checkMessageMsgModel ;
 
@@ -66,12 +70,37 @@ public class MyPrintAdapter extends PrintDocumentAdapter {
         this.pdfPath = pdfPath;
     }
 
-    public MyPrintAdapter(Context context, String pdfPath, CheckMessageModel.CheckMessageMsgModel checkMessageMsgModel) {
+    public MyPrintAdapter(Context context, String pdfPath, String jcId) {
         this.context = context;
         this.pdfPath = pdfPath;
-        this.checkMessageMsgModel = checkMessageMsgModel;
+        this.jcId = jcId;
+        getCheckInfo();
     }
+    private void getCheckInfo() {
+        Log.e(TAG, "getCheckInfo: " + jcId);
+        OkHttpUtils.post()
+                .url(Constant.SERVER_URL + "/checkReport/checkMessage")
+                .addParams("id", jcId)
+                .build()
+                .execute(new StringCallback() {
 
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e(TAG, "onError: /checkReport/checkMessage" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(TAG, "onResponse: /checkReport/checkMessage" + response);
+                        CheckMessageModel checkMessageModel = gson.fromJson(response, CheckMessageModel.class);
+                        if (checkMessageModel.isData()) {
+                            checkMessageMsgModel = gson.fromJson(checkMessageModel.getMsg(), CheckMessageModel.CheckMessageMsgModel.class);
+                        } else {
+                            Toast.makeText(context, checkMessageModel.getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
     @Override
     public void onLayout(PrintAttributes oldAttributes, PrintAttributes newAttributes, CancellationSignal cancellationSignal,
                          final LayoutResultCallback callback,

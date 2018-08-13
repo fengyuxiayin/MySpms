@@ -110,6 +110,9 @@ public class ProjectDetailDangerActivity extends AppCompatActivity implements Vi
 
     private void initData() {
         tvTitle.setText("重大隐患源检查");
+        if (isView.equals("isView")) {
+            btnCommit.setVisibility(View.GONE);
+        }
         initDataFromServer();
     }
 

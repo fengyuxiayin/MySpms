@@ -167,14 +167,14 @@
                         android:text="任务进度"
                         android:textSize="15sp"
                         android:layout_height="match_parent"/>
-                    <!--<TextView-->
-                    <!--style="@style/fragment_homepage_text_title_style"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:text="操作"-->
-                    <!--android:textSize="15sp"-->
-                    <!--android:layout_height="match_parent"/>-->
+                    <TextView
+                    style="@style/fragment_homepage_text_title_style"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textStyle="bold"
+                    android:text="操作"
+                    android:textSize="15sp"
+                    android:layout_height="match_parent"/>
                 </LinearLayout>
                 <com.handmark.pulltorefresh.library.PullToRefreshListView
                     android:id="@+id/activity_release_lv_show"

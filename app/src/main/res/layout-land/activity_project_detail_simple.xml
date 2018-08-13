@@ -34,6 +34,7 @@
                 android:button="@drawable/selector_custom_radiobutton"
                 android:gravity="center"
                 android:text="合格"
+                android:checked="true"
                 android:textColor="@color/white" />
 
             <RadioButton
@@ -43,7 +44,6 @@
                 android:button="@drawable/selector_custom_radiobutton"
                 android:gravity="center"
                 android:text="不合格"
-                android:checked="true"
                 android:textColor="@color/white" />
         </RadioGroup>
 

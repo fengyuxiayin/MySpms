@@ -38,6 +38,7 @@
             android:layout_marginLeft="50dp"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:checked="true"
             android:layout_height="match_parent" />
     </RadioGroup>
     <EditText

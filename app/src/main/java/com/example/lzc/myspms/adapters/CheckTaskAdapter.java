@@ -9,15 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.custom.MyListView;
 import com.example.lzc.myspms.models.CheckTaskFindModel;
 import com.example.lzc.myspms.models.CheckTaskModel;
 import com.example.lzc.myspms.models.Constant;
+import com.example.lzc.myspms.models.LoginInfoModel;
 import com.example.lzc.myspms.utils.DateUtil;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -78,6 +81,7 @@ public class CheckTaskAdapter extends BaseAdapter {
             holder.tvjcdx = (TextView) convertView.findViewById(R.id.activity_release_item_jcdx);
             holder.tvjczt = (TextView) convertView.findViewById(R.id.activity_release_item_jczt);
             holder.tvProgress = (TextView) convertView.findViewById(R.id.activity_release_item_progress);
+            holder.imgDelete = (ImageView) convertView.findViewById(R.id.activity_release_item_operation);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
@@ -88,11 +92,45 @@ public class CheckTaskAdapter extends BaseAdapter {
 //        }
         if (isIdle) {
             holder.tvRwmc.setText(data.get(position).getRwmc());
+            Log.e(TAG, "getView: "+DateUtil.long2Date(data.get(position).getJzsj()) );
             holder.tvDate.setText(DateUtil.long2Date(data.get(position).getJzsj()));
             holder.tvjcdx.setText(data.get(position).getJcdx());
             holder.tvjczt.setText(data.get(position).getJczt());
             holder.tvProgress.setText(data.get(position).getRwjd()+"%");
         }
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "onClick: "+data.get(position).getRwzt() );
+                if (data.get(position).getRwzt()==0) {
+                    OkHttpUtils.post()
+                            .url(Constant.SERVER_URL+"/checkTaskSettings/delete")
+                            .addParams("tags",data.get(position).getTags())
+                            .build()
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onError(Request request, Exception e) {
+                                    Log.e(TAG, "onError: "+e.getMessage() );
+                                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.e(TAG, "onResponse: "+response );
+                                    LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                                    if (infoModel.isData()) {
+                                        data.remove(position);
+                                        notifyDataSetChanged();
+                                    }
+                                    Toast.makeText(context, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }else{
+                    Toast.makeText(context, "任务已经开始检查，不能删除", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -148,6 +186,7 @@ public class CheckTaskAdapter extends BaseAdapter {
         TextView tvjcdx;
         TextView tvjczt;
         TextView tvProgress;
+        ImageView imgDelete;
         View line;
     }
 }

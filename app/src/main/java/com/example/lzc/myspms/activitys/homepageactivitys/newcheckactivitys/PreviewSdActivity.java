@@ -47,7 +47,7 @@ public static final String TAG = PreviewSdActivity.class.getSimpleName();
             @Override
             public void failure(Exception e) {
                 e.printStackTrace();
-                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
