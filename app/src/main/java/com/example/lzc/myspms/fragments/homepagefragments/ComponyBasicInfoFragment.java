@@ -584,6 +584,11 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
     }
 
     private void initData() {
+        //如果登账号的类型是社区，那么不允许改动企业的社区
+//        if (Constant.ACCOUNT_TYPE.equals("1")) {
+//            etSssq.setEnabled(false);
+//            Toast.makeText(getContext(), "社区账户无权限不允许修改所属社区", Toast.LENGTH_SHORT).show();
+//        }
         //经营状态数据
         dataStatus.add(new EnumModel("1", "正常生产"));
         dataStatus.add(new EnumModel("2", "停产置业"));
@@ -1073,7 +1078,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
 
                 @Override
                 public void onResponse(String response) {
-                    Log.e(TAG, "onResponse: " + response);
+                    Log.e(TAG, "onResponse: findall" + response);
                     if (response != null) {
                         //解析json
                         EnumCommunityModel allCommunityModel = gson.fromJson(response, EnumCommunityModel.class);

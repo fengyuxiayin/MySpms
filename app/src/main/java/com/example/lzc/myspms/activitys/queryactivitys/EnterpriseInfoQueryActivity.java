@@ -179,6 +179,10 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
         gson = new Gson();
 //        llSearch.setVisibility(View.GONE);
         Log.e(TAG, "getAreaQueryData: listToJson" + listToJson);
+        if (Constant.ACCOUNT_TYPE.equals("1")) {
+            sqId = Constant.ENTERPRISE_ID;
+            Log.e(TAG, "getAreaQueryData: " + sqId);
+        }
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/find")
                 .addParams("pn", page + "")
@@ -218,9 +222,9 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
                             }
                             if (page == 1) {
                                 list.clear();
-                                if (listSet.getList()==null) {
+                                if (listSet.getList() == null) {
                                     list = new ArrayList<EnterpriseInfoQueryModel.ListSet.ListBean>();
-                                }else{
+                                } else {
                                     list = listSet.getList();
                                 }
                                 Log.e(TAG, "onResponse: " + list.size());
@@ -298,7 +302,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
 //                    getQueryData();
                     break;
             }
-            SetMenuClick setMenuClick = new SetMenuClick(v.getId(), EnterpriseInfoQueryActivity.this,EnterpriseInfoQueryActivity.this);
+            SetMenuClick setMenuClick = new SetMenuClick(v.getId(), EnterpriseInfoQueryActivity.this, EnterpriseInfoQueryActivity.this);
             setMenuClick.setMenuClick();
         }
     }
@@ -309,12 +313,17 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
      * @date 2017/12/1 9:26
      */
     private void getQueryData() {
+        if (Constant.ACCOUNT_TYPE.equals("1")) {
+            sqId = Constant.ENTERPRISE_ID;
+            Log.e(TAG, "getQueryData: " + sqId);
+        }
         gson = new Gson();
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/find")
                 .addParams("pn", page + "")
                 .addParams("size", "10")
                 .addParams("qymc", etSearch.getText().toString().trim())
+                .addParams("sqId",sqId)
                 .build()
                 .execute(new StringCallback() {
                     private EnterpriseInfoQueryAdapter enterpriseInfoQueryAdapter;
@@ -341,7 +350,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
                                 list.clear();
                                 if (listSet.getList() != null) {
                                     list = listSet.getList();
-                                }else{
+                                } else {
                                     list = new ArrayList<EnterpriseInfoQueryModel.ListSet.ListBean>();
                                 }
                             } else {

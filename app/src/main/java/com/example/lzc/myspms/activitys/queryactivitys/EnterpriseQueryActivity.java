@@ -92,6 +92,8 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
     private ImageView imgCall;
     private ImageView imgMessage;
     private int page = 1;
+    private String sqId;
+    private TextView tvSssq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +126,12 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
     }
 
     private void initData() {
+        //
+//        if (Constant.ACCOUNT_TYPE.equals("1")) {
+//            sqId = Constant.ENTERPRISE_ID;
+//            etSssq.setVisibility(View.GONE);
+//            tvSssq.setVisibility(View.GONE);
+//        }
         gson = new Gson();
         getEnumData("INDUSTRY_CATEGORY_TYPE");
         getEnumData("ECONOMIC_TYPE");
@@ -181,6 +189,7 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
         tvTitle = (TextView) findViewById(R.id.activity_enterprise_query_header).findViewById(R.id.title);
         tvTitle.setText("企业多维度查询");
         etSssq = (EditText) findViewById(R.id.activity_enterprise_query_et_sssq);
+        tvSssq = (TextView) findViewById(R.id.activity_enterprise_query_tv_sssq);
         gridView = (MyGridView) findViewById(R.id.activity_enterprise_query_gv);
         etInvestmentStart = (EditText) findViewById(R.id.activity_enterprise_query_et_investment_start);
         etInvestmentEnd = (EditText) findViewById(R.id.activity_enterprise_query_et_investment_end);
@@ -204,7 +213,8 @@ public class EnterpriseQueryActivity extends AppCompatActivity implements View.O
                         dataEconomicChecked.add(i,dataEconomic.get(dataPosition.get(i)).getKey());
                     }
                     //根据etSssd的内容，找到对应的sqId
-                    String sqId = "";
+
+                    sqId = "";
                     for (int i = 0; i < dataCommunity.size(); i++) {
                         if (etSssq.getText().toString().trim().equals(dataCommunity.get(i).getValue())) {
                             sqId = dataCommunity.get(i).getKey()+"";

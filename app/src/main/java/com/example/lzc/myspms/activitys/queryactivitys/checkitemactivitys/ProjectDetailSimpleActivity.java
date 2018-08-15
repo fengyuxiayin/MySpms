@@ -243,7 +243,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                      tvZtzrsx.setText(projectPublicInfoModel.getStandardDescription());
                                      jctp = projectPublicInfoModel.getJctp();
                                      jcjg = String.valueOf(projectPublicInfoModel.getJcjg());
-                                     if (jcjg.equals("1")) {
+                                     if (jcjg.equals("1")||jcjg.equals("2")) {
                                          rbQualified.setChecked(true);
                                      } else {
                                          rbUnqualified.setChecked(true);
@@ -279,7 +279,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
             if (jctp.length() > 0) {
                 //有检查点图片返回时
                 Log.e(TAG, "initData: 检查点图片不为空" + jctp);
-                jctp+=", ";
+                jctp+=",";
                 jctpNewList.clear();
                 Log.e(TAG, "judgeJctpIsEmpty: "+jctp );
                 if (jctp.contains(",")) {

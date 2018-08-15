@@ -28,8 +28,8 @@ public class Constant {
     //伟良地址
 //    public static final String SERVER_URL = "http://192.168.3.17:8080";
 //    public static final String SERVER_URL = "https://120.25.251.167:1443";
-//    public static final String SERVER_URL = "http://192.144.175.37:68";
-    public static final String SERVER_URL = "http://27.223.106.182:68";
+    public static final String SERVER_URL = "http://192.144.175.37:68";
+//    public static final String SERVER_URL = "http://27.223.106.182:68";
 //    public static final String SERVER_URL = "https://120.25.251.167:3306";
     //FENGXUAN服务器地址
 //    public static final String FENGXUAN_URL = "http://192.168.3.4:8080";
@@ -64,8 +64,8 @@ public class Constant {
     //获取相册的RequestCode
     public static final int REQUEST_ALBUM_OK = 1;
     //上传地址的前缀
-    public static String UPLOAD_IMG_IP = "http://27.223.106.182:8081/hfs";
-//    public static String UPLOAD_IMG_IP = "http://192.144.175.37:8088/hfs";
+//    public static String UPLOAD_IMG_IP = "http://27.223.106.182:8081/hfs";
+    public static String UPLOAD_IMG_IP = "http://192.144.175.37:8088/hfs";
     //网易云对方的账户id
     public static String RECEIVE_ID = "111111";
     //第一层gridview的position
