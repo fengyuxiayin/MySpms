@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Environment;
 import android.os.Handler;
 import android.print.PrintAttributes;
@@ -196,18 +197,24 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
 
     //
     private void initData() {
-        if (jclx.equals("1")&&!rwzt.equals("1")) {
+        if (jclx.equals("1")&&!rwzt.equals("1")) {//如果是初查并且是未检查或者检查中状态
             etChangeTime.setVisibility(View.VISIBLE);
             tvChangeTime.setVisibility(View.VISIBLE);
         }else{
-            if (("1").equals(jcjg)) {
-                tvChangeTime.setText("当前企业检查已合格");
-                btnReview.setVisibility(View.GONE);
-                btnPrint.setVisibility(View.GONE);
-                tvChangeTime.setVisibility(View.VISIBLE);
-                etChangeTime.setVisibility(View.GONE);
-            }else{
+            if (("1").equals(jcjg)) {//检查已合格
+                if (jclx.equals("1")) {
+                    btnReview.setVisibility(View.GONE);
+                    btnPrint.setVisibility(View.GONE);
+                    tvChangeTime.setVisibility(View.VISIBLE);
+                    tvChangeTime.setText("当前企业检查已合格");
+                    etChangeTime.setVisibility(View.GONE);
+                }else{
+                    tvChangeTime.setText("当前企业复查已合格");
+                    tvChangeTime.setVisibility(View.VISIBLE);
+                    etChangeTime.setVisibility(View.GONE);
+                }
 
+            }else{
                     if (zgqx!=null) {
                         Log.e(TAG, "initData: zgqx"+zgqx );
                         if (zgqx.length()>9) {
@@ -494,89 +501,95 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                     isReview = true;
                     //先设置整改 文书才能生成
                     //根据初查还是复查，初查的未检查和检查中调用setrecheck 其他直接预览文书
-                    if (jclx.equals("1") && !rwzt.equals("1")) {
-                        if (etChangeTime.getText().toString().trim().length() > 0) {
-                            Log.e(TAG, "onClick: " + jcId + " " + etChangeTime.getText().toString().trim());
-                            OkHttpUtils.post()
-                                    .url(Constant.SERVER_URL + "/checkInfo/setReCheck")
-                                    .addParams("id", jcId)
+                    if (jclx.equals("1") ) {
+                        if (etChangeTime.getVisibility()== View.GONE) {
+                            generateAndUpload();
+                        }else{
+                            if (etChangeTime.getText().toString().trim().length() > 0) {
+                                Log.e(TAG, "onClick: " + jcId + " " + etChangeTime.getText().toString().trim());
+                                OkHttpUtils.post()
+                                        .url(Constant.SERVER_URL + "/checkInfo/setReCheck")
+                                        .addParams("id", jcId)
 //                                .addParams("qyId",qyId)
-                                    .addParams("repairDate", etChangeTime.getText().toString().trim())
-                                    .build()
-                                    .connTimeOut(10000)
-                                    .execute(new StringCallback() {
-                                        @Override
-                                        public void onError(Request request, Exception e) {
-                                            NetUtil.errorTip(CheckProjectActivity.this, e.getMessage() + "/checkInfo/setReCheck");
-                                        }
+                                        .addParams("repairDate", etChangeTime.getText().toString().trim())
+                                        .build()
+                                        .connTimeOut(10000)
+                                        .execute(new StringCallback() {
+                                            @Override
+                                            public void onError(Request request, Exception e) {
+                                                NetUtil.errorTip(CheckProjectActivity.this, e.getMessage() + "/checkInfo/setReCheck");
+                                            }
 
-                                        @Override
-                                        public void onResponse(String response) {
-                                            Log.e(TAG, "onResponse: " + response + "/checkInfo/setReCheck");
-                                            LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
-                                            if (infoModel.isData()) {
-                                                Toast.makeText(CheckProjectActivity.this, "修改整改期限成功", Toast.LENGTH_SHORT).show();
-                                                //下载文书并跳转到打印
-                                                downLoadAndPrintDoc(gson);
-                                            } else {
-                                                if (infoModel.getMsg().equals("目前正在处于整改期")) {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Log.e(TAG, "onResponse: " + response + "/checkInfo/setReCheck");
+                                                LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                                                if (infoModel.isData()) {
+                                                    Toast.makeText(CheckProjectActivity.this, "修改整改期限成功", Toast.LENGTH_SHORT).show();
+                                                    //下载文书并跳转到打印
                                                     downLoadAndPrintDoc(gson);
                                                 } else {
-                                                    Toast.makeText(CheckProjectActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                                    if (infoModel.getMsg().equals("目前正在处于整改期")) {
+                                                        downLoadAndPrintDoc(gson);
+                                                    } else {
+                                                        Toast.makeText(CheckProjectActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             }
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(this, "请先设置整改期限", Toast.LENGTH_SHORT).show();
+                                        });
+                            } else {
+                                Toast.makeText(this, "请先设置整改期限", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } else {
 
-                            etChangeTime.setVisibility(View.GONE);
-                            tvChangeTime.setVisibility(View.GONE);
-                            generateAndUpload();
-
+                    }else{
+                        generateAndUpload();
                     }
                     break;
                 case R.id.activity_check_project_btn_print:
                     isReview = false;
-                    if (jclx.equals("1")&& !rwzt.equals("1")) {
-                        if (etChangeTime.getText().toString().trim().length() > 0) {
-                            Log.e(TAG, "onClick: " + jcId + " " + etChangeTime.getText().toString().trim());
-                            OkHttpUtils.post()
-                                    .url(Constant.SERVER_URL + "/checkInfo/setReCheck")
-                                    .addParams("id", jcId)
+                    if (jclx.equals("1")) {
+                        if (etChangeTime.getVisibility()== View.GONE) {
+                            generateAndUpload();
+                        }else{
+                            if (etChangeTime.getText().toString().trim().length() > 0) {
+                                Log.e(TAG, "onClick: " + jcId + " " + etChangeTime.getText().toString().trim());
+                                OkHttpUtils.post()
+                                        .url(Constant.SERVER_URL + "/checkInfo/setReCheck")
+                                        .addParams("id", jcId)
 //                                .addParams("qyId",qyId)
-                                    .addParams("repairDate", etChangeTime.getText().toString().trim())
-                                    .build()
-                                    .connTimeOut(10000)
-                                    .execute(new StringCallback() {
-                                        @Override
-                                        public void onError(Request request, Exception e) {
-                                            NetUtil.errorTip(CheckProjectActivity.this, e.getMessage() + "/checkInfo/setReCheck");
-                                        }
+                                        .addParams("repairDate", etChangeTime.getText().toString().trim())
+                                        .build()
+                                        .connTimeOut(10000)
+                                        .execute(new StringCallback() {
+                                            @Override
+                                            public void onError(Request request, Exception e) {
+                                                NetUtil.errorTip(CheckProjectActivity.this, e.getMessage() + "/checkInfo/setReCheck");
+                                            }
 
-                                        @Override
-                                        public void onResponse(String response) {
-                                            Log.e(TAG, "onResponse: " + response + "/checkInfo/setReCheck");
-                                            LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
-                                            if (infoModel.isData()) {
-                                                Toast.makeText(CheckProjectActivity.this, "修改整改期限成功", Toast.LENGTH_SHORT).show();
-                                                //下载文书并跳转到打印
-                                                downLoadAndPrintDoc(gson);
-                                            } else {
-                                                if (infoModel.getMsg().equals("目前正在处于整改期")) {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Log.e(TAG, "onResponse: " + response + "/checkInfo/setReCheck");
+                                                LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
+                                                if (infoModel.isData()) {
+                                                    Toast.makeText(CheckProjectActivity.this, "修改整改期限成功", Toast.LENGTH_SHORT).show();
+                                                    //下载文书并跳转到打印
                                                     downLoadAndPrintDoc(gson);
                                                 } else {
-                                                    Toast.makeText(CheckProjectActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                                    if (infoModel.getMsg().equals("目前正在处于整改期")) {
+                                                        downLoadAndPrintDoc(gson);
+                                                    } else {
+                                                        Toast.makeText(CheckProjectActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             }
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(this, "请先设置整改期限", Toast.LENGTH_SHORT).show();
+                                        });
+                            } else {
+                                Toast.makeText(this, "请先设置整改期限", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } else {
+
+                    }else{
                         generateAndUpload();
                     }
                     break;
