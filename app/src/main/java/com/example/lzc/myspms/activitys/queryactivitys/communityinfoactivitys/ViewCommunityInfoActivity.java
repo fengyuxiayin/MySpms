@@ -54,6 +54,12 @@ public class ViewCommunityInfoActivity extends AppCompatActivity implements View
         initListener();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mShowFragment.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void initData() {
         //显示第一个fragment
         mShowFragment = new CommunityBasicInfoFragment();

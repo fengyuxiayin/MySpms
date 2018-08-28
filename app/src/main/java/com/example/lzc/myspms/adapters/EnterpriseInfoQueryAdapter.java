@@ -20,6 +20,7 @@ import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.EnterpriseInfoQueryActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.AddProjectActivity;
+import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EditEnterpriseDangerActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EditEnterpriseInfoActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EnterpriseCheckRecordActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EnterpriseInfoActivity;
@@ -91,6 +92,7 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
             holder.llBasicInfo = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_basic_info);
             holder.llCheckRecord = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_check_record);
             holder.llGps = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_gps);
+            holder.llDanger = (LinearLayout) convertView.findViewById(R.id.activity_enterprise_info_query_item_ll_danger);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
@@ -106,6 +108,8 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
         holder.llCheckRecord.setOnClickListener(this);
         holder.llGps.setTag(position);
         holder.llGps.setOnClickListener(this);
+        holder.llDanger.setTag(position);
+        holder.llDanger.setOnClickListener(this);
         return convertView;
     }
     public class ViewHolder{
@@ -115,6 +119,7 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
         LinearLayout llBasicInfo;
         LinearLayout llCheckRecord;
         LinearLayout llGps;
+        LinearLayout llDanger;
     }
     @Override
     public void onClick(View v) {
@@ -180,6 +185,11 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
                     break;
                 case R.id.activity_enterprise_info_query_item_ll_gps:
                     invokingGD(data.get((Integer) pos).getQymc() + "");
+                    break;
+                case R.id.activity_enterprise_info_query_item_ll_danger:
+                    intent.setClass(context, EditEnterpriseDangerActivity.class);
+                    intent.putExtra("qyId",data.get((Integer) pos).getId() + "");
+                    context.startActivity(intent);
                     break;
             }
         }

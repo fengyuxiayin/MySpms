@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <TextView
+        android:id="@+id/activity_edit_enterprise_danger_item_fxdw"
+        android:text="风险点位类型"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/activity_edit_enterprise_danger_item_mc"
+        android:text="名称"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/activity_edit_enterprise_danger_item_bm"
+        android:text="编码"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/activity_edit_enterprise_danger_item_edit"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:src="@mipmap/enterprise_info_query_item_img_edit"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center"
+        android:layout_height="30dp" />
+    <ImageView
+        android:id="@+id/activity_edit_enterprise_danger_item_delete"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:src="@mipmap/delete"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center"
+        android:layout_height="30dp" />
+</LinearLayout>

@@ -70,7 +70,28 @@
                 android:textColor="@color/homepage_text_normal"
                 android:textSize="14sp" />
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/activity_enterprise_info_query_item_ll_danger"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/danger" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="风险管控"
+                android:textColor="@color/homepage_text_normal"
+                android:textSize="14sp" />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/activity_enterprise_info_query_item_ll_check_record"
             android:layout_width="0dp"

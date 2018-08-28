@@ -91,8 +91,9 @@ public class ReCheckInfoAdapter extends BaseAdapter implements View.OnClickListe
         if (data.get(position).getJzsj() > 0) {
             format = simpleDateFormat.format(new Date(data.get(position).getJzsj()));
         }
-        // TODO: 2018/6/19 不合格项目数 
-        tvNumber.setText(data.get(position).getUnPassCount() + "");
+        // TODO: 2018/6/19 合格数待确定
+        Log.e(TAG, "getView: "+data.get(position).getPassCount() );
+        tvNumber.setText(data.get(position).getXmsl()-data.get(position).getPassCount() + "");
         tvDate.setText(format);
         QyJsonModel qyJsonModel = gson.fromJson(data.get(position).getQyJson(), QyJsonModel.class);
         tvComponyName.setText(qyJsonModel.getQymc());

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_edit_project"
+    android:background="@mipmap/homepage_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EditProjectActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@mipmap/check_project_all_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            style="@style/fragment_homepage_text_title_style"
+            android:background="@mipmap/title"
+            android:layout_gravity="center_horizontal"
+            android:text="添加/修改隐患源" />
+        <LinearLayout
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="风险点位名称"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_fxdwmc"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="必填"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="风险点位类型"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_fxdwlx"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="点击选择 必填"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="编码"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_bm"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="请输入编码"
+                android:layout_marginRight="10dp"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="使用部门"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_sybm"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="使用地点"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_sydd"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="设备品牌"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_sbpp"
+                style="@style/add_enterprise_edittext_style"
+                android:layout_marginRight="10dp"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="设备型号"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_sbxh"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="生产日期"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_scrq"
+                android:hint="点击选择"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="启用日期"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_qyrq"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="点击选择"
+                android:layout_marginRight="10dp"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="使用年限"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_synx"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hint_yellow"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="报废年限"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_bfnx"
+                style="@style/add_enterprise_edittext_style"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="专业监管部门"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/activity_edit_project_et_zyjgbm"
+                style="@style/add_enterprise_edittext_style"
+                android:hint="点击选择"
+                android:layout_marginRight="10dp"
+                android:textColorHint="@color/hintGray"
+                android:layout_weight="3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:text="自查周期"
+                android:textSize="14sp"
+                android:layout_weight="2"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:background="@drawable/selector_edittext_focus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <com.example.lzc.myspms.custom.ClearEditText
+                    android:id="@+id/activity_edit_project_et_zczq"
+                    style="@style/add_enterprise_edittext_style"
+                    android:textColorHint="@color/hint_yellow"
+                    android:layout_weight="2" />
+
+                <com.example.lzc.myspms.custom.AutoFitTextView
+                    android:id="@+id/activity_edit_project_et_zczqdw"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="天"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/homepage_text_press"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_weight="10"
+                android:layout_marginRight="10dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@mipmap/check_project_all_border"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/activity_edit_project_tv_tpzlsc"
+                    android:text="资料图片上传"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <GridView
+                    android:id="@+id/activity_edit_project_gv"
+                    android:layout_below="@+id/activity_edit_project_tv_tpzlsc"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:numColumns="3"
+                    android:background="@mipmap/check_project_all_border"
+                    android:layout_height="match_parent"></GridView>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/activity_edit_project_ll"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/homepage_text_normal"
+                    android:layout_height="30dp">
+                    <TextView
+                        android:text="隐患点名称"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:text="详情"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:id="@+id/activity_edit_project_img_add"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/add_white"
+                        android:layout_weight="1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+                </LinearLayout>
+                <com.handmark.pulltorefresh.library.PullToRefreshListView
+                    android:layout_below="@id/activity_edit_project_ll"
+                    android:id="@+id/activity_edit_project_lv"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="180dp"
+                    android:background="@mipmap/check_project_all_border"
+                    android:divider="@null" />
+                <Button
+                    android:id="@+id/activity_edit_project_btn_save"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@mipmap/check_project_btn_border"
+                    android:text="保存"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

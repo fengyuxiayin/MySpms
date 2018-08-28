@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/popup_videocall_bg"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/fragment_homepage_text_title_style"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@mipmap/title"
+        android:text="添加/修改隐患点" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="13dp"
+        android:orientation="horizontal">
+
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="隐患点名称"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/popup_unsafe_et_yhdmc"
+            style="@style/add_enterprise_edittext_style"
+            android:layout_weight="3"
+            android:hint="必填"
+            android:textColorHint="@color/hint_yellow" />
+
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="隐患点序号"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/popup_unsafe_et_yhdxh"
+            style="@style/add_enterprise_edittext_style"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="详情"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/popup_unsafe_et_yhdxq"
+            style="@style/add_enterprise_edittext_style"
+            android:layout_weight="7"
+            android:hint="必填"
+            android:textColorHint="@color/hint_yellow" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.example.lzc.myspms.custom.AutoFitTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="备注"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.example.lzc.myspms.custom.ClearEditText
+            android:id="@+id/popup_unsafe_et_bz"
+            style="@style/add_enterprise_edittext_style"
+            android:layout_weight="7"
+            android:textColorHint="@color/hint_yellow" />
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <com.example.lzc.myspms.custom.AutoFitTextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:text="图片上传"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <GridView
+        android:id="@+id/popup_unsafe_gv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/check_project_all_border"
+        android:numColumns="3"></GridView>
+
+    <Button
+        android:id="@+id/popup_unsafe_btn_save"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@mipmap/check_project_btn_border"
+        android:gravity="center"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="保存"
+        android:textColor="@color/white" />
+</LinearLayout>

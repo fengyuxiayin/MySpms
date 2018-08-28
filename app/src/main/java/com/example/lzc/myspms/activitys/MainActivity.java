@@ -619,10 +619,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void gpsIsOpenUploadDate() {
 //        if (GpsUtil.openGPSSettings(this)) {
 //            Log.e(TAG, "gpsIsOpenUploadDate: GPS一开始就是打开的");
-            if (timer == null) {
-                timer = new Timer();
-                registerGpsListener();
-            }
+        if (timer == null) {
+            timer = new Timer();
+            registerGpsListener();
+        }
 //        }
     }
 

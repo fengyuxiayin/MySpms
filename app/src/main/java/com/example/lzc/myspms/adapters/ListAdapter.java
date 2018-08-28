@@ -20,6 +20,7 @@ import java.util.List;
 public class ListAdapter extends BaseAdapter {
     private List<MyInfoModel> data;
     private LayoutInflater inflater;
+    private Context context;
 
     public ListAdapter(List<MyInfoModel> data, Context context) {
         if (data==null) {
@@ -28,6 +29,7 @@ public class ListAdapter extends BaseAdapter {
             this.data = data;
         }
         this.inflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override

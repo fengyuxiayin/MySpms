@@ -316,6 +316,8 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
         if (Constant.ACCOUNT_TYPE.equals("1")) {
             sqId = Constant.ENTERPRISE_ID;
             Log.e(TAG, "getQueryData: " + sqId);
+        }else{
+            sqId = "";
         }
         gson = new Gson();
         OkHttpUtils.post()

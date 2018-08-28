@@ -183,11 +183,14 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                     }
                 }
             });
+
         }
     }
 
     private void initData() {
         tvTitle.setText("项目详细信息");
+        //一开始默认为合格 描述项设置为空
+        etDescription.setText("");
         initDataFromServer();
     }
 
@@ -251,12 +254,12 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                      String bhgyy = projectPublicInfoModel.getBhgyy();
                                      if (bhgyy!=null) {
                                          if (bhgyy.length()<1) {
-                                             etDescription.setText(projectPublicInfoModel.getStandardDescription() + "\n");
+                                             etDescription.setText("");
                                          }else{
-                                             etDescription.setText(bhgyy);
+                                             if (!rbQualified.isChecked()) {
+                                                 etDescription.setText(bhgyy);
+                                             }
                                          }
-                                     }else{
-                                         etDescription.setText(projectPublicInfoModel.getStandardDescription() + "\n");
                                      }
 
                                      judgeJctpIsEmpty();
@@ -279,7 +282,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
             if (jctp.length() > 0) {
                 //有检查点图片返回时
                 Log.e(TAG, "initData: 检查点图片不为空" + jctp);
-                jctp+=",";
+                jctp+=", ";
                 jctpNewList.clear();
                 Log.e(TAG, "judgeJctpIsEmpty: "+jctp );
                 if (jctp.contains(",")) {

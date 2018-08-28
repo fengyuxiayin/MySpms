@@ -352,7 +352,7 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
                     ComponentName componentName = new ComponentName(pcgName, clsName);
                     intent.setComponent(componentName);
                     intent.setAction(Intent.ACTION_VIEW);
-                    startActivity(intent);
+                    startActivity(intent);judgeApkNeedUpdate();
                     break;
                 case R.id.login_iv_hide_password:
                     int inputType = etPassWord.getInputType();

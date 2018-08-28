@@ -167,6 +167,15 @@ public class NewCheckInfoModel implements Serializable {
             private Object zgzj;
             private int unPassCount;
             private int jcbzId;
+            private int passCount;
+
+            public int getPassCount() {
+                return passCount;
+            }
+
+            public void setPassCount(int passCount) {
+                this.passCount = passCount;
+            }
 
             public int getJcbzId() {
                 return jcbzId;

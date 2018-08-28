@@ -20,7 +20,7 @@ public class Constant {
     //风选地址
 //    public static final String SERVER_URL = "http://192.168.3.66:8080";
     //许哥地址
-//    public static final String SERVER_URL = "http://192.168.3.69:8080";
+//    public static final String SERVER_URL = "http://192.168.3.113:8080";
 //    public static final String SERVER_URL = "http://10.8.59.132:8080";
     //仇哥地址
 //

@@ -443,10 +443,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                     Log.e(TAG, "onResume: checkQualified"+ checkQualified);
                                     if (checkQualified) {
                                         Log.e(TAG, "onResume: checkQualified 全部企业都合格"+ checkQualified);
-                                        tvChangeTime.setVisibility(View.GONE);
-                                        etChangeTime.setVisibility(View.GONE);
-                                        btnPrint.setVisibility(View.INVISIBLE);
-                                        btnReview.setVisibility(View.INVISIBLE);
+//                                        tvChangeTime.setVisibility(View.GONE);
+//                                        etChangeTime.setVisibility(View.GONE);
+//                                        btnPrint.setVisibility(View.INVISIBLE);
+//                                        btnReview.setVisibility(View.INVISIBLE);
                                     }
                                 }
                             }
