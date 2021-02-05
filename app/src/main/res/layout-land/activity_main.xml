@@ -68,6 +68,20 @@
             android:layout_margin="10dp"
             android:layout_toLeftOf="@id/main_img_call"
             android:src="@mipmap/add_enterprise" />
+        <ImageView
+            android:id="@+id/main_img_add_place"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@id/main_img_add"
+            android:src="@mipmap/add_place" />
+        <ImageView
+            android:id="@+id/main_img_scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@id/main_img_add_place"
+            android:src="@mipmap/qrcode" />
 
     </RelativeLayout>
 

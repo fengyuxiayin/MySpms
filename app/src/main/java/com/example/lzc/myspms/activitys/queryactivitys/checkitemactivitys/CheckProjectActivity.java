@@ -149,7 +149,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         rwId = getIntent().getStringExtra("rwId");
         jcsj = getIntent().getStringExtra("jcsj");
         zgqx = getIntent().getStringExtra("zgqx");
-        Log.e(TAG, "onCreate: rwzt" + rwzt+"jcjg"+jcjg+"zgqx"+zgqx+"jcId"+jcId);
+        Log.e(TAG, "onCreate: rwzt" + rwzt + "jcjg" + jcjg + "zgqx" + zgqx + "jcId" + jcId);
         initView();
         initData();
         initListener();
@@ -197,10 +197,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
 
     //
     private void initData() {
-        if (jclx.equals("1")&&!rwzt.equals("1")) {//如果是初查并且是未检查或者检查中状态
+        if (jclx.equals("1") && !rwzt.equals("1")) {//如果是初查并且是未检查或者检查中状态
             etChangeTime.setVisibility(View.VISIBLE);
             tvChangeTime.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             if (("1").equals(jcjg)) {//检查已合格
                 if (jclx.equals("1")) {
                     btnReview.setVisibility(View.GONE);
@@ -208,26 +208,26 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                     tvChangeTime.setVisibility(View.VISIBLE);
                     tvChangeTime.setText("当前企业检查已合格");
                     etChangeTime.setVisibility(View.GONE);
-                }else{
+                } else {
                     tvChangeTime.setText("当前企业复查已合格");
                     tvChangeTime.setVisibility(View.VISIBLE);
                     etChangeTime.setVisibility(View.GONE);
                 }
 
-            }else{
-                    if (zgqx!=null) {
-                        Log.e(TAG, "initData: zgqx"+zgqx );
-                        if (zgqx.length()>9) {
-                            etChangeTime.setVisibility(View.GONE);
-                            tvChangeTime.setVisibility(View.GONE);
-                        }else{
-                            etChangeTime.setVisibility(View.VISIBLE);
-                            tvChangeTime.setVisibility(View.VISIBLE);
-                        }
-                    }else{
+            } else {
+                if (zgqx != null) {
+                    Log.e(TAG, "initData: zgqx" + zgqx);
+                    if (zgqx.length() > 9) {
                         etChangeTime.setVisibility(View.GONE);
                         tvChangeTime.setVisibility(View.GONE);
+                    } else {
+                        etChangeTime.setVisibility(View.VISIBLE);
+                        tvChangeTime.setVisibility(View.VISIBLE);
                     }
+                } else {
+                    etChangeTime.setVisibility(View.GONE);
+                    tvChangeTime.setVisibility(View.GONE);
+                }
 
 
             }
@@ -265,7 +265,6 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         listView.getLoadingLayoutProxy(false, true).setRefreshingLabel("正在加载...");
         listView.getLoadingLayoutProxy(false, true).setReleaseLabel("放开以加载");
     }
-
 
 
     private void initCommunityData() {
@@ -416,7 +415,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                 listView.setAdapter(projectAdapter);
                                 listView.onRefreshComplete();
                             } else {
-                                Log.e(TAG, "onResponse: jcjg1111"+jcjg );
+                                Log.e(TAG, "onResponse: jcjg1111" + jcjg);
                                 projectAdapter = new ProjectSimpleAdapter(list, CheckProjectActivity.this, jcId, jcjg, jcxmlx, qyJsonModel.getQymc());
                                 listView.getRefreshableView().smoothScrollToPosition((page - 1) * 10);
                                 if (page > 1) {
@@ -427,22 +426,22 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                 listView.onRefreshComplete();
                             }
                             //判断企业是否检查完毕 是的话直接隐藏点整改时间 将预览文书文字改为检查完成 将打印文书按钮隐藏
-                            if (projectAdapter!=null) {
+                            if (projectAdapter != null) {
                                 checkQualified = false;
-                                if (list!=null) {
+                                if (list != null) {
                                     for (int i = 0; i < list.size(); i++) {
-                                        if (list.get(i).getJcjg()!=1) {
-                                            Log.e(TAG, "onResponse: 不合格"+list.get(i).getJcjg() );
+                                        if (list.get(i).getJcjg() != 1) {
+                                            Log.e(TAG, "onResponse: 不合格" + list.get(i).getJcjg());
                                             checkQualified = false;
                                             break;
-                                        }else{
-                                            Log.e(TAG, "onResponse: 合格"+list.get(i).getJcjg() );
+                                        } else {
+                                            Log.e(TAG, "onResponse: 合格" + list.get(i).getJcjg());
                                             checkQualified = true;
                                         }
                                     }
-                                    Log.e(TAG, "onResume: checkQualified"+ checkQualified);
+                                    Log.e(TAG, "onResume: checkQualified" + checkQualified);
                                     if (checkQualified) {
-                                        Log.e(TAG, "onResume: checkQualified 全部企业都合格"+ checkQualified);
+                                        Log.e(TAG, "onResume: checkQualified 全部企业都合格" + checkQualified);
 //                                        tvChangeTime.setVisibility(View.GONE);
 //                                        etChangeTime.setVisibility(View.GONE);
 //                                        btnPrint.setVisibility(View.INVISIBLE);
@@ -487,7 +486,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         if (v != null) {
             Intent intent = null;
-            SetMenuClick setMenuClick = new SetMenuClick(v.getId(), CheckProjectActivity.this,CheckProjectActivity.this);
+            SetMenuClick setMenuClick = new SetMenuClick(v.getId(), CheckProjectActivity.this, CheckProjectActivity.this);
             setMenuClick.setMenuClick();
             switch (v.getId()) {
                 case R.id.activity_check_project_change_time:
@@ -501,10 +500,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                     isReview = true;
                     //先设置整改 文书才能生成
                     //根据初查还是复查，初查的未检查和检查中调用setrecheck 其他直接预览文书
-                    if (jclx.equals("1") ) {
-                        if (etChangeTime.getVisibility()== View.GONE) {
+                    if (jclx.equals("1")) {
+                        if (etChangeTime.getVisibility() == View.GONE) {
                             generateAndUpload();
-                        }else{
+                        } else {
                             if (etChangeTime.getText().toString().trim().length() > 0) {
                                 Log.e(TAG, "onClick: " + jcId + " " + etChangeTime.getText().toString().trim());
                                 OkHttpUtils.post()
@@ -542,16 +541,16 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                             }
                         }
 
-                    }else{
+                    } else {
                         generateAndUpload();
                     }
                     break;
                 case R.id.activity_check_project_btn_print:
                     isReview = false;
                     if (jclx.equals("1")) {
-                        if (etChangeTime.getVisibility()== View.GONE) {
+                        if (etChangeTime.getVisibility() == View.GONE) {
                             generateAndUpload();
-                        }else{
+                        } else {
                             if (etChangeTime.getText().toString().trim().length() > 0) {
                                 Log.e(TAG, "onClick: " + jcId + " " + etChangeTime.getText().toString().trim());
                                 OkHttpUtils.post()
@@ -589,7 +588,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                             }
                         }
 
-                    }else{
+                    } else {
                         generateAndUpload();
                     }
                     break;
@@ -607,12 +606,12 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                     tvFrdb = (TextView) inflate.findViewById(R.id.popup_check_call_tv_frdb);
                     tvZyfzr = (TextView) inflate.findViewById(R.id.popup_check_call_tv_zyfzr);
                     tvAqfzr = (TextView) inflate.findViewById(R.id.popup_check_call_tv_aqfzr);
-                    Log.e(TAG, "onClick: "+qyJsonModel.getLxdh() );
+                    Log.e(TAG, "onClick: " + qyJsonModel.getLxdh());
                     if (qyJsonModel.getLxdh() != null) {
-                        if (qyJsonModel.getLxdh().length()>0) {
+                        if (qyJsonModel.getLxdh().length() > 0) {
                             tvFrdb.setText("拨打法人电话：" + qyJsonModel.getLxdh());
                             tvFrdb.setOnClickListener(this);
-                        }else{
+                        } else {
                             count++;
                             tvFrdb.setVisibility(View.GONE);
                         }
@@ -621,10 +620,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                         tvFrdb.setVisibility(View.GONE);
                     }
                     if (qyJsonModel.getZyfzryddhhm() != null) {
-                        if (qyJsonModel.getZyfzryddhhm().length()>0) {
+                        if (qyJsonModel.getZyfzryddhhm().length() > 0) {
                             tvZyfzr.setText("拨打主要负责人电话：" + qyJsonModel.getZyfzryddhhm());
                             tvZyfzr.setOnClickListener(this);
-                        }else{
+                        } else {
                             tvZyfzr.setVisibility(View.GONE);
                             count++;
                         }
@@ -633,10 +632,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                         tvZyfzr.setVisibility(View.GONE);
                     }
                     if (qyJsonModel.getLxdh() != null) {
-                        if (qyJsonModel.getLxdh().length()>0) {
+                        if (qyJsonModel.getLxdh().length() > 0) {
                             tvAqfzr.setText("拨打安全负责人电话：" + qyJsonModel.getAqfzryddhhm());
                             tvAqfzr.setOnClickListener(this);
-                        }else{
+                        } else {
                             count++;
                             tvAqfzr.setVisibility(View.GONE);
                         }
@@ -644,9 +643,9 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                         count++;
                         tvAqfzr.setVisibility(View.GONE);
                     }
-                    if (count ==3) {
+                    if (count == 3) {
                         Toast.makeText(this, "当前企业没有填写任何联系方式", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         popupWindow.showAtLocation(imgVideoCall, Gravity.CENTER, 0, 0);
                     }
                     break;
@@ -721,8 +720,8 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
         DatePickerDialog dialog = new DatePickerDialog(CheckProjectActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                if (list!=null) {
-                    Log.e(TAG, "onDateSet: "+jcsj );
+                if (list != null) {
+                    Log.e(TAG, "onDateSet: " + jcsj);
                 }
                 int currentYear = calendar.get(Calendar.YEAR);
                 int currentMonth = calendar.get(Calendar.MONTH);
@@ -735,11 +734,10 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
     }
 
     /**
-     *
-     *@desc 判断整改时间是否合法
-     *@param
-     *@date 2018/6/28 15:03
-    */
+     * @param
+     * @desc 判断整改时间是否合法
+     * @date 2018/6/28 15:03
+     */
     private void judgeDateIsQualified(int year, int monthOfYear, int dayOfMonth, int currentYear, int currentMonth, int currentDay, Calendar calendar, EditText edittext) {
         if (currentYear < year) {
             calendar.set(year, monthOfYear, dayOfMonth);
@@ -782,7 +780,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
      * @date 2018/5/8 14:24
      */
     private void generateAndUpload() {
-        Log.e(TAG, "generateAndUpload: "+"jcId"+jcId+"jclx"+jclx);
+        Log.e(TAG, "generateAndUpload: " + "jcId" + jcId + "jclx" + jclx);
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/checkReport/generateAndUpload")
                 .addParams("id", jcId)
@@ -828,7 +826,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
                                 }
                             });
                         } else {
-                            Toast.makeText(CheckProjectActivity.this, "生成文书失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CheckProjectActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -843,19 +841,19 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
      */
     private void downloadAndPrint(final InstrumentModel.InstrumentMsgModel instrumentMsgModel) {
         final String scnr = instrumentMsgModel.getList().get(0).getScnr();
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
         if (file.exists()) {
             if (isReview) {
                 Intent intent = new Intent();
-                Log.e(TAG, "downloadAndPrint: "+scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()) );
-                intent.putExtra("scnr",scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
+                Log.e(TAG, "downloadAndPrint: " + scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
+                intent.putExtra("scnr", scnr.substring(scnr.lastIndexOf("/") + 1, scnr.length()));
                 intent.setClass(CheckProjectActivity.this, PreviewSdActivity.class);
                 startActivity(intent);
             } else {
 //                                    onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr(),null);
-                onPrintPdf(Constant.UPLOAD_IMG_IP + scnr,null);
+                onPrintPdf(Constant.UPLOAD_IMG_IP + scnr, null);
             }
-        }else{
+        } else {
             OkHttpUtils.get()
                     .url(Constant.UPLOAD_IMG_IP + scnr)
                     .build()
@@ -902,7 +900,7 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
 //                                    startActivity(intent);
                                 } else {
 //                                    onPrintPdf(Constant.UPLOAD_IMG_IP + instrumentMsgModel.getList().get(0).getScnr(),null);
-                                    onPrintPdf(Constant.UPLOAD_IMG_IP + scnr,null);
+                                    onPrintPdf(Constant.UPLOAD_IMG_IP + scnr, null);
                                 }
                             } else {
                                 Log.e(TAG, "onResponse: 文书地址为空");
@@ -918,11 +916,11 @@ public class CheckProjectActivity extends AppCompatActivity implements View.OnCl
      * @desc 打印pdf
      * @date 2018/5/22 17:38
      */
-    private void onPrintPdf(String url,File file) {
+    private void onPrintPdf(String url, File file) {
         PrintManager printManager = (PrintManager) CheckProjectActivity.this.getSystemService(Context.PRINT_SERVICE);
         PrintAttributes.Builder builder = new PrintAttributes.Builder();
         builder.setColorMode(PrintAttributes.COLOR_MODE_COLOR);
-            printManager.print("test pdf print", new MyPrintAdapter(this,url,jcId), builder.build());
+        printManager.print("test pdf print", new MyPrintAdapter(this, url, jcId,jclx), builder.build());
 
 //        printManager.print("test pdf print", new MyPrintAdapter(this, url, "ddd", "13455209261", "2018-06-12", "2018-06-12", "hahah", 5), builder.build());
     }

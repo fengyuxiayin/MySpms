@@ -152,7 +152,7 @@ public class NewCheckInfoAdapter extends BaseAdapter implements View.OnClickList
 //                    return;
 //                }
 //            }
-            if (FastClickUtil.isFastClick()) {
+            if (!FastClickUtil.isFastClick()) {
                 if (data.get(position).getRwzt()!=1) {//未检查 或者检查中才调用begincheck
                     OkHttpUtils.post()
                             .url(Constant.SERVER_URL + "/checkInfo/beginCheck")

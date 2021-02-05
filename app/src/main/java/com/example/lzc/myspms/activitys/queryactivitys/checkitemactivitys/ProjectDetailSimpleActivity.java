@@ -117,6 +117,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
     private String id;
     private List<CheckProjectFindModel.CheckProjectFindMsgModel.ListBean> ids;
     private int position;
+    private RadioButton rbNone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,7 +180,17 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                     if (isChecked) {
                         etDescription.setText("");
                     }else{
+
+                    }
+                }
+            });
+            rbUnqualified.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
                         etDescription.setText(etDescription.getText().toString() + tvZtzrsx.getText().toString() + "\n");
+                    }else{
+
                     }
                 }
             });
@@ -243,7 +254,8 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                                              e.printStackTrace();
                                          }
                                      }
-                                     tvZtzrsx.setText(projectPublicInfoModel.getStandardDescription());
+                                     Log.e(TAG, "onResponse: "+projectPublicInfoModel.getBhgyy() );
+                                     tvZtzrsx.setText((projectPublicInfoModel.getBhgyy()==null||projectPublicInfoModel.getBhgyy()=="")?projectPublicInfoModel.getStandardDescription():projectPublicInfoModel.getBhgyy());
                                      jctp = projectPublicInfoModel.getJctp();
                                      jcjg = String.valueOf(projectPublicInfoModel.getJcjg());
                                      if (jcjg.equals("1")||jcjg.equals("2")) {
@@ -512,6 +524,7 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
         radioGroup = (RadioGroup) findViewById(R.id.activity_check_items_item_rg);
         rbQualified = (RadioButton) findViewById(R.id.activity_project_detail_simple_rb_qualified);
         rbUnqualified = (RadioButton) findViewById(R.id.activity_project_detail_simple_rb_unqualified);
+        rbNone = (RadioButton) findViewById(R.id.activity_project_detail_simple_rb_none);
         //右面的详细描述输入
         etDescription = (EditText) findViewById(R.id.activity_project_detail_simple_et_xxms);
         btnCommit = (Button) findViewById(R.id.activity_project_detail_simple_btn_commit);
@@ -529,14 +542,21 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                 case R.id.activity_project_detail_simple_btn_commit:
                     if (rbQualified.isChecked()) {
                         jcjg = "1";
-                    } else {
+                    } else if(rbUnqualified.isChecked()){
                         jcjg = "0";
                         if (etDescription.getText().toString().trim().length()<1) {
                             Toast.makeText(this, "详细描述未填写，不能提交", Toast.LENGTH_SHORT).show();
                             return;
                         }
+                    }else{
+                        jcjg = "3";
                     }
                     String jctp = "";
+                    // 企业有该检查项时对图片进行验证
+                    if(jctpNewList.size() <= 1&&("".equals(jctpNewList.get(0)))&&!rbNone.isChecked()){
+                        Toast.makeText(this, "未上传检查图片，请拍照留证", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     for (int i = 0; i < jctpNewList.size(); i++) {
                         if (i!=jctpNewList.size()-1) {
                             jctp+= jctpNewList.get(i).replace(Constant.UPLOAD_IMG_IP,"");
@@ -545,15 +565,14 @@ public class ProjectDetailSimpleActivity extends AppCompatActivity implements Vi
                             }
                         }
                     }
-
                         OkHttpUtils.post()
                                 .url(Constant.SERVER_URL + "/checkProject/check")
                                 .addParams("id",ids.get(position).getId()+"")
                                 .addParams("jcId", jcId)
                                 .addParams("jclx", "1")//1 通项 2 危险源
                                 .addParams("jctp", jctp)
-                                .addParams("bhgyy", etDescription.getText().toString().trim())
-                                .addParams("jcjg", jcjg)//0 不合格 1 合格
+                                .addParams("bhgyy", etDescription.getText().toString().trim()==null||etDescription.getText().toString().trim().length()==0?tvZtzrsx.getText().toString().trim():etDescription.getText().toString().trim())
+                                .addParams("jcjg", jcjg)//0 不合格 1 合格 2未检查项 3企业不存在该检查项
                                 .build()
                                 .execute(new StringCallback() {
                                     @Override

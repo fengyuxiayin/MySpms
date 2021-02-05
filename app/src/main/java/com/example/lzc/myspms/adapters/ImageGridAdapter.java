@@ -3,11 +3,13 @@ package com.example.lzc.myspms.adapters;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -54,6 +56,7 @@ public class ImageGridAdapter extends BaseAdapter implements View.OnClickListene
     private int pos;
     private PopupWindow popupWindow;
     private CallBack callBack;
+    private Uri uri;
 
     public ImageGridAdapter(List<String> data, Context context,String isView) {
         if (data != null) {
@@ -262,7 +265,14 @@ public class ImageGridAdapter extends BaseAdapter implements View.OnClickListene
             // 创建临时文件
             File mTmpFile = TakePhotoUtils.createFile(context.getApplicationContext());
             Constant.PHOTO_ABSOLUTE_PATH = mTmpFile.getAbsolutePath();
-            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTmpFile));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//如果是7.0android系统
+                ContentValues contentValues = new ContentValues(1);
+                contentValues.put(MediaStore.Images.Media.DATA, mTmpFile.getAbsolutePath());
+                uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
+            }else{
+                uri = Uri.fromFile(mTmpFile);
+            }
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             activity.startActivityForResult(cameraIntent, Constant.REQUEST_CAMERA);
         } else {
             Toast.makeText(context.getApplicationContext(), "没有找到相机", Toast.LENGTH_SHORT).show();

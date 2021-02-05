@@ -67,18 +67,25 @@ public class ValidateUtil {
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(str).matches();
     }
-    /**
-     * 判断输入是否为数字
-     */
-    public static boolean isAllNumber(String str) {
-        Pattern pattern = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[0-9])");
-        return pattern.matcher(str).matches();
-    }
+//    /**
+//     * 判断输入是否为数字
+//     */
+//    public static boolean isAllNumber(String str) {
+//        Pattern pattern = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[0-9])");
+//        return pattern.matcher(str).matches();
+//    }
     /**
      * 判断输入是否为数字且为6位
      */
     public static boolean isNumberSix(String str) {
         String regex = "^\\d{6}$";
+        return match(regex, str);
+    }
+    /**
+     * 判断输入是否为数字且为6位
+     */
+    public static boolean isAllNumber(String str) {
+        String regex = "^(\\-|\\+)?\\d+(\\.\\d+)?$";
         return match(regex, str);
     }
     /**

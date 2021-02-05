@@ -1,7 +1,9 @@
 package com.example.lzc.myspms.adapters;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.models.JsonModel;
 import com.example.lzc.myspms.models.TzzyryModel;
+import com.example.lzc.myspms.utils.DialogUtil;
 import com.example.lzc.myspms.utils.ValidateUtil;
 
 import java.util.Calendar;
@@ -63,11 +66,11 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
         final EditText etXzsj = (EditText) view.findViewById(R.id.popup_compony_safe_info_tzzyry_item_et_xzsj);
         final EditText etFssj = (EditText) view.findViewById(R.id.popup_compony_safe_info_tzzyry_item_et_fssj);
         final EditText etYxsj = (EditText) view.findViewById(R.id.popup_compony_safe_info_tzzyry_item_et_yxsj);
-        ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_tzzyry_item_img_operate);
-        etZjh.setText(data.get(position).getZjh());
-        etXzsj.setText(data.get(position).getXzsj());
-        etFssj.setText(data.get(position).getZjfssj());
-        etYxsj.setText(data.get(position).getZjyxsj());
+        final ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_tzzyry_item_img_operate);
+        etZjh.setText(data.get(position).getZjh()==null?"":data.get(position).getZjh()+"");
+        etXzsj.setText(data.get(position).getXzsj()==null?"":data.get(position).getXzsj()+"");
+        etFssj.setText(data.get(position).getZjfssj()==null?"":data.get(position).getZjfssj());
+        etYxsj.setText(data.get(position).getZjyxsj()==null?"":data.get(position).getZjyxsj());
         etXzsj.setFocusable(false);
         etXzsj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +93,41 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
             }
         });
         Log.e(TAG, "getView: " + data.get(position).getRymc() + "");
-        etName.setText(data.get(position).getRymc() + "");
-        etNumber.setText(data.get(position).getLxdh() + "");
+        etName.setText(data.get(position).getRymc()==null?"":data.get(position).getRymc() + "");
+        etNumber.setText(data.get(position).getLxdh()==null?"":data.get(position).getLxdh() + "");
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.remove(position);
-                //请求服务器进行删除
-                notifyDataSetChanged();
+                if(data.get(position).getStatus()!=null){
+                    Log.e(TAG, "onClick: "+data.get(position).getStatus() );
+                    if (data.get(position).getStatus()==2) {
+                        return;
+                    }
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);// 自定义对话框
+                builder.setTitle("提示")
+                        .setMessage("是否删除此条信息")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (data.get(position).getId()!=null) {
+                                    if (data.get(position).getStatus()==1) {
+                                        data.get(position).setStatus(2);
+                                        Log.e(TAG, "onClick: " );
+                                        imgDelete.setImageResource(R.mipmap.deleted);
+                                    }
+                                }else{
+                                    data.remove(position);
+                                    notifyDataSetChanged();
+                                }
+                            }
+                        })
+                        .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                builder.show();// 让弹出框显示
             }
         });
         etName.addTextChangedListener(new TextWatcher() {
@@ -113,9 +143,7 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TzzyryModel jsonModel = data.get(position);
-                jsonModel.setRymc(etName.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setRymc(etName.getText().toString());
             }
         });
         etNumber.addTextChangedListener(new TextWatcher() {
@@ -131,9 +159,7 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TzzyryModel jsonModel = data.get(position);
-                jsonModel.setLxdh(etNumber.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setLxdh(etNumber.getText().toString());
             }
         });
         etZjh.addTextChangedListener(new TextWatcher() {
@@ -149,9 +175,7 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TzzyryModel jsonModel = data.get(position);
-                jsonModel.setZjh(etZjh.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setZjh(etZjh.getText().toString());
             }
         });
         etXzsj.addTextChangedListener(new TextWatcher() {
@@ -167,9 +191,7 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TzzyryModel jsonModel = data.get(position);
-                jsonModel.setXzsj(etXzsj.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setXzsj(etXzsj.getText().toString());
             }
         });
         etFssj.addTextChangedListener(new TextWatcher() {
@@ -185,9 +207,7 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TzzyryModel jsonModel = data.get(position);
-                jsonModel.setZjfssj(etFssj.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setZjfssj(etFssj.getText().toString());
             }
         });
         etYxsj.addTextChangedListener(new TextWatcher() {
@@ -203,9 +223,7 @@ public class SafeInfoTzzyAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TzzyryModel jsonModel = data.get(position);
-                jsonModel.setZjyxsj(etYxsj.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setZjyxsj(etYxsj.getText().toString());
             }
         });
         return view;

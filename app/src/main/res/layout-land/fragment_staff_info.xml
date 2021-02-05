@@ -247,6 +247,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -275,6 +276,73 @@
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"
                 android:layout_weight="2"
+                android:text="专职安全生产管理人员数量" />
+
+
+            <com.example.lzc.myspms.custom.ClearEditText
+                android:id="@+id/fragment_basic_info_et_zzaqscglrysl"
+                android:inputType="number"
+                style="@style/add_enterprise_edittext_style"
+                android:layout_weight="3" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="专职安全生产管理人员信息" />
+
+            <include
+                android:id="@+id/fragment_basic_info_zzaqglrysl"
+                layout="@layout/ry_info" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="是否有特种作业人员" />
+
+            <EditText
+                android:id="@+id/fragment_basic_info_et_hastzzyry"
+                android:focusable="false"
+                style="@style/add_enterprise_edittext_style"
+                android:layout_weight="3" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_tzzyry1"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
                 android:text="特种作业人员数量" />
 
 
@@ -291,6 +359,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_tzzyry2"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -392,12 +462,11 @@
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"
                 android:layout_weight="2"
-                android:text="专职安全生产管理人员数量" />
+                android:text="是否有专职应急管理人员"/>
 
-
-            <com.example.lzc.myspms.custom.ClearEditText
-                android:id="@+id/fragment_basic_info_et_zzaqscglrysl"
-                android:inputType="number"
+            <EditText
+                android:id="@+id/fragment_basic_info_et_haszzyjglry"
+                android:focusable="false"
                 style="@style/add_enterprise_edittext_style"
                 android:layout_weight="3" />
 
@@ -406,28 +475,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="8" />
         </LinearLayout>
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <com.example.lzc.myspms.custom.AutoFitTextView
-                style="@style/add_enterprise_textview_style"
-                android:layout_weight="2"
-                android:text="专职安全生产管理人员信息" />
-
-            <include
-                android:id="@+id/fragment_basic_info_zzaqglrysl"
-                layout="@layout/ry_info" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_zzyjglry1"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -452,6 +502,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_zzyjglry2"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -470,8 +522,31 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
         </LinearLayout>
-
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="是否有注册安全工程师"/>
+
+            <EditText
+                android:id="@+id/fragment_basic_info_et_haszcaqgcs"
+                android:focusable="false"
+                style="@style/add_enterprise_edittext_style"
+                android:layout_weight="3" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_zcaqgcs1"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -496,6 +571,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_zcaqgcs2"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -515,8 +592,31 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
         </LinearLayout>
-
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
+
+            <com.example.lzc.myspms.custom.AutoFitTextView
+                style="@style/add_enterprise_textview_style"
+                android:layout_weight="2"
+                android:text="房屋性质"/>
+
+            <EditText
+                android:id="@+id/fragment_basic_info_et_hasfwxz"
+                style="@style/add_enterprise_edittext_style"
+                android:focusable="false"
+                android:layout_weight="3" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_fwxz1"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -552,6 +652,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/fragment_basic_info_ll_fwxz2"
+android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">

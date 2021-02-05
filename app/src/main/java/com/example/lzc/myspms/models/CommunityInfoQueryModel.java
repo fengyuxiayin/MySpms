@@ -125,7 +125,7 @@ public class CommunityInfoQueryModel implements Serializable {
             private String sqdz;
             private String sqfwzb;
             private String sqmc;
-            private int sqmj;
+            private double sqmj;
             private int sqrk;
             private int status;
 
@@ -209,11 +209,11 @@ public class CommunityInfoQueryModel implements Serializable {
                 this.sqmc = sqmc;
             }
 
-            public int getSqmj() {
+            public double getSqmj() {
                 return sqmj;
             }
 
-            public void setSqmj(int sqmj) {
+            public void setSqmj(double sqmj) {
                 this.sqmj = sqmj;
             }
 

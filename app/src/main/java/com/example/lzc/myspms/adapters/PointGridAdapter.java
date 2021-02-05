@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.lzc.myspms.R;
@@ -37,6 +38,8 @@ public class PointGridAdapter extends BaseAdapter implements CompoundButton.OnCh
     private List<String> jctpNewList = new ArrayList<>();
     private String isView;
     private ImageGridAdapter imageGridAdapter;
+    private ViewHolder holder;
+;
 
     public PointGridAdapter(List<PointInfoModel.PointInfoMsgModel.ListBean> data, Context context, String isView) {
         if (data != null) {
@@ -67,7 +70,6 @@ public class PointGridAdapter extends BaseAdapter implements CompoundButton.OnCh
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.activity_project_detail_danger_item, parent, false);
             holder = new ViewHolder(convertView);
@@ -76,10 +78,13 @@ public class PointGridAdapter extends BaseAdapter implements CompoundButton.OnCh
             holder = (ViewHolder) convertView.getTag();
         }
         holder.tvName.setText(data.get(position).getYhdmc());
+        Log.e(TAG, "getView: "+data.get(position).getJcjg()  );
         if (data.get(position).getJcjg() == 0) {
             holder.rbUnQualified.setChecked(true);
+            data.get(position).setJcjg(0);
         } else {
             holder.rbQualified.setChecked(true);
+            data.get(position).setJcjg(1);
         }
         holder.etDescription.setText(data.get(position).getYhms());
         jctp = data.get(position).getJctp();
@@ -88,6 +93,8 @@ public class PointGridAdapter extends BaseAdapter implements CompoundButton.OnCh
         //设置单选按钮的监听
         holder.rbQualified.setOnCheckedChangeListener(this);
         holder.rbQualified.setTag(position);
+        holder.rbUnQualified.setOnCheckedChangeListener(this);
+        holder.rbUnQualified.setTag(position);
         //设置隐患详情的监听
         holder.etDescription.addTextChangedListener(new TextWatcher() {
             @Override
@@ -119,18 +126,26 @@ public class PointGridAdapter extends BaseAdapter implements CompoundButton.OnCh
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         int pos = (int) buttonView.getTag();
         if (isChecked) {
-            PointInfoModel.PointInfoMsgModel.ListBean listBean = data.get(pos);
-            listBean.setJcjg(1);
-            data.set(pos,listBean);
-            notifyDataSetChanged();
+            if(buttonView.getId()==holder.rbQualified.getId()){
+                Log.i(TAG, "onCheckedChanged: 11111"+"合格");
+                PointInfoModel.PointInfoMsgModel.ListBean listBean = data.get(pos);
+                listBean.setJcjg(1);
+                data.set(pos,listBean);
+                notifyDataSetChanged();
+            }else if(buttonView.getId()==holder.rbUnQualified.getId()){
+                Log.i(TAG, "onCheckedChanged: 11111"+"不合格");
+                PointInfoModel.PointInfoMsgModel.ListBean listBean = data.get(pos);
+                listBean.setJcjg(0);
+                data.set(pos,listBean);
+                notifyDataSetChanged();
+            }
+
         }else{
-            PointInfoModel.PointInfoMsgModel.ListBean listBean = data.get(pos);
-            listBean.setJcjg(0);
-            data.set(pos,listBean);
-            notifyDataSetChanged();
+
         }
 
     }
+
 
     private static class ViewHolder {
         TextView tvName;

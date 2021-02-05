@@ -20,10 +20,10 @@
 
         <RadioGroup
             android:id="@+id/activity_project_detail_simple_rg"
-            android:layout_width="300dp"
+            android:layout_width="450dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="300dp"
+            android:layout_marginLeft="150dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -44,6 +44,14 @@
                 android:button="@drawable/selector_custom_radiobutton"
                 android:gravity="center"
                 android:text="不合格"
+                android:textColor="@color/white" />
+            <RadioButton
+                android:id="@+id/activity_project_detail_simple_rb_none"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:button="@drawable/selector_custom_radiobutton"
+                android:gravity="center"
+                android:text="企业无此项"
                 android:textColor="@color/white" />
         </RadioGroup>
 

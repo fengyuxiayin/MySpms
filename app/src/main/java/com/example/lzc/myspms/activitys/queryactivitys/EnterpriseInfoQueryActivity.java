@@ -197,6 +197,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
                 .addParams("yyeStart", yyeStart)
                 .addParams("yyeEnd", yyeEnd)
                 .addParams("jjlxdmArr[]", listToJson)
+                .addParams("qylx","0")
                 .build()
                 .execute(new StringCallback() {
                     private EnterpriseInfoQueryAdapter enterpriseInfoQueryAdapter;
@@ -326,6 +327,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
                 .addParams("size", "10")
                 .addParams("qymc", etSearch.getText().toString().trim())
                 .addParams("sqId",sqId)
+                .addParams("qylx","0")// 企业
                 .build()
                 .execute(new StringCallback() {
                     private EnterpriseInfoQueryAdapter enterpriseInfoQueryAdapter;
@@ -338,7 +340,7 @@ public class EnterpriseInfoQueryActivity extends AppCompatActivity implements Vi
 
                     @Override
                     public void onResponse(String response) {
-                        Log.e(TAG, "onResponse: " + response);
+                        Log.e(TAG, "onResponse:222 " + response);
                         Gson gson = new Gson();
                         EnterpriseInfoQueryModel enterpriseInfoQueryModel = gson.fromJson(response, EnterpriseInfoQueryModel.class);
                         if (enterpriseInfoQueryModel.isData()) {

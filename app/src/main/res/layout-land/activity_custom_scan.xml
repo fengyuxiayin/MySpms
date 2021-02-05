@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_custom_scan"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.lzc.myspms.activitys.CustomScanActivity">
-    <LinearLayout
-        android:id="@+id/activity_custom_scan_ll"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
+    android:background="@mipmap/homepage_bg"
+    style="@style/MatchMatch">
+
+    <cn.bingoogolapple.qrcode.zbar.ZBarView
+        android:id="@+id/zbarview"
+        style="@style/MatchMatch"
+        app:qrcv_animTime="1000"
+        app:qrcv_barCodeTipText="将条码放入框内，与框同大小，即可自动扫描"
+        app:qrcv_barcodeRectHeight="120dp"
+        app:qrcv_borderColor="@android:color/white"
+        app:qrcv_borderSize="1dp"
+        app:qrcv_cornerColor="@color/faceunityGreen"
+        app:qrcv_cornerLength="20dp"
+        app:qrcv_cornerSize="3dp"
+        app:qrcv_isAutoZoom="true"
+        app:qrcv_isBarcode="false"
+        app:qrcv_isOnlyDecodeScanBoxArea="false"
+        app:qrcv_isShowDefaultGridScanLineDrawable="true"
+        app:qrcv_isShowDefaultScanLineDrawable="true"
+        app:qrcv_isShowLocationPoint="true"
+        app:qrcv_isShowTipBackground="true"
+        app:qrcv_isShowTipTextAsSingleLine="false"
+        app:qrcv_isTipTextBelowRect="false"
+        app:qrcv_maskColor="#33FFFFFF"
+        app:qrcv_qrCodeTipText="将二维码/条码放入框内，与框同大小，即可自动扫描"
+        app:qrcv_rectWidth="200dp"
+        app:qrcv_scanLineColor="@color/faceunityGreen"
+        app:qrcv_toolbarHeight="56dp"
+        app:qrcv_topOffset="10dp"
+        app:qrcv_verticalBias="-1" />
+
+    <Button
+        android:id="@+id/activity_custom_scan_btn_create"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/activity_custom_scan_btn_flash"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/backgroundWhite"
-            android:layout_height="match_parent"
-            android:background="@color/bg_green"
-            android:text="闪光灯" />
-
-        <Button
-            android:id="@+id/activity_custom_scan_btn_cancel"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textColor="@color/backgroundWhite"
-            android:layout_height="match_parent"
-            android:background="@color/bg_green"
-            android:layout_centerHorizontal="true"
-            android:text="取消" />
-    </LinearLayout>
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/dbv_custom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/activity_custom_scan_ll"
-        app:zxing_scanner_layout="@layout/barcode_scanner"
-        app:zxing_framing_rect_height="300dp"
-        app:zxing_framing_rect_width="300dp"
-        app:zxing_preview_scaling_strategy="fitXY"
-        app:zxing_use_texture_view="true"></com.journeyapps.barcodescanner.DecoratedBarcodeView>
-
-
-
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/faceunityGreen"
+        android:layout_width="180dp"
+        android:text="创建该企业"
+        android:background="@mipmap/check_project_btn_border"
+        android:layout_height="40dp" />
+    <TextView
+        android:paddingLeft="10dp"
+        android:layout_above="@id/activity_custom_scan_btn_create"
+        android:textColor="@color/faceunityGreen"
+        android:id="@+id/activity_custom_scan_content"
+        android:layout_centerHorizontal="true"
+        android:layout_width="700dp"
+        android:background="@mipmap/check_project_all_border"
+        android:layout_height="200dp" />
 
 </RelativeLayout>

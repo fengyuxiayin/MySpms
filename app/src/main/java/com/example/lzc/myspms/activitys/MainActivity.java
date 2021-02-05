@@ -15,26 +15,23 @@ import android.location.LocationListener;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -44,28 +41,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.example.lzc.myspms.GpsService;
 import com.example.lzc.myspms.R;
 
 import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
+import com.example.lzc.myspms.activitys.homepageactivitys.AddPlaceActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.NoticeActivity;
 import com.example.lzc.myspms.activitys.homepageactivitys.menuactivitys.SendMessageActivity;
 import com.example.lzc.myspms.adapters.ListAdapter;
-import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
 import com.example.lzc.myspms.adapters.TeamAvChatAdapter;
-import com.example.lzc.myspms.avchats.AVChatActivity;
 import com.example.lzc.myspms.avchats.AVChatKit;
 import com.example.lzc.myspms.avchats.AVChatProfile;
-import com.example.lzc.myspms.avchats.AVChatTimeoutObserver;
 import com.example.lzc.myspms.avchats.LogUtil;
-import com.example.lzc.myspms.avchats.TeamAVChatActivity;
-import com.example.lzc.myspms.avchats.TeamAVChatAdapter;
 import com.example.lzc.myspms.avchats.TeamAVChatProfile;
-import com.example.lzc.myspms.custom.MyGridView;
 import com.example.lzc.myspms.fragments.CheckFragment;
 import com.example.lzc.myspms.fragments.CheckProgressFragment;
 import com.example.lzc.myspms.fragments.HomePageNewFragment;
@@ -79,16 +69,11 @@ import com.example.lzc.myspms.models.MyInfoModel;
 import com.example.lzc.myspms.models.NeteaseAccountFindModel;
 import com.example.lzc.myspms.models.NeteaseAccountModel;
 import com.example.lzc.myspms.models.VersionControlModel;
-import com.example.lzc.myspms.utils.GpsUtil;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.PermissionUtil;
 import com.example.lzc.myspms.utils.ServiceUtils;
-import com.example.lzc.myspms.utils.SetMenuClick;
-import com.example.lzc.myspms.utils.ShowMenuPopup;
 import com.example.lzc.myspms.utils.ShowPersonPopup;
-import com.example.lzc.myspms.utils.TimeUtil;
 import com.google.gson.Gson;
-import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallback;
@@ -105,32 +90,21 @@ import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 import com.netease.nimlib.sdk.msg.model.CustomNotificationConfig;
-import com.squareup.okhttp.Response;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.drafts.Draft_6455;
-import org.java_websocket.handshake.ServerHandshake;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
-import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -143,12 +117,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import de.tavendo.autobahn.WebSocketConnection;
-import de.tavendo.autobahn.WebSocketException;
-import de.tavendo.autobahn.WebSocketHandler;
-import de.tavendo.autobahn.WebSocketOptions;
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
@@ -227,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView mImgNotice;
     private ImageView mImgCall;
     private ImageView mImgAdd;
+    private ImageView mImgAddPlace;
+    private ImageView mImgScan;
     private Intent intentService;
     private String address = "wss://120.25.251.167:6445/WebSocket/globalWebSocket/";
     private URI uri;
@@ -241,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         loginId = getIntent().getStringExtra("loginId");
         loginType = getIntent().getStringExtra("loginType");
         //如果gps已经是打开状态，那么直接就上传数据
@@ -267,7 +236,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initData();
         initListener();
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -631,7 +604,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgVideoCall.setOnTouchListener(this);
         mImgNotice.setOnTouchListener(this);
         mImgAdd.setOnTouchListener(this);
+        mImgAddPlace.setOnTouchListener(this);
         mImgCall.setOnTouchListener(this);
+        mImgScan.setOnTouchListener(this);
 //        mImgRelease.setOnClickListener(this);
 //        mImgBack.setOnClickListener(this);
 //        mImgVideoCall.setOnClickListener(this);
@@ -686,6 +661,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgNotice = (ImageView) findViewById(R.id.main_iv_message);
         mImgCall = (ImageView) findViewById(R.id.main_img_call);
         mImgAdd = (ImageView) findViewById(R.id.main_img_add);
+        mImgAddPlace = (ImageView) findViewById(R.id.main_img_add_place);
+        mImgScan = (ImageView) findViewById(R.id.main_img_scan);
         mRadioGroup = (RadioGroup) findViewById(R.id.rg_main);
         radioButtonHomepage = (RadioButton) findViewById(R.id.rb_main_homepage);
         radioButtonCheck = (RadioButton) findViewById(R.id.rb_main_check);
@@ -694,6 +671,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         radioButtonRecheck = (RadioButton) findViewById(R.id.rb_main_recheck);
         radioButtonPublishTask = (RadioButton) findViewById(R.id.rb_main_publish_task);
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -955,6 +934,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.setClass(MainActivity.this, AddEnterpriseSimpleActivity.class);
                 intent.putExtra("which", "add");
                 startActivity(intent);
+                break;
+            case R.id.main_img_add_place:
+                intent = new Intent();
+                intent.setClass(MainActivity.this, AddPlaceActivity.class);
+                intent.putExtra("which", "add");
+                startActivity(intent);
+                break;
+            case R.id.main_img_scan:
+
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    // android 6.0以上需要动态申请权限
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, Constant.CAMERA_STATE_CODE);
+                }
+                // 二维码扫码
+//                Intent intent = new Intent(this, CaptureActivity.class);
+//                startActivityForResult(intent, Constant.CAMERA_STATE_CODE);
+//                new IntentIntegrator(this)
+//                        .setDesiredBarcodeFormats(IntentIntegrator.DATA_MATRIX_TYPES)// 扫码的类型,可选：一维码，二维码，一/二维码
+//                        .setPrompt("请对准二维码")// 设置提示语
+//                        .setCameraId(0)// 选择摄像头,可使用前置或者后置
+//                        .setBeepEnabled(false)// 是否开启声音,扫完码之后会"哔"的一声
+//                        .setBarcodeImageEnabled(false)// 扫完码之后生成二维码的图片
+//                        .initiateScan();// 初始化扫码
+                Intent intent = new Intent(MainActivity.this, CustomScanActivity.class);
+                startActivity(intent);
+
                 break;
 
         }

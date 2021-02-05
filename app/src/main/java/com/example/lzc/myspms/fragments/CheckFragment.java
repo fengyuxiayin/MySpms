@@ -18,6 +18,7 @@ import com.example.lzc.myspms.activitys.queryactivitys.CheckItemsQueryActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.CommunityInfoQueryActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.EnterpriseInfoQueryActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.EnterpriseQueryActivity;
+import com.example.lzc.myspms.activitys.queryactivitys.PlaceInfoQueryActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.StaffInfoQueryActivity;
 import com.example.lzc.myspms.adapters.GridAdapter;
 import com.example.lzc.myspms.models.CheckInfoModel;
@@ -36,6 +37,7 @@ public class CheckFragment extends BaseFragment implements  View.OnClickListener
     private ImageView imgStaffInfo;
     private ImageView imgCompony;
     private ImageView imgCheckItems;
+    private ImageView imgPlaceInfo;
 
     @Nullable
     @Override
@@ -54,6 +56,7 @@ public class CheckFragment extends BaseFragment implements  View.OnClickListener
     }
 
     private void initListener() {
+        imgPlaceInfo.setOnClickListener(this);
         imgComponyInfo.setOnClickListener(this);
         imgCommunityInfo.setOnClickListener(this);
         imgStaffInfo.setOnClickListener(this);
@@ -67,6 +70,7 @@ public class CheckFragment extends BaseFragment implements  View.OnClickListener
 
     private void initView() {
         imgComponyInfo = (ImageView) view.findViewById(R.id.fragment_check_img_compony_info);
+        imgPlaceInfo = (ImageView) view.findViewById(R.id.fragment_check_img_place_info);
         imgCommunityInfo = (ImageView) view.findViewById(R.id.fragment_check_img_community_info);
         imgStaffInfo = (ImageView) view.findViewById(R.id.fragment_check_img_staff_info);
         imgCompony = (ImageView) view.findViewById(R.id.fragment_check_img_compony);
@@ -83,6 +87,12 @@ public class CheckFragment extends BaseFragment implements  View.OnClickListener
                         intent.setClass(getActivity(), EnterpriseInfoQueryActivity.class);
                         intent.putExtra("startClass","CheckFragment");
                         startActivity(intent);
+                    break;
+                case R.id.fragment_check_img_place_info:
+                    //企业信息查询
+                    intent.setClass(getActivity(), PlaceInfoQueryActivity.class);
+                    intent.putExtra("startClass","CheckFragment");
+                    startActivity(intent);
                     break;
                 case R.id.fragment_check_img_community_info:
                                             //社区信息查询

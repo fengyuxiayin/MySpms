@@ -22,7 +22,7 @@
         android:gravity="right"
         android:layout_gravity="right"
         android:layout_marginRight="150dp"
-        android:text="安全生产检查管理系统"
+        android:text="应急管理系统"
         android:textColor="@color/homepage_text_press"
         android:textSize="20sp"
         android:textStyle="bold" />

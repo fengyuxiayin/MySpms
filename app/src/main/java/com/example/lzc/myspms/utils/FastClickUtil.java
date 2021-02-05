@@ -5,20 +5,16 @@ package com.example.lzc.myspms.utils;
  */
 
 public class FastClickUtil {
-    private static final int MIN_CLICK_DELAY_TIME = 3000;
+    private static final int MIN_CLICK_DELAY_TIME = 1000;
     private static long lastClickTime = 0;
 
     public static boolean isFastClick() {
-        boolean flag = false;
-        long curClickTime = System.currentTimeMillis();
-        if (lastClickTime==0) {
-            flag = true;
-        }else{
-            if((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
-                flag = true;
-            }
+        boolean flag = true;
+        long currentClickTime = System.currentTimeMillis();
+        if ((currentClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
+            flag = false;
         }
-        lastClickTime = curClickTime;
+        lastClickTime = currentClickTime;
         return flag;
     }
 }

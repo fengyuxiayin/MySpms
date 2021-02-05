@@ -20,6 +20,7 @@ public class VersionControlModel implements Serializable {
     private String msg;
     private String url;
 
+
     public int getCode() {
         return code;
     }
@@ -64,7 +65,10 @@ public class VersionControlModel implements Serializable {
          * isMust : 0
          * status : 1
          */
-
+        /**
+         * APP类型：1-街道、2-企业
+         */
+        private Integer appType;
         private int createBy;
         private long createTime;
         private String versionCode;
@@ -73,6 +77,14 @@ public class VersionControlModel implements Serializable {
         private int id;
         private int isMust;
         private int status;
+
+        public Integer getAppType() {
+            return appType;
+        }
+
+        public void setAppType(Integer appType) {
+            this.appType = appType;
+        }
 
         public int getCreateBy() {
             return createBy;

@@ -1,6 +1,8 @@
 package com.example.lzc.myspms.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -56,15 +58,41 @@ public class SafeInfoStaffAdapter extends BaseAdapter {
         View view = inflater.inflate(R.layout.popup_compony_safe_info_staff_item, parent, false);
         final EditText etName = (EditText) view.findViewById(R.id.popup_compony_safe_info_staff_item_et_name);
         final EditText etNumber = (EditText) view.findViewById(R.id.popup_compony_safe_info_staff_item_et_number);
-        ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_staff_item_img_operate);
-        etName.setText(data.get(position).getRymc() + "");
-        etNumber.setText(data.get(position).getLxdh() + "");
+        final ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_staff_item_img_operate);
+        etName.setText(data.get(position).getRymc()==null?"":data.get(position).getRymc() + "");
+        etNumber.setText(data.get(position).getLxdh()==null?"":data.get(position).getLxdh() + "");
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.remove(position);
-                //请求服务器进行删除
-                notifyDataSetChanged();
+                if(data.get(position).getStatus()!=null){
+                    if (data.get(position).getStatus()==2) {
+                        return;
+                    }
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);// 自定义对话框
+                builder.setTitle("提示")
+                        .setMessage("是否删除此条信息")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (data.get(position).getId()!=null) {
+                                    if (data.get(position).getStatus()==1) {
+                                        data.get(position).setStatus(2);
+                                        Log.e(TAG, "onClick: " );
+                                        imgDelete.setImageResource(R.mipmap.deleted);
+                                    }
+                                }else{
+                                    data.remove(position);
+                                    notifyDataSetChanged();
+                                }
+                            }
+                        })
+                        .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                builder.show();// 让弹出框显示
             }
         });
         etName.addTextChangedListener(new TextWatcher() {

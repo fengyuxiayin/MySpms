@@ -44,18 +44,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lzc.myspms.R;
-import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
-import com.example.lzc.myspms.adapters.AddEnterpriseAdapter;
 import com.example.lzc.myspms.adapters.MyAdapter;
-import com.example.lzc.myspms.custom.ClearEditText;
 import com.example.lzc.myspms.custom.PicassoImageLoder;
-import com.example.lzc.myspms.custom.XHLoadingView;
 import com.example.lzc.myspms.fragments.BaseFragment;
-import com.example.lzc.myspms.fragments.NewCheckFragment;
-import com.example.lzc.myspms.fragments.queryfragments.communityinfofragments.CommunityBasicInfoFragment;
-import com.example.lzc.myspms.models.BaseEnterpriseModel;
 import com.example.lzc.myspms.models.Constant;
-import com.example.lzc.myspms.models.EnterpriseInfoModel;
 import com.example.lzc.myspms.models.EnumCommunityModel;
 import com.example.lzc.myspms.models.EnumModel;
 import com.example.lzc.myspms.models.FindByIdWithStaffModel;
@@ -154,6 +146,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
         view = inflater.inflate(R.layout.fragment_compony_info, container, false);
         return view;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -716,7 +709,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
     private void isDataQualified() {
         if (getEdittextContent(etComponyName).length() < 1) {
             Log.e(TAG, "isDataQualified: " );
-            Toast.makeText(getContext(), "备注为必填项", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "企业名称为必填项", Toast.LENGTH_SHORT).show();
             return;
         } else {
             componyInfo.setQymc(getEdittextContent(etComponyName));
@@ -743,7 +736,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
         }
         if (getEdittextContent(etYye).length()>0) {
             if (ValidateUtil.isAllNumber(getEditTextContent(etYye))) {
-                componyInfo.setYye(Float.parseFloat(getEdittextContent(etYye)));
+                componyInfo.setYye(Double.valueOf(getEdittextContent(etYye)));
             }else{
                 Toast.makeText(getContext(), "营业额必须为数字", Toast.LENGTH_SHORT).show();
                 return;
@@ -751,7 +744,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
         }
         if (getEdittextContent(etTze).length()>0) {
             if (ValidateUtil.isAllNumber(getEditTextContent(etTze))) {
-                componyInfo.setTze(Float.parseFloat(getEdittextContent(etTze)));
+                componyInfo.setTze(Double.valueOf(getEdittextContent(etTze)));
             }else{
                 Toast.makeText(getContext(), "投资额必须为数字", Toast.LENGTH_SHORT).show();
                 return;
@@ -835,7 +828,7 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             componyInfo.setQyjc(getEdittextContent(etComponySimpleName));
         }
         if (getEdittextContent(etHygs).length() < 1) {
-            Toast.makeText(getContext(), "国民经济类型为必填项", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "国民经济分类为必填项", Toast.LENGTH_SHORT).show();
             return;
         } else {
             for (int i = 0; i < dataIndustryCateary.size(); i++) {
@@ -1090,6 +1083,13 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
                                 String key = o.getString("id");
                                 data.add(new EnumModel(key, value));
                             }
+                            for (int i = 0; i < dataCommunity.size(); i++) {
+                                Log.e(TAG, "setData: " + dataCommunity.get(i).getKey() + "  " + componyInfo.getSqId());
+                                if (dataCommunity.get(i).getKey().equals(componyInfo.getSqId() + "")) {
+                                    etSssq.setText(dataCommunity.get(i).getValue() + "");
+                                    break;
+                                }
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -1200,36 +1200,36 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
         linearLayout.setVisibility(View.VISIBLE);
     }
 
-    /**
-     * @desc 将数据加载并设置到控件上
-     * @date 2018/5/12 9:02
-     */
-    private void initDataFromServer() {
-        OkHttpUtils.post()
-                .url(Constant.SERVER_URL + "/baseEnterprise/findByIdWithStaff")
-                .addParams("id", qyId)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        Log.e(TAG, "onError: " + e.getMessage());
-                        NetUtil.errorTip(getContext(), e.getMessage());
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        if (response != null) {
-                            Log.e(TAG, "onResponse: /baseEnterprise/findByIdWithStaff" + response);
-                            FindByIdWithStaffModel enterpriseInfoModel = gson.fromJson(response, FindByIdWithStaffModel.class);
-                            if (enterpriseInfoModel.isData()) {
-
-                            } else {
-                                Toast.makeText(getContext(), enterpriseInfoModel.getMsg(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                });
-    }
+//    /**
+//     * @desc 将数据加载并设置到控件上
+//     * @date 2018/5/12 9:02
+//     */
+//    private void initDataFromServer() {
+//        OkHttpUtils.post()
+//                .url(Constant.SERVER_URL + "/baseEnterprise/findByIdWithStaff")
+//                .addParams("id", qyId)
+//                .build()
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onError(Request request, Exception e) {
+//                        Log.e(TAG, "onError: " + e.getMessage());
+//                        NetUtil.errorTip(getContext(), e.getMessage());
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String response) {
+//                        if (response != null) {
+//                            Log.e(TAG, "onResponse: /baseEnterprise/findByIdWithStaff" + response);
+//                            FindByIdWithStaffModel enterpriseInfoModel = gson.fromJson(response, FindByIdWithStaffModel.class);
+//                            if (enterpriseInfoModel.isData()) {
+//
+//                            } else {
+//                                Toast.makeText(getContext(), enterpriseInfoModel.getMsg(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//                });
+//    }
 
     private void setData(FindByIdWithStaffModel.FindByIdWithStaffMsgModel componyInfo, List<Location> locationList) {
         etComponyName.setText(componyInfo.getQymc());
@@ -1249,13 +1249,16 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
             }
         }
         etShjydm.setText(componyInfo.getZch());
-        if (componyInfo.getGmqk() == 2) {//2规模以上 3 规模以下 1微型企业
-            rbYes.setChecked(true);
-        } else if(componyInfo.getGmqk() == 3){
-            rbNo.setChecked(true);
-        }else if(componyInfo.getGmqk() == 1){
-            rbSmall.setChecked(true);
+        if(componyInfo.getGmqk()!=null){
+            if (componyInfo.getGmqk() == 2) {//2规模以上 3 规模以下 1微型企业
+                rbYes.setChecked(true);
+            } else if(componyInfo.getGmqk() == 3){
+                rbNo.setChecked(true);
+            }else if(componyInfo.getGmqk() == 1){
+                rbSmall.setChecked(true);
+            }
         }
+
 
         for (int i = 0; i < dataIndustryCateary.size(); i++) {
             if (dataIndustryCateary.get(i).getKey().equals(componyInfo.getHylbdm() + "")) {
@@ -1263,24 +1266,28 @@ public class ComponyBasicInfoFragment extends BaseFragment implements View.OnCli
                 break;
             }
         }
-        etYye.setText(componyInfo.getYye() + "");
+        etYye.setText(componyInfo.getYye()==null?"":componyInfo.getYye()+"");
         for (int i = 0; i < dataUnitType.size(); i++) {
             if (dataUnitType.get(i).getKey().equals(componyInfo.getYyedw() + "")) {
                 tvYye.setText(dataUnitType.get(i).getValue() + "");
                 break;
             }
         }
-        etTze.setText(componyInfo.getTze() + "");
+        etTze.setText(componyInfo.getTze()==null?"0":componyInfo.getTze() + "");
         for (int i = 0; i < dataUnitType.size(); i++) {
             if (dataUnitType.get(i).getKey().equals(componyInfo.getTzedw() + "")) {
                 tvTze.setText(dataUnitType.get(i).getValue() + "");
                 break;
             }
         }
-        // TODO: 2018/6/17 这里有可能有bug
-        if (componyInfo.getQywzjd() > 0) {
-            etQydw.setText(componyInfo.getQywzjd() + "," + componyInfo.getQywzwd());
+        if (componyInfo.getQywzjd()!=null&&componyInfo.getQywzwd()!=null) {
+            if (componyInfo.getQywzjd() > 0) {
+                etQydw.setText(componyInfo.getQywzjd() + "," + componyInfo.getQywzwd());
+            }
+        }else{
+            etQydw.setText("");
         }
+
         //把从服务器获取到的企业范围坐标格式转化一下（服务器的{[lng:46.123456,lat:45.123456]} 我们显示的 45.123456,46.123456）
         String location = "";
         for (int i = 0; i < locationList.size(); i++) {

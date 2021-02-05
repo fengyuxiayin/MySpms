@@ -32,28 +32,28 @@ public class ProjectFindByIdModel implements Serializable {
      * zczq : 1
      */
 
-    private int bfnx;
-    private int synx;
+    private Integer bfnx;
+    private Integer synx;
     private String bm;
-    private int createBy;
-    private long createTime;
-    private int deptId;
-    private int id;
-    private int modifyBy;
-    private long modifyTime;
-    private int qyId;
-    private long qyrq;
+    private Integer createBy;
+    private Long createTime;
+    private Integer deptId;
+    private Integer id;
+    private Integer modifyBy;
+    private Long modifyTime;
+    private Integer qyId;
+    private Long qyrq;
     private String sbpp;
     private String sbtp;
     private String sbxh;
-    private long scrq;
+    private Long scrq;
     private String ssbm;
-    private int status;
+    private Integer status;
     private String sydd;
-    private int wxylx;
+    private Integer wxylx;
     private String wxymc;
-    private int zczq;
-    private int zczqdw;
+    private Integer zczq;
+    private Integer zczqdw;
     private String sybm;
 
     public String getSybm() {
@@ -64,27 +64,27 @@ public class ProjectFindByIdModel implements Serializable {
         this.sybm = sybm;
     }
 
-    public int getZczqdw() {
+    public Integer getZczqdw() {
         return zczqdw;
     }
 
-    public void setZczqdw(int zczqdw) {
+    public void setZczqdw(Integer zczqdw) {
         this.zczqdw = zczqdw;
     }
 
-    public int getSynx() {
+    public Integer getSynx() {
         return synx;
     }
 
-    public void setSynx(int synx) {
+    public void setSynx(Integer synx) {
         this.synx = synx;
     }
 
-    public int getBfnx() {
+    public Integer getBfnx() {
         return bfnx;
     }
 
-    public void setBfnx(int bfnx) {
+    public void setBfnx(Integer bfnx) {
         this.bfnx = bfnx;
     }
 
@@ -96,67 +96,67 @@ public class ProjectFindByIdModel implements Serializable {
         this.bm = bm;
     }
 
-    public int getCreateBy() {
+    public Integer getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(int createBy) {
+    public void setCreateBy(Integer createBy) {
         this.createBy = createBy;
     }
 
-    public long getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
-    public int getDeptId() {
+    public Integer getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(int deptId) {
+    public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getModifyBy() {
+    public Integer getModifyBy() {
         return modifyBy;
     }
 
-    public void setModifyBy(int modifyBy) {
+    public void setModifyBy(Integer modifyBy) {
         this.modifyBy = modifyBy;
     }
 
-    public long getModifyTime() {
+    public Long getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(long modifyTime) {
+    public void setModifyTime(Long modifyTime) {
         this.modifyTime = modifyTime;
     }
 
-    public int getQyId() {
+    public Integer getQyId() {
         return qyId;
     }
 
-    public void setQyId(int qyId) {
+    public void setQyId(Integer qyId) {
         this.qyId = qyId;
     }
 
-    public long getQyrq() {
+    public Long getQyrq() {
         return qyrq;
     }
 
-    public void setQyrq(long qyrq) {
+    public void setQyrq(Long qyrq) {
         this.qyrq = qyrq;
     }
 
@@ -184,11 +184,11 @@ public class ProjectFindByIdModel implements Serializable {
         this.sbxh = sbxh;
     }
 
-    public long getScrq() {
+    public Long getScrq() {
         return scrq;
     }
 
-    public void setScrq(long scrq) {
+    public void setScrq(Long scrq) {
         this.scrq = scrq;
     }
 
@@ -200,11 +200,11 @@ public class ProjectFindByIdModel implements Serializable {
         this.ssbm = ssbm;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -216,11 +216,11 @@ public class ProjectFindByIdModel implements Serializable {
         this.sydd = sydd;
     }
 
-    public int getWxylx() {
+    public Integer getWxylx() {
         return wxylx;
     }
 
-    public void setWxylx(int wxylx) {
+    public void setWxylx(Integer wxylx) {
         this.wxylx = wxylx;
     }
 
@@ -232,11 +232,11 @@ public class ProjectFindByIdModel implements Serializable {
         this.wxymc = wxymc;
     }
 
-    public int getZczq() {
+    public Integer getZczq() {
         return zczq;
     }
 
-    public void setZczq(int zczq) {
+    public void setZczq(Integer zczq) {
         this.zczq = zczq;
     }
 }

@@ -28,20 +28,14 @@ import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.adapters.CheckTaskAdapter;
 import com.example.lzc.myspms.adapters.EnterpriseInfoQueryAdapter;
 import com.example.lzc.myspms.adapters.MyFilterAdapter;
-import com.example.lzc.myspms.adapters.ReCheckInfoAdapter;
-import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
 import com.example.lzc.myspms.custom.ClearEditText;
-import com.example.lzc.myspms.custom.CommonAdapter;
-import com.example.lzc.myspms.custom.ViewHolder;
 import com.example.lzc.myspms.models.CheckTaskModel;
 import com.example.lzc.myspms.models.Constant;
 import com.example.lzc.myspms.models.EnterpriseInfoQueryModel;
 import com.example.lzc.myspms.models.LoginInfoModel;
-import com.example.lzc.myspms.models.NewCheckInfoModel;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.ValidateUtil;
 import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -102,7 +96,7 @@ public class PublishTaskFragment extends BaseFragment {
                 if (content.length() <1) {
                     Toast.makeText(getContext(), "请先输入要前往的页码", Toast.LENGTH_SHORT).show();
                 }else{
-                    if (ValidateUtil.isNumeric(content)) {
+                    if (ValidateUtil.isAllNumber(content)) {
                         page = Integer.parseInt(content);
                         getTaskFromServer();
                     }else{

@@ -28,6 +28,7 @@ import com.example.lzc.myspms.models.EnumModel;
 import com.example.lzc.myspms.models.TzzyryModel;
 import com.example.lzc.myspms.models.WhpJsonModel;
 import com.example.lzc.myspms.models.ZsryJsonModel;
+import com.example.lzc.myspms.utils.DialogUtil;
 import com.example.lzc.myspms.utils.ValidateUtil;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -57,13 +58,11 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.e(TAG, "getCount: " + data.size());
         return data == null ? 0 : data.size();
     }
 
     @Override
     public Object getItem(int position) {
-        Log.e(TAG, "getCount: " + data.size());
         return data == null ? data.get(0) : data.get(position);
     }
 
@@ -81,18 +80,18 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
         final EditText etJzmj = (EditText) view.findViewById(R.id.popup_compony_safe_info_zsry_item_et_jzmj);
         final EditText etJzsj = (EditText) view.findViewById(R.id.popup_compony_safe_info_zsry_item_et_jzsj);
         final EditText etZsrs = (EditText) view.findViewById(R.id.popup_compony_safe_info_zsry_item_et_zsrs);
-        ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_zsry_item_img_operate);
-        etName.setText(data.get(position).getGlry()+"");
-        etNumber.setText(data.get(position).getGlrylxdh()+"");
+        final ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_safe_info_zsry_item_img_operate);
+        etName.setText(data.get(position).getGlry()==null?"":data.get(position).getGlry()+"");
+        etNumber.setText(data.get(position).getGlrylxdh()==null?"":data.get(position).getGlrylxdh()+"");
         for (int i = 0; i < dataStructure.size(); i++) {
-            if (dataStructure.get(i).getKey().equals(data.get(position).getJzjg())) {
+            if (dataStructure.get(i).getKey().equals(data.get(position).getJzjg()+"")) {
                 etJzjg.setText(dataStructure.get(i).getValue());
                 break;
             }
         }
-        etJzmj.setText(data.get(position).getJzmj()+"");
-        etJzsj.setText(data.get(position).getJzsj()+"");
-        etZsrs.setText(data.get(position).getZsrs()+"");
+        etJzmj.setText(data.get(position).getJzmj()==null?"":data.get(position).getJzmj()+"");
+        etJzsj.setText(data.get(position).getJzsj()==null?"":data.get(position).getJzsj()+"");
+        etZsrs.setText(data.get(position).getZsrs()==null?"":data.get(position).getZsrs()+"");
         etJzsj.setFocusable(false);
         etJzsj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +110,37 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.remove(position);
-                notifyDataSetChanged();
+                if(data.get(position)!=null){
+                    if (data.get(position).getStatus()==2) {
+                        return;
+                    }
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);// 自定义对话框
+                builder.setTitle("提示")
+                        .setMessage("是否删除此条信息")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (data.get(position).getId()!=null) {
+                                    if (data.get(position).getStatus()==1) {
+                                        data.get(position).setStatus(2);
+                                        Log.e(TAG, "onClick: " );
+                                        imgDelete.setImageResource(R.mipmap.deleted);
+                                    }
+                                }else{
+                                    data.remove(position);
+                                    notifyDataSetChanged();
+                                }
+                            }
+                        })
+                        .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                builder.show();// 让弹出框显示
             }
+
         });
         etName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -128,9 +155,7 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ZsryJsonModel jsonModel = data.get(position);
-                jsonModel.setGlry(etName.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setGlry(etName.getText().toString());
             }
         });
         etNumber.addTextChangedListener(new TextWatcher() {
@@ -146,9 +171,7 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ZsryJsonModel jsonModel = data.get(position);
-                jsonModel.setGlrylxdh(etNumber.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setGlrylxdh(etNumber.getText().toString());
             }
         });
         etJzmj.addTextChangedListener(new TextWatcher() {
@@ -164,9 +187,11 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ZsryJsonModel jsonModel = data.get(position);
-                jsonModel.setJzmj(etJzmj.getText().toString());
-                data.set(position, jsonModel);
+                if (etJzmj.getText().toString().length()>0) {
+                    data.get(position).setJzmj(Double.valueOf(etJzmj.getText().toString()));
+                }else{
+                    data.get(position).setJzmj(0.0);
+                }
             }
         });
         etZsrs.addTextChangedListener(new TextWatcher() {
@@ -182,9 +207,11 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ZsryJsonModel jsonModel = data.get(position);
-                jsonModel.setZsrs(etZsrs.getText().toString());
-                data.set(position, jsonModel);
+                if(etZsrs.getText().toString().length()>0){
+                    data.get(position).setZsrs(Integer.valueOf(etZsrs.getText().toString()));
+                }else{
+                    data.get(position).setZsrs(0);
+                }
             }
         });
         etJzjg.addTextChangedListener(new TextWatcher() {
@@ -200,14 +227,12 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ZsryJsonModel jsonModel = data.get(position);
                 for (int i = 0; i < dataStructure.size(); i++) {
                     if (dataStructure.get(i).getValue().equals(etJzjg.getText().toString())) {
-                        jsonModel.setJzjg(dataStructure.get(i).getKey());
+                        data.get(position).setJzjg(Integer.valueOf(dataStructure.get(i).getKey()));
                         break;
                     }
                 }
-                data.set(position, jsonModel);
             }
         });
         etJzsj.addTextChangedListener(new TextWatcher() {
@@ -223,9 +248,7 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ZsryJsonModel jsonModel = data.get(position);
-                jsonModel.setJzsj(etJzsj.getText().toString());
-                data.set(position, jsonModel);
+                data.get(position).setJzsj(etJzsj.getText().toString());
             }
         });
         return view;
@@ -254,14 +277,14 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
                     return null;
                 }
             }
-            if (zsryJsonModel.getJzmj().length()>0) {
-                if (!ValidateUtil.isAllNumber(zsryJsonModel.getJzmj())) {
+            if (zsryJsonModel.getJzmj()!=null) {
+                if (!ValidateUtil.isAllNumber(String.valueOf(zsryJsonModel.getJzmj()))) {
                     Toast.makeText(context, "建筑面积只能填写数字", Toast.LENGTH_SHORT).show();
                     return null;
                 }
             }
-            if (zsryJsonModel.getZsrs().length()>0) {
-                if (!ValidateUtil.isNumeric(zsryJsonModel.getZsrs())) {
+            if (zsryJsonModel.getZsrs()!=null) {
+                if (!ValidateUtil.isAllNumber(String.valueOf(zsryJsonModel.getZsrs()))) {
                     Toast.makeText(context, "住宿人数只能填写数字", Toast.LENGTH_SHORT).show();
                     return null;
                 }
@@ -295,9 +318,9 @@ public class SafeInfoZsryAdapter extends BaseAdapter {
     /**
      *
      *@desc 找到datepicker的子控件
-     *@param group 
+     *@param group
      *@date 2018/5/25 13:57
-    */
+     */
     private DatePicker findDatePicker(ViewGroup group) {
         if (group != null) {
             for (int i = 0, j = group.getChildCount(); i < j; i++) {

@@ -117,16 +117,18 @@
                 android:textColor="@color/homepage_text_press"
                 android:textSize="16sp" />
         </LinearLayout>
-        <com.example.lzc.myspms.custom.MyGridView
+        <GridView
             android:id="@+id/activity_project_detail_danger_grid"
             android:numColumns="2"
+            android:scrollbarSize="3dp"
+            android:scrollbarThumbVertical="@drawable/scrollbar_style"
             android:horizontalSpacing="10dp"
             android:verticalSpacing="10dp"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </com.example.lzc.myspms.custom.MyGridView>
+        </GridView>
     </LinearLayout>
 
 </LinearLayout>

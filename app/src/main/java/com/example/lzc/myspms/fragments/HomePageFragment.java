@@ -114,6 +114,7 @@ public class HomePageFragment extends BaseFragment implements RadioGroup.OnCheck
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         initView();
         initData();
         initListener();
@@ -123,6 +124,7 @@ public class HomePageFragment extends BaseFragment implements RadioGroup.OnCheck
     }
 
     private void initData() {
+
         tvGroupName.setText(Constant.USER_NAME);
         //通用柱状图数据
         List<BarChartView.BarGraphInfo> list = new ArrayList<>();
@@ -441,13 +443,11 @@ public class HomePageFragment extends BaseFragment implements RadioGroup.OnCheck
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            // TODO: 2018/6/15 重新刷新首页的数据
         }
     }
 
     private void initView() {
         //小组名称
-        // TODO: 2018/6/29  小组名称没有设置
         tvGroupName = (TextView) view.findViewById(R.id.fragment_homepage_tv_group_name);
         //第一小块
         wvCommunity = (WaveView) view.findViewById(R.id.fragment_homepage_wv_fzsqs);

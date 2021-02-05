@@ -195,7 +195,7 @@ public class EditEnterpriseDangerActivity extends AppCompatActivity implements V
                 case R.id.activity_edit_enterprise_danger_btn_add:
                     Intent intent = new Intent();
                     intent.setClass(EditEnterpriseDangerActivity.this, EditProjectActivity.class);
-                    intent.putExtra("qyId",list!=null?list.get(0).getQyId()+"":"");
+                    intent.putExtra("qyId",qyId);
                     intent.putExtra("id","");
                     intent.putExtra("isEdit",false);
                     startActivity(intent);

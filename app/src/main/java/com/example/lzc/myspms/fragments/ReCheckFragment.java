@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.adapters.ReCheckInfoAdapter;
 import com.example.lzc.myspms.adapters.SimpleArrayAdapter;
+import com.example.lzc.myspms.custom.ClearEditText;
 import com.example.lzc.myspms.models.Constant;
 import com.example.lzc.myspms.models.NewCheckInfoModel;
 import com.example.lzc.myspms.utils.NetUtil;
@@ -48,8 +49,8 @@ public class ReCheckFragment extends BaseFragment  {
     private LinearLayout linearLayout;
     private LinearLayout linearLayout1;
     private Spinner spLimit;
-    private Spinner spAmount;
-    private Spinner spDistance;
+//    private Spinner spAmount;
+//    private Spinner spDistance;
     private String rwzt = "";
     private String rwztNext = "0";
     private List<String> limitList;
@@ -63,6 +64,8 @@ public class ReCheckFragment extends BaseFragment  {
     private SimpleArrayAdapter<String> adapterLimit;
     private SimpleArrayAdapter<String> adapterAmount;
     private SimpleArrayAdapter<String> adapterDistance;
+    private ClearEditText etCompony;
+    private ClearEditText etTask;
 
     @Nullable
     @Override
@@ -109,7 +112,7 @@ public class ReCheckFragment extends BaseFragment  {
             @Override
             public void onClick(View v) {
                 spLimit.setSelection(adapterLimit.getCount());
-                spAmount.setSelection(adapterAmount.getCount());
+//                spAmount.setSelection(adapterAmount.getCount());
                 orderWay = "0";
                 page = 1;
                 getQueryData();
@@ -118,8 +121,8 @@ public class ReCheckFragment extends BaseFragment  {
         spLimit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spAmount.setSelection(amountList.size()-1);
-                spDistance.setSelection(distanceList.size()-1);
+//                spAmount.setSelection(amountList.size()-1);
+//                spDistance.setSelection(distanceList.size()-1);
                 if (position == 0) {
                     orderWay = "1";
                 }else if(position ==1) {
@@ -133,24 +136,24 @@ public class ReCheckFragment extends BaseFragment  {
                 orderWay = "0";
             }
         });
-        spAmount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spLimit.setSelection(limitList.size()-1);
-                spDistance.setSelection(distanceList.size()-1);
-                if (position == 0) {
-                    orderWay = "3";
-                }else if(position ==1){
-                    orderWay = "4";
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                spAmount.setSelection(amountList.size()-1);
-                orderWay = "0";
-            }
-        });
+//        spAmount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                spLimit.setSelection(limitList.size()-1);
+//                spDistance.setSelection(distanceList.size()-1);
+//                if (position == 0) {
+//                    orderWay = "3";
+//                }else if(position ==1){
+//                    orderWay = "4";
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                spAmount.setSelection(amountList.size()-1);
+//                orderWay = "0";
+//            }
+//        });
         rbUncheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -180,21 +183,21 @@ public class ReCheckFragment extends BaseFragment  {
         adapterLimit.setDropDownViewResource(R.layout.spinner_item_textview);
         spLimit.setAdapter(adapterLimit);
         spLimit.setSelection(adapterLimit.getCount());
-        amountList = new ArrayList<>();
-        amountList.add("按项目数量升序排列");
-        amountList.add("按项目数量降序排列");
-        amountList.add("项目数量");
-        adapterAmount = new SimpleArrayAdapter<>(getContext(), R.layout.textview_only, amountList);
-        adapterAmount.setDropDownViewResource(R.layout.spinner_item_textview);
-        spAmount.setAdapter(adapterAmount);
-        spAmount.setSelection(adapterAmount.getCount());
-        distanceList = new ArrayList<>();
-        distanceList.add("按距离升序排列");
-        distanceList.add("按距离降序排列");
-        distanceList.add("距离");
-        adapterDistance = new SimpleArrayAdapter<>(getContext(), R.layout.textview_only, distanceList);
-        adapterDistance.setDropDownViewResource(R.layout.spinner_item_textview);
-        spDistance.setAdapter(adapterDistance);
+//        amountList = new ArrayList<>();
+//        amountList.add("按项目数量升序排列");
+//        amountList.add("按项目数量降序排列");
+//        amountList.add("项目数量");
+//        adapterAmount = new SimpleArrayAdapter<>(getContext(), R.layout.textview_only, amountList);
+//        adapterAmount.setDropDownViewResource(R.layout.spinner_item_textview);
+//        spAmount.setAdapter(adapterAmount);
+//        spAmount.setSelection(adapterAmount.getCount());
+//        distanceList = new ArrayList<>();
+//        distanceList.add("按距离升序排列");
+//        distanceList.add("按距离降序排列");
+//        distanceList.add("距离");
+//        adapterDistance = new SimpleArrayAdapter<>(getContext(), R.layout.textview_only, distanceList);
+//        adapterDistance.setDropDownViewResource(R.layout.spinner_item_textview);
+//        spDistance.setAdapter(adapterDistance);
     }
 
     @Override
@@ -232,11 +235,14 @@ public class ReCheckFragment extends BaseFragment  {
         listView.getLoadingLayoutProxy(false, true).setReleaseLabel("放开以加载");
         //三个spinner 期限 项目发布数量 距离
         spLimit = (Spinner) view.findViewById(R.id.activity_recheck_sp_limit);
-        spAmount = (Spinner) view.findViewById(R.id.activity_recheck_sp_amount);
-        spDistance = (Spinner) view.findViewById(R.id.activity_recheck_sp_distance);
+//        spAmount = (Spinner) view.findViewById(R.id.activity_recheck_sp_amount);
+//        spDistance = (Spinner) view.findViewById(R.id.activity_recheck_sp_distance);
         //radiobutton
         rbUncheck = (RadioButton) view.findViewById(R.id.fragment_recheck_rb_no_recheck);
         rbCheck = (RadioButton) view.findViewById(R.id.fragment_recheck_rb_have_recheck);
+        //两个选择输入框（企业名称、任务名称）
+        etCompony = (ClearEditText) view.findViewById(R.id.activity_recheck_et_compony);
+        etTask = (ClearEditText) view.findViewById(R.id.activity_recheck_et_task);
     }
     private void getQueryData() {
         OkHttpUtils.post()
@@ -247,6 +253,8 @@ public class ReCheckFragment extends BaseFragment  {
                 .addParams("jcdwId", Constant.ENTERPRISE_ID  )
                 .addParams("jclx","2")
                 .addParams("rwzt",rwzt)//0 未检查 1 已检查 2检查中
+                .addParams("qymc", etCompony.getText().toString().trim())
+                .addParams("rwmc",etTask.getText().toString().trim())
                 .addParams("orderWay",orderWay)
                 .addParams("rwztNot", rwztNot)
                 .build()

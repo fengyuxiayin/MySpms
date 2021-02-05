@@ -87,11 +87,11 @@ public class ProjectSimpleAdapter extends BaseAdapter {
         }
         
         if (jcxmlx.equals("1")) {
-            holder.tvProjectName.setText(data.get(position).getStandardDescription());
+            holder.tvProjectName.setText((data.get((position)).getBhgyy()!=null&&data.get((position)).getBhgyy().length()>0)?data.get((position)).getBhgyy():data.get(position).getStandardDescription());
         }else{
             holder.tvProjectName.setText(data.get(position).getWxymc());
         }
-        //根据检查结果设置状态图片 2 未检查 0 检查不合格 1检查合格
+        //根据检查结果设置状态图片 2 未检查 0 检查不合格 1，3检查合格
         Log.e(TAG, "getView: "+data.get(position).getJcjg() );
         if (data.get(position).getJcjg() == 2 ) {
             holder.ivProjectStatus.setImageResource(R.mipmap.uncheck);
@@ -127,10 +127,19 @@ public class ProjectSimpleAdapter extends BaseAdapter {
                     ids.addAll(data);//查看时直接将所有项目放入ids
                 }else{
                     intent.putExtra("isView","isNotView");
-                    intent.putExtra("position",0);
                     for (int i = 0; i < data.size(); i++) {//项目未检查 把未检查的项目添加到ids中
-                        if (data.get(i).getJcjg() == 2){
+                        if (data.get(i).getJcjg() == 2) {
                             ids.add(data.get(i));
+                        }
+                    }
+                    // 给position赋值
+                    for(int i = 0;i<ids.size();i++){
+                        if(ids.get(i).getId()==data.get(position).getId()){
+                            Log.e(TAG, "onClick: 111" );
+                             CheckProjectFindModel.CheckProjectFindMsgModel.ListBean dataSelect = ids.get(i);
+                            ids.remove(i);
+                            ids.add(0,dataSelect);
+                            intent.putExtra("position",0);
                         }
                     }
                 }

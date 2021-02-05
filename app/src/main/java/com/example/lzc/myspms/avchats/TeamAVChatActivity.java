@@ -572,12 +572,14 @@ public class TeamAVChatActivity extends UI {
 //            AVChatManager.getInstance().leaveRoom2(roomId, null);
 //            AVChatManager.getInstance().leaveRoom2(roomId, null);
             AVChatManager.getInstance().disableRtc();
+            destroyRTC = true;
+            finish();
         } catch (Exception e) {
             Log.e(TAG, "hangup: "+e.getMessage()+e.getCause() );
             e.printStackTrace();
         }
 
-        destroyRTC = true;
+
         LogUtil.i(TAG, "destroy rtc & leave room, roomId=" + roomId);
     }
 
@@ -710,7 +712,7 @@ public class TeamAVChatActivity extends UI {
 
             } else if (i == R.id.hangup) {// 挂断
                 hangup();
-                finish();
+//                finish();
 
             }
         }

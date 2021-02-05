@@ -119,6 +119,15 @@ public class EnterpriseInfoQueryModel {
             private int sqId;
             private int xmsl;
             private String zyfzr;
+            private String jxcslx;
+
+            public String getJxcslx() {
+                return jxcslx;
+            }
+
+            public void setJxcslx(String jxcslx) {
+                this.jxcslx = jxcslx;
+            }
 
             public BcBean getBc() {
                 return bc;

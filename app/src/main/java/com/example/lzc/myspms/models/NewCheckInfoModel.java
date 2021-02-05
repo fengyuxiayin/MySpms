@@ -168,6 +168,24 @@ public class NewCheckInfoModel implements Serializable {
             private int unPassCount;
             private int jcbzId;
             private int passCount;
+            private long jhjzsj;
+            private Integer jcxmsl;
+
+            public Integer getJcxmsl() {
+                return jcxmsl;
+            }
+
+            public void setJcxmsl(Integer jcxmsl) {
+                this.jcxmsl = jcxmsl;
+            }
+
+            public long getJhjzsj() {
+                return jhjzsj;
+            }
+
+            public void setJhjzsj(long jhjzsj) {
+                this.jhjzsj = jhjzsj;
+            }
 
             public int getPassCount() {
                 return passCount;

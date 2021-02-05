@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,6 +37,7 @@ import com.example.lzc.myspms.models.ZsryJsonModel;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.ValidateUtil;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -109,6 +112,20 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
     private Fragment mShowFragment = this;
     //公共数据
     private List<EnumModel> commonList = new ArrayList<>();
+    //房屋性质数据
+    private List<EnumModel> fwxzList = new ArrayList<>();
+    private LinearLayout llTzzyry1;
+    private LinearLayout llTzzyry2;
+    private LinearLayout llZzyjglrysl1;
+    private LinearLayout llZzyjglrysl2;
+    private LinearLayout llZcaqgcs1;
+    private LinearLayout llZcaqgcs2;
+    private LinearLayout llFwxz1;
+    private LinearLayout llFwxz2;
+    private EditText etHasTzzyry;
+    private EditText etHasZzyjglry;
+    private EditText etHasZcaqgcs;
+    private EditText etHasFwxz;
 
     @Nullable
     @Override
@@ -195,12 +212,114 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
             etZyfzrxxqk.setOnClickListener(this);
             etAqfzrxxqk.setFocusable(false);
             etAqfzrxxqk.setOnClickListener(this);
+            etHasTzzyry.setOnClickListener(this);
+            etHasTzzyry.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if ("是".equals(s.toString())) {
+                        llTzzyry1.setVisibility(View.VISIBLE);
+                        llTzzyry2.setVisibility(View.VISIBLE);
+                        componyInfo.setHastTzyry(1);
+                    } else {
+                        componyInfo.setHastTzyry(0);
+                        llTzzyry1.setVisibility(View.GONE);
+                        llTzzyry2.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            etHasZzyjglry.setOnClickListener(this);
+            etHasZzyjglry.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if ("是".equals(s.toString())) {
+                        llZzyjglrysl1.setVisibility(View.VISIBLE);
+                        llZzyjglrysl2.setVisibility(View.VISIBLE);
+                        componyInfo.setHasZzyjglry(1);
+                    } else {
+                        llZzyjglrysl1.setVisibility(View.GONE);
+                        llZzyjglrysl2.setVisibility(View.GONE);
+
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            etHasZcaqgcs.setOnClickListener(this);
+            etHasZcaqgcs.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if ("是".equals(s.toString())) {
+                        llZcaqgcs1.setVisibility(View.VISIBLE);
+                        llZcaqgcs2.setVisibility(View.VISIBLE);
+                        componyInfo.setHasZcaqgcsry(1);
+                    } else {
+                        componyInfo.setHasZcaqgcsry(0);
+                        llZcaqgcs1.setVisibility(View.GONE);
+                        llZcaqgcs2.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            etHasFwxz.setOnClickListener(this);
+            etHasFwxz.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if ("租赁".equals(s.toString())) {
+                        llFwxz1.setVisibility(View.VISIBLE);
+                        llFwxz2.setVisibility(View.VISIBLE);
+                        componyInfo.setFwxz(1);
+                    } else {
+                        componyInfo.setFwxz(0);
+                        llFwxz1.setVisibility(View.GONE);
+                        llFwxz2.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
     }
 
     private void initData() {
         commonList.add(new EnumModel("1", "是"));
         commonList.add(new EnumModel("2", "否"));
+        fwxzList.add(new EnumModel("0", "自建"));
+        fwxzList.add(new EnumModel("1", "租赁"));
         //建筑结构单位
         initEnumData("/enum/getEnums", "ARCHITECTURAL_STRUCTURE_TYPE", dataStructure);
         if (which.equals("edit")) {
@@ -273,100 +392,99 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
      * @date 2018/6/20 19:17
      */
     private void setData() {
-        etQyfr.setText(componyInfo.getFddbr());
-        etLxdh.setText(componyInfo.getLxdh());
-        etDzyx.setText(componyInfo.getDzyx());
+        etQyfr.setText(componyInfo.getFddbr() == null ? "" : componyInfo.getFddbr());
+        etLxdh.setText(componyInfo.getLxdh() == null ? "" : componyInfo.getLxdh());
+        etDzyx.setText(componyInfo.getDzyx() == null ? "" : componyInfo.getDzyx());
         //主要负责人
-        etZyfzr.setText(componyInfo.getZyfzr());
-        etZyfzrxxqk.setText(commonArray[componyInfo.getIszyfzrxx()]);
-        etZyfzryddh.setText(componyInfo.getZyfzryddhhm());
-        etZyfzrgddh.setText(componyInfo.getZyfzrgddhhm());
+        etZyfzr.setText(componyInfo.getZyfzr() == null ? "" : componyInfo.getZyfzr());
+        etZyfzrxxqk.setText(commonArray[componyInfo.getIszyfzrxx() == null ? 0 : componyInfo.getIszyfzrxx()]);
+        etZyfzryddh.setText(componyInfo.getZyfzryddhhm() == null ? "" : componyInfo.getZyfzryddhhm());
+        etZyfzrgddh.setText(componyInfo.getZyfzrgddhhm() == null ? "" : componyInfo.getZyfzrgddhhm());
         //安全负责人
-        etAqfzr.setText(componyInfo.getAqfzr());
-        etAqfzrxxqk.setText(commonArray[componyInfo.getIsaqfzrxx()]);
-        etAqfzryddh.setText(componyInfo.getAqfzryddhhm());
-        etAqfzrgddh.setText(componyInfo.getAqfzrgddhhm());
+        etAqfzr.setText(componyInfo.getAqfzr() == null ? "" : componyInfo.getAqfzr());
+        etAqfzrxxqk.setText(commonArray[componyInfo.getIsaqfzrxx() == null ? 0 : componyInfo.getIsaqfzrxx()]);
+        etAqfzryddh.setText(componyInfo.getAqfzryddhhm() == null ? "" : componyInfo.getAqfzryddhhm());
+        etAqfzrgddh.setText(componyInfo.getAqfzrgddhhm() == null ? "" : componyInfo.getAqfzrgddhhm());
         //从业人员
-        etCyrysl.setText(componyInfo.getCyrysl() + "");
-        JSONArray jsonArray = new JSONArray();
-        try {
-            jsonArray = new JSONArray(componyInfo.getCyryJson());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JsonModel jsonModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), JsonModel.class);
-                cyryList.add(jsonModel);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        etCyrysl.setText(componyInfo.getCyrysl() == null ? "0" : componyInfo.getCyrysl() + "");
+        cyryList = gson.fromJson(componyInfo.getCyryJson(), new TypeToken<List<JsonModel>>() {
+        }.getType());
+        if (cyryList == null) {
+            cyryList = new ArrayList<>();
         }
         adapterCyry = new SafeInfoStaffAdapter(cyryList, getContext());
         listCyry.setAdapter(adapterCyry);
         //专职安全生产
-        etZzaqscsl.setText(componyInfo.getZzaqscglrys() + "");
-        try {
-            jsonArray = new JSONArray(componyInfo.getZzaqscryJson());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JsonModel jsonModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), JsonModel.class);
-                zzaqscList.add(jsonModel);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        etZzaqscsl.setText(componyInfo.getZzaqscglrys() == null ? "0" : componyInfo.getZzaqscglrys() + "");
+        zzaqscList = gson.fromJson(componyInfo.getZzaqscryJson(), new TypeToken<List<JsonModel>>() {
+        }.getType());
+        if (zzaqscList == null) {
+            zzaqscList = new ArrayList<>();
         }
         adapterZzaqsc = new SafeInfoStaffAdapter(zzaqscList, getContext());
         listZzaqsc.setAdapter(adapterZzaqsc);
         //专职应急管理
-        etZzyjglsl.setText(componyInfo.getZzyjglrys() + "");
-        try {
-            jsonArray = new JSONArray(componyInfo.getZzyjglryJson());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JsonModel jsonModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), JsonModel.class);
-                zzyjglList.add(jsonModel);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        etZzyjglsl.setText(componyInfo.getZzyjglrys() == null ? "0" : +componyInfo.getZzyjglrys() + "");
+        zzyjglList = gson.fromJson(componyInfo.getZzyjglryJson(), new TypeToken<List<JsonModel>>() {
+        }.getType());
+        if (zzyjglList == null) {
+            zzyjglList = new ArrayList<>();
+        }
+        if (!"0".equals(getEdittextContent(etZzyjglsl)) || zzyjglList.size() > 0) {
+            etHasZzyjglry.setText("是");
+        } else {
+            etHasZzyjglry.setText("否");
+
         }
         adapterZzyjgl = new SafeInfoStaffAdapter(zzyjglList, getContext());
         listZzyjgl.setAdapter(adapterZzyjgl);
         //注册安全工程师
-        etZcaqgcssl.setText(componyInfo.getZcaqgcsrys() + "");
-        try {
-            jsonArray = new JSONArray(componyInfo.getZcaqgcsJson());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JsonModel jsonModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), JsonModel.class);
-                zcaqgcsList.add(jsonModel);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        etZcaqgcssl.setText(componyInfo.getZcaqgcsrys() == null ? "0" : componyInfo.getZcaqgcsrys() + "");
+        zcaqgcsList = gson.fromJson(componyInfo.getZcaqgcsJson(), new TypeToken<List<JsonModel>>() {
+        }.getType());
+        if (zcaqgcsList == null) {
+            zcaqgcsList = new ArrayList<>();
+        }
+        if (!"0".equals(getEdittextContent(etZcaqgcssl)) || zcaqgcsList.size() > 0) {
+            etHasZcaqgcs.setText("是");
+        } else {
+            etHasZcaqgcs.setText("否");
+
         }
         adapterZcaqgcs = new SafeInfoStaffAdapter(zcaqgcsList, getContext());
         listZcaqgcs.setAdapter(adapterZcaqgcs);
         //特种作业人员
-        etTzzyrysl.setText(componyInfo.getTzzyrysl() + "");
-        try {
-            jsonArray = new JSONArray(componyInfo.getTzzyryJson());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                TzzyryModel tzzyryModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), TzzyryModel.class);
-                tzzyryList.add(tzzyryModel);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        etTzzyrysl.setText(componyInfo.getTzzyrysl() == null ? "0" : componyInfo.getTzzyrysl() + "");
+        tzzyryList = gson.fromJson(componyInfo.getTzzyryJson(), new TypeToken<List<TzzyryModel>>() {
+        }.getType());
+        if (tzzyryList == null) {
+            tzzyryList = new ArrayList<>();
+        }
+        if (!"0".equals(getEdittextContent(etTzzyrysl)) || tzzyryList.size() > 0) {//不等于0 或者列表有东西代表应该展示这两项
+            etHasTzzyry.setText("是");
+        } else {
+            etHasTzzyry.setText("否");
+
         }
         adapterTzzyry = new SafeInfoTzzyAdapter(tzzyryList, getContext());
         listTzzyry.setAdapter(adapterTzzyry);
         //住宿人员
-        try {
-            jsonArray = new JSONArray(componyInfo.getSsJson());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                ZsryJsonModel zsryJsonModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), ZsryJsonModel.class);
-                zsryList.add(zsryJsonModel);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        zsryList = gson.fromJson(componyInfo.getSsJson(), new TypeToken<List<ZsryJsonModel>>() {
+        }.getType());
+        if (zsryList == null) {
+            zsryList = new ArrayList<>();
         }
+        Log.e(TAG, "setData: " + ("".equals(getEdittextContent(etFddh))) + ("".equals(getEdittextContent(etFdxm))) + (zsryList.size() > 0));
         adapterZsry = new SafeInfoZsryAdapter(zsryList, getContext(), dataStructure);
         listZsry.setAdapter(adapterZsry);
         //房东信息
-        etFdxm.setText(componyInfo.getFdxm());
-        etFddh.setText(componyInfo.getFddh());
+        etFdxm.setText(componyInfo.getFdxm() == null ? "" : componyInfo.getFdxm());
+        etFddh.setText(componyInfo.getFddh() == null ? "" : componyInfo.getFddh());
+        if (!("".equals(getEdittextContent(etFddh))) || !("".equals(getEdittextContent(etFdxm))) || zsryList.size() > 0) {//不等于0 或者列表有东西代表应该展示这两项
+            etHasFwxz.setText("租赁");
+        } else {
+            etHasFwxz.setText("自建");
+        }
     }
 
     private void initView() {
@@ -389,6 +507,9 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
         etTzzyrysl = (ClearEditText) view.findViewById(R.id.fragment_basic_info_et_tzzyrysl);
         imgTzzyryAdd = (ImageView) view.findViewById(R.id.tzzyry_add);
         listTzzyry = (ListView) view.findViewById(R.id.tzzyry_list);
+        etHasTzzyry = (EditText) view.findViewById(R.id.fragment_basic_info_et_hastzzyry);
+        llTzzyry1 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_tzzyry1);
+        llTzzyry2 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_tzzyry2);
         //专职安全生产管理
         etZzaqscsl = (ClearEditText) view.findViewById(R.id.fragment_basic_info_et_zzaqscglrysl);
         imgZzaqscAdd = (ImageView) view.findViewById(R.id.fragment_basic_info_zzaqglrysl).findViewById(R.id.ry_add);
@@ -397,15 +518,24 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
         etZzyjglsl = (ClearEditText) view.findViewById(R.id.fragment_basic_info_et_zzyjglrysl);
         imgZzyjglAdd = (ImageView) view.findViewById(R.id.fragment_basic_info_zzyjglrysl).findViewById(R.id.ry_add);
         listZzyjgl = (ListView) view.findViewById(R.id.fragment_basic_info_zzyjglrysl).findViewById(R.id.ry_list);
+        llZzyjglrysl1 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_zzyjglry1);
+        llZzyjglrysl2 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_zzyjglry2);
+        etHasZzyjglry = (EditText) view.findViewById(R.id.fragment_basic_info_et_haszzyjglry);
         //注册安全工程师
         etZcaqgcssl = (ClearEditText) view.findViewById(R.id.fragment_basic_info_et_zcaqgcssl);
         imgZcaqgcsAdd = (ImageView) view.findViewById(R.id.fragment_basic_info_zcaqgcssl).findViewById(R.id.ry_add);
         listZcaqgcs = (ListView) view.findViewById(R.id.fragment_basic_info_zcaqgcssl).findViewById(R.id.ry_list);
+        llZcaqgcs1 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_zcaqgcs1);
+        llZcaqgcs2 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_zcaqgcs2);
+        etHasZcaqgcs = (EditText) view.findViewById(R.id.fragment_basic_info_et_haszcaqgcs);
         //住宿人员
         etFdxm = (ClearEditText) view.findViewById(R.id.fragment_basic_info_et_fdxm);
         etFddh = (ClearEditText) view.findViewById(R.id.fragment_basic_info_et_fddh);
         imgZsryAdd = (ImageView) view.findViewById(R.id.zsry_add);
         listZsry = (ListView) view.findViewById(R.id.zsry_list);
+        llFwxz1 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_fwxz1);
+        llFwxz2 = (LinearLayout) view.findViewById(R.id.fragment_basic_info_ll_fwxz2);
+        etHasFwxz = (EditText) view.findViewById(R.id.fragment_basic_info_et_hasfwxz);
         //两个按钮
         linearLayout = (LinearLayout) view.findViewById(R.id.fragment_staff_info_textview_ll);
         btnUp = (Button) view.findViewById(R.id.fragment_staff_info_btn_up);
@@ -420,42 +550,42 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                     int tag = (int) v.getTag();
                     switch (tag) {
                         case 0:
-                            cyryList.add(new JsonModel("","",1,0));
-                            if (adapterCyry!=null) {
+                            cyryList.add(new JsonModel());
+                            if (adapterCyry != null) {
                                 listCyry.setAdapter(adapterCyry);
                                 adapterCyry.notifyDataSetChanged();
-                            }else{
-                                adapterCyry = new SafeInfoStaffAdapter(cyryList,getContext());
+                            } else {
+                                adapterCyry = new SafeInfoStaffAdapter(cyryList, getContext());
                                 listCyry.setAdapter(adapterCyry);
                             }
                             break;
                         case 2:
-                            zzaqscList.add(new JsonModel("","",1,0));
-                            if (adapterZzaqsc!=null) {
+                            zzaqscList.add(new JsonModel());
+                            if (adapterZzaqsc != null) {
                                 listZzaqsc.setAdapter(adapterZzaqsc);
                                 adapterZzaqsc.notifyDataSetChanged();
-                            }else{
-                                adapterZzaqsc = new SafeInfoStaffAdapter(zzaqscList,getContext());
+                            } else {
+                                adapterZzaqsc = new SafeInfoStaffAdapter(zzaqscList, getContext());
                                 listZzaqsc.setAdapter(adapterZzaqsc);
                             }
                             break;
                         case 3:
-                            zzyjglList.add(new JsonModel("","",1,0));
-                            if (adapterZzyjgl!=null) {
+                            zzyjglList.add(new JsonModel());
+                            if (adapterZzyjgl != null) {
                                 listZzyjgl.setAdapter(adapterZzyjgl);
                                 adapterZzyjgl.notifyDataSetChanged();
-                            }else{
-                                adapterZzyjgl = new SafeInfoStaffAdapter(zzyjglList,getContext());
+                            } else {
+                                adapterZzyjgl = new SafeInfoStaffAdapter(zzyjglList, getContext());
                                 listZzyjgl.setAdapter(adapterZzyjgl);
                             }
                             break;
                         case 4:
-                            zcaqgcsList.add(new JsonModel("","",1,0));
-                            if (adapterZcaqgcs!=null) {
+                            zcaqgcsList.add(new JsonModel());
+                            if (adapterZcaqgcs != null) {
                                 listZcaqgcs.setAdapter(adapterZcaqgcs);
                                 adapterZcaqgcs.notifyDataSetChanged();
-                            }else{
-                                adapterZcaqgcs = new SafeInfoStaffAdapter(zcaqgcsList,getContext());
+                            } else {
+                                adapterZcaqgcs = new SafeInfoStaffAdapter(zcaqgcsList, getContext());
                                 listZcaqgcs.setAdapter(adapterZcaqgcs);
                             }
                             break;
@@ -463,22 +593,22 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                     }
                     break;
                 case R.id.zsry_add:
-                    zsryList.add(new ZsryJsonModel("","","","","",""));
-                    if (adapterZsry!=null) {
+                    zsryList.add(new ZsryJsonModel());
+                    if (adapterZsry != null) {
                         listZsry.setAdapter(adapterZsry);
                         adapterZsry.notifyDataSetChanged();
-                    }else{
-                        adapterZsry = new SafeInfoZsryAdapter(zsryList,getContext(),dataStructure);
+                    } else {
+                        adapterZsry = new SafeInfoZsryAdapter(zsryList, getContext(), dataStructure);
                         listZsry.setAdapter(adapterZsry);
                     }
                     break;
                 case R.id.tzzyry_add:
-                    tzzyryList.add(new TzzyryModel("","","","","","",1,0));
-                    if (adapterTzzyry!=null) {
+                    tzzyryList.add(new TzzyryModel());
+                    if (adapterTzzyry != null) {
                         listTzzyry.setAdapter(adapterTzzyry);
                         adapterTzzyry.notifyDataSetChanged();
-                    }else{
-                        adapterTzzyry = new SafeInfoTzzyAdapter(tzzyryList,getContext());
+                    } else {
+                        adapterTzzyry = new SafeInfoTzzyAdapter(tzzyryList, getContext());
                         listTzzyry.setAdapter(adapterTzzyry);
                     }
                     break;
@@ -491,6 +621,18 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                 case R.id.fragment_basic_info_et_zyfzrxxqk:
                     showChooseDialog(commonList, etZyfzrxxqk, "主要负责人学习情况");
                     break;
+                case R.id.fragment_basic_info_et_hastzzyry:
+                    showChooseDialog(commonList, etHasTzzyry, "是否有特种作业人员");
+                    break;
+                case R.id.fragment_basic_info_et_haszzyjglry:
+                    showChooseDialog(commonList, etHasZzyjglry, "是否有专职应急管理人员");
+                    break;
+                case R.id.fragment_basic_info_et_haszcaqgcs:
+                    showChooseDialog(commonList, etHasZcaqgcs, "是否有注册安全工程师");
+                    break;
+                case R.id.fragment_basic_info_et_hasfwxz:
+                    showChooseDialog(fwxzList, etHasFwxz, "房屋性质");
+                    break;
                 case R.id.fragment_staff_info_btn_down:
                     //先判断数据何不合格
                     isDataQualified();
@@ -498,6 +640,7 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
             }
         }
     }
+
     /**
      * @param epointName 显示内容的edittext
      * @param data       dialog显示的内容
@@ -526,6 +669,18 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
                     case "主要负责人学习情况":
                         componyInfo.setIszyfzrxx(Integer.parseInt(commonList.get(which).getKey()));
                         break;
+                    case "是否有特种作业人员":
+                        componyInfo.setHastTzyry(Integer.parseInt(commonList.get(which).getKey()));
+                        break;
+                    case "是否有专职应急管理人员":
+                        componyInfo.setHasZzyjglry(Integer.parseInt(commonList.get(which).getKey()));
+                        break;
+                    case "是否有注册安全工程师":
+                        componyInfo.setHasZcaqgcsry(Integer.parseInt(commonList.get(which).getKey()));
+                        break;
+                    case "房屋性质":
+                        componyInfo.setFwxz(Integer.parseInt(fwxzList.get(which).getKey()));
+                        break;
                 }
                 dialog.dismiss();//随便点击一个item消失对话框，不用点击确认取消
             }
@@ -534,185 +689,196 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
     }
 
     private void isDataQualified() {
-        if (getEdittextContent(etQyfr).length()<1) {
+        Log.e(TAG, "isDataQualified: " + componyInfo.getFwxz());
+        if (getEdittextContent(etQyfr).length() < 1) {
             Toast.makeText(getContext(), "企业法人为必填项", Toast.LENGTH_SHORT).show();
             return;
-        }else{
+        } else {
             componyInfo.setFddbr(getEdittextContent(etQyfr));
         }
-        if (getEdittextContent(etLxdh).length()<1) {
+        if (getEdittextContent(etLxdh).length() < 1) {
             Toast.makeText(getContext(), "联系电话为必填项", Toast.LENGTH_SHORT).show();
             return;
-        }else{
-            if (ValidateUtil.isPhone(getEdittextContent(etLxdh))||ValidateUtil.isMobile(getEdittextContent(etLxdh))) {
+        } else {
+            if (ValidateUtil.isPhone(getEdittextContent(etLxdh)) || ValidateUtil.isMobile(getEdittextContent(etLxdh))) {
                 componyInfo.setLxdh(getEdittextContent(etLxdh));
-            }else{
+            } else {
                 Toast.makeText(getContext(), "请填写正确的联系方式", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
-        if (getEdittextContent(etDzyx).length()>0) {
+        if (getEdittextContent(etDzyx).length() > 0) {
             if (ValidateUtil.isValidEmail(getEdittextContent(etDzyx))) {
                 componyInfo.setDzyx(getEdittextContent(etDzyx));
-            }else{
+            } else {
                 Toast.makeText(getContext(), "请填写正确的邮箱地址", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
         //主要负责人
-        if (getEdittextContent(etZyfzr).length()<1) {
+        if (getEdittextContent(etZyfzr).length() < 1) {
             Toast.makeText(getContext(), "主要负责人为必填项", Toast.LENGTH_SHORT).show();
             return;
-        }else{
+        } else {
             componyInfo.setZyfzr(getEdittextContent(etZyfzr));
         }
-        if (getEdittextContent(etZyfzryddh).length()<1&&getEdittextContent(etZyfzrgddh).length()<1) {
+        if (getEdittextContent(etZyfzryddh).length() < 1 && getEdittextContent(etZyfzrgddh).length() < 1) {
             Toast.makeText(getContext(), "请至少填写主要负责人一种联系方式", Toast.LENGTH_SHORT).show();
             return;
-        }else{
-            if (getEdittextContent(etZyfzryddh).length()>0) {
+        } else {
+            if (getEdittextContent(etZyfzryddh).length() > 0) {
                 if (ValidateUtil.isPhone(getEdittextContent(etZyfzryddh))) {
                     componyInfo.setZyfzryddhhm(getEdittextContent(etZyfzryddh));
-                }else{
+                } else {
                     Toast.makeText(getContext(), "请填写主要负责人正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
-            if (getEdittextContent(etZyfzrgddh).length()>0) {
+            if (getEdittextContent(etZyfzrgddh).length() > 0) {
                 if (ValidateUtil.isMobile(getEdittextContent(etZyfzrgddh))) {
                     componyInfo.setZyfzrgddhhm(getEdittextContent(etZyfzrgddh));
-                }else{
+                } else {
                     Toast.makeText(getContext(), "请填写主要负责人正确的固定电话", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
 
         }
-        componyInfo.setIszyfzrxx(getEdittextContent(etZyfzrxxqk).equals("是")?1:2);
+        componyInfo.setIszyfzrxx(getEdittextContent(etZyfzrxxqk).equals("是") ? 1 : 2);
         //安全负责人
-        if (getEdittextContent(etAqfzr).length()<1) {
+        if (getEdittextContent(etAqfzr).length() < 1) {
             Toast.makeText(getContext(), "安全负责人为必填项", Toast.LENGTH_SHORT).show();
             return;
-        }else{
+        } else {
             componyInfo.setAqfzr(getEdittextContent(etAqfzr));
         }
-        if (getEdittextContent(etAqfzryddh).length()<1&&getEdittextContent(etAqfzrgddh).length()<1) {
+        if (getEdittextContent(etAqfzryddh).length() < 1 && getEdittextContent(etAqfzrgddh).length() < 1) {
             Toast.makeText(getContext(), "请至少填写安全负责人的一种联系方式", Toast.LENGTH_SHORT).show();
             return;
-        }else{
-            if (getEdittextContent(etAqfzryddh).length()>0) {
+        } else {
+            if (getEdittextContent(etAqfzryddh).length() > 0) {
                 if (ValidateUtil.isPhone(getEdittextContent(etAqfzryddh))) {
                     componyInfo.setAqfzryddhhm(getEdittextContent(etAqfzryddh));
-                }else{
+                } else {
                     Toast.makeText(getContext(), "请填写安全负责人正确的手机号", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
-            if (getEdittextContent(etAqfzrgddh).length()>0) {
+            if (getEdittextContent(etAqfzrgddh).length() > 0) {
                 if (ValidateUtil.isMobile(getEdittextContent(etAqfzrgddh))) {
                     componyInfo.setAqfzrgddhhm(getEdittextContent(etAqfzrgddh));
-                }else{
+                } else {
                     Toast.makeText(getContext(), "请填写安全负责人正确的固定电话", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
         }
-        componyInfo.setIsaqfzrxx(getEdittextContent(etAqfzrxxqk).equals("是")?1:2);
+        componyInfo.setIsaqfzrxx(getEdittextContent(etAqfzrxxqk).equals("是") ? 1 : 2);
         //从业人员
-        if (getEdittextContent(etCyrysl).length()>0) {
+        if (getEdittextContent(etCyrysl).length() > 0) {
             componyInfo.setCyrysl(Integer.parseInt((getEdittextContent(etCyrysl))));
         }
         List<JsonModel> jsonModelList = new ArrayList<>();
         for (int i = 0; i < cyryList.size(); i++) {
-            if (cyryList.get(i).getLxdh().length()>0) {
-                if (ValidateUtil.isPhone(cyryList.get(i).getLxdh())) {
-                    jsonModelList.add(cyryList.get(i));
-                }else{
-                    Log.e(TAG, "isDataQualified: 从业人员的联系方式不对" );
-                }
-            }
+//            if (cyryList.get(i).getLxdh() != null) {
+//                if (cyryList.get(i).getLxdh().length() > 0) {
+//                    if (!ValidateUtil.isPhone(cyryList.get(i).getLxdh())) {
+//                        Log.e(TAG, "isDataQualified: "+cyryList.get(i).getLxdh() );
+//                        Log.e(TAG, "isDataQualified: 从业人员的联系方式不对");
+//                        return;
+//                    }
+//                }
+//            }
+            jsonModelList.add(cyryList.get(i));
         }
         componyInfo.setCyryJson(gson.toJson(jsonModelList));
         //专职安全生产
-        if ((getEdittextContent(etZzaqscsl).length())>0) {
+        if ((getEdittextContent(etZzaqscsl).length()) > 0) {
             componyInfo.setZzaqscglrys(Integer.parseInt(getEdittextContent(etZzaqscsl)));
         }
         jsonModelList = new ArrayList<>();
         for (int i = 0; i < zzaqscList.size(); i++) {
-            if (zzaqscList.get(i).getLxdh().length()>0) {
-                if (ValidateUtil.isPhone(zzaqscList.get(i).getLxdh())) {
-                    jsonModelList.add(zzaqscList.get(i));
-                }else{
-                    Log.e(TAG, "isDataQualified: 专职安全生产人员的联系方式不对" );
-                }
-            }
+//            if (zzaqscList.get(i).getLxdh() != null) {
+//                if (zzaqscList.get(i).getLxdh().length() > 0) {
+//                    if (!ValidateUtil.isPhone(zzaqscList.get(i).getLxdh())) {
+//                        Log.e(TAG, "isDataQualified: 专职安全生产人员的联系方式不对");
+//                        return;
+//                    }
+//                }
+//            }
+            jsonModelList.add(zzaqscList.get(i));
         }
         componyInfo.setZzaqscryJson(gson.toJson(jsonModelList));
         //专职应急管理
-        if (getEdittextContent(etZzyjglsl).length()>0) {
+        if (getEdittextContent(etZzyjglsl).length() > 0) {
             componyInfo.setZzyjglrys(Integer.parseInt(getEdittextContent(etZzyjglsl)));
         }
         jsonModelList = new ArrayList<>();
         for (int i = 0; i < zzyjglList.size(); i++) {
-            if (zzyjglList.get(i).getLxdh().length()>0) {
-                if (zzyjglList.get(i).getLxdh().length()>0) {
-                    if (ValidateUtil.isPhone(zzyjglList.get(i).getLxdh())) {
-                        jsonModelList.add(zzyjglList.get(i));
-                    }else{
-                        Log.e(TAG, "isDataQualified: 专职应急管理人员的联系方式不对" );
-                    }
-                }
-            }
+//            if (zzyjglList.get(i).getLxdh() != null) {
+//                if (zzyjglList.get(i).getLxdh().length() > 0) {
+//                    if (!ValidateUtil.isPhone(zzyjglList.get(i).getLxdh())) {
+//                        Log.e(TAG, "isDataQualified: 专职应急管理人员的联系方式不对");
+//                        return;
+//                    }
+//                }
+//            }
+            jsonModelList.add(zzyjglList.get(i));
         }
         componyInfo.setZzyjglryJson(gson.toJson(jsonModelList));
         //注册安全工程师
-        if (getEdittextContent(etZcaqgcssl).length()>0) {
+        if (getEdittextContent(etZcaqgcssl).length() > 0) {
             componyInfo.setZcaqgcsrys(Integer.parseInt(getEdittextContent(etZcaqgcssl)));
         }
         jsonModelList = new ArrayList<>();
         for (int i = 0; i < zcaqgcsList.size(); i++) {
-            if (zcaqgcsList.get(i).getLxdh().length()>0) {
-                if (zcaqgcsList.get(i).getLxdh().length()>0) {
-                    if (ValidateUtil.isPhone(zcaqgcsList.get(i).getLxdh())) {
-                        jsonModelList.add(zcaqgcsList.get(i));
-                    }else{
-                        Log.e(TAG, "isDataQualified: 注册安全工程师的联系方式不对" );
-                    }
-                }
-            }
+//            if (zcaqgcsList.get(i).getLxdh() != null) {
+//                if (zcaqgcsList.get(i).getLxdh().length() > 0) {
+//                    if (!ValidateUtil.isPhone(zcaqgcsList.get(i).getLxdh())) {
+//                        Log.e(TAG, "isDataQualified: 注册安全工程师的联系方式不对");
+//                        return;
+//                    }
+//                }
+//            }
+            jsonModelList.add(zcaqgcsList.get(i));
         }
         componyInfo.setZcaqgcsJson(gson.toJson(jsonModelList));
         //住宿人员
         List<ZsryJsonModel> zsryModelList = new ArrayList<>();
         for (int i = 0; i < zsryList.size(); i++) {
-            if (zsryList.get(i).getGlrylxdh().length()>0) {
-                if (ValidateUtil.isPhone(zsryList.get(i).getGlrylxdh())) {
-                    zsryModelList.add(zsryList.get(i));
-                }else{
-                    Log.e(TAG, "isDataQualified: 住宿管理人员的联系方式不对" );
+            if (zsryList.get(i).getGlrylxdh() != null) {
+                if (zsryList.get(i).getGlrylxdh().length() > 0) {
+                    if (!ValidateUtil.isPhone(zsryList.get(i).getGlrylxdh())) {
+                        Log.e(TAG, "isDataQualified: 住宿管理人员的联系方式不对");
+                        Toast.makeText(getContext(), "住宿管理人员的联系方式不对", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
             }
+            zsryModelList.add(zsryList.get(i));
         }
-        componyInfo.setSsJson(gson.toJson(zsryModelList));
+        componyInfo.setSsJson(gson.toJson(zsryModelList).equals("[]") ? "" : gson.toJson(zsryModelList));
         //特种作业人员
-        if (getEdittextContent(etTzzyrysl).length()>0) {
+        if (getEdittextContent(etTzzyrysl).length() > 0) {
             componyInfo.setTzzyrysl(Integer.parseInt(getEdittextContent(etTzzyrysl)));
         }
         List<TzzyryModel> TzzyryModelList = new ArrayList<>();
         for (int i = 0; i < tzzyryList.size(); i++) {
-            if (tzzyryList.get(i).getLxdh().length()>0) {
-                if (ValidateUtil.isPhone(tzzyryList.get(i).getLxdh())) {
-                    TzzyryModelList.add(tzzyryList.get(i));
-                }else{
-                    Log.e(TAG, "isDataQualified: 特种作业人员的联系方式不对" );
-                }
-            }
+//            if (tzzyryList.get(i).getLxdh() != null) {
+//                if (tzzyryList.get(i).getLxdh().length() > 0) {
+//                    if (!ValidateUtil.isPhone(tzzyryList.get(i).getLxdh())) {
+//                        Log.e(TAG, "isDataQualified: 特种作业人员的联系方式不对");
+//                        return;
+//                    }
+//                }
+//            }
+            TzzyryModelList.add(tzzyryList.get(i));
         }
         componyInfo.setTzzyryJson(gson.toJson(TzzyryModelList));
-        if (getEdittextContent(etFddh).length()>0) {
+        if (getEdittextContent(etFddh).length() > 0) {
             if (ValidateUtil.isPhone(getEdittextContent(etFddh))) {
                 componyInfo.setFddh(getEdittextContent(etFddh));
-            }else {
+            } else {
                 Toast.makeText(getContext(), "请填写正确的房东电话", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -721,7 +887,8 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
         //如果能走到这一步证明数据全都合格了
         switchPages(ComponySafeInfoFragment.TAG, ComponySafeInfoFragment.class);
     }
-    private String getEdittextContent(EditText editText){
+
+    private String getEdittextContent(EditText editText) {
         return editText.getText().toString().trim();
     }
 
@@ -761,6 +928,7 @@ public class ComponyStaffInfoFragment extends BaseFragment implements View.OnCli
         }
         transaction.commit();
     }
+
     /**
      * @param data 待转化数据源
      * @desc data2Array 将数据源转化为array

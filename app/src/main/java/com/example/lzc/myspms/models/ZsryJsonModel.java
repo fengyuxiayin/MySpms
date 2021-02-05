@@ -6,86 +6,49 @@ package com.example.lzc.myspms.models;
 
 public class ZsryJsonModel {
     /**
-     * 建造结构
+     * createBy : 1
+     * createTime : 1535685543000
+     * glry : 打打
+     * glrylxdh : 13455292541
+     * id : 287
+     * jzjg : 1
+     * jzmj : 50
+     * jzsj : 2018
+     * modifyBy : 1
+     * modifyTime : 1535685583000
+     * qyid : 816
+     * status : 1
+     * zsrs : 50
      */
-    private String jzjg;
-    /**
-     * 建造面积
-     */
-    private String jzmj;
-    /**
-     * 住宿人数
-     */
-    private String zsrs;
-    /**
-     * 建造时间
-     */
-    private String jzsj;
-    /**
-     * 管理人员
-     */
+
+    private Integer createBy;
+    private Long createTime;
     private String glry;
-    /**
-     * 管理人员联系电话
-     */
     private String glrylxdh;
-    /**
-     * 企业id
-     */
-    private String qyId;
+    private Integer id;
+    private Integer jzjg;
+    private Double jzmj;
+    private String jzsj;
+    private Integer modifyBy;
+    private Long modifyTime;
+    private Integer qyid;
+    private Integer status;
+    private Integer zsrs;
 
-    public ZsryJsonModel() {
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public ZsryJsonModel(String jzjg, String jzmj, String zsrs, String jzsj, String glry, String glrylxdh, String qyId) {
-        this.jzjg = jzjg;
-        this.jzmj = jzmj;
-        this.zsrs = zsrs;
-        this.jzsj = jzsj;
-        this.glry = glry;
-        this.glrylxdh = glrylxdh;
-        this.qyId = qyId;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
     }
 
-    public ZsryJsonModel(String jzjg, String jzmj, String zsrs, String glry, String jzsj, String glrylxdh) {
-        this.jzjg = jzjg;
-        this.jzmj = jzmj;
-        this.zsrs = zsrs;
-        this.glry = glry;
-        this.jzsj = jzsj;
-        this.glrylxdh = glrylxdh;
+    public Long getCreateTime() {
+        return createTime;
     }
 
-    public String getJzjg() {
-        return jzjg;
-    }
-
-    public void setJzjg(String jzjg) {
-        this.jzjg = jzjg;
-    }
-
-    public String getJzmj() {
-        return jzmj;
-    }
-
-    public void setJzmj(String jzmj) {
-        this.jzmj = jzmj;
-    }
-
-    public String getZsrs() {
-        return zsrs;
-    }
-
-    public void setZsrs(String zsrs) {
-        this.zsrs = zsrs;
-    }
-
-    public String getJzsj() {
-        return jzsj;
-    }
-
-    public void setJzsj(String jzsj) {
-        this.jzsj = jzsj;
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
     }
 
     public String getGlry() {
@@ -104,11 +67,75 @@ public class ZsryJsonModel {
         this.glrylxdh = glrylxdh;
     }
 
-    public String getQyId() {
-        return qyId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setQyId(String qyId) {
-        this.qyId = qyId;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getJzjg() {
+        return jzjg;
+    }
+
+    public void setJzjg(Integer jzjg) {
+        this.jzjg = jzjg;
+    }
+
+    public Double getJzmj() {
+        return jzmj;
+    }
+
+    public void setJzmj(Double jzmj) {
+        this.jzmj = jzmj;
+    }
+
+    public String getJzsj() {
+        return jzsj;
+    }
+
+    public void setJzsj(String jzsj) {
+        this.jzsj = jzsj;
+    }
+
+    public Integer getModifyBy() {
+        return modifyBy;
+    }
+
+    public void setModifyBy(Integer modifyBy) {
+        this.modifyBy = modifyBy;
+    }
+
+    public Long getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Long modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public Integer getQyid() {
+        return qyid;
+    }
+
+    public void setQyid(Integer qyid) {
+        this.qyid = qyid;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getZsrs() {
+        return zsrs;
+    }
+
+    public void setZsrs(Integer zsrs) {
+        this.zsrs = zsrs;
     }
 }

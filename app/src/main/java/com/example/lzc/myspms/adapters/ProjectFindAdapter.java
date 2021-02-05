@@ -78,6 +78,7 @@ public class ProjectFindAdapter extends BaseAdapter implements View.OnClickListe
                 break;
             }
         }
+        Log.e(TAG, "getView: "+data.get(position).getBm() );
         tvBm.setText(data.get(position).getBm()==null?"":data.get(position).getBm()+"");
         tvMc.setText(data.get(position).getWxymc()==null?"":data.get(position).getWxymc()+"");
         imgEdit.setTag(position);

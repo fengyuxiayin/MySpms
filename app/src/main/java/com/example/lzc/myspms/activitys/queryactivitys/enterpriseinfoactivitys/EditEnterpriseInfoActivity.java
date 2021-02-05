@@ -259,6 +259,7 @@ public class EditEnterpriseInfoActivity extends AppCompatActivity implements Vie
      */
     private void sendComponyInfoToServer(StringBuilder stringBuilder,BaseEnterpriseModel safeInfo) {
         gson = new Gson();
+        Log.e(TAG, "sendComponyInfoToServer: "+basicInfo );
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/save")
                 .addParams("id", qyId)

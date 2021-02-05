@@ -22,6 +22,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -101,6 +102,7 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private int isMust;
     private PackageInfo packageInfo;
     private int nativeVversionCode;
+    // 下载的apk的存储路径
     private String target;
 
 
@@ -109,6 +111,7 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         checkNetState();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         inflate = View.inflate(this, R.layout.activity_login,null);
         initView();
         setData();
@@ -158,8 +161,9 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
             nativeVversionCode = packageInfo.versionCode;
         }
         // 获取服务器版本号
-        OkHttpUtils.get()
+        OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/appVersion/findLatest")
+                .addParams("appKey","1")
                 .build()
                 .execute(new StringCallback() {
 
@@ -176,33 +180,34 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
                         if (versionControlModel.isData()) {
                             if (!"null".equals(versionControlModel.getMsg())) {
                                 VersionControlModel.VersionControlMsgModel versionControlMsgModel = gson.fromJson(versionControlModel.getMsg(), VersionControlModel.VersionControlMsgModel.class);
-                                downloadUrl = Constant.UPLOAD_IMG_IP + versionControlMsgModel.getDownloadUrl();
-                                currentVersion = versionControlMsgModel.getVersionCode();
-                                isMust = versionControlMsgModel.getIsMust();
-                                if ((int) (Float.parseFloat(currentVersion)) > nativeVversionCode) {
+                                if (versionControlMsgModel.getAppType()==1) {
+                                    downloadUrl = Constant.UPLOAD_IMG_IP + versionControlMsgModel.getDownloadUrl();
+                                    currentVersion = versionControlMsgModel.getVersionCode();
+                                    isMust = versionControlMsgModel.getIsMust();
+                                    if ((int) (Float.parseFloat(currentVersion)) > nativeVversionCode) {
 //                            if (2 > nativeVversionCode) {
-                                    if (isMust == 1) {
-                                        Toast.makeText(LoginActivity.this, "请安装最新的版本", Toast.LENGTH_SHORT).show();
-                                        downLoadApp(downloadUrl);
-                                    } else {
-                                        new AlertDialog.Builder(LoginActivity.this)
-                                                .setTitle("版本提示")
-                                                .setMessage("检测到新版本，是否更新？")
-                                                .setPositiveButton("更新", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        downLoadApp(downloadUrl);
-                                                    }
-                                                }).setNegativeButton("否", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
-                                            }
-                                        }).create().show();
+                                        if (isMust == 1) {
+                                            Toast.makeText(LoginActivity.this, "请安装最新的版本", Toast.LENGTH_SHORT).show();
+                                            downLoadApp(downloadUrl);
+                                        } else {
+                                            new AlertDialog.Builder(LoginActivity.this)
+                                                    .setTitle("版本提示")
+                                                    .setMessage("检测到新版本，是否更新？")
+                                                    .setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            downLoadApp(downloadUrl);
+                                                        }
+                                                    }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            }).create().show();
+                                        }
                                     }
                                 }
                             }
-
                         }
                     }
                 });
@@ -438,7 +443,7 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
                 return true;
             }
         });
-        if (FastClickUtil.isFastClick()) {
+        if (!FastClickUtil.isFastClick()) {
             Log.e(TAG, "verifyPassword: " );
 //            OkGo.<String>post(Constant.SERVER_URL+"/mobile/login/doLogin")
 ////                    .upJson("{\"loginName\":\"18562825065\",\"loginPwd\":\"825065\"}")
@@ -505,36 +510,41 @@ LoginActivity extends AppCompatActivity implements View.OnClickListener {
                         @Override
                         public void onResponse(String response) {
                             final Gson gson = new Gson();
-                            Log.e(TAG, "onResponse: "+response );
+                            Log.e(TAG, "onResponse: "+response);
                             loginInfoModel = gson.fromJson(response, LoginInfoModel.class);
-                            boolean data = loginInfoModel.isData();
-                            if (data) {
-                                loginInfoMsgModel = gson.fromJson(loginInfoModel.getMsg(), LoginInfoMsgModel.class);
-                                final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                            intent.putExtra("Msg", loginInfoMsgModel);
-                                intent.putExtra("loginId",loginInfoMsgModel.getAccount().getId()+"");
-                                intent.putExtra("loginType",loginInfoMsgModel.getAccount().getLoginType()+"");
-                                intent.putExtra("ssId",loginInfoMsgModel.getAccount().getSsId()+"");
-                                //获取企业id和账号id
-                                Constant.ENTERPRISE_ID = String.valueOf(loginInfoMsgModel.getAccount().getSsId()+"");
-                                Constant.ACCOUNT_ID = String.valueOf(loginInfoMsgModel.getAccount().getId());
-                                Constant.ACCOUNT_TYPE = String.valueOf(loginInfoMsgModel.getAccount().getLoginType());
-                                Constant.USER_NAME = loginInfoMsgModel.getUserName();
-                                Log.e(TAG, "onResponse: "+Constant.USER_NAME+"   "+loginInfoMsgModel.getUserName() );
-                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                                SharedPreferences.Editor edit = sp.edit();
-                                edit.putString("LoginName", userName);
-                                edit.putString("LoginPwd",passWord);
-                                edit.commit();
-                                startActivity(intent);
-                                LoginActivity.this.finish();
-                            } else {
-                                if ("密码错误".equals(loginInfoModel.getMsg())) {
-                                    Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+                            if (loginInfoModel!=null) {
+                                boolean data = loginInfoModel.isData();
+                                if (data) {
+                                    loginInfoMsgModel = gson.fromJson(loginInfoModel.getMsg(), LoginInfoMsgModel.class);
+                                    final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    //                            intent.putExtra("Msg", loginInfoMsgModel);
+                                    intent.putExtra("loginId",loginInfoMsgModel.getAccount().getId()+"");
+                                    intent.putExtra("loginType",loginInfoMsgModel.getAccount().getLoginType()+"");
+                                    intent.putExtra("ssId",loginInfoMsgModel.getAccount().getSsId()+"");
+                                    //获取企业id和账号id
+                                    Constant.ENTERPRISE_ID = String.valueOf(loginInfoMsgModel.getAccount().getSsId()+"");
+                                    Constant.ACCOUNT_ID = String.valueOf(loginInfoMsgModel.getAccount().getId());
+                                    Constant.ACCOUNT_TYPE = String.valueOf(loginInfoMsgModel.getAccount().getLoginType());
+                                    Constant.USER_NAME = loginInfoMsgModel.getUserName();
+                                    Log.e(TAG, "onResponse: "+Constant.USER_NAME+"   "+loginInfoMsgModel.getUserName() );
+                                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences.Editor edit = sp.edit();
+                                    edit.putString("LoginName", userName);
+                                    edit.putString("LoginPwd",passWord);
+                                    edit.commit();
+                                    startActivity(intent);
+                                    LoginActivity.this.finish();
                                 } else {
-                                    Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+                                    if ("密码错误".equals(loginInfoModel.getMsg())) {
+                                        Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            }else{
+                                Toast.makeText(LoginActivity.this, "获取到的登录信息为空", Toast.LENGTH_SHORT).show();
                             }
+
                         }
                     });
         }else{

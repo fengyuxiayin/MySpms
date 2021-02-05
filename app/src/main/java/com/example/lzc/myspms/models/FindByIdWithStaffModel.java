@@ -3,28 +3,26 @@ package com.example.lzc.myspms.models;
 import java.io.Serializable;
 
 /**
- * Created by LZC on 2018/5/7.
+ * Created by LZC on 2018/8/28.
  */
 
 public class FindByIdWithStaffModel implements Serializable {
-
     /**
      * code : 1
      * data : true
      * msg : {"acl":null,"ajls":null,"aqfzr":"秋英哲","aqfzrdzyx":"","aqfzrgddhhm":"","aqfzryddhhm":"17877777777","aqjgjcjg":"夏庄安监局","aqjgszqk":1,"bc":{"createBy":1,"createTime":1523269490000,"id":1,"modifyBy":1,"modifyTime":1525873033000,"pqId":2,"qysl":7,"sqdz":"城阳街道城阳村社区位于青岛市城阳区城阳街道西部","sqfwzb":"[{\"lng\":120.446831,\"lat\":36.270172},{\"lng\":120.46507,\"lat\":36.27166},{\"lng\":120.478395,\"lat\":36.268339},{\"lng\":120.467859,\"lat\":36.254635}]","sqmc":"城阳村社区","sqmj":2070,"sqrk":10907,"status":1},"bhgxms":null,"bzhcjsj":null,"bzhfj":-1,"bzhfssj":null,"clrq":null,"createBy":1,"createTime":1525761855000,"cyryJson":"[{\"lxdh\":\"13254526542\",\"rymc\":\"2sda \",\"status\":1,\"xzfzr\":0},{\"lxdh\":\"18753222308\",\"rymc\":\"甲\",\"status\":1,\"xzfzr\":0}]","cyrysl":0,"cyryslEnd":null,"cyryslStart":null,"dzyx":"","fddbr":"万众万总","gmqk":1,"hylbdm":"C14","id":23,"isaqfzrxx":null,"isbzh":null,"islgtx":null,"iswhp":null,"iszyfzrxx":null,"jcStateFlag":null,"jcdwId":null,"jcdwlx":null,"jcs":null,"jgfl":"A003","jgfljb":-1,"jjlxdm":12,"jobCycleSettings":null,"jyfw":"制造业筽","keywords1":null,"keywords2":null,"keywords3":null,"lgtxcjsj":null,"lgtxfssj":null,"lxdh":"18753222308","modifyBy":1,"modifyTime":1525854235000,"pqId":null,"pqmc":null,"propsAndtitles":null,"queryType":null,"qyfwzb":"-1","qyfxfj":-1,"qygm":2,"qylsgx":61,"qymc":"万众万","qywzjd":120.123456,"qywzwd":40.123456,"qyzt":1,"scjydz":"青岛市城阳区夏庄街道王家曹村社区","sfzd":"","sheetName":null,"sqId":1,"sqmc":null,"status":1,"ts":null,"tze":null,"tzeEnd":null,"tzeStart":null,"tzedw":"null","tzzyryJson":"","tzzyrysl":0,"wgfzr":"秋英哲","wgfzrdzyx":"","wgfzrgddhhm":"053266796678","wgfzryddhhm":"18755555555","xmsl":null,"xzqhdm":266109,"yye":null,"yyeEnd":null,"yyeStart":null,"yyedw":"null","yzbm":null,"zcaqgcsJson":"","zcaqgcsrys":0,"zcdz":"青岛市城阳区夏庄街道王家曹村社区","zch":"370114230032590","zsryJson":"","zsrysl":0,"zyfzr":"秋英哲","zyfzrdzyx":"","zyfzrgddhhm":"","zyfzryddhhm":"17888888888","zzaqscglrys":null,"zzaqscryJson":"","zzjgdm":"sawesdsaw","zzyjglryJson":"","zzyjglrys":null}
      * url :
      */
-
-    private int code;
+    private Integer code;
     private boolean data;
     private String msg;
     private String url;
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -53,224 +51,224 @@ public class FindByIdWithStaffModel implements Serializable {
     }
 
     public class FindByIdWithStaffMsgModel implements Serializable{
-        public FindByIdWithStaffMsgModel() {
-        }
 
         /**
-         * acl : null
-         * ajls : null
-         * aqfzr : 秋英哲
+         * aqfzr : 王琳菁
          * aqfzrdzyx :
          * aqfzrgddhhm :
-         * aqfzryddhhm : 17877777777
-         * aqjgjcjg : 夏庄安监局
-         * aqjgszqk : 1
-         * bc : {"createBy":1,"createTime":1523269490000,"id":1,"modifyBy":1,"modifyTime":1525873033000,"pqId":2,"qysl":7,"sqdz":"城阳街道城阳村社区位于青岛市城阳区城阳街道西部","sqfwzb":"[{\"lng\":120.446831,\"lat\":36.270172},{\"lng\":120.46507,\"lat\":36.27166},{\"lng\":120.478395,\"lat\":36.268339},{\"lng\":120.467859,\"lat\":36.254635}]","sqmc":"城阳村社区","sqmj":2070,"sqrk":10907,"status":1}
-         * bhgxms : null
-         * bzhcjsj : null
-         * bzhfj : -1
-         * bzhfssj : null
-         * clrq : null
-         * createBy : 1
-         * createTime : 1525761855000
-         * cyryJson : [{"lxdh":"13254526542","rymc":"2sda ","status":1,"xzfzr":0},{"lxdh":"18753222308","rymc":"甲","status":1,"xzfzr":0}]
-         * cyrysl : 0
-         * cyryslEnd : null
-         * cyryslStart : null
-         * dzyx :
-         * fddbr : 万众万总
+         * aqfzryddhhm : 13370827815
+         * aqjgjcjg : 办公室
+         * aqjgszqk : 2
+         * bc : {"aqfzr":"55","aqfzrbm":"","aqfzrlxdh":"13520681136","aqfzrzc":"66","createBy":1,"createTime":1525831470000,"id":14,"modifyBy":1,"modifyTime":1533275058000,"pqId":4,"sqdz":"山东省青岛市城阳区街道驻地","sqfwzb":"[{\"O\":36.257244,\"M\":120.44992100000002,\"lng\":120.449921,\"lat\":36.257244},{\"O\":36.257427,\"M\":120.44811900000002,\"lng\":120.448119,\"lat\":36.257427},{\"O\":36.25834805226737,\"M\":120.4481629239425,\"lng\":120.448163,\"lat\":36.258348},{\"O\":36.258397223477814,\"M\":120.44508458266449,\"lng\":120.445085,\"lat\":36.258397},{\"O\":36.25757131277951,\"M\":120.4448161349182,\"lng\":120.444816,\"lat\":36.257571},{\"O\":36.25761387247448,\"M\":120.44353518385316,\"lng\":120.443535,\"lat\":36.257614},{\"O\":36.25542731473491,\"M\":120.44357172618106,\"lng\":120.443572,\"lat\":36.255427},{\"O\":36.25542017719688,\"M\":120.44214263621512,\"lng\":120.442143,\"lat\":36.25542},{\"O\":36.253750532903034,\"M\":120.4419316004944,\"lng\":120.441932,\"lat\":36.253751},{\"O\":36.253890619656424,\"M\":120.43896519637298,\"lng\":120.438965,\"lat\":36.253891},{\"O\":36.25389227778591,\"M\":120.43533360441586,\"lng\":120.435334,\"lat\":36.253892},{\"O\":36.24917435639823,\"M\":120.43495268840803,\"lng\":120.434953,\"lat\":36.249174},{\"O\":36.24905907367244,\"M\":120.43858572993668,\"lng\":120.438586,\"lat\":36.249059},{\"O\":36.2496330492368,\"M\":120.43862931054218,\"lng\":120.438629,\"lat\":36.249633},{\"O\":36.2495609674496,\"M\":120.44211651489218,\"lng\":120.442117,\"lat\":36.249561},{\"O\":36.24957540823344,\"M\":120.4457807450371,\"lng\":120.445781,\"lat\":36.249575},{\"O\":36.25071036936211,\"M\":120.44579816881372,\"lng\":120.445798,\"lat\":36.25071},{\"O\":36.25051289347162,\"M\":120.44963505822756,\"lng\":120.449635,\"lat\":36.250513},{\"O\":36.25346325915431,\"M\":120.44970271296688,\"lng\":120.449703,\"lat\":36.253463},{\"O\":36.256373,\"M\":120.45015000000001,\"lng\":120.45015,\"lat\":36.256373}]","sqmc":"王家泊子社区","sqmj":500000,"sqrk":931,"status":1,"xzId":4}
+         * bzhfj : 0
+         * createBy : 116
+         * createTime : 1531380612000
+         * cyryJson : [{"createBy":1,"createTime":1535684256000,"id":536,"lxdh":"13455206897","modifyBy":1,"modifyTime":1535685583000,"rymc":"离职","ryzc":5,"ssdwId":816,"ssdwlx":3,"status":1},{"createBy":1,"createTime":1535684512000,"id":537,"lxdh":"13455206897","modifyBy":1,"modifyTime":1535685583000,"rymc":"离职","ryzc":5,"ssdwId":816,"ssdwlx":3,"status":1}]
+         * cyrysl : 1
+         * fddbr : 赵军
+         * fddh :
+         * fdxm :
          * gmqk : 1
-         * hylbdm : C14
-         * id : 23
-         * isaqfzrxx : null
-         * isbzh : null
-         * islgtx : null
-         * iswhp : null
-         * iszyfzrxx : null
-         * jcStateFlag : null
-         * jcdwId : null
-         * jcdwlx : null
-         * jcs : null
-         * jgfl : A003
-         * jgfljb : -1
-         * jjlxdm : 12
-         * jobCycleSettings : null
-         * jyfw : 制造业筽
-         * keywords1 : null
-         * keywords2 : null
-         * keywords3 : null
-         * lgtxcjsj : null
-         * lgtxfssj : null
-         * lxdh : 18753222308
+         * hylbdm : A01
+         * id : 816
+         * isaqfzrxx : 2
+         * isbzh : 2
+         * islgtx : 2
+         * isqyzc : 1
+         * iswhp : 1
+         * iszyfzrxx : 2
+         * jgfl : 4
+         * jgfljb : 1
+         * jjlxdm : 0
+         * jyfw :
+         * lxdh : 13817822667
          * modifyBy : 1
-         * modifyTime : 1525854235000
-         * pqId : null
-         * pqmc : null
-         * propsAndtitles : null
-         * queryType : null
-         * qyfwzb : -1
-         * qyfxfj : -1
-         * qygm : 2
-         * qylsgx : 61
-         * qymc : 万众万
-         * qywzjd : 120.123456
-         * qywzwd : 40.123456
+         * modifyTime : 1535685583000
+         * qyfwzb :
+         * qyfxfj : 4
+         * qygm : 0
+         * qyjc : 123
+         * qylsgx : 0
+         * qymc : 青岛智恩食品有限公司
+         * qytp :
+         * qywzjd : 0
+         * qywzwd : 0
          * qyzt : 1
-         * scjydz : 青岛市城阳区夏庄街道王家曹村社区
-         * sfzd :
-         * sheetName : null
-         * sqId : 1
-         * sqmc : null
+         * scjydz : 山东省青岛市城阳区书云东路57号3栋3层303
+         * sqId : 14
+         * ssJson : [{"createBy":1,"createTime":1535685543000,"glry":"打打","glrylxdh":"13455292541","id":287,"jzjg":1,"jzmj":50,"jzsj":"2018","modifyBy":1,"modifyTime":1535685583000,"qyid":816,"status":1,"zsrs":50}]
          * status : 1
-         * ts : null
-         * tze : null
-         * tzeEnd : null
-         * tzeStart : null
-         * tzedw : null
-         * tzzyryJson :
+         * tze : 0
+         * tzedw : 1
+         * tzzyryJson : [{"createBy":1,"createTime":1535685543000,"id":538,"lxdh":"13522285611","modifyBy":1,"modifyTime":1535685583000,"rymc":"李章洙","ryzc":7,"ssdwId":816,"ssdwlx":3,"status":1,"xzsj":"2018-08-04","zjfssj":"2018-08-03","zjh":"打打双打多","zjyxsj":"2018-08-31"}]
          * tzzyrysl : 0
-         * wgfzr : 秋英哲
-         * wgfzrdzyx :
-         * wgfzrgddhhm : 053266796678
-         * wgfzryddhhm : 18755555555
-         * xmsl : null
-         * xzqhdm : 266109
-         * yye : null
-         * yyeEnd : null
-         * yyeStart : null
-         * yyedw : null
-         * yzbm : null
-         * zcaqgcsJson :
+         * whpJson : [{"createBy":1,"createTime":1535685543000,"id":244,"modifyBy":1,"modifyTime":1535685583000,"qyid":816,"status":1,"whpdw":1,"whpmc":"哈哈哈","whpsl":2}]
+         * ylqkJson : [{"createBy":1,"createTime":1535684512000,"id":5,"modifyBy":1,"modifyTime":1535685583000,"qyId":816,"status":1,"yljg":"测试演练","ylsj":1535644800000}]
+         * yye : 0
+         * yyedw : 1
+         * zcaqgcsJson : [{"createBy":1,"createTime":1535685583000,"id":540,"lxdh":"15589752545","modifyTime":1535685583000,"rymc":"萨达","ryzc":10,"ssdwId":816,"ssdwlx":3,"status":1}]
          * zcaqgcsrys : 0
-         * zcdz : 青岛市城阳区夏庄街道王家曹村社区
-         * zch : 370114230032590
+         * zcdz : 山东省青岛市城阳区夏庄街道书云东路57号3栋4层404
+         * zch : 91370214MA3BYT023R
          * zsryJson :
          * zsrysl : 0
-         * zyfzr : 秋英哲
+         * zyfzr : 刘凯强
          * zyfzrdzyx :
-         * zyfzrgddhhm :
-         * zyfzryddhhm : 17888888888
-         * zzaqscglrys : null
-         * zzaqscryJson :
-         * zzjgdm : sawesdsaw
+         * zyfzryddhhm : 13608973092
+         * zzaqscglrys : 0
+         * zzaqscryJson : [{"createBy":1,"createTime":1535685543000,"id":539,"lxdh":"13455209261","modifyBy":1,"modifyTime":1535685583000,"rymc":"奥术大师多","ryzc":8,"ssdwId":816,"ssdwlx":3,"status":1}]
          * zzyjglryJson :
-         * zzyjglrys : null
+         * zzyjglrys : 0
          */
 
-        private Object acl;
-        private Object ajls;
         private String aqfzr;
         private String aqfzrdzyx;
         private String aqfzrgddhhm;
         private String aqfzryddhhm;
         private String aqjgjcjg;
-        private int aqjgszqk;
+        private Integer aqjgszqk;
         private BcBean bc;
-        private int bhgxms;
-        private String bzhcjsj;
-        private int bzhfj;
-        private String bzhfssj;
-        private Object clrq;
-        private int createBy;
-        private long createTime;
+        private Integer bzhfj;
+        private Integer createBy;
+        private Long createTime;
         private String cyryJson;
-        private int cyrysl;
-        private int cyryslEnd;
-        private int cyryslStart;
-        private String dzyx;
+        private Integer cyrysl;
         private String fddbr;
-        private int gmqk;
+        private String fddh;
+        private String fdxm;
+        private Integer gmqk;
         private String hylbdm;
-        private int id;
-        private int isaqfzrxx;
-        private int isbzh;
-        private int islgtx;
-        private int iswhp;
-        private int iszyfzrxx;
-        private Object jcStateFlag;
-        private Object jcdwId;
-        private Object jcdwlx;
-        private Object jcs;
+        private Integer id;
+        private Integer isaqfzrxx;
+        private Integer isbzh;
+        private Integer islgtx;
+        private Integer isqyzc;
+        private Integer iswhp;
+        private Integer iszyfzrxx;
         private String jgfl;
-        private int jgfljb;
-        private int jjlxdm;
-        private Object jobCycleSettings;
+        private Integer jgfljb;
+        private Integer jjlxdm;
         private String jyfw;
-        private String keywords1;
-        private String keywords2;
-        private String keywords3;
-        private String lgtxcjsj;
-        private String lgtxfssj;
         private String lxdh;
-        private int modifyBy;
-        private long modifyTime;
-        private int pqId;
-        private String pqmc;
-        private Object propsAndtitles;
-        private int queryType;
+        private Integer modifyBy;
+        private Long modifyTime;
         private String qyfwzb;
-        private int qyfxfj;
-        private int qygm;
-        private int qylsgx;
+        private Integer qyfxfj;
+        private Integer qygm;
+        private String qyjc;
+        private Integer qylsgx;
         private String qymc;
-        private double qywzjd;
-        private double qywzwd;
-        private int qyzt;
+        private String qytp;
+        private Double qywzjd;
+        private Double qywzwd;
+        private Integer qyzt;
         private String scjydz;
-        private String sfzd;
-        private String sheetName;
-        private int sqId;
-        private String sqmc;
-        private int status;
-        private Object ts;
-        private float tze;
-        private int tzeEnd;
-        private int tzeStart;
+        private Integer sqId;
+        private String ssJson;
+        private Integer status;
+        private Double tze;
+        private Double yye;
         private String tzedw;
         private String tzzyryJson;
-        private int tzzyrysl;
-        private String wgfzr;
-        private String wgfzrdzyx;
-        private String wgfzrgddhhm;
-        private String wgfzryddhhm;
-        private int xmsl;
-        private int xzqhdm;
-        private float yye;
-        private int yyeEnd;
-        private int yyeStart;
+        private Integer tzzyrysl;
+        private String whpJson;
+        private String ylqkJson;
         private String yyedw;
-        private int yzbm;
         private String zcaqgcsJson;
-        private int zcaqgcsrys;
+        private Integer zcaqgcsrys;
         private String zcdz;
         private String zch;
         private String zsryJson;
-        private String ssJson;
-        private int zsrysl;
+        private Integer zsrysl;
         private String zyfzr;
         private String zyfzrdzyx;
-        private String zyfzrgddhhm;
         private String zyfzryddhhm;
-        private int zzaqscglrys;
+        private Integer zzaqscglrys;
         private String zzaqscryJson;
-        private String zzjgdm;
         private String zzyjglryJson;
-        private int zzyjglrys;
-        private String whpJson;
-        private String qytp;
-        private String qyjc;
-        private String fdxm;
-        private String fddh;
-        private int isqyzc;
+        private Integer zzyjglrys;
+        private String sfzd;
+        private Long hyzgbm;
+        private String zyfzrgddhhm;
+        private String dzyx;
         private String qyejfl;
-        private long hyzgbm;
+        private String lgtxcjsj;
+        private String lgtxfssj;
+        private String bzhcjsj;
+        private String bzhfssj;
+        private String yjyawd;
+        private String jxcslx;
+        /**
+         * 是否有特种作业人员
+         */
+        private Integer hastTzyry;
+        /**
+         * 是否有专职应急管理员
+         */
+        private Integer hasZzyjglry;
+        /**
+         * 是否有注册安全工程师
+         */
+        private Integer hasZcaqgcsry;
+        /**
+         * 房屋性质 0-自建，1-租赁
+         */
+        private Integer fwxz;
 
-        public long getHyzgbm() {
-            return hyzgbm;
+        public String getJxcslx() {
+            return jxcslx;
         }
 
-        public void setHyzgbm(long hyzgbm) {
-            this.hyzgbm = hyzgbm;
+        public void setJxcslx(String jxcslx) {
+            this.jxcslx = jxcslx;
+        }
+
+        public Integer getHastTzyry() {
+            return hastTzyry;
+        }
+
+        public void setHastTzyry(Integer hastTzyry) {
+            this.hastTzyry = hastTzyry;
+        }
+
+        public Integer getHasZzyjglry() {
+            return hasZzyjglry;
+        }
+
+        public void setHasZzyjglry(Integer hasZzyjglry) {
+            this.hasZzyjglry = hasZzyjglry;
+        }
+
+        public Integer getHasZcaqgcsry() {
+            return hasZcaqgcsry;
+        }
+
+        public void setHasZcaqgcsry(Integer hasZcaqgcsry) {
+            this.hasZcaqgcsry = hasZcaqgcsry;
+        }
+
+        public Integer getFwxz() {
+            return fwxz;
+        }
+
+        public void setFwxz(Integer fwxz) {
+            this.fwxz = fwxz;
+        }
+
+        public String getYjyawd() {
+            return yjyawd;
+        }
+
+        public void setYjyawd(String yjyawd) {
+            this.yjyawd = yjyawd;
+        }
+
+        public String getSfzd() {
+            return sfzd;
+        }
+
+        public void setSfzd(String sfzd) {
+            this.sfzd = sfzd;
         }
 
         public String getQyejfl() {
@@ -281,76 +279,61 @@ public class FindByIdWithStaffModel implements Serializable {
             this.qyejfl = qyejfl;
         }
 
-        public int getIsqyzc() {
-            return isqyzc;
+        public String getLgtxcjsj() {
+            return lgtxcjsj;
         }
 
-        public void setIsqyzc(int isqyzc) {
-            this.isqyzc = isqyzc;
+        public void setLgtxcjsj(String lgtxcjsj) {
+            this.lgtxcjsj = lgtxcjsj;
         }
 
-        public String getFdxm() {
-            return fdxm;
+        public String getLgtxfssj() {
+            return lgtxfssj;
         }
 
-        public void setFdxm(String fdxm) {
-            this.fdxm = fdxm;
+        public void setLgtxfssj(String lgtxfssj) {
+            this.lgtxfssj = lgtxfssj;
         }
 
-        public String getFddh() {
-            return fddh;
+        public String getBzhcjsj() {
+            return bzhcjsj;
         }
 
-        public void setFddh(String fddh) {
-            this.fddh = fddh;
+        public void setBzhcjsj(String bzhcjsj) {
+            this.bzhcjsj = bzhcjsj;
         }
 
-        public String getQyjc() {
-            return qyjc;
+        public String getBzhfssj() {
+            return bzhfssj;
         }
 
-        public void setQyjc(String qyjc) {
-            this.qyjc = qyjc;
+        public void setBzhfssj(String bzhfssj) {
+            this.bzhfssj = bzhfssj;
         }
 
-        public String getSsJson() {
-            return ssJson;
+
+        public Long getHyzgbm() {
+            return hyzgbm;
         }
 
-        public void setSsJson(String ssJson) {
-            this.ssJson = ssJson;
+        public void setHyzgbm(Long hyzgbm) {
+            this.hyzgbm = hyzgbm;
         }
 
-        public String getQytp() {
-            return qytp;
+        public String getZyfzrgddhhm() {
+            return zyfzrgddhhm;
         }
 
-        public void setQytp(String qytp) {
-            this.qytp = qytp;
+        public void setZyfzrgddhhm(String zyfzrgddhhm) {
+            this.zyfzrgddhhm = zyfzrgddhhm;
         }
 
-        public String getWhpJson() {
-            return whpJson;
+        public String getDzyx() {
+            return dzyx;
         }
 
-        public void setWhpJson(String whpJson) {
-            this.whpJson = whpJson;
-        }
-
-        public Object getAcl() {
-            return acl;
-        }
-
-        public void setAcl(Object acl) {
-            this.acl = acl;
-        }
-
-        public Object getAjls() {
-            return ajls;
-        }
-
-        public void setAjls(Object ajls) {
-            this.ajls = ajls;
+        public void setDzyx(String dzyx) {
+            this.dzyx = dzyx;
         }
 
         public String getAqfzr() {
@@ -393,11 +376,11 @@ public class FindByIdWithStaffModel implements Serializable {
             this.aqjgjcjg = aqjgjcjg;
         }
 
-        public int getAqjgszqk() {
+        public Integer getAqjgszqk() {
             return aqjgszqk;
         }
 
-        public void setAqjgszqk(int aqjgszqk) {
+        public void setAqjgszqk(Integer aqjgszqk) {
             this.aqjgszqk = aqjgszqk;
         }
 
@@ -409,59 +392,27 @@ public class FindByIdWithStaffModel implements Serializable {
             this.bc = bc;
         }
 
-        public int getBhgxms() {
-            return bhgxms;
-        }
-
-        public void setBhgxms(int bhgxms) {
-            this.bhgxms = bhgxms;
-        }
-
-        public String getBzhcjsj() {
-            return bzhcjsj;
-        }
-
-        public void setBzhcjsj(String bzhcjsj) {
-            this.bzhcjsj = bzhcjsj;
-        }
-
-        public int getBzhfj() {
+        public Integer getBzhfj() {
             return bzhfj;
         }
 
-        public void setBzhfj(int bzhfj) {
+        public void setBzhfj(Integer bzhfj) {
             this.bzhfj = bzhfj;
         }
 
-        public String getBzhfssj() {
-            return bzhfssj;
-        }
-
-        public void setBzhfssj(String bzhfssj) {
-            this.bzhfssj = bzhfssj;
-        }
-
-        public Object getClrq() {
-            return clrq;
-        }
-
-        public void setClrq(Object clrq) {
-            this.clrq = clrq;
-        }
-
-        public int getCreateBy() {
+        public Integer getCreateBy() {
             return createBy;
         }
 
-        public void setCreateBy(int createBy) {
+        public void setCreateBy(Integer createBy) {
             this.createBy = createBy;
         }
 
-        public long getCreateTime() {
+        public Long getCreateTime() {
             return createTime;
         }
 
-        public void setCreateTime(long createTime) {
+        public void setCreateTime(Long createTime) {
             this.createTime = createTime;
         }
 
@@ -473,36 +424,12 @@ public class FindByIdWithStaffModel implements Serializable {
             this.cyryJson = cyryJson;
         }
 
-        public int getCyrysl() {
+        public Integer getCyrysl() {
             return cyrysl;
         }
 
-        public void setCyrysl(int cyrysl) {
+        public void setCyrysl(Integer cyrysl) {
             this.cyrysl = cyrysl;
-        }
-
-        public int getCyryslEnd() {
-            return cyryslEnd;
-        }
-
-        public void setCyryslEnd(int cyryslEnd) {
-            this.cyryslEnd = cyryslEnd;
-        }
-
-        public int getCyryslStart() {
-            return cyryslStart;
-        }
-
-        public void setCyryslStart(int cyryslStart) {
-            this.cyryslStart = cyryslStart;
-        }
-
-        public String getDzyx() {
-            return dzyx;
-        }
-
-        public void setDzyx(String dzyx) {
-            this.dzyx = dzyx;
         }
 
         public String getFddbr() {
@@ -513,11 +440,27 @@ public class FindByIdWithStaffModel implements Serializable {
             this.fddbr = fddbr;
         }
 
-        public int getGmqk() {
+        public String getFddh() {
+            return fddh;
+        }
+
+        public void setFddh(String fddh) {
+            this.fddh = fddh;
+        }
+
+        public String getFdxm() {
+            return fdxm;
+        }
+
+        public void setFdxm(String fdxm) {
+            this.fdxm = fdxm;
+        }
+
+        public Integer getGmqk() {
             return gmqk;
         }
 
-        public void setGmqk(int gmqk) {
+        public void setGmqk(Integer gmqk) {
             this.gmqk = gmqk;
         }
 
@@ -529,84 +472,60 @@ public class FindByIdWithStaffModel implements Serializable {
             this.hylbdm = hylbdm;
         }
 
-        public int getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
-        public int getIsaqfzrxx() {
+        public Integer getIsaqfzrxx() {
             return isaqfzrxx;
         }
 
-        public void setIsaqfzrxx(int isaqfzrxx) {
+        public void setIsaqfzrxx(Integer isaqfzrxx) {
             this.isaqfzrxx = isaqfzrxx;
         }
 
-        public int getIsbzh() {
+        public Integer getIsbzh() {
             return isbzh;
         }
 
-        public void setIsbzh(int isbzh) {
+        public void setIsbzh(Integer isbzh) {
             this.isbzh = isbzh;
         }
 
-        public int getIslgtx() {
+        public Integer getIslgtx() {
             return islgtx;
         }
 
-        public void setIslgtx(int islgtx) {
+        public void setIslgtx(Integer islgtx) {
             this.islgtx = islgtx;
         }
 
-        public int getIswhp() {
+        public Integer getIsqyzc() {
+            return isqyzc;
+        }
+
+        public void setIsqyzc(Integer isqyzc) {
+            this.isqyzc = isqyzc;
+        }
+
+        public Integer getIswhp() {
             return iswhp;
         }
 
-        public void setIswhp(int iswhp) {
+        public void setIswhp(Integer iswhp) {
             this.iswhp = iswhp;
         }
 
-        public int getIszyfzrxx() {
+        public Integer getIszyfzrxx() {
             return iszyfzrxx;
         }
 
-        public void setIszyfzrxx(int iszyfzrxx) {
+        public void setIszyfzrxx(Integer iszyfzrxx) {
             this.iszyfzrxx = iszyfzrxx;
-        }
-
-        public Object getJcStateFlag() {
-            return jcStateFlag;
-        }
-
-        public void setJcStateFlag(Object jcStateFlag) {
-            this.jcStateFlag = jcStateFlag;
-        }
-
-        public Object getJcdwId() {
-            return jcdwId;
-        }
-
-        public void setJcdwId(Object jcdwId) {
-            this.jcdwId = jcdwId;
-        }
-
-        public Object getJcdwlx() {
-            return jcdwlx;
-        }
-
-        public void setJcdwlx(Object jcdwlx) {
-            this.jcdwlx = jcdwlx;
-        }
-
-        public Object getJcs() {
-            return jcs;
-        }
-
-        public void setJcs(Object jcs) {
-            this.jcs = jcs;
         }
 
         public String getJgfl() {
@@ -617,28 +536,20 @@ public class FindByIdWithStaffModel implements Serializable {
             this.jgfl = jgfl;
         }
 
-        public int getJgfljb() {
+        public Integer getJgfljb() {
             return jgfljb;
         }
 
-        public void setJgfljb(int jgfljb) {
+        public void setJgfljb(Integer jgfljb) {
             this.jgfljb = jgfljb;
         }
 
-        public int getJjlxdm() {
+        public Integer getJjlxdm() {
             return jjlxdm;
         }
 
-        public void setJjlxdm(int jjlxdm) {
+        public void setJjlxdm(Integer jjlxdm) {
             this.jjlxdm = jjlxdm;
-        }
-
-        public Object getJobCycleSettings() {
-            return jobCycleSettings;
-        }
-
-        public void setJobCycleSettings(Object jobCycleSettings) {
-            this.jobCycleSettings = jobCycleSettings;
         }
 
         public String getJyfw() {
@@ -649,46 +560,6 @@ public class FindByIdWithStaffModel implements Serializable {
             this.jyfw = jyfw;
         }
 
-        public String getKeywords1() {
-            return keywords1;
-        }
-
-        public void setKeywords1(String keywords1) {
-            this.keywords1 = keywords1;
-        }
-
-        public String getKeywords2() {
-            return keywords2;
-        }
-
-        public void setKeywords2(String keywords2) {
-            this.keywords2 = keywords2;
-        }
-
-        public String getKeywords3() {
-            return keywords3;
-        }
-
-        public void setKeywords3(String keywords3) {
-            this.keywords3 = keywords3;
-        }
-
-        public String getLgtxcjsj() {
-            return lgtxcjsj;
-        }
-
-        public void setLgtxcjsj(String lgtxcjsj) {
-            this.lgtxcjsj = lgtxcjsj;
-        }
-
-        public String getLgtxfssj() {
-            return lgtxfssj;
-        }
-
-        public void setLgtxfssj(String lgtxfssj) {
-            this.lgtxfssj = lgtxfssj;
-        }
-
         public String getLxdh() {
             return lxdh;
         }
@@ -697,52 +568,20 @@ public class FindByIdWithStaffModel implements Serializable {
             this.lxdh = lxdh;
         }
 
-        public int getModifyBy() {
+        public Integer getModifyBy() {
             return modifyBy;
         }
 
-        public void setModifyBy(int modifyBy) {
+        public void setModifyBy(Integer modifyBy) {
             this.modifyBy = modifyBy;
         }
 
-        public long getModifyTime() {
+        public Long getModifyTime() {
             return modifyTime;
         }
 
-        public void setModifyTime(long modifyTime) {
+        public void setModifyTime(Long modifyTime) {
             this.modifyTime = modifyTime;
-        }
-
-        public int getPqId() {
-            return pqId;
-        }
-
-        public void setPqId(int pqId) {
-            this.pqId = pqId;
-        }
-
-        public String getPqmc() {
-            return pqmc;
-        }
-
-        public void setPqmc(String pqmc) {
-            this.pqmc = pqmc;
-        }
-
-        public Object getPropsAndtitles() {
-            return propsAndtitles;
-        }
-
-        public void setPropsAndtitles(Object propsAndtitles) {
-            this.propsAndtitles = propsAndtitles;
-        }
-
-        public int getQueryType() {
-            return queryType;
-        }
-
-        public void setQueryType(int queryType) {
-            this.queryType = queryType;
         }
 
         public String getQyfwzb() {
@@ -753,27 +592,35 @@ public class FindByIdWithStaffModel implements Serializable {
             this.qyfwzb = qyfwzb;
         }
 
-        public int getQyfxfj() {
+        public Integer getQyfxfj() {
             return qyfxfj;
         }
 
-        public void setQyfxfj(int qyfxfj) {
+        public void setQyfxfj(Integer qyfxfj) {
             this.qyfxfj = qyfxfj;
         }
 
-        public int getQygm() {
+        public Integer getQygm() {
             return qygm;
         }
 
-        public void setQygm(int qygm) {
+        public void setQygm(Integer qygm) {
             this.qygm = qygm;
         }
 
-        public int getQylsgx() {
+        public String getQyjc() {
+            return qyjc;
+        }
+
+        public void setQyjc(String qyjc) {
+            this.qyjc = qyjc;
+        }
+
+        public Integer getQylsgx() {
             return qylsgx;
         }
 
-        public void setQylsgx(int qylsgx) {
+        public void setQylsgx(Integer qylsgx) {
             this.qylsgx = qylsgx;
         }
 
@@ -785,27 +632,36 @@ public class FindByIdWithStaffModel implements Serializable {
             this.qymc = qymc;
         }
 
-        public double getQywzjd() {
-            return qywzjd;
+        public String getQytp() {
+            return qytp;
         }
 
-        public void setQywzjd(double qywzjd) {
-            this.qywzjd = qywzjd;
+        public void setQytp(String qytp) {
+            this.qytp = qytp;
         }
 
-        public double getQywzwd() {
+
+        public Double getQywzwd() {
             return qywzwd;
         }
 
-        public void setQywzwd(double qywzwd) {
+        public void setQywzwd(Double qywzwd) {
             this.qywzwd = qywzwd;
         }
 
-        public int getQyzt() {
+        public Double getQywzjd() {
+            return qywzjd;
+        }
+
+        public void setQywzjd(Double qywzjd) {
+            this.qywzjd = qywzjd;
+        }
+
+        public Integer getQyzt() {
             return qyzt;
         }
 
-        public void setQyzt(int qyzt) {
+        public void setQyzt(Integer qyzt) {
             this.qyzt = qyzt;
         }
 
@@ -817,69 +673,28 @@ public class FindByIdWithStaffModel implements Serializable {
             this.scjydz = scjydz;
         }
 
-        public String getSfzd() {
-            return sfzd;
-        }
-
-        public void setSfzd(String sfzd) {
-            this.sfzd = sfzd;
-        }
-
-        public String getSheetName() {
-            return sheetName;
-        }
-
-        public void setSheetName(String sheetName) {
-            this.sheetName = sheetName;
-        }
-
-        public int getSqId() {
+        public Integer getSqId() {
             return sqId;
         }
 
-        public void setSqId(int sqId) {
+        public void setSqId(Integer sqId) {
             this.sqId = sqId;
         }
 
-        public String getSqmc() {
-            return sqmc;
+        public String getSsJson() {
+            return ssJson;
         }
 
-        public void setSqmc(String sqmc) {
-            this.sqmc = sqmc;
+        public void setSsJson(String ssJson) {
+            this.ssJson = ssJson;
         }
 
-        public int getStatus() {
+        public Integer getStatus() {
             return status;
         }
 
-        public void setStatus(int status) {
+        public void setStatus(Integer status) {
             this.status = status;
-        }
-
-        public Object getTs() {
-            return ts;
-        }
-
-        public void setTs(Object ts) {
-            this.ts = ts;
-        }
-
-
-        public int getTzeEnd() {
-            return tzeEnd;
-        }
-
-        public void setTzeEnd(int tzeEnd) {
-            this.tzeEnd = tzeEnd;
-        }
-
-        public int getTzeStart() {
-            return tzeStart;
-        }
-
-        public void setTzeStart(int tzeStart) {
-            this.tzeStart = tzeStart;
         }
 
         public String getTzedw() {
@@ -898,92 +713,44 @@ public class FindByIdWithStaffModel implements Serializable {
             this.tzzyryJson = tzzyryJson;
         }
 
-        public int getTzzyrysl() {
+        public Integer getTzzyrysl() {
             return tzzyrysl;
         }
 
-        public void setTzzyrysl(int tzzyrysl) {
+        public void setTzzyrysl(Integer tzzyrysl) {
             this.tzzyrysl = tzzyrysl;
         }
 
-        public String getWgfzr() {
-            return wgfzr;
+        public String getWhpJson() {
+            return whpJson;
         }
 
-        public void setWgfzr(String wgfzr) {
-            this.wgfzr = wgfzr;
+        public void setWhpJson(String whpJson) {
+            this.whpJson = whpJson;
         }
 
-        public String getWgfzrdzyx() {
-            return wgfzrdzyx;
+        public String getYlqkJson() {
+            return ylqkJson;
         }
 
-        public void setWgfzrdzyx(String wgfzrdzyx) {
-            this.wgfzrdzyx = wgfzrdzyx;
-        }
-
-        public String getWgfzrgddhhm() {
-            return wgfzrgddhhm;
-        }
-
-        public void setWgfzrgddhhm(String wgfzrgddhhm) {
-            this.wgfzrgddhhm = wgfzrgddhhm;
-        }
-
-        public String getWgfzryddhhm() {
-            return wgfzryddhhm;
-        }
-
-        public void setWgfzryddhhm(String wgfzryddhhm) {
-            this.wgfzryddhhm = wgfzryddhhm;
-        }
-
-        public int getXmsl() {
-            return xmsl;
-        }
-
-        public void setXmsl(int xmsl) {
-            this.xmsl = xmsl;
-        }
-
-        public int getXzqhdm() {
-            return xzqhdm;
-        }
-
-        public void setXzqhdm(int xzqhdm) {
-            this.xzqhdm = xzqhdm;
-        }
-
-        public float getTze() {
+        public Double getTze() {
             return tze;
         }
 
-        public void setTze(float tze) {
+        public void setTze(Double tze) {
             this.tze = tze;
         }
 
-        public float getYye() {
+        public Double getYye() {
             return yye;
         }
 
-        public void setYye(float yye) {
+        public void setYye(Double yye) {
             this.yye = yye;
         }
 
-        public int getYyeEnd() {
-            return yyeEnd;
-        }
-
-        public void setYyeEnd(int yyeEnd) {
-            this.yyeEnd = yyeEnd;
-        }
-
-        public int getYyeStart() {
-            return yyeStart;
-        }
-
-        public void setYyeStart(int yyeStart) {
-            this.yyeStart = yyeStart;
+        public void setYlqkJson(String ylqkJson) {
+            this.ylqkJson = ylqkJson;
         }
 
         public String getYyedw() {
@@ -994,14 +761,6 @@ public class FindByIdWithStaffModel implements Serializable {
             this.yyedw = yyedw;
         }
 
-        public int getYzbm() {
-            return yzbm;
-        }
-
-        public void setYzbm(int yzbm) {
-            this.yzbm = yzbm;
-        }
-
         public String getZcaqgcsJson() {
             return zcaqgcsJson;
         }
@@ -1010,11 +769,11 @@ public class FindByIdWithStaffModel implements Serializable {
             this.zcaqgcsJson = zcaqgcsJson;
         }
 
-        public int getZcaqgcsrys() {
+        public Integer getZcaqgcsrys() {
             return zcaqgcsrys;
         }
 
-        public void setZcaqgcsrys(int zcaqgcsrys) {
+        public void setZcaqgcsrys(Integer zcaqgcsrys) {
             this.zcaqgcsrys = zcaqgcsrys;
         }
 
@@ -1042,11 +801,11 @@ public class FindByIdWithStaffModel implements Serializable {
             this.zsryJson = zsryJson;
         }
 
-        public int getZsrysl() {
+        public Integer getZsrysl() {
             return zsrysl;
         }
 
-        public void setZsrysl(int zsrysl) {
+        public void setZsrysl(Integer zsrysl) {
             this.zsrysl = zsrysl;
         }
 
@@ -1066,14 +825,6 @@ public class FindByIdWithStaffModel implements Serializable {
             this.zyfzrdzyx = zyfzrdzyx;
         }
 
-        public String getZyfzrgddhhm() {
-            return zyfzrgddhhm;
-        }
-
-        public void setZyfzrgddhhm(String zyfzrgddhhm) {
-            this.zyfzrgddhhm = zyfzrgddhhm;
-        }
-
         public String getZyfzryddhhm() {
             return zyfzryddhhm;
         }
@@ -1082,11 +833,11 @@ public class FindByIdWithStaffModel implements Serializable {
             this.zyfzryddhhm = zyfzryddhhm;
         }
 
-        public int getZzaqscglrys() {
+        public Integer getZzaqscglrys() {
             return zzaqscglrys;
         }
 
-        public void setZzaqscglrys(int zzaqscglrys) {
+        public void setZzaqscglrys(Integer zzaqscglrys) {
             this.zzaqscglrys = zzaqscglrys;
         }
 
@@ -1098,14 +849,6 @@ public class FindByIdWithStaffModel implements Serializable {
             this.zzaqscryJson = zzaqscryJson;
         }
 
-        public String getZzjgdm() {
-            return zzjgdm;
-        }
-
-        public void setZzjgdm(String zzjgdm) {
-            this.zzjgdm = zzjgdm;
-        }
-
         public String getZzyjglryJson() {
             return zzyjglryJson;
         }
@@ -1114,99 +857,131 @@ public class FindByIdWithStaffModel implements Serializable {
             this.zzyjglryJson = zzyjglryJson;
         }
 
-        public int getZzyjglrys() {
+        public Integer getZzyjglrys() {
             return zzyjglrys;
         }
 
-        public void setZzyjglrys(int zzyjglrys) {
+        public void setZzyjglrys(Integer zzyjglrys) {
             this.zzyjglrys = zzyjglrys;
         }
 
-        public  class BcBean implements Serializable{
+        public class BcBean implements Serializable{
             /**
+             * aqfzr : 55
+             * aqfzrbm :
+             * aqfzrlxdh : 13520681136
+             * aqfzrzc : 66
              * createBy : 1
-             * createTime : 1523269490000
-             * id : 1
+             * createTime : 1525831470000
+             * id : 14
              * modifyBy : 1
-             * modifyTime : 1525873033000
-             * pqId : 2
-             * qysl : 7
-             * sqdz : 城阳街道城阳村社区位于青岛市城阳区城阳街道西部
-             * sqfwzb : [{"lng":120.446831,"lat":36.270172},{"lng":120.46507,"lat":36.27166},{"lng":120.478395,"lat":36.268339},{"lng":120.467859,"lat":36.254635}]
-             * sqmc : 城阳村社区
-             * sqmj : 2070
-             * sqrk : 10907
+             * modifyTime : 1533275058000
+             * pqId : 4
+             * sqdz : 山东省青岛市城阳区街道驻地
+             * sqfwzb : [{"O":36.257244,"M":120.44992100000002,"lng":120.449921,"lat":36.257244},{"O":36.257427,"M":120.44811900000002,"lng":120.448119,"lat":36.257427},{"O":36.25834805226737,"M":120.4481629239425,"lng":120.448163,"lat":36.258348},{"O":36.258397223477814,"M":120.44508458266449,"lng":120.445085,"lat":36.258397},{"O":36.25757131277951,"M":120.4448161349182,"lng":120.444816,"lat":36.257571},{"O":36.25761387247448,"M":120.44353518385316,"lng":120.443535,"lat":36.257614},{"O":36.25542731473491,"M":120.44357172618106,"lng":120.443572,"lat":36.255427},{"O":36.25542017719688,"M":120.44214263621512,"lng":120.442143,"lat":36.25542},{"O":36.253750532903034,"M":120.4419316004944,"lng":120.441932,"lat":36.253751},{"O":36.253890619656424,"M":120.43896519637298,"lng":120.438965,"lat":36.253891},{"O":36.25389227778591,"M":120.43533360441586,"lng":120.435334,"lat":36.253892},{"O":36.24917435639823,"M":120.43495268840803,"lng":120.434953,"lat":36.249174},{"O":36.24905907367244,"M":120.43858572993668,"lng":120.438586,"lat":36.249059},{"O":36.2496330492368,"M":120.43862931054218,"lng":120.438629,"lat":36.249633},{"O":36.2495609674496,"M":120.44211651489218,"lng":120.442117,"lat":36.249561},{"O":36.24957540823344,"M":120.4457807450371,"lng":120.445781,"lat":36.249575},{"O":36.25071036936211,"M":120.44579816881372,"lng":120.445798,"lat":36.25071},{"O":36.25051289347162,"M":120.44963505822756,"lng":120.449635,"lat":36.250513},{"O":36.25346325915431,"M":120.44970271296688,"lng":120.449703,"lat":36.253463},{"O":36.256373,"M":120.45015000000001,"lng":120.45015,"lat":36.256373}]
+             * sqmc : 王家泊子社区
+             * sqmj : 500000
+             * sqrk : 931
              * status : 1
+             * xzId : 4
              */
 
-            private int createBy;
-            private long createTime;
-            private int id;
-            private int modifyBy;
-            private long modifyTime;
-            private int pqId;
-            private int qysl;
+            private String aqfzr;
+            private String aqfzrbm;
+            private String aqfzrlxdh;
+            private String aqfzrzc;
+            private Integer createBy;
+            private Long createTime;
+            private Integer id;
+            private Integer modifyBy;
+            private Long modifyTime;
+            private Integer pqId;
             private String sqdz;
             private String sqfwzb;
             private String sqmc;
-            private int sqmj;
-            private int sqrk;
-            private int status;
+            private Integer sqmj;
+            private Integer sqrk;
+            private Integer status;
+            private Integer xzId;
 
-            public int getCreateBy() {
+            public String getAqfzr() {
+                return aqfzr;
+            }
+
+            public void setAqfzr(String aqfzr) {
+                this.aqfzr = aqfzr;
+            }
+
+            public String getAqfzrbm() {
+                return aqfzrbm;
+            }
+
+            public void setAqfzrbm(String aqfzrbm) {
+                this.aqfzrbm = aqfzrbm;
+            }
+
+            public String getAqfzrlxdh() {
+                return aqfzrlxdh;
+            }
+
+            public void setAqfzrlxdh(String aqfzrlxdh) {
+                this.aqfzrlxdh = aqfzrlxdh;
+            }
+
+            public String getAqfzrzc() {
+                return aqfzrzc;
+            }
+
+            public void setAqfzrzc(String aqfzrzc) {
+                this.aqfzrzc = aqfzrzc;
+            }
+
+            public Integer getCreateBy() {
                 return createBy;
             }
 
-            public void setCreateBy(int createBy) {
+            public void setCreateBy(Integer createBy) {
                 this.createBy = createBy;
             }
 
-            public long getCreateTime() {
+            public Long getCreateTime() {
                 return createTime;
             }
 
-            public void setCreateTime(long createTime) {
+            public void setCreateTime(Long createTime) {
                 this.createTime = createTime;
             }
 
-            public int getId() {
+            public Integer getId() {
                 return id;
             }
 
-            public void setId(int id) {
+            public void setId(Integer id) {
                 this.id = id;
             }
 
-            public int getModifyBy() {
+            public Integer getModifyBy() {
                 return modifyBy;
             }
 
-            public void setModifyBy(int modifyBy) {
+            public void setModifyBy(Integer modifyBy) {
                 this.modifyBy = modifyBy;
             }
 
-            public long getModifyTime() {
+            public Long getModifyTime() {
                 return modifyTime;
             }
 
-            public void setModifyTime(long modifyTime) {
+            public void setModifyTime(Long modifyTime) {
                 this.modifyTime = modifyTime;
             }
 
-            public int getPqId() {
+            public Integer getPqId() {
                 return pqId;
             }
 
-            public void setPqId(int pqId) {
+            public void setPqId(Integer pqId) {
                 this.pqId = pqId;
-            }
-
-            public int getQysl() {
-                return qysl;
-            }
-
-            public void setQysl(int qysl) {
-                this.qysl = qysl;
             }
 
             public String getSqdz() {
@@ -1233,29 +1008,38 @@ public class FindByIdWithStaffModel implements Serializable {
                 this.sqmc = sqmc;
             }
 
-            public int getSqmj() {
+            public Integer getSqmj() {
                 return sqmj;
             }
 
-            public void setSqmj(int sqmj) {
+            public void setSqmj(Integer sqmj) {
                 this.sqmj = sqmj;
             }
 
-            public int getSqrk() {
+            public Integer getSqrk() {
                 return sqrk;
             }
 
-            public void setSqrk(int sqrk) {
+            public void setSqrk(Integer sqrk) {
                 this.sqrk = sqrk;
             }
 
-            public int getStatus() {
+            public Integer getStatus() {
                 return status;
             }
 
-            public void setStatus(int status) {
+            public void setStatus(Integer status) {
                 this.status = status;
+            }
+
+            public Integer getXzId() {
+                return xzId;
+            }
+
+            public void setXzId(Integer xzId) {
+                this.xzId = xzId;
             }
         }
     }
 }
+

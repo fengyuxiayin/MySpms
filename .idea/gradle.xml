@@ -3,6 +3,9 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT" />
+        </compositeConfiguration>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="E:\anzhuangbao\AS2.2+SDK6.0\2.2\Android Studio2.2\android-studio\gradle\gradle-2.14.1" />
@@ -15,6 +18,7 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

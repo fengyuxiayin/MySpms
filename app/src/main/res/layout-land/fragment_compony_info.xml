@@ -219,6 +219,18 @@
                 android:hint="必填项 输入关键词自动匹配"
                 android:textColorHint="@color/hint_yellow"
                 android:layout_weight="3" />
+<!--            <com.example.lzc.myspms.custom.AutoFitTextView-->
+<!--                style="@style/add_enterprise_textview_style"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="八大行业选择"/>-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/fragment_basic_info_et_bdhy"-->
+<!--                style="@style/add_enterprise_edittext_style"-->
+<!--                android:completionThreshold="1"-->
+<!--                android:hint="必填项 输入关键词自动匹配"-->
+<!--                android:textColorHint="@color/hint_yellow"-->
+<!--                android:layout_weight="3" />-->
 
             <com.example.lzc.myspms.custom.AutoFitTextView
                 style="@style/add_enterprise_textview_style"

@@ -364,8 +364,8 @@ public class UnsafeActivity extends AppCompatActivity {
 
     private void initData() {
         if (!yhdmc.equals("")) {
-            etYhdmc.setText(data.getYhdmc() + "");
-            etYhdxq.setText(data.getYhdxq() + "");
+            etYhdmc.setText(data.getYhdmc()!=null?data.getYhdmc() + "":"");
+            etYhdxq.setText(data.getYhdxq()!=null?data.getYhdxq() + "":"");
 //            if (data.getXh().equals("0")) {
 //                etYhdxq.setText("");
 //                data.setXh("0");
@@ -378,7 +378,7 @@ public class UnsafeActivity extends AppCompatActivity {
             } else {
                 etYhdxh.setText(data.getXh()+"");
             }
-            etBz.setText(data.getBz() + "");
+            etBz.setText(data.getBz()!=null?data.getBz() + "":"");
             judgeJctpIsEmpty(data.getYhdtp());
         } else {
             judgeJctpIsEmpty("");

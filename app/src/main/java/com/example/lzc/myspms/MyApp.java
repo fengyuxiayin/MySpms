@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -32,9 +33,13 @@ import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.auth.constant.LoginSyncStatus;
 import com.netease.nimlib.sdk.uinfo.model.UserInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
@@ -107,6 +112,7 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         WindowManager wm = (WindowManager) getApplicationContext()
                 .getSystemService(Context.WINDOW_SERVICE);
 
@@ -124,6 +130,8 @@ public class MyApp extends Application {
                 return true;
             }
         });
+        OkHttpUtils.getInstance().getOkHttpClient().setConnectTimeout(300000,TimeUnit.MILLISECONDS);
+        OkHttpUtils.getInstance().getOkHttpClient().setReadTimeout(300000,TimeUnit.MILLISECONDS);
         StrictMode.VmPolicy.Builder builder1 = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder1.build());
         builder1.detectFileUriExposure();
@@ -154,7 +162,40 @@ public class MyApp extends Application {
             // 初始化音视频模块
             initAVChatKit();
         }
+        initBugly();
 
+    }
+    private void initBugly() {
+        //        CrashReport.initCrashReport(getApplicationContext(), "5fc8465b1e", false);
+        Context context = getApplicationContext();
+        String packageName = context.getPackageName();
+        String processName = getProcessName(android.os.Process.myPid());
+        // 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        CrashReport.initCrashReport(context, "87cb2bc402", false, strategy);
+    }
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
     }
     private void initAVChatKit() {
         AVChatOptions avChatOptions = new AVChatOptions() {

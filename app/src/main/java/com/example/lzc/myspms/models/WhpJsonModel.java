@@ -6,37 +6,94 @@ import java.io.Serializable;
  * Created by LZC on 2018/5/12.
  */
 
-public class WhpJsonModel implements Serializable{
-    private Long qyid;
+public class WhpJsonModel implements Serializable {
+
     /**
-     * 危化品名称
+     * createBy : 1
+     * createTime : 1535685543000
+     * id : 244
+     * modifyBy : 1
+     * modifyTime : 1535685583000
+     * qyid : 816
+     * status : 1
+     * whpdw : 1
+     * whpmc : 哈哈哈
+     * whpsl : 2
      */
-    private String whpmc;
-    /**
-     * 危化品数量
-     */
-    private Double whpsl;
-    /**
-     * 危化品单位
-     */
+
+    private Integer createBy;
+    private Long createTime;
+    private Integer id;
+    private Integer modifyBy;
+    private Long modifyTime;
+    private Integer qyid;
+    private Integer status;
     private Integer whpdw;
+    private String whpmc;
+    private Double whpsl;
 
-    public WhpJsonModel() {
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public WhpJsonModel(Long qyid, String whpmc, Double whpsl, Integer whpdw) {
-        this.qyid = qyid;
-        this.whpmc = whpmc;
-        this.whpsl = whpsl;
-        this.whpdw = whpdw;
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
     }
 
-    public Long getQyid() {
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getModifyBy() {
+        return modifyBy;
+    }
+
+    public void setModifyBy(Integer modifyBy) {
+        this.modifyBy = modifyBy;
+    }
+
+    public Long getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Long modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public Integer getQyid() {
         return qyid;
     }
 
-    public void setQyid(Long qyid) {
+    public void setQyid(Integer qyid) {
         this.qyid = qyid;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getWhpdw() {
+        return whpdw;
+    }
+
+    public void setWhpdw(Integer whpdw) {
+        this.whpdw = whpdw;
     }
 
     public String getWhpmc() {
@@ -53,13 +110,5 @@ public class WhpJsonModel implements Serializable{
 
     public void setWhpsl(Double whpsl) {
         this.whpsl = whpsl;
-    }
-
-    public Integer getWhpdw() {
-        return whpdw;
-    }
-
-    public void setWhpdw(Integer whpdw) {
-        this.whpdw = whpdw;
     }
 }

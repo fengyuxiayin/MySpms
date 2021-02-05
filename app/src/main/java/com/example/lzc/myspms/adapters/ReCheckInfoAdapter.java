@@ -79,6 +79,7 @@ public class ReCheckInfoAdapter extends BaseAdapter implements View.OnClickListe
         Log.e(TAG, "getView: ");
         View view = inflater.inflate(R.layout.fragment_recheck_item, parent, false);
         TextView tvDate = (TextView) view.findViewById(R.id.fragment_recheck_item_tv_date);
+        TextView tvRwmc = (TextView) view.findViewById(R.id.fragment_recheck_item_tv_rwmc);
         TextView tvNumber = (TextView) view.findViewById(R.id.fragment_recheck_item_tv_number);
         TextView tvComponyName = (TextView) view.findViewById(R.id.fragment_recheck_item_tv_compony);
         TextView tvRegularLevel = (TextView) view.findViewById(R.id.fragment_recheck_item_tv_level);
@@ -86,14 +87,13 @@ public class ReCheckInfoAdapter extends BaseAdapter implements View.OnClickListe
         if (rwzt.equals("1")) {
             imgView.setImageResource(R.mipmap.new_check_img_view);
         }
-        // TODO: 2018/6/19  截止时间不对
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        if (data.get(position).getJzsj() > 0) {
-            format = simpleDateFormat.format(new Date(data.get(position).getJzsj()));
+        if (data.get(position).getJhjzsj() > 0) {
+            format = simpleDateFormat.format(new Date(data.get(position).getJhjzsj()));
         }
-        // TODO: 2018/6/19 合格数待确定
-        Log.e(TAG, "getView: "+data.get(position).getPassCount() );
         tvNumber.setText(data.get(position).getXmsl()-data.get(position).getPassCount() + "");
+        tvNumber.setText(data.get(position).getJcxmsl()==null?0+"":data.get(position).getJcxmsl()+"");
+        tvRwmc.setText(data.get(position).getRwmc()==null?"暂无":data.get(position).getRwmc());
         tvDate.setText(format);
         QyJsonModel qyJsonModel = gson.fromJson(data.get(position).getQyJson(), QyJsonModel.class);
         tvComponyName.setText(qyJsonModel.getQymc());
@@ -141,7 +141,7 @@ public class ReCheckInfoAdapter extends BaseAdapter implements View.OnClickListe
 //                                    if (!infoModel.isData()) {
 //                                        Toast.makeText(activity, "当前位置不在企业检查范围内", Toast.LENGTH_SHORT).show();
 //                                    } else {
-                    if (FastClickUtil.isFastClick()) {
+                    if (!FastClickUtil.isFastClick()) {
                         if (data.get(position).getRwzt() != 1) {//检查中或者未检查
                             OkHttpUtils.post()
                                     .url(Constant.SERVER_URL + "/checkInfo/beginCheck")

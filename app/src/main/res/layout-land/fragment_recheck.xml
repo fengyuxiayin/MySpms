@@ -75,26 +75,66 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:background="@drawable/new_check_pull_bg"
                     android:spinnerMode="dropdown" />
 
-                <Spinner
-                    android:id="@+id/activity_recheck_sp_amount"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@mipmap/new_check_pull_bg" />
+                <!--<Spinner-->
+                    <!--android:id="@+id/activity_recheck_sp_amount"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@mipmap/new_check_pull_bg" />-->
 
-                <Spinner
-                    android:id="@+id/activity_recheck_sp_distance"
+                <!--<Spinner-->
+                    <!--android:id="@+id/activity_recheck_sp_distance"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:visibility="gone"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@mipmap/new_check_pull_bg" />-->
+                <TextView
                     android:layout_width="0dp"
-                    android:visibility="gone"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@mipmap/new_check_pull_bg" />
+                    android:gravity="center"
+                    android:text="企业名称"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.example.lzc.myspms.custom.ClearEditText
+                    android:id="@+id/activity_recheck_et_compony"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="5dp"
+                    android:background="@mipmap/new_check_edittext_bg"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/homepage_text_press"
+                    android:textCursorDrawable="@null" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="任务名称"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.example.lzc.myspms.custom.ClearEditText
+                    android:id="@+id/activity_recheck_et_task"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="5dp"
+                    android:background="@mipmap/new_check_edittext_bg"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/homepage_text_press"
+                    android:textCursorDrawable="@null" />
             </LinearLayout>
             <Button
                 android:id="@+id/activity_recheck_btn_reset"
@@ -134,7 +174,7 @@
                     style="@style/fragment_homepage_text_title_style"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="整改期限"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -143,8 +183,16 @@
                     style="@style/fragment_homepage_text_title_style"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="企业名称"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    style="@style/fragment_homepage_text_title_style"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="任务名称"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -162,7 +210,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="不合格项目数"
+                    android:text="不合格数"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

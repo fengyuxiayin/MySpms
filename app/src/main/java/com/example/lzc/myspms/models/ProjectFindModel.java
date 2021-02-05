@@ -16,16 +16,16 @@ public class ProjectFindModel implements Serializable{
      * url :
      */
 
-    private int code;
+    private Integer code;
     private boolean data;
     private String msg;
     private String url;
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -61,32 +61,32 @@ public class ProjectFindModel implements Serializable{
          * total : 1
          */
 
-        private int pn;
-        private int size;
-        private int total;
+        private Integer pn;
+        private Integer size;
+        private Integer total;
         private List<ListBean> list;
 
-        public int getPn() {
+        public Integer getPn() {
             return pn;
         }
 
-        public void setPn(int pn) {
+        public void setPn(Integer pn) {
             this.pn = pn;
         }
 
-        public int getSize() {
+        public Integer getSize() {
             return size;
         }
 
-        public void setSize(int size) {
+        public void setSize(Integer size) {
             this.size = size;
         }
 
-        public int getTotal() {
+        public Integer getTotal() {
             return total;
         }
 
-        public void setTotal(int total) {
+        public void setTotal(Integer total) {
             this.total = total;
         }
 
@@ -111,62 +111,61 @@ public class ProjectFindModel implements Serializable{
              * wxymc : 自动膜盒线
              */
 
-            private int createBy;
-            private long createTime;
-            private int id;
-            private long modifyTime;
-            private int qyId;
+            private Integer createBy;
+            private Long createTime;
+            private Integer id;
+            private Long modifyTime;
+            private Integer qyId;
             private String ssbm;
-            private int status;
-            private int wxylx;
+            private Integer status;
+            private Integer wxylx;
             private String wxymc;
             private String bm;
 
             public String getBm() {
                 return bm;
             }
-
             public void setBm(String bm) {
                 this.bm = bm;
             }
 
-            public int getCreateBy() {
+            public Integer getCreateBy() {
                 return createBy;
             }
 
-            public void setCreateBy(int createBy) {
+            public void setCreateBy(Integer createBy) {
                 this.createBy = createBy;
             }
 
-            public long getCreateTime() {
+            public Long getCreateTime() {
                 return createTime;
             }
 
-            public void setCreateTime(long createTime) {
+            public void setCreateTime(Long createTime) {
                 this.createTime = createTime;
             }
 
-            public int getId() {
+            public Integer getId() {
                 return id;
             }
 
-            public void setId(int id) {
+            public void setId(Integer id) {
                 this.id = id;
             }
 
-            public long getModifyTime() {
+            public Long getModifyTime() {
                 return modifyTime;
             }
 
-            public void setModifyTime(long modifyTime) {
+            public void setModifyTime(Long modifyTime) {
                 this.modifyTime = modifyTime;
             }
 
-            public int getQyId() {
+            public Integer getQyId() {
                 return qyId;
             }
 
-            public void setQyId(int qyId) {
+            public void setQyId(Integer qyId) {
                 this.qyId = qyId;
             }
 
@@ -178,19 +177,19 @@ public class ProjectFindModel implements Serializable{
                 this.ssbm = ssbm;
             }
 
-            public int getStatus() {
+            public Integer getStatus() {
                 return status;
             }
 
-            public void setStatus(int status) {
+            public void setStatus(Integer status) {
                 this.status = status;
             }
 
-            public int getWxylx() {
+            public Integer getWxylx() {
                 return wxylx;
             }
 
-            public void setWxylx(int wxylx) {
+            public void setWxylx(Integer wxylx) {
                 this.wxylx = wxylx;
             }
 

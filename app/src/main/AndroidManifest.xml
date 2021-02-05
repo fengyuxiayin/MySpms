@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lzc.myspms">
 
     <!-- 网易云信的权限 -->
@@ -20,10 +21,7 @@
 
     <uses-permission android:name="com.example.lzc.myspms.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -51,7 +49,6 @@
     <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:name=".MyApp"
@@ -130,13 +127,13 @@
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        >
+
         <activity
             android:name=".BaseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" ></activity>
         <activity
             android:name=".activitys.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -150,6 +147,12 @@
         </activity>
         <activity
             android:name=".activitys.queryactivitys.EnterpriseInfoQueryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activitys.queryactivitys.PlaceInfoQueryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
@@ -409,9 +412,18 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activitys.ScanAddEnterpriseActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activitys.homepageactivitys.AddPlaceActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            ></activity>
     </application>
 
 </manifest>

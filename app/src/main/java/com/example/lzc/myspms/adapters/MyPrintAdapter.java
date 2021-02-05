@@ -62,6 +62,7 @@ public static final String TAG = MyPrintAdapter.class.getSimpleName();
     private int problemCount;
     private String jcId;
     private Gson gson = new Gson();
+    private String jclx;
 
     private CheckMessageModel.CheckMessageMsgModel checkMessageMsgModel ;
 
@@ -70,10 +71,11 @@ public static final String TAG = MyPrintAdapter.class.getSimpleName();
         this.pdfPath = pdfPath;
     }
 
-    public MyPrintAdapter(Context context, String pdfPath, String jcId) {
+    public MyPrintAdapter(Context context, String pdfPath, String jcId,String jclx) {
         this.context = context;
         this.pdfPath = pdfPath;
         this.jcId = jcId;
+        this.jclx = jclx;
         getCheckInfo();
     }
     private void getCheckInfo() {
@@ -253,7 +255,11 @@ public static final String TAG = MyPrintAdapter.class.getSimpleName();
                 if (qyJsonModel.getFddbr()!=null) {
                     this.lxdh = qyJsonModel.getLxdh();
                     if (ValidateUtil.isPhone(lxdh)) {
-                        sendSMS(qyJsonModel.getFddbr()+"，你名下/负责的企业\""+qyJsonModel.getQymc()+"\"在"+ DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getJckssj())+"的安全生产检查中，有"+checkMessageMsgModel.getProblemCount()+"项违法违规行为，责令你公司于"+DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getZgqx())+"日前整改完毕。逾期不整改的，将根据《中华人民共和国安全生产法》等法律法规的有关规定依法进行处理。由此造成事故的，依法追究有关人员责任。检查结果详情请登录夏庄安全生产大数据平台企业端或纸质检查文书查看。",lxdh);
+                        if ("2".equals(jclx)) {
+                            sendSMS(qyJsonModel.getFddbr()+"，你名下/负责的企业\""+qyJsonModel.getQymc()+"\"在"+ DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getJckssj())+"的安全生产复查中，仍有"+checkMessageMsgModel.getProblemCount()+"项违法违规行为，拒不整改的，将根据《中华人民共和国安全生产法》等法律法规的有关规定依法进行处理。由此造成事故的，依法追究有关人员责任。检查结果详情请登录夏庄安全生产大数据平台企业端或纸质检查文书查看。",lxdh);
+                        }else{
+                            sendSMS(qyJsonModel.getFddbr()+"，你名下/负责的企业\""+qyJsonModel.getQymc()+"\"在"+ DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getJckssj())+"的安全生产检查中，有"+checkMessageMsgModel.getProblemCount()+"项违法违规行为，责令你公司于"+DateUtil.long2Date(checkMessageMsgModel.getCheckInfo().getZgqx())+"日前整改完毕。逾期不整改的，将根据《中华人民共和国安全生产法》等法律法规的有关规定依法进行处理。由此造成事故的，依法追究有关人员责任。检查结果详情请登录夏庄安全生产大数据平台企业端或纸质检查文书查看。",lxdh);
+                        }
                     }else{
                         Toast.makeText(context, "请检查企业法人联系方式是否为合法手机号", Toast.LENGTH_SHORT).show();
                     }

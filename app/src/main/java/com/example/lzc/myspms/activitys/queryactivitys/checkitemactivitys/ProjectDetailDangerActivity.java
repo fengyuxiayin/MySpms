@@ -142,13 +142,11 @@ public class ProjectDetailDangerActivity extends AppCompatActivity implements Vi
                                          tvDate.setText("生产日期："+ DateUtil.long2Date(wxyJsonModel.getScrq()));
                                          tvComponyName.setText("企业名称："+qymc);
                                          tvYear.setText("使用年限："+wxyJsonModel.getBfnx());
-                                         // TODO: 2018/6/19  没有检查人员姓名 和项目分类
                                          getPointData(projectPublicInfoModel);
                                      }
                                  }
                              }
                          }
-
                 );
 
     }
@@ -402,6 +400,11 @@ public class ProjectDetailDangerActivity extends AppCompatActivity implements Vi
             switch (v.getId()) {
                 case R.id.activity_project_detail_danger_btn_commit:
                     for (int i = 0; i < list.size(); i++) {
+                        Log.e(TAG, "onClick: "+list.get(i).getJctp() );
+                        if(list.get(i).getJctp()==null||"".equals(list.get(i).getJctp())){
+                            Toast.makeText(this, "第"+(i+1)+"个检查点未拍照留证", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         YhdItemModel yhdItemModel = new YhdItemModel(list.get(i).getId(), list.get(i).getJcxId(), list.get(i).getJctp(),list.get(i).getYhms(), list.get(i).getJcjg());
                         yhdItemList.add(yhdItemModel);
                     }

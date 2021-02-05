@@ -88,6 +88,7 @@ public class ShowPersonPopup {
                 .url(Constant.SERVER_URL + Constant.ENUM_URL)
                 .addParams("code", "JOB_TITLE_TYPE")
                 .build().execute(new StringCallback() {
+
             @Override
             public void onError(Request request, Exception e) {
                 NetUtil.errorTip(activity, e.getMessage());

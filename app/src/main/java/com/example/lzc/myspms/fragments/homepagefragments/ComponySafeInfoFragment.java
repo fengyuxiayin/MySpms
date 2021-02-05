@@ -49,6 +49,7 @@ import com.example.lzc.myspms.models.WhpJsonModel;
 import com.example.lzc.myspms.utils.NetUtil;
 import com.example.lzc.myspms.utils.ValidateUtil;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.adapter.Call;
@@ -233,7 +234,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
     }
 
     private void setData() {
-        etSfszaqjg.setText(componyInfo.getAqjgszqk() == 1 ? "是" : "否");
+        etSfszaqjg.setText(componyInfo.getAqjgszqk()==null?"":componyInfo.getAqjgszqk() == 1 ? "是" : "否");
         etAqjgjcjg.setText(componyInfo.getAqjgjcjg());
         for (int i = 0; i < dataRegulatory.size(); i++) {
             if (dataRegulatory.get(i).getKey().equals(componyInfo.getJgfl() + "")) {
@@ -266,46 +267,45 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             }
         }
         Log.e(TAG, "setData: " + componyInfo.getIsqyzc());
-        etQyzc.setText(componyInfo.getIsqyzc() == 1 ? "是" : "否");
-        etSflgtx.setText(componyInfo.getIslgtx() == 1 ? "是" : "否");
-        if (componyInfo.getIslgtx() == 1) {
-            llLgtxsj.setVisibility(View.VISIBLE);
-            tvLgtxsj.setVisibility(View.VISIBLE);
-            etLgtxcjsj.setVisibility(View.VISIBLE);
-            etLgtxcjsj.setText(componyInfo.getLgtxcjsj());
-            etLgtxfssj.setText(componyInfo.getLgtxfssj());
+        etQyzc.setText(componyInfo.getIsqyzc()==null?"":componyInfo.getIsqyzc() == 1 ? "是" : "否");
+        etSflgtx.setText(componyInfo.getIslgtx()==null?"":componyInfo.getIslgtx() == 1 ? "是" : "否");
+        if (componyInfo.getIslgtx()!=null) {
+            if (componyInfo.getIslgtx() == 1) {
+                llLgtxsj.setVisibility(View.VISIBLE);
+                tvLgtxsj.setVisibility(View.VISIBLE);
+                etLgtxcjsj.setVisibility(View.VISIBLE);
+                etLgtxcjsj.setText(componyInfo.getLgtxcjsj());
+                etLgtxfssj.setText(componyInfo.getLgtxfssj());
+            }
         }
-
-        etSfbzh.setText(componyInfo.getIsbzh() == 1 ? "是" : "否");
-        if (componyInfo.getIsbzh() == 1) {
-            llBzhsj.setVisibility(View.VISIBLE);
-            tvBzhdj.setVisibility(View.VISIBLE);
-            etBzhdj.setVisibility(View.VISIBLE);
-            etBzhcjsj.setText(componyInfo.getBzhcjsj());
-            etBzhfssj.setText(componyInfo.getBzhfssj());
-            for (int i = 0; i < dataStandradLevel.size(); i++) {
-                if ((componyInfo.getBzhfj() + "").equals(dataStandradLevel.get(i).getKey())) {
-                    etBzhdj.setText(dataStandradLevel.get(i).getValue());
-                    break;
+        etSfbzh.setText(componyInfo.getIsbzh()==null?"":componyInfo.getIsbzh() == 1 ? "是" : "否");
+        if (componyInfo.getIsbzh()!=null) {
+            if (componyInfo.getIsbzh() == 1) {
+                llBzhsj.setVisibility(View.VISIBLE);
+                tvBzhdj.setVisibility(View.VISIBLE);
+                etBzhdj.setVisibility(View.VISIBLE);
+                etBzhcjsj.setText(componyInfo.getBzhcjsj());
+                etBzhfssj.setText(componyInfo.getBzhfssj());
+                for (int i = 0; i < dataStandradLevel.size(); i++) {
+                    if ((componyInfo.getBzhfj() + "").equals(dataStandradLevel.get(i).getKey())) {
+                        etBzhdj.setText(dataStandradLevel.get(i).getValue());
+                        break;
+                    }
                 }
             }
         }
-        etSfwhp.setText(componyInfo.getIswhp() == 1 ? "是" : "否");
-        if (componyInfo.getIswhp() == 1) {
-            llWhp.setVisibility(View.VISIBLE);
-            try {
-                JSONArray jsonArray = new JSONArray(componyInfo.getWhpJson());
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    WhpJsonModel whpJsonModel = gson.fromJson(jsonArray.getJSONObject(i).toString(), WhpJsonModel.class);
-                    whpList.add(whpJsonModel);
+        etSfwhp.setText(componyInfo.getIswhp()==null?"":componyInfo.getIswhp() == 1 ? "是" : "否");
+        if (componyInfo.getIswhp()!=null) {
+            if (componyInfo.getIswhp() == 1) {
+                llWhp.setVisibility(View.VISIBLE);
+                whpList = gson.fromJson(componyInfo.getWhpJson(),new TypeToken<List<WhpJsonModel>>(){}.getType());
+                if (whpList==null) {
+                    whpList = new ArrayList<>();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                safeInfoWhpAdapter = new SafeInfoWhpAdapter(whpList, getActivity(), dataMeasureUnitType);
+                listView.setAdapter(safeInfoWhpAdapter);
             }
-            safeInfoWhpAdapter = new SafeInfoWhpAdapter(whpList, getActivity(), dataMeasureUnitType);
-            listView.setAdapter(safeInfoWhpAdapter);
         }
-
     }
 
     private void initEnumData(String url, final String params, final List<EnumModel> data) {
@@ -347,11 +347,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
 
                 }
             }
-
-
         });
-
-
     }
 
     private void initView() {
@@ -584,6 +580,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
     }
 
     private void isDataQualified() {
+        Log.e(TAG, "isDataQualified: "+componyInfo.getSsJson() );
         if (getEdittextContent(etAqjgjcjg).length() < 1) {
             Toast.makeText(getContext(), "安全监管监察机构为必填项", Toast.LENGTH_SHORT).show();
             return;
@@ -597,7 +594,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
             return;
         }
         if (getEdittextContent(etJgjb).length() < 1) {
-            Toast.makeText(getContext(), "监管级别为必填项", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "重点等级为必填项", Toast.LENGTH_SHORT).show();
             return;
         }
         if (getEdittextContent(etSfszaqjg).equals("是")) {
@@ -626,7 +623,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
         }
         for (int i = 0; i < dataEnterpriseRisk.size(); i++) {
             if (dataEnterpriseRisk.get(i).getValue().equals(getEdittextContent(etQyfxfj))) {
-                componyInfo.setJgfl(dataEnterpriseRisk.get(i).getKey());
+                componyInfo.setQyfxfj(i);
                 break;
             }
         }
@@ -772,7 +769,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
 //                        Log.e(TAG, "onResponse: "+response );
 //                    }
 //                });
-
+        Log.e(TAG, "isDataQualified: "+componyInfo.getFwxz() );
         OkHttpUtils.post()
                 .url(Constant.SERVER_URL + "/baseEnterprise/save")
                 .addParams("id", qyId.length() == 0 ? "" : qyId)
@@ -815,7 +812,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("zzyjglryJson", componyInfo.getZzyjglryJson() == null ? "" : componyInfo.getZzyjglryJson() + "")
                 .addParams("zcaqgcsJson", componyInfo.getZcaqgcsJson() == null ? "" : componyInfo.getZcaqgcsJson() + "")
 //                .addParams("ssJson", componyInfo.getZsryJson() == null ? "" : componyInfo.getZsryJson() + "")
-                .addParams("ssJson", componyInfo.getSsJson() == null ? "" : componyInfo.getSsJson() + "")
+                .addParams("ssJson", componyInfo.getSsJson() == null||componyInfo.getSsJson().equals("[]")? "" : componyInfo.getSsJson() + "")
                 .addParams("aqjgszqk", (componyInfo.getAqjgszqk() +"").equals("null")?"":componyInfo.getAqjgszqk() + "")
                 .addParams("aqjgjcjg", componyInfo.getAqjgjcjg() == null ? "" : componyInfo.getAqjgjcjg() + "")
                 .addParams("gmqk", (componyInfo.getGmqk() +"").equals("null")?"":componyInfo.getGmqk() + "")
@@ -842,11 +839,15 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                 .addParams("sfzd",componyInfo.getSfzd()==null?"":componyInfo.getSfzd()+"")
                 .addParams("qyejfl",componyInfo.getQyejfl()==null?"":componyInfo.getQyejfl()+"")
                 .addParams("hyzgbm",(componyInfo.getHyzgbm()+"").equals("null")?"":componyInfo.getHyzgbm()+"")
+                .addParams("hastTzyry",componyInfo.getHastTzyry()==null?"0":componyInfo.getHastTzyry()+"")
+                .addParams("hasZzyjglry",componyInfo.getHasZzyjglry()==null?"0":componyInfo.getHasZzyjglry()+"")
+                .addParams("hasZcaqgcsry",componyInfo.getHasZcaqgcsry()==null?"0":componyInfo.getHasZcaqgcsry()+"")
+                .addParams("fwxz",componyInfo.getFwxz()==null?"0":componyInfo.getFwxz()+"")
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Request request, Exception e) {
-                        Log.e(TAG, "onError: " + e.getMessage());
+                        Log.e(TAG, "onError: " + e.getMessage()+e.getCause());
                         NetUtil.errorTip(getActivity(), e.getMessage());
                     }
 
@@ -944,6 +945,7 @@ public class ComponySafeInfoFragment extends BaseFragment implements View.OnClic
                         componyInfo.setAqjgszqk(Integer.parseInt(commonList.get(which).getKey()));
                         break;
                     case "监管分类":
+                        Log.e(TAG, "onClick: "+ dataRegulatory.get(which).getKey());
                         componyInfo.setJgfl(dataRegulatory.get(which).getKey());
                         break;
                     case "企业风险等级":

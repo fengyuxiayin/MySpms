@@ -114,7 +114,7 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
         qyId = getIntent().getStringExtra("qyId");
         if (isEdit) {
             id = getIntent().getStringExtra("id");
-        }else{
+        } else {
             id = "";
         }
         initView();
@@ -138,7 +138,7 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void setData(int pos, UnsafeFindModel.UnsafeFindMsgModel.ListBean data) {
-        Log.e(TAG, "setData: "+unsafeAdapter );
+        Log.e(TAG, "setData: " + unsafeAdapter);
         unsafeAdapter.setData(pos, data);
     }
 
@@ -196,16 +196,14 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                                 UnsafeFindModel.UnsafeFindMsgModel unsafeFindMsgModel = gson.fromJson(unsafeFindModel.getMsg(), UnsafeFindModel.UnsafeFindMsgModel.class);
                                 list = unsafeFindMsgModel.getList();
 //                                if (list != null) {
-                                    unsafeAdapter = new UnsafeAdapter(list, EditProjectActivity.this);
-                                    unsafeAdapter.setUnsafeAdapter(unsafeAdapter);
-                                    listView.setAdapter(unsafeAdapter);
+                                unsafeAdapter = new UnsafeAdapter(list, EditProjectActivity.this);
+                                listView.setAdapter(unsafeAdapter);
 //                                }
                             }
                         }
                     });
-        }else{
+        } else {
             unsafeAdapter = new UnsafeAdapter(list, EditProjectActivity.this);
-            unsafeAdapter.setUnsafeAdapter(unsafeAdapter);
             listView.setAdapter(unsafeAdapter);
         }
     }
@@ -233,25 +231,30 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                                 Log.e(TAG, "onResponse: " + projectFindByIdModel.getCreateBy());
                                 etFxdwmc.setText(projectFindByIdModel.getWxymc() + "");
                                 for (int i = 0; i < projectList.size(); i++) {
-                                    Log.e(TAG, "onResponse: 1111"+projectFindByIdModel.getWxylx() + ""+projectList.get(i).getKey() );
+                                    Log.e(TAG, "onResponse: 1111" + projectFindByIdModel.getWxylx() + "" + projectList.get(i).getKey());
                                     if (projectList.get(i).getKey().equals(projectFindByIdModel.getWxylx() + "")) {
                                         etFxdwlx.setText(projectList.get(i).getValue());
                                         break;
                                     }
                                 }
-                                etBm.setText(projectFindByIdModel.getBm() + "");
-                                etSybm.setText(projectFindByIdModel.getSsbm() + "");
-                                etSydd.setText(projectFindByIdModel.getSydd() + "");
-                                etSbpp.setText(projectFindByIdModel.getSbpp() + "");
-                                etSbxh.setText(projectFindByIdModel.getSbxh() + "");
-                                etScrq.setText(DateUtil.long2Date(projectFindByIdModel.getScrq()).contains("1970-01-01")?"":DateUtil.long2Date(projectFindByIdModel.getScrq()));
-                                etQyrq.setText(DateUtil.long2Date(projectFindByIdModel.getQyrq()).contains("1970-01-01")?"":DateUtil.long2Date(projectFindByIdModel.getQyrq()));
-                                etBfnx.setText((projectFindByIdModel.getBfnx() + "").equals("0")?"":projectFindByIdModel.getBfnx() + "");
-                                etSynx.setText((projectFindByIdModel.getSynx() + "").equals("0")?"":projectFindByIdModel.getSynx() + "");
-                                etZczq.setText((projectFindByIdModel.getZczq() + "").equals("0")?"":projectFindByIdModel.getZczq() + "");
-                                if (projectFindByIdModel.getZczqdw()!=0) {//等于0意味着自查周期单位没有设置过 默认为0
-                                    tvZczqdw.setText(dwList.get(projectFindByIdModel.getZczqdw() - 1).getValue());
+                                etBm.setText(projectFindByIdModel.getBm() != null ? projectFindByIdModel.getBm() + "" : "");
+                                etSybm.setText(projectFindByIdModel.getSsbm() != null ? projectFindByIdModel.getSsbm() + "" : "");
+                                etSydd.setText(projectFindByIdModel.getSydd() != null ? projectFindByIdModel.getSydd() + "" : "");
+                                etSbpp.setText(projectFindByIdModel.getSbpp() != null ? projectFindByIdModel.getSbpp() + "" : "");
+                                etSbxh.setText(projectFindByIdModel.getSbxh() != null ? projectFindByIdModel.getSbxh() + "" : "");
+                                etScrq.setText(DateUtil.long2Date(projectFindByIdModel.getScrq()).contains("1970-01-01") ? "" : DateUtil.long2Date(projectFindByIdModel.getScrq()));
+                                etQyrq.setText(DateUtil.long2Date(projectFindByIdModel.getQyrq()).contains("1970-01-01") ? "" : DateUtil.long2Date(projectFindByIdModel.getQyrq()));
+                                etBfnx.setText(projectFindByIdModel.getBfnx() == null ? "" : projectFindByIdModel.getBfnx() + "");
+                                etSynx.setText(projectFindByIdModel.getSynx() == null ? "" : projectFindByIdModel.getSynx() + "");
+                                etZczq.setText(projectFindByIdModel.getZczq() == null ? "" : projectFindByIdModel.getZczq() + "");
+                                if (projectFindByIdModel.getZczqdw() != null) {
+                                    if (projectFindByIdModel.getZczqdw() != 0) {//等于0意味着自查周期单位没有设置过 默认为0
+                                        tvZczqdw.setText(dwList.get(projectFindByIdModel.getZczqdw() - 1).getValue());
+                                    }
+                                } else {
+                                    Toast.makeText(EditProjectActivity.this, "未给该企业设置自查周期！", Toast.LENGTH_SHORT).show();
                                 }
+
                                 for (int i = 0; i < departmentList.size(); i++) {
                                     if (departmentList.get(i).getKey().equals(projectFindByIdModel.getDeptId() + "")) {
                                         etZyjgbm.setText(departmentList.get(i).getValue());
@@ -306,13 +309,12 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                 doPhoto(data);
                 break;
             case 10010:
-                if (resultCode==10010) {//如果不是10010 证明只是普通的返回，不是保存返回
+                if (resultCode == 10010) {//如果不是10010 证明只是普通的返回，不是保存返回
                     String position = data.getStringExtra("position");
-                    if (position==null) {
-                        position="-1";
+                    if (position == null) {
+                        position = "-1";
                     }
                     UnsafeFindModel.UnsafeFindMsgModel.ListBean data1 = (UnsafeFindModel.UnsafeFindMsgModel.ListBean) data.getSerializableExtra("data");
-                    Toast.makeText(this, "position" + position, Toast.LENGTH_SHORT).show();
                     setData(Integer.parseInt(position), data1);
                 }
         }
@@ -578,7 +580,7 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                     DialogUtil.showChooseDialog(dwList, tvZczqdw, this);
                     break;
                 case R.id.activity_edit_project_btn_save:
-                    Log.e(TAG, "onClick: " );
+                    Log.e(TAG, "onClick: ");
                     if (etFxdwmc.getText().toString().trim().length() < 1) {
                         Toast.makeText(this, "请先填写风险点位名称", Toast.LENGTH_SHORT).show();
                         return;
@@ -594,7 +596,7 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                     String wxylx = "";
                     for (int i = 0; i < projectStrList.size(); i++) {
                         if (projectStrList.get(i).equals(etFxdwlx.getText().toString().trim())) {
-                            wxylx = (i+1)+"";
+                            wxylx = (i + 1) + "";
                             break;
                         }
                     }
@@ -613,47 +615,47 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                         }
                     }
                     sqtp = "";
-                    for (int i = 0; i <jctpNewList.size()-1 ; i++) {
-                        if (i==0) {
-                            sqtp +=jctpNewList.get(i);
-                        }else{
-                            sqtp +=","+jctpNewList.get(i);
+                    for (int i = 0; i < jctpNewList.size() - 1; i++) {
+                        if (i == 0) {
+                            sqtp += jctpNewList.get(i);
+                        } else {
+                            sqtp += "," + jctpNewList.get(i);
 
                         }
                     }
-                    Log.e(TAG, "onClick: "+qyId+" wxylx"+wxylx+" sqtp"+sqtp+" deptId"+deptId+" yhdItem"+gson.toJson(list)+" id"+id+" zczqdw"+zczqdw );
+                    Log.e(TAG, "onClick: " + qyId + " wxylx" + wxylx + " sqtp" + sqtp + " deptId" + deptId + " yhdItem" + gson.toJson(list) + " id" + id + " zczqdw" + zczqdw);
                     OkHttpUtils.post()
                             .url(Constant.SERVER_URL + "/project/save")
-                            .addParams("qyId",qyId)
-                            .addParams("wxylx",wxylx)
-                            .addParams("wxymc",etFxdwmc.getText().toString().trim()+"")
-                            .addParams("bm",etBm.getText().toString().trim()+"")
-                            .addParams("ssbm",etSybm.getText().toString().trim()+"")
-                            .addParams("sydd",etSydd.getText().toString().trim()+"")
-                            .addParams("sbpp",etSbpp.getText().toString().trim()+"")
-                            .addParams("sbxh",etSbxh.getText().toString().trim()+"")
-                            .addParams("sbtp",sqtp.trim())
-                            .addParams("scrqStr", etScrq.getText().toString().trim()+"")
-                            .addParams("qyrqStr", etQyrq.getText().toString().trim()+"")
-                            .addParams("synx", etSynx.getText().toString().trim()+"")
-                            .addParams("bfnx", etBfnx.getText().toString().trim()+"")
+                            .addParams("qyId", qyId)
+                            .addParams("wxylx", wxylx)
+                            .addParams("wxymc", etFxdwmc.getText().toString().trim() + "")
+                            .addParams("bm", etBm.getText().toString().trim() + "")
+                            .addParams("ssbm", etSybm.getText().toString().trim() + "")
+                            .addParams("sydd", etSydd.getText().toString().trim() + "")
+                            .addParams("sbpp", etSbpp.getText().toString().trim() + "")
+                            .addParams("sbxh", etSbxh.getText().toString().trim() + "")
+                            .addParams("sbtp", sqtp.trim())
+                            .addParams("scrqStr", etScrq.getText().toString().trim() + "")
+                            .addParams("qyrqStr", etQyrq.getText().toString().trim() + "")
+                            .addParams("synx", etSynx.getText().toString().trim() + "")
+                            .addParams("bfnx", etBfnx.getText().toString().trim() + "")
                             .addParams("yhdItem", gson.toJson(list))
                             .addParams("deptId", deptId)
                             .addParams("id", id)
-                            .addParams("zczq", etZczq.getText().toString().trim()+"")
+                            .addParams("zczq", etZczq.getText().toString().trim() + "")
                             .addParams("zczqdw", zczqdw)
-                            .addParams("sybm", etSybm.getText().toString().trim()+"")
-                            .addParams("xynx", etSynx.getText().toString().trim()+"")
+                            .addParams("sybm", etSybm.getText().toString().trim() + "")
+                            .addParams("xynx", etSynx.getText().toString().trim() + "")
                             .build()
                             .execute(new StringCallback() {
                                 @Override
                                 public void onError(Request request, Exception e) {
-                                    Log.e(TAG, "onError: "+e.getMessage()+e.getCause() );
+                                    Log.e(TAG, "onError: " + e.getMessage() + e.getCause());
                                 }
 
                                 @Override
                                 public void onResponse(String response) {
-                                    Log.e(TAG, "onResponse: "+response );
+                                    Log.e(TAG, "onResponse: " + response);
                                     LoginInfoModel infoModel = gson.fromJson(response, LoginInfoModel.class);
                                     if (infoModel.isData()) {
                                         Toast.makeText(EditProjectActivity.this, infoModel.getMsg(), Toast.LENGTH_SHORT).show();
@@ -669,12 +671,12 @@ public class EditProjectActivity extends AppCompatActivity implements View.OnCli
                     intent.setClass(EditProjectActivity.this, UnsafeActivity.class);
                     intent.putExtra("yhdmc", "");
                     intent.putExtra("xh", "");
-                    intent.putExtra("yhdxq","");
-                    intent.putExtra("bz","");
-                    intent.putExtra("yhdtp","");
-                    intent.putExtra("position","");
-                    intent.putExtra("data","");
-                    startActivityForResult(intent,10010);
+                    intent.putExtra("yhdxq", "");
+                    intent.putExtra("bz", "");
+                    intent.putExtra("yhdtp", "");
+                    intent.putExtra("position", "");
+                    intent.putExtra("data", "");
+                    startActivityForResult(intent, 10010);
                     break;
             }
         }

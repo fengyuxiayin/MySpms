@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.lzc.myspms.R;
 import com.example.lzc.myspms.activitys.homepageactivitys.AddEnterpriseSimpleActivity;
+import com.example.lzc.myspms.activitys.homepageactivitys.AddPlaceActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.EnterpriseInfoQueryActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.AddProjectActivity;
 import com.example.lzc.myspms.activitys.queryactivitys.enterpriseinfoactivitys.EditEnterpriseDangerActivity;
@@ -127,6 +128,16 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
         if (v != null) {
             switch (v.getId()) {
                 case R.id.activity_enterprise_info_query_item_img_edit://编辑
+                    Log.e(TAG, "onClick:111 "+data.get(pos));
+//                    if(data.get(pos).getJxcslx()!=null&&!data.get(pos).getJxcslx().equals("0")){
+//                        intent.setClass(context, AddPlaceActivity.class);
+//                        intent.putExtra("which","edit");
+//                        intent.putExtra("qyId", data.get(pos).getId() + "");
+//                    }else{
+//                        intent.setClass(context, AddEnterpriseSimpleActivity.class);
+//                        intent.putExtra("which","edit");
+//                        intent.putExtra("qyId", data.get(pos).getId() + "");
+//                    }
                     intent.setClass(context, AddEnterpriseSimpleActivity.class);
                     intent.putExtra("which","edit");
                     intent.putExtra("qyId", data.get(pos).getId() + "");
@@ -171,9 +182,18 @@ public class EnterpriseInfoQueryAdapter extends BaseAdapter implements View.OnCl
                     builder.show();
                     break;
                 case R.id.activity_enterprise_info_query_item_ll_basic_info:
+//                    if(data.get(pos).getJxcslx()!=null&&!data.get(pos).getJxcslx().equals("0")){
+//                        intent.setClass(context, AddPlaceActivity.class);
+//                        intent.putExtra("which","view");
+//                        intent.putExtra("qyId", data.get(pos).getId() + "");
+//                    }else{
+//                        intent.setClass(context, AddEnterpriseSimpleActivity.class);
+//                        intent.putExtra("which","view");
+//                        intent.putExtra("qyId", data.get(pos).getId() + "");
+//                    }
                     intent.setClass(context, AddEnterpriseSimpleActivity.class);
                     intent.putExtra("which","view");
-                    intent.putExtra("qyId", data.get((Integer) pos).getId() + "");
+                    intent.putExtra("qyId", data.get(pos).getId() + "");
                     context.startActivity(intent);
                     break;
                 case R.id.activity_enterprise_info_query_item_ll_check_record:

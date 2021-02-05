@@ -58,31 +58,63 @@ public class SafeInfoWhpAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = inflater.inflate(R.layout.popup_compony_info_whp_item, parent, false);
-         final EditText etMc = (EditText) view.findViewById(R.id.popup_compony_info_whp_item_mc);
-         final EditText etSl = (EditText) view.findViewById(R.id.popup_compony_info_whp_item_sl);
-         final EditText etDw = (EditText) view.findViewById(R.id.popup_compony_info_whp_item_dw);
-         ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_info_whp_item_operate);
+        final EditText etMc = (EditText) view.findViewById(R.id.popup_compony_info_whp_item_mc);
+        final EditText etSl = (EditText) view.findViewById(R.id.popup_compony_info_whp_item_sl);
+        final EditText etDw = (EditText) view.findViewById(R.id.popup_compony_info_whp_item_dw);
+        final ImageView imgDelete = (ImageView) view.findViewById(R.id.popup_compony_info_whp_item_operate);
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                data.remove(position);
-                notifyDataSetChanged();
+                imgDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(data.get(position).getStatus()!=null){
+                            if (data.get(position).getStatus()==2) {
+                                return;
+                            }
+                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);// 自定义对话框
+                        builder.setTitle("提示")
+                                .setMessage("是否删除此条信息")
+                                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (data.get(position).getId() != null) {
+                                            if (data.get(position).getStatus() == 1) {
+                                                data.get(position).setStatus(2);
+                                                Log.e(TAG, "onClick: ");
+                                                imgDelete.setImageResource(R.mipmap.deleted);
+                                            }
+                                        } else {
+                                            data.remove(position);
+                                            notifyDataSetChanged();
+                                        }
+                                    }
+                                })
+                                .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                });
+                        builder.show();// 让弹出框显示
+                    }
+                });
             }
         });
         etMc.setText(data.get(position).getWhpmc());
-        etSl.setText((data.get(position).getWhpsl()==null?"":data.get(position).getWhpsl()+""));
+        etSl.setText((data.get(position).getWhpsl() == null ? "" : data.get(position).getWhpsl() + ""));
 
         for (int i = 0; i < dataMeasureUnitType.size(); i++) {
-            if (dataMeasureUnitType.get(i).getKey().equals(data.get(position).getWhpdw()+"")) {
+            if (dataMeasureUnitType.get(i).getKey().equals(data.get(position).getWhpdw() + "")) {
                 etDw.setText(dataMeasureUnitType.get(i).getValue());
                 break;
             }
         }
-       etDw.setFocusable(false);
+        etDw.setFocusable(false);
         etDw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showChooseDialog(dataMeasureUnitType,etDw);
+                showChooseDialog(dataMeasureUnitType, etDw);
             }
         });
         etDw.addTextChangedListener(new TextWatcher() {
@@ -105,7 +137,7 @@ public class SafeInfoWhpAdapter extends BaseAdapter {
                         break;
                     }
                 }
-                data.set(position,whpJsonModel);
+                data.set(position, whpJsonModel);
             }
         });
         etMc.addTextChangedListener(new TextWatcher() {
@@ -123,7 +155,7 @@ public class SafeInfoWhpAdapter extends BaseAdapter {
             public void afterTextChanged(Editable s) {
                 WhpJsonModel whpJsonModel = data.get(position);
                 whpJsonModel.setWhpmc(etMc.getText().toString().trim());
-                data.set(position,whpJsonModel);
+                data.set(position, whpJsonModel);
             }
         });
         etSl.addTextChangedListener(new TextWatcher() {
@@ -140,12 +172,12 @@ public class SafeInfoWhpAdapter extends BaseAdapter {
             @Override
             public void afterTextChanged(Editable s) {
                 WhpJsonModel whpJsonModel = data.get(position);
-                if (etSl.getText().toString().length()>0) {
+                if (etSl.getText().toString().length() > 0) {
                     whpJsonModel.setWhpsl(Double.valueOf(etSl.getText().toString().trim()));
-                }else{
+                } else {
 
                 }
-                data.set(position,whpJsonModel);
+                data.set(position, whpJsonModel);
             }
         });
         return view;
@@ -187,6 +219,7 @@ public class SafeInfoWhpAdapter extends BaseAdapter {
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         dialog.show();
     }
+
     private void showChooseDialog(final List<EnumModel> data, final EditText epointName) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);// 自定义对话框
         final String[] array = data2Array(data);
@@ -206,6 +239,7 @@ public class SafeInfoWhpAdapter extends BaseAdapter {
         });
         builder.show();// 让弹出框显示
     }
+
     /**
      * @param data 待转化数据源
      * @desc data2Array 将数据源转化为array

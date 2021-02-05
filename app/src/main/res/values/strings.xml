@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">安全生产检查端</string>
+    <string name="app_name">应急管理检查端</string>
     <string name="title_activity_login">LoginActivity</string>
     <item name="tag_first" type="id"></item>
     <item name="tag_second" type="id"></item>

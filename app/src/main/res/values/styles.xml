@@ -301,4 +301,24 @@
         <item name="android:layout_height">30dp</item>
         <item name="android:background">@mipmap/title</item>
     </style>
+    <style name="MatchMatch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="WrapWrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="MatchWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="WrapWrapTv" parent="WrapWrap">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/selector_btn_orange</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">4dp</item>
+    </style>
 </resources>

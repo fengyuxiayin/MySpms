@@ -20,10 +20,16 @@
     android:layout_width="match_parent"
     android:layout_marginLeft="120dp"
     android:layout_marginRight="120dp"
-    android:layout_height="200dp">
+    android:layout_height="250dp">
     <ImageView
         android:id="@+id/fragment_check_img_compony_info"
         android:src="@mipmap/compony_info_query_bg"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+    <ImageView
+        android:id="@+id/fragment_check_img_place_info"
+        android:src="@mipmap/place_info_query_bg"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
@@ -62,20 +68,12 @@
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <!--<GridView-->
-        <!--android:id="@+id/fragment_check_gv_more"-->
-        <!--android:numColumns="1"-->
-        <!--android:layout_marginLeft="120dp"-->
-        <!--android:layout_marginRight="120dp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-    <!--</GridView>-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
-        android:layout_height="137dp">
+        android:layout_height="87dp">
         <ImageView
             android:id="@+id/fragment_check_img_compony"
             android:src="@mipmap/compony_query_bg"
